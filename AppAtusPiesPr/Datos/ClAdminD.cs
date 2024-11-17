@@ -51,19 +51,28 @@ namespace AppAtusPiesPr.Datos
 
         public DataTable MtdListarVendedores()
         {
-            ClConexion oConexion = new ClConexion();
-            using (SqlConnection conn = oConexion.MtdAbrirConexion())
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("ListarVendedores", conn))
+                ClConexion oConexion = new ClConexion();
+                using (SqlConnection conn = oConexion.MtdAbrirConexion())
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable Lista = new DataTable();
-                    da.Fill(Lista);
+                    using (SqlCommand cmd = new SqlCommand("ListarVendedores", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable Lista = new DataTable();
+                        da.Fill(Lista);
 
-                    return Lista;
+                        return Lista;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                
+                throw new Exception("Error al listar los vendedores: " + ex.Message);
+            }
         }
+
     }
 }
