@@ -11,19 +11,39 @@ namespace AppAtusPiesPr.Datos
     {
         public ClUsuarioE MtdRegistrarVendedor(ClUsuarioE oDatos)
         {
-        ClConexion oConexion = new ClConexion();
-        SqlCommand cmd = new SqlCommand("spRegistrarVendedores", oConexion.MtdAbrirConexion());
-        cmd.Parameters.AddWithValue("@nombres", oDatos.Nombres);
-            cmd.Parameters.AddWithValue("@nombres", oDatos.Apellidos);
-            cmd.Parameters.AddWithValue("@nombres", oDatos.Documento);
-            cmd.Parameters.AddWithValue("@nombres", oDatos.Email);
-            cmd.Parameters.AddWithValue("@nombres", oDatos.Password);
-            cmd.Parameters.AddWithValue("@nombres", oDatos.Telefono);
-            cmd.Parameters.AddWithValue("@nombres", oDatos.Direccion);
-            cmd.Parameters.AddWithValue("@nombres", oDatos.Descripcion);
+            // Validar que 'Nombres' no esté vacío
+            if (string.IsNullOrEmpty(oDatos.Nombres))
+            {
+                throw new ArgumentException("El campo 'Nombres' no puede estar vacío.");
+            }
 
-            cmd.ExecuteNonQuery();
-            oConexion.MtdCerrarConexion();
+            ClConexion oConexion = new ClConexion();
+            using (SqlConnection conn = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("spRegistrarVendedores", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Asignar todos los parámetros
+                    cmd.Parameters.AddWithValue("@nombres", oDatos.Nombres);
+                    cmd.Parameters.AddWithValue("@apellidos", oDatos.Apellidos);
+                    cmd.Parameters.AddWithValue("@documento", oDatos.Documento);
+                    cmd.Parameters.AddWithValue("@correo", oDatos.Email);
+                    cmd.Parameters.AddWithValue("@password", oDatos.Password);
+                    cmd.Parameters.AddWithValue("@telefono", oDatos.Telefono);
+                    cmd.Parameters.AddWithValue("@direccion", oDatos.Direccion);
+                    cmd.Parameters.AddWithValue("@descripcion", oDatos.Descripcion);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Error en la base de datos: " + ex.Message);
+                    }
+                }
+            }
 
             return oDatos;
         }
