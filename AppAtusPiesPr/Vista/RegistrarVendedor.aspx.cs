@@ -1,11 +1,7 @@
 ﻿using AppAtusPiesPr.Entidades;
 using AppAtusPiesPr.Logica;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AppAtusPiesPr.Vista
 {
@@ -13,7 +9,6 @@ namespace AppAtusPiesPr.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
@@ -27,28 +22,66 @@ namespace AppAtusPiesPr.Vista
             string direccion = txtDireccion.Text;
             string descripcion = txtDescripcion.Text;
 
-            if (string.IsNullOrWhiteSpace(nombres) || string.IsNullOrWhiteSpace(apellidos) || string.IsNullOrWhiteSpace(documento) || string.IsNullOrWhiteSpace(correo) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(telefono) || string.IsNullOrWhiteSpace(direccion) || string.IsNullOrWhiteSpace(descripcion))
+            //Alerta Para los campos vacios
+            if (string.IsNullOrWhiteSpace(nombres) ||
+                string.IsNullOrWhiteSpace(apellidos) ||
+                string.IsNullOrWhiteSpace(documento) ||
+                string.IsNullOrWhiteSpace(correo) ||
+                string.IsNullOrWhiteSpace(password) ||
+                string.IsNullOrWhiteSpace(telefono) ||
+                string.IsNullOrWhiteSpace(direccion) ||
+                string.IsNullOrWhiteSpace(descripcion))
             {
+                
                 ClientScript.RegisterStartupScript(this.GetType(), "alert",
                     "Swal.fire({title: 'Advertencia!', text: 'Todos los campos son obligatorios', icon: 'warning', confirmButtonText: 'Aceptar'});", true);
                 return;
             }
 
-            ClAdminL oDatos = new ClAdminL();
-            ClUsuarioE oDatosE = new ClUsuarioE
+            try
             {
-                Nombres = nombres,
-                Apellidos = apellidos,
-                Documento = documento,
-                Email = correo,
-                Password = password,
-                Telefono = telefono,
-                Direccion = direccion,
-                Descripcion = descripcion
-            };
+                
+                ClAdminL oDatos = new ClAdminL();
+                ClUsuarioE oDatosE = new ClUsuarioE
+                {
+                    Nombres = nombres,
+                    Apellidos = apellidos,
+                    Documento = documento,
+                    Email = correo,
+                    Password = password,
+                    Telefono = telefono,
+                    Direccion = direccion,
+                    Descripcion = descripcion
+                };
 
-            ClUsuarioE respuestaVuelta = oDatos.MtdRegistrarVendedor(oDatosE);
+                
+                ClUsuarioE respuestaVuelta = oDatos.MtdRegistrarVendedor(oDatosE);
 
+                //Alerta para saber si se registro correctamente
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    "Swal.fire({title: 'Éxito!', text: 'Usuario registrado correctamente', icon: 'success', confirmButtonText: 'Aceptar'});", true);
+
+                // Limpiar campos del formulario
+                LimpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                // Manejar errores
+                ClientScript.RegisterStartupScript(this.GetType(), "alert",
+                    $"Swal.fire({{title: 'Error!', text: 'Ocurrió un error: {ex.Message}', icon: 'error', confirmButtonText: 'Aceptar'}});", true);
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            txtNombres.Text = string.Empty;
+            txtApellidos.Text = string.Empty;
+            txtDocumento.Text = string.Empty;
+            txtCorreo.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtDescripcion.Text = string.Empty;
         }
     }
 }
