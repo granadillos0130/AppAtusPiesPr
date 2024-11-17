@@ -2,6 +2,7 @@
 using AppAtusPiesPr.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -31,6 +32,12 @@ namespace AppAtusPiesPr.Logica
                 }
                 return builder.ToString();
             }
+        }
+
+        public DataTable MtdListarVendedores()
+        {
+            ClAdminD Lista = new ClAdminD();
+            return Lista.MtdListarVendedores();
         }
     }
 }
