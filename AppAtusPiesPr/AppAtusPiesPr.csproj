@@ -1761,6 +1761,7 @@
     <Compile Include="Entidades\ClProductoE.cs" />
     <Compile Include="Entidades\ClUsuarioE.cs" />
     <Compile Include="Logica\ClAdminL.cs" />
+    <Compile Include="Logica\ClProductoL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vista\BlankPage.aspx.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
