@@ -83,7 +83,11 @@
     <Content Include="Vista\js\demo\datatables-demo.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
+<<<<<<< HEAD
     <Content Include="Vista\ProductoRegistro.aspx" />
+=======
+    <Content Include="Vista\RegistrarVendedor.aspx" />
+>>>>>>> 7c898d45a6458ab5e1802e2d322b464023a01ff4
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.js" />
@@ -1778,12 +1782,21 @@
     <Compile Include="Vista\Maestra.Master.designer.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Vista\ProductoRegistro.aspx.cs">
       <DependentUpon>ProductoRegistro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\ProductoRegistro.aspx.designer.cs">
       <DependentUpon>ProductoRegistro.aspx</DependentUpon>
+=======
+    <Compile Include="Vista\RegistrarVendedor.aspx.cs">
+      <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistrarVendedor.aspx.designer.cs">
+      <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
+>>>>>>> 7c898d45a6458ab5e1802e2d322b464023a01ff4
     </Compile>
   </ItemGroup>
   <ItemGroup>
