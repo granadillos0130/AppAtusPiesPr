@@ -83,6 +83,7 @@
     <Content Include="Vista\js\demo\datatables-demo.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
+    <Content Include="Vista\RegistrarVendedor.aspx" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.js" />
@@ -1773,6 +1774,13 @@
     </Compile>
     <Compile Include="Vista\Maestra.Master.designer.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistrarVendedor.aspx.cs">
+      <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\RegistrarVendedor.aspx.designer.cs">
+      <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
