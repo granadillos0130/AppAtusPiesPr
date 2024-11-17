@@ -1,6 +1,7 @@
 ﻿using AppAtusPiesPr.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -46,6 +47,23 @@ namespace AppAtusPiesPr.Datos
             }
 
             return oDatos;
+        }
+
+        public DataTable MtdListarVendedores()
+        {
+            ClConexion oConexion = new ClConexion();
+            using (SqlConnection conn = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("ListarVendedores", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable Lista = new DataTable();
+                    da.Fill(Lista);
+
+                    return Lista;
+                }
+            }
         }
     }
 }
