@@ -21,7 +21,7 @@ namespace AppAtusPiesPr.Datos
             cmd.Parameters.AddWithValue("@nombre",objdata.Nombre);
             cmd.Parameters.AddWithValue("@cantidadStock",Convert.ToInt32(objdata.CantidadStock));
             cmd.Parameters.AddWithValue("@precio", Convert.ToInt32(objdata.Precio));
-            cmd.Parameters.AddWithValue("@presentacion",objdata.Presentacion.ToString());
+            cmd.Parameters.AddWithValue("@presentacion", objdata.Presentacion ?? (object)DBNull.Value);
             cmd.Parameters.AddWithValue("@talla",objdata.Talla);
             cmd.Parameters.AddWithValue("@idvendedor",Convert.ToInt32(objdata.idVendedor));
 
