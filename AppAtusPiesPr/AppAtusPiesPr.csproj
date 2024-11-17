@@ -1757,6 +1757,7 @@
   <ItemGroup>
     <Compile Include="Datos\ClAdminD.cs" />
     <Compile Include="Datos\ClConexion.cs" />
+    <Compile Include="Datos\ClProductoD.cs" />
     <Compile Include="Entidades\ClProductoE.cs" />
     <Compile Include="Entidades\ClUsuarioE.cs" />
     <Compile Include="Logica\ClAdminL.cs" />
