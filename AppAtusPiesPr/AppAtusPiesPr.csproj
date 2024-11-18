@@ -85,6 +85,7 @@
     <Content Include="Vista\js\demo\datatables-demo.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
+    <Content Include="Vista\ListarUsuario.aspx" />
     <Content Include="Vista\ListarVendedor.aspx" />
     <Content Include="Vista\moduloCatalogo.aspx" />
     <Content Include="Vista\Login.aspx" />
@@ -1794,6 +1795,13 @@
     </Compile>
     <Compile Include="Vista\BlankPage.aspx.designer.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ListarUsuario.aspx.cs">
+      <DependentUpon>ListarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ListarUsuario.aspx.designer.cs">
+      <DependentUpon>ListarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\ListarVendedor.aspx.cs">
       <DependentUpon>ListarVendedor.aspx</DependentUpon>
