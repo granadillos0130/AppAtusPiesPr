@@ -34,6 +34,5 @@ namespace AppAtusPiesPr
             Repeater2.DataSource = oLogica.MtdListarCategorias();
             Repeater2.DataBind();
         }
-
     }
 }
