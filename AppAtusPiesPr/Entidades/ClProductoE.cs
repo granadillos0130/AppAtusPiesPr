@@ -44,4 +44,18 @@ namespace AppAtusPiesPr.Entidades
         // Nueva propiedad para las tallas asociadas
         public List<ClTallaE> TallasDisponibles { get; set; }
     }
+    public class ClTallaE
+    {
+        public int idTalla { get; set; }
+        public string descripcionTalla { get; set; }
+    }
+
+    public class ClproductoEmpresaTalla
+    {
+        public int idProductoEmpresaTalla { get; set; }
+        public int idProductoEmpresa { get; set; }
+        public int idTalla { get; set; }
+
+    }
+
 }
