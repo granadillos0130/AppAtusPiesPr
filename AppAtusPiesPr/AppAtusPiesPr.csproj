@@ -1818,7 +1818,7 @@
     <Compile Include="Vista\moduloCatalogo.aspx.designer.cs">
       <DependentUpon>moduloCatalogo.aspx</DependentUpon>
 
-    <Compile Include="Vista\ProductosMasVendidos.aspx.cs">
+		<Compile></Compile> Include="Vista\ProductosMasVendidos.aspx.cs">
       <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -1834,6 +1834,7 @@
       <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
+	
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Vista\scss\navs\_global.scss" />
