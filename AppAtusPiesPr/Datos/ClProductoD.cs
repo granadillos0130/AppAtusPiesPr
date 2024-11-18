@@ -44,5 +44,70 @@ namespace AppAtusPiesPr.Datos
 
             return tblDatos;
         }
+
+        public ClProductoE MtdInfoProducto(int idProdctoEmpresa)
+        {
+            ClProductoE prodInfo = null;
+            ClConexion oConexion = new ClConexion();
+
+            using (SqlConnection connection = oConexion.MtdAbrirConec())
+            {
+                using (SqlCommand cmd = new SqlCommand("Sp_InfoProducto", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idProductoEmpresa", idProdctoEmpresa);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Leer información del producto
+                    while (reader.Read())
+                    {
+                        if (prodInfo == null)
+                        {
+                            prodInfo = new ClProductoE
+                            {
+                                idProdctoEmpresa = Convert.ToInt32(reader["idProdctoEmpresa"]),
+                                nombreProducto = reader["nombreProducto"].ToString(),
+                                cantidadStock = Convert.ToInt32(reader["cantidadStock"]),
+                                precioVenta = Convert.ToInt32(reader["precioVenta"]),
+                                descripcionProducto = reader["descripcionProducto"].ToString(),
+                                referencia = reader["referencia"].ToString(),
+                                imagen = reader["imagen"].ToString(),
+                                descuento = Convert.ToInt32(reader["descuento"]),
+                                nombres = reader["nombres"].ToString(),
+                                nombreMarca = reader["nombreMarca"].ToString(),
+                                // Inicializamos la lista de tallas
+                                TallasDisponibles = new List<ClTallaE>()
+                            };
+                        }
+                    }
+
+                    // Cierra el primer lector para empezar uno nuevo
+                    reader.Close();
+
+                    // Leer tallas disponibles asociadas al producto
+                    using (SqlCommand cmdTallas = new SqlCommand("spObtenerTallasDisponibles", connection))
+                    {
+                        cmdTallas.CommandType = CommandType.StoredProcedure;
+                        cmdTallas.Parameters.AddWithValue("@ProductoID", idProdctoEmpresa);
+
+                        using (SqlDataReader tallaReader = cmdTallas.ExecuteReader())
+                        {
+                            while (tallaReader.Read())
+                            {
+                                prodInfo.TallasDisponibles.Add(new ClTallaE
+                                {
+                                    idTalla = Convert.ToInt32(tallaReader["idTalla"]),
+                                    descripcionTalla = tallaReader["descripcionTalla"].ToString(),
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+
+            return prodInfo;
+        }
+
     }
 }
