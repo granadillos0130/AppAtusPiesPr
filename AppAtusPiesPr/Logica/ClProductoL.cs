@@ -25,9 +25,15 @@ namespace AppAtusPiesPr.Logica
 
         private ClProductoD oDatos = new ClProductoD();
 
-        public ClProductoE MtdInfoProductos(int idProdctoEmpresa)
+        public ClProductoEmpresaE MtdInfoProductos(int idProdctoEmpresa)
         {
             return oDatos.MtdInfoProducto(idProdctoEmpresa);
+        }
+        public List<ClCategoriaE> MtdListarCategorias()
+        {
+            ClProductoD objCategoria = new ClProductoD();
+            List<ClCategoriaE> tblDatos = objCategoria.MtdListarCategorias();
+            return tblDatos;
         }
 
     }
