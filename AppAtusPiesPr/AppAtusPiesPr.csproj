@@ -85,7 +85,6 @@
     <Content Include="Vista\js\demo\datatables-demo.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
-    <Content Include="Vista\modulos\moduloCompra.aspx" />
     <Content Include="Vista\ProductoRegistro.aspx" />
     <Content Include="Vista\recursos\ATP.png" />
     <Content Include="Vista\RegistrarVendedor.aspx" />
@@ -1790,13 +1789,6 @@
     <Compile Include="Vista\Maestra.Master.designer.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
     </Compile>
-    <Compile Include="Vista\modulos\moduloCompra.aspx.cs">
-      <DependentUpon>moduloCompra.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Vista\modulos\moduloCompra.aspx.designer.cs">
-      <DependentUpon>moduloCompra.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Vista\RegistrarVendedor.aspx.cs">
       <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1987,7 +1979,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Vista\modulos\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
