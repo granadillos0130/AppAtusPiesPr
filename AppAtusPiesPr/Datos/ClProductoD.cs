@@ -49,9 +49,10 @@ namespace AppAtusPiesPr.Datos
                     cmd.Parameters.AddWithValue("@codigo", (object)objData.Codigo ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@nombre", (object)objData.Nombre ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@precio", (object)objData.Precio ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@stock", (object)objData.CantidadStock ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@cantidadStock", (object)objData.CantidadStock ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@talla", (object)objData.Talla ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@rutaImagen", (object)objData.Presentacion ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@estado", (object)objData.Estado ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@presentacion", (object)objData.Presentacion ?? DBNull.Value);
 
                     cmd.ExecuteNonQuery();
                 }

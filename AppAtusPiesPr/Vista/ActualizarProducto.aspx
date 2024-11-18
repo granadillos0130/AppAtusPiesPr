@@ -26,6 +26,8 @@
      <asp:TextBox ID="txtStock" runat="server" placeholder="Cantidad Stock"></asp:TextBox><br/><br/>
      
      <asp:TextBox ID="txtPrecio" runat="server" placeholder="Precio"></asp:TextBox><br/><br/> 
+
+    <asp:TextBox ID="txtEstado" runat="server" placeholder="Estado"></asp:TextBox><br/><br/> 
          
      <asp:TextBox ID="txtTalla" runat="server" placeholder="Talla"></asp:TextBox><br/><br/>
 
