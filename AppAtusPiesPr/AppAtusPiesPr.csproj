@@ -84,6 +84,7 @@
     <Content Include="Vista\js\demo\datatables-demo.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
+    <Content Include="Vista\Login.aspx" />
     <Content Include="Vista\ProductoRegistro.aspx" />
     <Content Include="Vista\RegistrarVendedor.aspx" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.js" />
@@ -1781,6 +1782,13 @@
     </Compile>
     <Compile Include="Vista\BlankPage.aspx.designer.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Maestra.Master.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
