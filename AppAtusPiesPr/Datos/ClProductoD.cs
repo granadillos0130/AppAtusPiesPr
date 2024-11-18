@@ -45,9 +45,9 @@ namespace AppAtusPiesPr.Datos
             return tblDatos;
         }
 
-        public ClProductoE MtdInfoProducto(int idProdctoEmpresa)
+        public ClProductoEmpresaE MtdInfoProducto(int idProdctoEmpresa)
         {
-            ClProductoE prodInfo = null;
+            ClProductoEmpresaE prodInfo = null;
             ClConexion oConexion = new ClConexion();
 
             using (SqlConnection connection = oConexion.MtdAbrirConec())
@@ -64,7 +64,7 @@ namespace AppAtusPiesPr.Datos
                     {
                         if (prodInfo == null)
                         {
-                            prodInfo = new ClProductoE
+                            prodInfo = new ClProductoEmpresaE
                             {
                                 idProdctoEmpresa = Convert.ToInt32(reader["idProdctoEmpresa"]),
                                 nombreProducto = reader["nombreProducto"].ToString(),
