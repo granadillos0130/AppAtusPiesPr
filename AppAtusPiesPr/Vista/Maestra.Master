@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <asp:ContentPlaceHolder ID="head" runat="server">
-</asp:ContentPlaceHolder>
+    </asp:ContentPlaceHolder>
 
     <title>Panel de Administracion</title>
 
@@ -23,7 +23,6 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -94,7 +93,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones para Administrador</h6>
                         <a class="collapse-item" href="RegistrarVendedor.aspx">Registrar Vendedores</a>
-                        <a class="collapse-item" href="utilities-border.html">Listar Vendedores</a>
+                        <a class="collapse-item" href="ListarVendedor.aspx">Listar Vendedores</a>
                         <a class="collapse-item" href="utilities-animation.html">Listar Usuarios</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
@@ -195,8 +194,7 @@
                             <!-- Dropdown - Alerts -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
+                                <h6 class="dropdown-header">Alerts Center
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
@@ -246,8 +244,7 @@
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
+                                <h6 class="dropdown-header">Message Center
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
@@ -256,8 +253,10 @@
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                        <div class="text-truncate">
+                                            Am I a good boy? The reason I ask is because someone
+                                            told me that people say this to all dogs, even if they aren't good...
+                                        </div>
                                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                     </div>
                                 </a>
@@ -308,21 +307,14 @@
 
                     <!-- Page Heading -->
 
-                   
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-     
-                    </div>
+                    <asp:ContentPlaceHolder ID="body" runat="server">
+                    </asp:ContentPlaceHolder>
 
                 </div>
 
             </div>
             <!-- End of Main Content -->
-            <asp:ContentPlaceHolder ID="body" runat="server">
-</asp:ContentPlaceHolder>
+
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
