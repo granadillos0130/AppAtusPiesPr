@@ -207,7 +207,10 @@
                 <asp:TextBox ID="txtContrasena" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
                 <span class="text-danger" id="passwordError" runat="server" visible="false">La contraseña es obligatoria.</span>
             </div>
-            <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" />
+            <div>
+                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" />
+            </div>
+            
             <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" CssClass="text-danger"></asp:Label>
             <div class="link">
                 <a href="#" data-toggle="modal" data-target="#registerModal">¿No tienes una cuenta? Regístrate aquí</a>
