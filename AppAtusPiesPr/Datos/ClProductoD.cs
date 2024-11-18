@@ -29,5 +29,44 @@ namespace AppAtusPiesPr.Datos
             objConexion.MtdCerrarConexion();
             return objdata;
         }
+
+        public ClProductoE mtdActualizarProducto(ClProductoE objData)
+        {
+            try
+            {
+                ClConexion oConex = new ClConexion();
+                SqlConnection connection = oConex.MtdAbrirConexion();
+
+               
+                using (SqlCommand cmd = new SqlCommand("ActualizarProducto", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Parámetro obligatorio
+                    cmd.Parameters.AddWithValue("@idProducto", objData.idProducto);
+
+                    // Parámetros opcionales que pueden ser nulos
+                    cmd.Parameters.AddWithValue("@codigo", (object)objData.Codigo ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@nombre", (object)objData.Nombre ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@precio", (object)objData.Precio ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@stock", (object)objData.CantidadStock ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@talla", (object)objData.Talla ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@rutaImagen", (object)objData.Presentacion ?? DBNull.Value);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                
+                oConex.MtdCerrarConexion();
+
+                return objData; // Retornar el objeto actualizado
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar el producto: {ex.Message}");
+                return null; 
+            }
+        }
+
     }
 }
