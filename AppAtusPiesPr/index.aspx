@@ -60,7 +60,7 @@
                                 <asp:Repeater ID="Repeater2" runat="server">
                                     <ItemTemplate>
                                         <li>
-                                            <a href='<%# "vista/modulos/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
+                                            <a href='<%# "Vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                                 <%# Eval("descripcion") %>
                                             </a>
                                         </li>
@@ -100,7 +100,7 @@
 
                                 <div class="card-info">
                                     <div class="card-details">
-                                        <a class="buy-button" href='vista/modulos/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                                        <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
                                         <a href="#" class="save-button">
                                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                                         </a>
