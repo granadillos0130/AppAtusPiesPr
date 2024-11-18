@@ -86,7 +86,6 @@
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
     <Content Include="Vista\moduloCatalogo.aspx" />
-    <Content Include="Vista\moduloCompra.aspx" />
     <Content Include="Vista\ProductoRegistro.aspx" />
     <Content Include="Vista\recursos\ATP.png" />
     <Content Include="Vista\RegistrarVendedor.aspx" />
@@ -1797,13 +1796,6 @@
     </Compile>
     <Compile Include="Vista\moduloCatalogo.aspx.designer.cs">
       <DependentUpon>moduloCatalogo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Vista\moduloCompra.aspx.cs">
-      <DependentUpon>moduloCompra.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Vista\moduloCompra.aspx.designer.cs">
-      <DependentUpon>moduloCompra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\RegistrarVendedor.aspx.cs">
       <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
