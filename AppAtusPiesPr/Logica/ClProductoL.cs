@@ -23,5 +23,12 @@ namespace AppAtusPiesPr.Logica
             return tblDatos;
         }
 
+        private ClProductoD oDatos = new ClProductoD();
+
+        public ClProductoE MtdInfoProductos(int idProdctoEmpresa)
+        {
+            return oDatos.MtdInfoProducto(idProdctoEmpresa);
+        }
+
     }
 }
