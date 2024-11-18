@@ -172,7 +172,7 @@ namespace AppAtusPiesPr.Datos
 
 
             return oCategoria;
-
+        }
 
 
         // método para listar los productos más vendidos
