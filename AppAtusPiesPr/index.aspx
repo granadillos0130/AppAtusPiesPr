@@ -28,7 +28,7 @@
                                 <li><a href="#">MEN</a></li>
                                 <li><a href="#">GIFTS</a></li>
                                 <li><a href="#">COUTURE</a></li>
-                                <li><a href="#">EXPLORE</a></li>
+                                <li><a href="#">Acerca de Nosotros</a></li>
                             </ul>
                         </nav>
 
