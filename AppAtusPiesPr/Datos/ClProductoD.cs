@@ -75,10 +75,10 @@ namespace AppAtusPiesPr.Datos
         public DataTable MtdListarProductos()
         {
             ClConexion conexion = new ClConexion();
-            SqlCommand cmd = new SqlCommand("Sp_ListarProductos", conexion.MtdAbrirConec());
+            SqlCommand cmd = new SqlCommand("Sp_ListarProductos", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
-            conexion.MtdCerrarConec();
+            conexion.MtdCerrarConexion();
 
             SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
             DataTable tblDatos = new DataTable();
@@ -92,7 +92,7 @@ namespace AppAtusPiesPr.Datos
             ClProductoEmpresaE prodInfo = null;
             ClConexion oConexion = new ClConexion();
 
-            using (SqlConnection connection = oConexion.MtdAbrirConec())
+            using (SqlConnection connection = oConexion.MtdAbrirConexion())
             {
                 using (SqlCommand cmd = new SqlCommand("Sp_InfoProducto", connection))
                 {
@@ -155,7 +155,7 @@ namespace AppAtusPiesPr.Datos
         {
             List<ClCategoriaE> oCategoria = new List<ClCategoriaE>();
             ClConexion conexion = new ClConexion();
-            SqlCommand cmd = new SqlCommand("spListarCategorias", conexion.MtdAbrirConec());
+            SqlCommand cmd = new SqlCommand("spListarCategorias", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
 
@@ -168,7 +168,7 @@ namespace AppAtusPiesPr.Datos
                     descripcion = reader["descripcion"].ToString()
                 });
             }
-            conexion.MtdCerrarConec();
+            conexion.MtdCerrarConexion();
 
 
             return oCategoria;
