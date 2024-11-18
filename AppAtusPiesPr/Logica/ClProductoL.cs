@@ -18,6 +18,7 @@ namespace AppAtusPiesPr.Logica
             return objData;
         }
 
+
         public DataTable MtdListarProductos()
         {
             ClProductoD objProductoD = new ClProductoD();
@@ -43,5 +44,15 @@ namespace AppAtusPiesPr.Logica
             ClProductoD productoD = new ClProductoD();
             return productoD.MtdListaProductosMasVendidos(fechaInicio, fechaFin);
         }
+
+
+
+        public ClProductoE MtdActualizacionProduc(ClProductoE objProdActu)
+        {
+            ClProductoD objActuP = new ClProductoD();
+            return objActuP.mtdActualizarProducto(objProdActu);
+        }
+
+
     }
 }

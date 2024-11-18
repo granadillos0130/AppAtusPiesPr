@@ -72,9 +72,12 @@
                         <h6 class="collapse-header">Opciones para Vendedores:</h6>
                         <a class="collapse-item" href="ProductoRegistro.aspx">Registrar producto</a>
                         <a class="collapse-item" href="productoLista.aspx">Productos Registrados</a>
+
                         <a class="collapse-item" href="productosMasVendidos.aspx">Productos Mas vendidos</a>
 
                         <a class="collapse-item" href="cards.html"></a>
+
+                        <a class="collapse-item" href="ActualizarProducto.aspx">Actualizar Productos</a>
                     </div>
                 </div>
             </li>
