@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.aspx" />
     <Content Include="Vista\ActualizarProducto.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\css\FormRegistro.css" />
