@@ -85,6 +85,9 @@
     <Content Include="Vista\js\demo\datatables-demo.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
+
+    <Content Include="Vista\moduloCatalogo.aspx" />
+
     <Content Include="Vista\Login.aspx" />
     <Content Include="Vista\ProductoRegistro.aspx" />
     <Content Include="Vista\ProductosMasVendidos.aspx" />
@@ -1807,12 +1810,21 @@
     <Compile Include="Vista\Maestra.Master.designer.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
     </Compile>
+
+    <Compile Include="Vista\moduloCatalogo.aspx.cs">
+      <DependentUpon>moduloCatalogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\moduloCatalogo.aspx.designer.cs">
+      <DependentUpon>moduloCatalogo.aspx</DependentUpon>
+
     <Compile Include="Vista\ProductosMasVendidos.aspx.cs">
       <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\ProductosMasVendidos.aspx.designer.cs">
       <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
+
     </Compile>
     <Compile Include="Vista\RegistrarVendedor.aspx.cs">
       <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
