@@ -7,8 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>ATP</title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <link rel='stylesheet' type='text/css' media='screen' href='../css/main.css' />
-    <link rel="shortcut icon" href="../recursos/ATP.png" />
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css' />
+    <link rel="shortcut icon" href="recursos/ATP.png" />
 </head>
 <body>
     <form runat="server">
