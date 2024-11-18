@@ -74,5 +74,27 @@ namespace AppAtusPiesPr.Datos
             }
         }
 
+        public DataTable MtdListarUsuarios()
+        {
+            try
+            {
+                ClConexion oConexion = new ClConexion();
+                using (SqlConnection con = oConexion.MtdAbrirConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand("spListarUsuarios", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable Lista = new DataTable();
+                        da.Fill(Lista);
+                        return Lista;
+                    }
+                }
+            }
+            catch(Exception ex) 
+            { throw new Exception("Errro al listar los Usuarios" + ex.Message); 
+            }
+        }
+
     }
 }

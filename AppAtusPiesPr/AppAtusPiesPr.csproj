@@ -70,7 +70,6 @@
     <Content Include="index.aspx" />
     <Content Include="Vista\ActualizarProducto.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
-    <Content Include="Vista\css\FormRegistro.css" />
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
     <Content Include="Vista\css\sb-admin-2.min.css" />
@@ -86,7 +85,12 @@
     <Content Include="Vista\js\demo\datatables-demo.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
+
     <Content Include="Vista\moduloCatalogoFiltrado.aspx" />
+
+    <Content Include="Vista\ListarUsuario.aspx" />
+    <Content Include="Vista\ListarVendedor.aspx" />
+
     <Content Include="Vista\Login.aspx" />
     <Content Include="Vista\moduloCompra.aspx" />
     <Content Include="Vista\ProductosMasVendidos.aspx" />
@@ -1795,6 +1799,20 @@
     </Compile>
     <Compile Include="Vista\BlankPage.aspx.designer.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ListarUsuario.aspx.cs">
+      <DependentUpon>ListarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ListarUsuario.aspx.designer.cs">
+      <DependentUpon>ListarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ListarVendedor.aspx.cs">
+      <DependentUpon>ListarVendedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ListarVendedor.aspx.designer.cs">
+      <DependentUpon>ListarVendedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
