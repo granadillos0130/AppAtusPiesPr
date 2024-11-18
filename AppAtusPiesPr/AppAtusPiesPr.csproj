@@ -70,6 +70,7 @@
     <Content Include="index.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\css\FormRegistro.css" />
+    <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
     <Content Include="Vista\css\sb-admin-2.min.css" />
     <Content Include="Vista\img\undraw_posting_photo.svg" />
