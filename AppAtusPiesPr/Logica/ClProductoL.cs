@@ -16,6 +16,7 @@ namespace AppAtusPiesPr.Logica
             return objData;
         }
 
+
         public DataTable MtdListarProductos()
         {
             ClProductoD objProductoD = new ClProductoD();
@@ -34,6 +35,13 @@ namespace AppAtusPiesPr.Logica
             ClProductoD objCategoria = new ClProductoD();
             List<ClCategoriaE> tblDatos = objCategoria.MtdListarCategorias();
             return tblDatos;
+        }
+
+
+        public ClProductoE MtdActualizacionProduc(ClProductoE objProdActu)
+        {
+            ClProductoD objActuP = new ClProductoD();
+            return objActuP.mtdActualizarProducto(objProdActu);
         }
 
     }

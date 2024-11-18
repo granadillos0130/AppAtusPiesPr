@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.aspx" />
+    <Content Include="Vista\ActualizarProducto.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\css\FormRegistro.css" />
     <Content Include="Vista\css\main.css" />
@@ -1778,6 +1778,13 @@
     <Compile Include="Logica\ClClienteL.cs" />
     <Compile Include="Logica\ClProductoL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\ActualizarProducto.aspx.cs">
+      <DependentUpon>ActualizarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ActualizarProducto.aspx.designer.cs">
+      <DependentUpon>ActualizarProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\BlankPage.aspx.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
