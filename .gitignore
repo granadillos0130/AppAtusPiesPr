@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/AppAtusPiesPr/Vista/ListarVendedor.aspx
+/AppAtusPiesPr/Vista/ListarVendedor.aspx.cs
+*.cs

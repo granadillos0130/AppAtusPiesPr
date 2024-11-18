@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="moduloCatalogo.aspx.cs" Inherits="AppAtusPiesPr.Vista.moduloCatalogo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="moduloCatalogoFiltrado.aspx.cs" Inherits="AppAtusPiesPr.Vista.moduloCatalogo" %>
 
 <!DOCTYPE html>
 
