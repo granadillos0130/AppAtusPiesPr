@@ -57,5 +57,10 @@ namespace AppAtusPiesPr.Entidades
         public int idTalla { get; set; }
 
     }
+    public class ClCategoriaE
+    {
+        public int idCategoria { get; set; }
+        public string descripcion { get; set; }
+    }
 
 }
