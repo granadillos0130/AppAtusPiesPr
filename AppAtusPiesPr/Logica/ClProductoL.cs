@@ -15,5 +15,13 @@ namespace AppAtusPiesPr.Logica
             ClProductoE objData = objProdD.MtdRegistrarProducto(objDatosProd);
             return objData;
         }
+
+        public DataTable MtdListarProductos()
+        {
+            ClProductoD objProductoD = new ClProductoD();
+            DataTable tblDatos = objProductoD.MtdListarProductos();
+            return tblDatos;
+        }
+
     }
 }
