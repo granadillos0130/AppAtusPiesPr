@@ -13,5 +13,10 @@ namespace AppAtusPiesPr.Vista
         {
 
         }
+
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
