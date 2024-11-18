@@ -29,5 +29,20 @@ namespace AppAtusPiesPr.Datos
             objConexion.MtdCerrarConexion();
             return objdata;
         }
+
+        public DataTable MtdListarProductos()
+        {
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("Sp_ListarProductos", conexion.MtdAbrirConec());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            conexion.MtdCerrarConec();
+
+            SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+            DataTable tblDatos = new DataTable();
+            adaptador.Fill(tblDatos);
+
+            return tblDatos;
+        }
     }
 }
