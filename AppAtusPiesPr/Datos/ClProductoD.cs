@@ -174,6 +174,35 @@ namespace AppAtusPiesPr.Datos
             return oCategoria;
 
 
+
+        // método para listar los productos más vendidos
+        public List<ClProductoE> MtdListaProductosMasVendidos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            List<ClProductoE> productos = new List<ClProductoE>();
+
+            ClConexion conexion = new ClConexion();
+            SqlCommand sqlCommand = new SqlCommand("spProductosMasVendidos", conexion.MtdAbrirConexion());
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            sqlCommand.Parameters.AddWithValue("@fechaFin", fechaFin);
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+
+            foreach (DataRow fila in dataTable.Rows)
+            {
+                productos.Add(new ClProductoE
+                {
+                    idProducto = Convert.ToInt32(fila["IdProducto"]),
+                    Nombre = fila["NombreProducto"].ToString(),
+                    Descripcion = fila["DescripcionProducto"].ToString(),
+                    CantidadVendida = Convert.ToInt32(fila["CantidadVendida"]),
+                    TotalVentas = Convert.ToDecimal(fila["TotalVentas"]),
+                    Marca = fila["Marca"].ToString()
+                });
+            }
+            conexion.MtdCerrarConexion();
+            return productos;
         }
     }
 }
