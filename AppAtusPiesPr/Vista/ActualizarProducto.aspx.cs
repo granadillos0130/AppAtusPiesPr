@@ -34,11 +34,12 @@ namespace AppAtusPiesPr.Vista
                 // Procesar la imagen si se ha subido una nueva
                 if (inRuta.HasFile)
                 {
+                    //Extrae la extension y la convierte en minuscula
                     string extension = System.IO.Path.GetExtension(inRuta.FileName).ToLower();
                     string[] extensionesPermitidas = { ".jpg", ".jpeg", ".png", ".gif" };
 
                     if (extensionesPermitidas.Contains(extension))
-                    {
+                    {                       //Evita nombres duplicados
                         string nombreArchivo = Guid.NewGuid().ToString() + extension;
                         rutaImagen = Server.MapPath("~/img/Producto/") + nombreArchivo;
 
@@ -63,7 +64,7 @@ namespace AppAtusPiesPr.Vista
                 // Crear objeto con los datos del producto
                 ClProductoE objProductoE = new ClProductoE
                 {
-                    idProducto = int.TryParse(txtProducto.Text, out int id) ? id : 0,
+                    idProducto = int.TryParse(txtProducto.Text, out int id) ? id : 0,//Convertimos las cadenas en enteros, si falla se le asigna 0 
                     Nombre = txtNombre.Text,
                     Codigo = txtCodigo.Text,
                     CantidadStock = int.TryParse(txtStock.Text, out int stock) ? stock : 0,
@@ -73,7 +74,7 @@ namespace AppAtusPiesPr.Vista
                     Presentacion = rutaImagen// Solo se actualiza si se subió una nueva imagen
                 };
 
-                // Llamar al método de actualización
+                
                 ClProductoL objProductoL = new ClProductoL();
                 ClProductoE objDatos = objProductoL.MtdActualizacionProduc(objProductoE);
 
