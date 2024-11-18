@@ -94,7 +94,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones para Administrador</h6>
                         <a class="collapse-item" href="RegistrarVendedor.aspx">Registrar Vendedores</a>
-                        <a class="collapse-item" href="utilities-border.html">Listar Vendedores</a>
+                        <a class="collapse-item" href="ListarVendedor.aspx">Listar Vendedores</a>
                         <a class="collapse-item" href="utilities-animation.html">Listar Usuarios</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
