@@ -42,7 +42,7 @@
                             <a href="Vista/modulos/moduloCarrito.aspx" class="save-button2">
                                 <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                             </a>
-                            <a href="vista/modulos/login.html" class="login">LOGIN</a>
+                            <a href="vista\Login.aspx" class="login">LOGIN</a>
 
                             <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
                         </div>

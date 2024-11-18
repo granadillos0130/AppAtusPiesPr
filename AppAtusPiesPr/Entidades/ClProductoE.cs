@@ -24,6 +24,10 @@ namespace AppAtusPiesPr.Entidades
         public string Talla { get; set; }
 
         public int idVendedor { get; set; }
+        public string Descripcion { get; set; }
+        public int CantidadVendida {  get; set; }
+        public decimal TotalVentas { get; set; }
+        public string Marca { get; set; }
     }
 
     public class ClProductoEmpresaE

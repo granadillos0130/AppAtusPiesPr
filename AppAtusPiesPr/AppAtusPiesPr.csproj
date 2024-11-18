@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.aspx" />
+    <Content Include="Vista\ActualizarProducto.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\css\FormRegistro.css" />
     <Content Include="Vista\css\main.css" />
@@ -85,8 +85,12 @@
     <Content Include="Vista\js\demo\datatables-demo.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
+
     <Content Include="Vista\moduloCatalogo.aspx" />
+
+    <Content Include="Vista\Login.aspx" />
     <Content Include="Vista\ProductoRegistro.aspx" />
+    <Content Include="Vista\ProductosMasVendidos.aspx" />
     <Content Include="Vista\recursos\ATP.png" />
     <Content Include="Vista\RegistrarVendedor.aspx" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.js" />
@@ -1762,6 +1766,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\ClAdminD.cs" />
+    <Compile Include="Datos\ClClienteD.cs" />
     <Compile Include="Datos\ClConexion.cs" />
     <Compile Include="Datos\ClProductoD.cs" />
     <Compile Include="Entidades\ClProductoE.cs" />
@@ -1774,14 +1779,29 @@
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logica\ClAdminL.cs" />
+    <Compile Include="Logica\ClClienteL.cs" />
     <Compile Include="Logica\ClProductoL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\ActualizarProducto.aspx.cs">
+      <DependentUpon>ActualizarProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ActualizarProducto.aspx.designer.cs">
+      <DependentUpon>ActualizarProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\BlankPage.aspx.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\BlankPage.aspx.designer.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\Maestra.Master.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
@@ -1790,12 +1810,21 @@
     <Compile Include="Vista\Maestra.Master.designer.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
     </Compile>
+
     <Compile Include="Vista\moduloCatalogo.aspx.cs">
       <DependentUpon>moduloCatalogo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\moduloCatalogo.aspx.designer.cs">
       <DependentUpon>moduloCatalogo.aspx</DependentUpon>
+
+    <Compile Include="Vista\ProductosMasVendidos.aspx.cs">
+      <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ProductosMasVendidos.aspx.designer.cs">
+      <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
+
     </Compile>
     <Compile Include="Vista\RegistrarVendedor.aspx.cs">
       <DependentUpon>RegistrarVendedor.aspx</DependentUpon>

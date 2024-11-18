@@ -2,6 +2,8 @@
 using AppAtusPiesPr.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -15,6 +17,7 @@ namespace AppAtusPiesPr.Logica
             ClProductoE objData = objProdD.MtdRegistrarProducto(objDatosProd);
             return objData;
         }
+
 
         public DataTable MtdListarProductos()
         {
@@ -35,6 +38,21 @@ namespace AppAtusPiesPr.Logica
             List<ClCategoriaE> tblDatos = objCategoria.MtdListarCategorias();
             return tblDatos;
         }
+       
+        public List<ClProductoE> MtdObtenerProductosMasVendidos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            ClProductoD productoD = new ClProductoD();
+            return productoD.MtdListaProductosMasVendidos(fechaInicio, fechaFin);
+        }
+
+
+
+        public ClProductoE MtdActualizacionProduc(ClProductoE objProdActu)
+        {
+            ClProductoD objActuP = new ClProductoD();
+            return objActuP.mtdActualizarProducto(objProdActu);
+        }
+
 
     }
 }

@@ -13,30 +13,72 @@ namespace AppAtusPiesPr.Datos
         public ClProductoE MtdRegistrarProducto(ClProductoE objdata)
         {
             ClConexion objConexion = new ClConexion();
-            SqlCommand cmd = new SqlCommand("insertarProducto",objConexion.MtdAbrirConexion());
+            SqlCommand cmd = new SqlCommand("insertarProducto", objConexion.MtdAbrirConexion());
 
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@codigo",objdata.Codigo);
-            cmd.Parameters.AddWithValue("@nombre",objdata.Nombre);
-            cmd.Parameters.AddWithValue("@cantidadStock",Convert.ToInt32(objdata.CantidadStock));
+            cmd.Parameters.AddWithValue("@codigo", objdata.Codigo);
+            cmd.Parameters.AddWithValue("@nombre", objdata.Nombre);
+            cmd.Parameters.AddWithValue("@cantidadStock", Convert.ToInt32(objdata.CantidadStock));
             cmd.Parameters.AddWithValue("@precio", Convert.ToInt32(objdata.Precio));
             cmd.Parameters.AddWithValue("@presentacion", objdata.Presentacion ?? (object)DBNull.Value);
-            cmd.Parameters.AddWithValue("@talla",objdata.Talla);
-            cmd.Parameters.AddWithValue("@idvendedor",Convert.ToInt32(objdata.idVendedor));
+            cmd.Parameters.AddWithValue("@talla", objdata.Talla);
+            cmd.Parameters.AddWithValue("@idvendedor", Convert.ToInt32(objdata.idVendedor));
 
             cmd.ExecuteNonQuery();
             objConexion.MtdCerrarConexion();
             return objdata;
         }
 
+
+
+        public ClProductoE mtdActualizarProducto(ClProductoE objData)
+        {
+            try
+            {
+                ClConexion oConex = new ClConexion();
+                SqlConnection connection = oConex.MtdAbrirConexion();
+
+
+                using (SqlCommand cmd = new SqlCommand("ActualizarProducto", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Parámetro obligatorio
+                    cmd.Parameters.AddWithValue("@idProducto", objData.idProducto);
+
+                    // Parámetros opcionales que pueden ser nulos
+                    cmd.Parameters.AddWithValue("@codigo", (object)objData.Codigo ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@nombre", (object)objData.Nombre ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@precio", (object)objData.Precio ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@cantidadStock", (object)objData.CantidadStock ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@talla", (object)objData.Talla ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@estado", (object)objData.Estado ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@presentacion", (object)objData.Presentacion ?? DBNull.Value);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+
+                oConex.MtdCerrarConexion();
+
+                return objData; // Retornar el objeto actualizado
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar el producto: {ex.Message}");
+                return null;
+            }
+
+        }
+
         public DataTable MtdListarProductos()
         {
             ClConexion conexion = new ClConexion();
-            SqlCommand cmd = new SqlCommand("Sp_ListarProductos", conexion.MtdAbrirConec());
+            SqlCommand cmd = new SqlCommand("Sp_ListarProductos", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
-            conexion.MtdCerrarConec();
+            conexion.MtdCerrarConexion();
 
             SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
             DataTable tblDatos = new DataTable();
@@ -50,7 +92,7 @@ namespace AppAtusPiesPr.Datos
             ClProductoEmpresaE prodInfo = null;
             ClConexion oConexion = new ClConexion();
 
-            using (SqlConnection connection = oConexion.MtdAbrirConec())
+            using (SqlConnection connection = oConexion.MtdAbrirConexion())
             {
                 using (SqlCommand cmd = new SqlCommand("Sp_InfoProducto", connection))
                 {
@@ -113,7 +155,7 @@ namespace AppAtusPiesPr.Datos
         {
             List<ClCategoriaE> oCategoria = new List<ClCategoriaE>();
             ClConexion conexion = new ClConexion();
-            SqlCommand cmd = new SqlCommand("spListarCategorias", conexion.MtdAbrirConec());
+            SqlCommand cmd = new SqlCommand("spListarCategorias", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
 
@@ -126,12 +168,41 @@ namespace AppAtusPiesPr.Datos
                     descripcion = reader["descripcion"].ToString()
                 });
             }
-            conexion.MtdCerrarConec();
+            conexion.MtdCerrarConexion();
 
 
             return oCategoria;
 
-        }
 
+
+        // método para listar los productos más vendidos
+        public List<ClProductoE> MtdListaProductosMasVendidos(DateTime fechaInicio, DateTime fechaFin)
+        {
+            List<ClProductoE> productos = new List<ClProductoE>();
+
+            ClConexion conexion = new ClConexion();
+            SqlCommand sqlCommand = new SqlCommand("spProductosMasVendidos", conexion.MtdAbrirConexion());
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@fechaInicio", fechaInicio);
+            sqlCommand.Parameters.AddWithValue("@fechaFin", fechaFin);
+            SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+            DataTable dataTable = new DataTable();
+            adapter.Fill(dataTable);
+
+            foreach (DataRow fila in dataTable.Rows)
+            {
+                productos.Add(new ClProductoE
+                {
+                    idProducto = Convert.ToInt32(fila["IdProducto"]),
+                    Nombre = fila["NombreProducto"].ToString(),
+                    Descripcion = fila["DescripcionProducto"].ToString(),
+                    CantidadVendida = Convert.ToInt32(fila["CantidadVendida"]),
+                    TotalVentas = Convert.ToDecimal(fila["TotalVentas"]),
+                    Marca = fila["Marca"].ToString()
+                });
+            }
+            conexion.MtdCerrarConexion();
+            return productos;
+        }
     }
 }
