@@ -25,4 +25,23 @@ namespace AppAtusPiesPr.Entidades
 
         public int idVendedor { get; set; }
     }
+
+    public class ClProductoEmpresaE
+    {
+        public int idProdctoEmpresa { get; set; }
+        public int idVendedor { get; set; }
+        public int idProducto { get; set; }
+        public string nombreProducto { get; set; }
+        public int cantidadStock { get; set; }
+        public int precioVenta { get; set; }
+        public string descripcionProducto { get; set; }
+        public string referencia { get; set; }
+        public string imagen { get; set; }
+        public int descuento { get; set; }
+        public string nombres { get; set; }
+        public string nombreMarca { get; set; }
+
+        // Nueva propiedad para las tallas asociadas
+        public List<ClTallaE> TallasDisponibles { get; set; }
+    }
 }
