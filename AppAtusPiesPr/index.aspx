@@ -100,7 +100,7 @@
 
                                 <div class="card-info">
                                     <div class="card-details">
-                                        <a class="buy-button" href='vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                                        <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
                                         <a href="#" class="save-button">
                                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                                         </a>
