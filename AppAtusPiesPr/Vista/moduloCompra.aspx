@@ -28,7 +28,7 @@
                     </ul>
                 </nav>
 
-                <a href="../../index.aspx" class="logo">A TUS PIES</a>
+                <a href="../index.aspx" class="logo">A TUS PIES</a>
 
                 <div class="right-section">
                     <div class="search-bar">
@@ -53,7 +53,7 @@
                         <asp:Repeater ID="Repeater2" runat="server">
                             <ItemTemplate>
                                 <li>
-                                    <a href='<%# "vista/modulos/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
+                                    <a href='<%# "Vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                         <%# Eval("descripcion") %>
                                     </a>
                                 </li>
