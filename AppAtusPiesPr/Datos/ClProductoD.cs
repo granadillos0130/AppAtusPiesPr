@@ -109,5 +109,29 @@ namespace AppAtusPiesPr.Datos
             return prodInfo;
         }
 
+        public List<ClCategoriaE> MtdListarCategorias()
+        {
+            List<ClCategoriaE> oCategoria = new List<ClCategoriaE>();
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("spListarCategorias", conexion.MtdAbrirConec());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                oCategoria.Add(new ClCategoriaE
+                {
+                    idCategoria = Convert.ToInt32(reader["idCategoria"]),
+                    descripcion = reader["descripcion"].ToString()
+                });
+            }
+            conexion.MtdCerrarConec();
+
+
+            return oCategoria;
+
+        }
+
     }
 }
