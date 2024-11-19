@@ -205,37 +205,22 @@ namespace AppAtusPiesPr.Datos
             return productos;
         }
 
-        public List<ClProductoEmpresaE> MtdListarProductosFiltrados(int idCategoria)
+        public DataTable MtdListarProductosPorCategoria(int idCategoria)
         {
-            List<ClProductoEmpresaE> oProductoEmpresa = new List<ClProductoEmpresaE>();
-            ClConexion oConex = new ClConexion();
+            ClConexion conexion = new ClConexion();
+            DataTable dtProductos = new DataTable();
 
-            SqlCommand cmd = new SqlCommand("spListarProductosConCategorias", oConex.MtdAbrirConexion());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("idCategoria", idCategoria);
-            cmd.ExecuteNonQuery();
-            oConex.MtdCerrarConexion();
-
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            using (SqlConnection connection = conexion.MtdAbrirConexion())
             {
-                oProductoEmpresa.Add(new ClProductoEmpresaE
-                {
-                    idProdctoEmpresa = Convert.ToInt32(reader["idProdctoEmpresa"]),
-                    nombreProducto = reader["nombreProducto"].ToString(),
-                    cantidadStock = Convert.ToInt32(reader["cantidadStock"]),
-                    precioVenta = Convert.ToInt32(reader["precioVenta"]),
-                    descripcionProducto = reader["descripcionProducto"].ToString(),
-                    referencia = reader["referencia"].ToString(),
-                    imagen = reader["imagen"].ToString(),
-                    descuento = Convert.ToInt32(reader["descuento"]),
-                    nombres = reader["nombres"].ToString(),
-                    nombreMarca = reader["nombreMarca"].ToString(),
-                    // Inicializamos la lista de tallas
-                    TallasDisponibles = new List<ClTallaE>()
-                });
+                SqlCommand cmd = new SqlCommand("spListarProductosConCategorias", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtProductos);
             }
-            return oProductoEmpresa;
+            conexion.MtdCerrarConexion();
+            return dtProductos;
         }
 
     }

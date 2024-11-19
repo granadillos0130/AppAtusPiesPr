@@ -53,11 +53,11 @@ namespace AppAtusPiesPr.Logica
             return objActuP.mtdActualizarProducto(objProdActu);
         }
 
-        public List<ClProductoEmpresaE> MtdListarPorFiltro(int idCategoria)
+        private ClProductoD productoD = new ClProductoD();
+
+        public DataTable MtdListarPorFiltro(int idCategoria)
         {
-            ClProductoL objProL = new ClProductoL();
-            List<ClProductoEmpresaE> tblDatos = objProL.MtdListarPorFiltro(idCategoria);
-            return tblDatos;
+            return productoD.MtdListarProductosPorCategoria(idCategoria);
         }
 
     }
