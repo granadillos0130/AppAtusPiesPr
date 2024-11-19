@@ -3,6 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <form id="form1" runat="server">
+        <h1>Productos más vendidos </h1>
         <div>
             <asp:Label ID="lblFechaInicio" runat="server" Text="Fecha de Inicio:"></asp:Label>
             <asp:TextBox ID="txtFechaInicio" runat="server"></asp:TextBox>
