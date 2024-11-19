@@ -210,7 +210,7 @@ namespace AppAtusPiesPr.Datos
             List<ClProductoEmpresaE> oProductoEmpresa = new List<ClProductoEmpresaE>();
             ClConexion oConex = new ClConexion();
 
-            SqlCommand cmd = new SqlCommand("", oConex.MtdAbrirConexion());
+            SqlCommand cmd = new SqlCommand("spListarProductosConCategorias", oConex.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("idCategoria", idCategoria);
             cmd.ExecuteNonQuery();
