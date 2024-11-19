@@ -205,23 +205,41 @@ namespace AppAtusPiesPr.Datos
             return productos;
         }
 
-        public DataTable MtdListarProductosPorCategoria(int idCategoria)
+
+
+        // Método para listar productos por categoría
+        public List<ClProductoE> MtdListarProductosPorCategoria(string categoria = null)
         {
             ClConexion conexion = new ClConexion();
-            DataTable dtProductos = new DataTable();
+            List<ClProductoE> productos = new List<ClProductoE>();
 
-            using (SqlConnection connection = conexion.MtdAbrirConexion())
+            using (SqlCommand cmd = new SqlCommand("SpListarProductosCategoria", conexion.MtdAbrirConexion()))
             {
-                SqlCommand cmd = new SqlCommand("spListarProductosConCategorias", connection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
+                cmd.Parameters.AddWithValue("@categoria", string.IsNullOrEmpty(categoria) ? (object)DBNull.Value : categoria);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                adapter.Fill(dtProductos);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    ClProductoE producto = new ClProductoE
+                    {
+                        Codigo = row["Codigo"].ToString(),
+                        Nombre = row["NombreProducto"].ToString(),
+                        CantidadStock = Convert.ToInt32(row["CantidadDisponible"]),
+                        Precio = Convert.ToInt32(row["Precio"]),
+                        Presentacion = row["Presentacion"].ToString(),
+                        Estado = row["Estado"].ToString(),
+                        Descripcion = row["Categoria"].ToString()
+                    };
+
+                    productos.Add(producto);
+                }
             }
             conexion.MtdCerrarConexion();
-            return dtProductos;
+            return productos;
         }
-
     }
 }

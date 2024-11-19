@@ -12,7 +12,9 @@ namespace AppAtusPiesPr.Datos
 
         public ClConexion()
         {
+
             conex = new SqlConnection("Data Source=DESKTOP-JUE434E\\SQLEXPRESS;Initial Catalog=dbZapateria2.0;Integrated Security=True;");
+
         }
 
         public SqlConnection MtdAbrirConexion()
@@ -23,7 +25,7 @@ namespace AppAtusPiesPr.Datos
 
         public void MtdCerrarConexion()
         {
-            conex.Close(); 
+            conex.Close();
         }
     }
 }
