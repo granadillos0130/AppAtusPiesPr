@@ -32,7 +32,7 @@
                             </ul>
                         </nav>
 
-                        <a href="index.html" class="logo">A TUS PIES</a>
+                        <a href="../index.html" class="logo">A TUS PIES</a>
 
                         <div class="right-section">
                             <div class="search-bar">
@@ -60,7 +60,7 @@
                                 <asp:Repeater ID="Repeater2" runat="server">
                                     <ItemTemplate>
                                         <li>
-                                            <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
+                                            <a href='<%# "moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                                 <%# Eval("descripcion") %>
                                             </a>
                                         </li>
@@ -85,7 +85,7 @@
 
                                 <div class="card-info">
                                     <div class="card-details">
-                                        <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                                        <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
                                         <a href="#" class="save-button">
                                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                                         </a>
