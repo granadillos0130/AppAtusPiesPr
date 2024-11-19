@@ -32,7 +32,7 @@
                             </ul>
                         </nav>
 
-                        <a href="../index.html" class="logo">A TUS PIES</a>
+                        <a href="../index.aspx" class="logo">A TUS PIES</a>
 
                         <div class="right-section">
                             <div class="search-bar">
@@ -72,6 +72,9 @@
 
                 </center>
 
+                <center>
+                    <p class="card-title"><%# Eval("descripcion")  %></p>
+                </center>
 
                 <br>
                 <!-- Contenedor para las tarjetas -->
@@ -80,7 +83,7 @@
                     <asp:Repeater ID="Repeater1" runat="server">
                         <ItemTemplate>
                             <div class="card">
-                                <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Chaqueta" class="card-image" />
+                                <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' class="card-image" />
                                 <p class="card-title"><%# Eval("nombreProducto") %></p>
 
                                 <div class="card-info">

@@ -95,7 +95,7 @@
                     <asp:Repeater ID="Repeater1" runat="server">
                         <ItemTemplate>
                             <div class="card">
-                                <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Chaqueta" class="card-image" />
+                                <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>'  class="card-image" />
                                 <p class="card-title"><%# Eval("nombreProducto") %></p>
 
                                 <div class="card-info">
