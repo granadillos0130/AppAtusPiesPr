@@ -9,9 +9,9 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <title>ATP </title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css' />
+    <link rel='stylesheet' type='text/css' media='screen' href='vista/css/main.css' />
 
-    <link rel="shortcut icon" href="recursos/ATP.png" />
+    <link rel="shortcut icon" href="vista/recursos/ATP.png" />
 </head>
 <body>
     <form id="form1" runat="server">
