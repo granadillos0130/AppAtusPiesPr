@@ -13,7 +13,7 @@ namespace AppAtusPiesPr.Datos
         public ClProductoE MtdRegistrarProducto(ClProductoE objdata)
         {
             ClConexion objConexion = new ClConexion();
-            SqlCommand cmd = new SqlCommand("insertarProducto", objConexion.MtdAbrirConexion());
+            SqlCommand cmd = new SqlCommand("SpinsertarProducto", objConexion.MtdAbrirConexion());
 
             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -40,7 +40,7 @@ namespace AppAtusPiesPr.Datos
                 SqlConnection connection = oConex.MtdAbrirConexion();
 
 
-                using (SqlCommand cmd = new SqlCommand("ActualizarProducto", connection))
+                using (SqlCommand cmd = new SqlCommand("SpActualizarProducto", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -204,6 +204,7 @@ namespace AppAtusPiesPr.Datos
             conexion.MtdCerrarConexion();
             return productos;
         }
+
 
 
         // Método para listar productos por categoría

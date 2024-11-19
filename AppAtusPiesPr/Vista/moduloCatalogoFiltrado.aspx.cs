@@ -1,5 +1,7 @@
-﻿using System;
+﻿using AppAtusPiesPr.Logica;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +13,28 @@ namespace AppAtusPiesPr.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                int idCategoria = Convert.ToInt32(Request.QueryString["id"]); // Obtener idCategoria desde la URL
+                cargarProductos(idCategoria);
+                cargarCategorias();
+            }
         }
+
+        private void cargarProductos(int idCategoria)
+        {
+            ClProductoL objProductoL = new ClProductoL();
+            DataTable dt = objProductoL.MtdListarPorFiltro(idCategoria);
+            Repeater1.DataSource = dt;
+            Repeater1.DataBind();
+        }
+
+        private void cargarCategorias()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            Repeater2.DataSource = oLogica.MtdListarCategorias();
+            Repeater2.DataBind();
+        }
+
     }
 }

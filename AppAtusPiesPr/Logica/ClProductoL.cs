@@ -53,11 +53,13 @@ namespace AppAtusPiesPr.Logica
             return objActuP.mtdActualizarProducto(objProdActu);
         }
 
+
         // Método para obtener productos por categoría
         public List<ClProductoE> MtdObtenerProductosPorCategoria(string categoria = null)
         {
             ClProductoD productoD = new ClProductoD();
             return productoD.MtdListarProductosPorCategoria(categoria);
+
         }
 
     }

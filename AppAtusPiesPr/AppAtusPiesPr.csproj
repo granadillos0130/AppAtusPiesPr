@@ -73,6 +73,10 @@
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
     <Content Include="Vista\css\sb-admin-2.min.css" />
+    <Content Include="Vista\imagenes\Jordan1RetroLowOGSPTravisScott.jpg" />
+    <Content Include="Vista\imagenes\JumpmanJackdeJORDANxTravisScott.png" />
+    <Content Include="Vista\imagenes\thumb-jordan-5-off-white-white.gif" />
+    <Content Include="Vista\imagenes\TravisScottNike.png" />
     <Content Include="Vista\img\undraw_posting_photo.svg" />
     <Content Include="Vista\img\undraw_profile.svg" />
     <Content Include="Vista\img\undraw_profile_1.svg" />
