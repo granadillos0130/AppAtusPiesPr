@@ -204,5 +204,24 @@ namespace AppAtusPiesPr.Datos
             conexion.MtdCerrarConexion();
             return productos;
         }
+
+        public DataTable MtdListarProductosPorCategoria(int idCategoria)
+        {
+            ClConexion conexion = new ClConexion();
+            DataTable dtProductos = new DataTable();
+
+            using (SqlConnection connection = conexion.MtdAbrirConexion())
+            {
+                SqlCommand cmd = new SqlCommand("spListarProductosConCategorias", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtProductos);
+            }
+            conexion.MtdCerrarConexion();
+            return dtProductos;
+        }
+
     }
 }

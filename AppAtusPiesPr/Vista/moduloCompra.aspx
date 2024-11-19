@@ -7,8 +7,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>ATP</title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <link rel='stylesheet' type='text/css' media='screen' href='../css/main.css' />
-    <link rel="shortcut icon" href="../recursos/ATP.png" />
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css' />
+    <link rel="shortcut icon" href="recursos/ATP.png" />
 </head>
 <body>
     <form runat="server">
@@ -28,7 +28,7 @@
                     </ul>
                 </nav>
 
-                <a href="../../index.aspx" class="logo">A TUS PIES</a>
+                <a href="../index.aspx" class="logo">A TUS PIES</a>
 
                 <div class="right-section">
                     <div class="search-bar">
@@ -53,7 +53,7 @@
                         <asp:Repeater ID="Repeater2" runat="server">
                             <ItemTemplate>
                                 <li>
-                                    <a href='<%# "vista/modulos/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
+                                    <a href='<%# "Vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                         <%# Eval("descripcion") %>
                                     </a>
                                 </li>

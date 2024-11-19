@@ -42,7 +42,7 @@
                             <a href="Vista/modulos/moduloCarrito.aspx" class="save-button2">
                                 <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                             </a>
-                            <a href="vista/modulos/login.html" class="login">LOGIN</a>
+                            <a href="vista/Login.aspx" class="login">LOGIN</a>
 
                             <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
                         </div>
@@ -60,7 +60,7 @@
                                 <asp:Repeater ID="Repeater2" runat="server">
                                     <ItemTemplate>
                                         <li>
-                                            <a href='<%# "vista/modulos/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
+                                            <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                                 <%# Eval("descripcion") %>
                                             </a>
                                         </li>
@@ -95,12 +95,12 @@
                     <asp:Repeater ID="Repeater1" runat="server">
                         <ItemTemplate>
                             <div class="card">
-                                <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Chaqueta" class="card-image" />
+                                <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>'  class="card-image" />
                                 <p class="card-title"><%# Eval("nombreProducto") %></p>
 
                                 <div class="card-info">
                                     <div class="card-details">
-                                        <a class="buy-button" href='vista/modulos/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                                        <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
                                         <a href="#" class="save-button">
                                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                                         </a>
