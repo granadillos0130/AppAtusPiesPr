@@ -204,5 +204,41 @@ namespace AppAtusPiesPr.Datos
             conexion.MtdCerrarConexion();
             return productos;
         }
+
+
+        // Método para listar productos por categoría
+        public List<ClProductoE> MtdListarProductosPorCategoria(string categoria = null)
+        {
+            ClConexion conexion = new ClConexion();
+            List<ClProductoE> productos = new List<ClProductoE>();
+
+            using (SqlCommand cmd = new SqlCommand("SpListarProductosCategoria", conexion.MtdAbrirConexion()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@categoria", string.IsNullOrEmpty(categoria) ? (object)DBNull.Value : categoria);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    ClProductoE producto = new ClProductoE
+                    {
+                        Codigo = row["Codigo"].ToString(),
+                        Nombre = row["NombreProducto"].ToString(),
+                        CantidadStock = Convert.ToInt32(row["CantidadDisponible"]),
+                        Precio = Convert.ToInt32(row["Precio"]),
+                        Presentacion = row["Presentacion"].ToString(),
+                        Estado = row["Estado"].ToString(),
+                        Descripcion = row["Categoria"].ToString()
+                    };
+
+                    productos.Add(producto);
+                }
+            }
+            conexion.MtdCerrarConexion();
+            return productos;
+        }
     }
 }
