@@ -208,6 +208,25 @@ namespace AppAtusPiesPr.Datos
 
 
         // Método para listar productos por categoría
+        public DataTable MtdListarProductosPorCategoria(int idCategoria)
+        {
+            ClConexion conexion = new ClConexion();
+            DataTable dtProductos = new DataTable();
+
+            using (SqlConnection connection = conexion.MtdAbrirConexion())
+            {
+                SqlCommand cmd = new SqlCommand("spListarProductosConCategorias", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idCategoria", idCategoria);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtProductos);
+            }
+            conexion.MtdCerrarConexion();
+            return dtProductos;
+        }
+
+        // Método para listar productos por categoría
         public List<ClProductoE> MtdListarProductosPorCategoria(string categoria = null)
         {
             ClConexion conexion = new ClConexion();

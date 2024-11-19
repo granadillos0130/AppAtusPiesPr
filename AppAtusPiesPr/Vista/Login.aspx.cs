@@ -86,21 +86,7 @@ namespace AppAtusPiesPr.Vista
                     Session["usuario"] = documento;
 
                     // Redirigir según el rol
-                    switch (rol)
-                    {
-                        case "Admin":
-                            Response.Redirect("AdminHome.aspx");
-                            break;
-                        case "Vendedor":
-                            Response.Redirect("VendedorHome.aspx");
-                            break;
-                        case "Cliente":
-                            Response.Redirect("ClienteHome.aspx");
-                            break;
-                        default:
-                            lblMensaje.Text = "Rol no reconocido.";
-                            break;
-                    }
+                    Response.Redirect("BlankPage.aspx");
                 }
                 else
                 {

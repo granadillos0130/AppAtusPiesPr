@@ -56,7 +56,7 @@ namespace AppAtusPiesPr.Datos
                 ClConexion oConexion = new ClConexion();
                 using (SqlConnection conn = oConexion.MtdAbrirConexion())
                 {
-                    using (SqlCommand cmd = new SqlCommand("ListarVendedores", conn))
+                    using (SqlCommand cmd = new SqlCommand("SpListarVendedores", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -81,7 +81,7 @@ namespace AppAtusPiesPr.Datos
                 ClConexion oConexion = new ClConexion();
                 using (SqlConnection con = oConexion.MtdAbrirConexion())
                 {
-                    using (SqlCommand cmd = new SqlCommand("spListarUsuarios", con))
+                    using (SqlCommand cmd = new SqlCommand("SpListarUsuarios", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         SqlDataAdapter da = new SqlDataAdapter(cmd);

@@ -70,9 +70,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones para Vendedores:</h6>
                         <a class="collapse-item" href="RegistroProducto.aspx">Registrar producto</a>
-                        <a class="collapse-item" href="productoLista.aspx">Productos Registrados</a>
-                        <a class="collapse-item" href="productosMasVendidos.aspx">Productos Mas vendidos</a>
-                        <a class="collapse-item" href="ProductosRegistradosCategoria.aspx">Listado de productos </a>
+                        <a class="collapse-item" href="ProductosMasVendidos.aspx">Productos Mas vendidos</a>
+                        <a class="collapse-item" href="ProductoRegistradoCategoria.aspx">Listado de productos </a>
 
                         <a class="collapse-item" href="cards.html"></a>
 

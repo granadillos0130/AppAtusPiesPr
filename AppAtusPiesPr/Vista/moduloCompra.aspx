@@ -53,7 +53,7 @@
                         <asp:Repeater ID="Repeater2" runat="server">
                             <ItemTemplate>
                                 <li>
-                                    <a href='<%# "Vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
+                                    <a href='<%# "moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                         <%# Eval("descripcion") %>
                                     </a>
                                 </li>

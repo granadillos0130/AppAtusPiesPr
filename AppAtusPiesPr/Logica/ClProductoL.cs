@@ -55,12 +55,19 @@ namespace AppAtusPiesPr.Logica
 
 
         // Método para obtener productos por categoría
+        private ClProductoD productoD = new ClProductoD();
+
+        public DataTable MtdListarPorFiltro(int idCategoria)
+        {
+            return productoD.MtdListarProductosPorCategoria(idCategoria);
+        }
+
+        // Método para obtener productos por categoría
         public List<ClProductoE> MtdObtenerProductosPorCategoria(string categoria = null)
         {
             ClProductoD productoD = new ClProductoD();
             return productoD.MtdListarProductosPorCategoria(categoria);
 
         }
-
     }
 }

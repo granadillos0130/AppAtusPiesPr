@@ -198,8 +198,8 @@
         <div class="container">
             <h2>Iniciar Sesión</h2>
             <div class="form-group">
-                <asp:Label ID="lblEmail" runat="server" Text="Email:" CssClass="control-label"></asp:Label>
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required></asp:TextBox>
+                <asp:Label ID="lblEmail" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingresa tu Documento" required></asp:TextBox>
                 <span class="text-danger" id="emailError" runat="server" visible="false">Por favor, ingresa un correo válido.</span>
             </div>
             <div class="form-group">

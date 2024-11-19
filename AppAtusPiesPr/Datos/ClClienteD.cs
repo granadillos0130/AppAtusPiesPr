@@ -46,7 +46,7 @@ namespace AppAtusPiesPr.Datos
             {
                 using (SqlConnection con = conexion.MtdAbrirConexion())
                 {
-                    using (SqlCommand cmd = new SqlCommand("sp_ValidarLogin", con))
+                    using (SqlCommand cmd = new SqlCommand("SpValidarLogin", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@documento", documento);
