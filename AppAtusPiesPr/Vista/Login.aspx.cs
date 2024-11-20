@@ -85,8 +85,15 @@ namespace AppAtusPiesPr.Vista
                     Session["rol"] = rol;
                     Session["usuario"] = documento;
 
-                    // Redirigir según el rol
-                    Response.Redirect("BlankPage.aspx");
+                    if (rol=="Cliente")
+                    {
+                        Response.Redirect("../index.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("BlankPage.aspx");
+                    }
+                    
                 }
                 else
                 {
