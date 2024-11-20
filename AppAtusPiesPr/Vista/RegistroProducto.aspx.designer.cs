@@ -15,6 +15,15 @@ namespace AppAtusPiesPr.Vista
     {
 
         /// <summary>
+        /// Control pnlRegistrarVendedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlRegistrarVendedor;
+
+        /// <summary>
         /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
@@ -76,15 +85,6 @@ namespace AppAtusPiesPr.Vista
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtVendedor;
-
-        /// <summary>
-        /// Control lblRuta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRuta;
 
         /// <summary>
         /// Control inRuta.
