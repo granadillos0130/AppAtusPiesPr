@@ -39,34 +39,52 @@ namespace AppAtusPiesPr.Datos
             return idCliente;
         }
 
-        public string MtdValidarLogin(string documento, string password)
+        public ClUsuarioE MtdIngreso(ClUsuarioE objDatos)
         {
-            string rol = string.Empty;
-            try
-            {
-                using (SqlConnection con = conexion.MtdAbrirConexion())
-                {
-                    using (SqlCommand cmd = new SqlCommand("SpValidarLogin", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@documento", documento);
-                        cmd.Parameters.AddWithValue("@password", password);
-                        SqlParameter rolParameter = new SqlParameter("@rol", SqlDbType.VarChar, 50)
-                        {
-                            Direction = ParameterDirection.Output
-                        };
-                        cmd.Parameters.Add(rolParameter);
+            ClConexion objConexion = new ClConexion();
 
-                        cmd.ExecuteNonQuery();
-                        rol = rolParameter.Value.ToString();
-                    }
-                }
-            }
-            catch (Exception ex)
+            SqlCommand comando = new SqlCommand("SpValidarLogin", objConexion.MtdAbrirConexion());
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@documento", objDatos.Documento);
+            comando.Parameters.AddWithValue("@password", objDatos.Password);
+
+            SqlParameter rolParameter = new SqlParameter("@rol", SqlDbType.VarChar, 50)
             {
-                throw new Exception("Error al validar login: " + ex.Message);
+                Direction = ParameterDirection.Output
+            };
+            comando.Parameters.Add(rolParameter);
+
+            SqlParameter nombresParameter = new SqlParameter("@nombres", SqlDbType.VarChar, 100)
+            {
+                Direction = ParameterDirection.Output
+            };
+            comando.Parameters.Add(nombresParameter);
+
+            SqlParameter apellidosParameter = new SqlParameter("@apellidos", SqlDbType.VarChar, 100)
+            {
+                Direction = ParameterDirection.Output
+            };
+            comando.Parameters.Add(apellidosParameter);
+
+            comando.ExecuteNonQuery();
+            objConexion.MtdCerrarConexion();
+
+            ClUsuarioE obDatosUsuario = null;
+
+            if (!string.IsNullOrEmpty(rolParameter.Value.ToString()))
+            {
+                obDatosUsuario = new ClUsuarioE
+                {
+                    Documento = objDatos.Documento,
+                    Nombres = nombresParameter.Value.ToString(),
+                    Apellidos = apellidosParameter.Value.ToString(),
+                    Email = objDatos.Email, // Assuming email is the same as documento here
+                    Password = objDatos.Password,
+                    Rol = rolParameter.Value.ToString() // Added to include the role
+                };
             }
-            return rol;
+
+            return obDatosUsuario;
         }
     }
 }
