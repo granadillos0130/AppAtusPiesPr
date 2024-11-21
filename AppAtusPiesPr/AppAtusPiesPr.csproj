@@ -1774,6 +1774,7 @@
     <Compile Include="Datos\ClClienteD.cs" />
     <Compile Include="Datos\ClConexion.cs" />
     <Compile Include="Datos\ClProductoD.cs" />
+    <Compile Include="Datos\ClVendedorD.cs" />
     <Compile Include="Entidades\ClProductoE.cs" />
     <Compile Include="Entidades\ClUsuarioE.cs" />
     <Compile Include="index.aspx.cs">
