@@ -39,34 +39,73 @@ namespace AppAtusPiesPr.Datos
             return idCliente;
         }
 
-        public string MtdValidarLogin(string documento, string password)
+        public ClUsuarioE MtdIngreso(ClUsuarioE objDatos)
         {
-            string rol = string.Empty;
-            try
+            ClConexion objConexion = new ClConexion();
+            SqlCommand comando = new SqlCommand("SpValidarLogin", objConexion.MtdAbrirConexion())
             {
-                using (SqlConnection con = conexion.MtdAbrirConexion())
-                {
-                    using (SqlCommand cmd = new SqlCommand("SpValidarLogin", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@documento", documento);
-                        cmd.Parameters.AddWithValue("@password", password);
-                        SqlParameter rolParameter = new SqlParameter("@rol", SqlDbType.VarChar, 50)
-                        {
-                            Direction = ParameterDirection.Output
-                        };
-                        cmd.Parameters.Add(rolParameter);
+                CommandType = CommandType.StoredProcedure
+            };
 
-                        cmd.ExecuteNonQuery();
-                        rol = rolParameter.Value.ToString();
-                    }
-                }
-            }
-            catch (Exception ex)
+            // Agregar parámetros de entrada
+            comando.Parameters.AddWithValue("@documento", objDatos.Documento);
+            comando.Parameters.AddWithValue("@password", objDatos.Password);
+
+            // Configurar parámetros de salida
+            SqlParameter rolParameter = new SqlParameter("@rol", SqlDbType.VarChar, 50)
             {
-                throw new Exception("Error al validar login: " + ex.Message);
+                Direction = ParameterDirection.Output
+            };
+            comando.Parameters.Add(rolParameter);
+
+            SqlParameter nombresParameter = new SqlParameter("@nombres", SqlDbType.VarChar, 100)
+            {
+                Direction = ParameterDirection.Output
+            };
+            comando.Parameters.Add(nombresParameter);
+
+            SqlParameter apellidosParameter = new SqlParameter("@apellidos", SqlDbType.VarChar, 100)
+            {
+                Direction = ParameterDirection.Output
+            };
+            comando.Parameters.Add(apellidosParameter);
+
+            SqlParameter mensajeParameter = new SqlParameter("@mensaje", SqlDbType.VarChar, 255)
+            {
+                Direction = ParameterDirection.Output
+            };
+            comando.Parameters.Add(mensajeParameter);
+
+            // Ejecutar el procedimiento almacenado
+            comando.ExecuteNonQuery();
+
+            // Cerrar la conexión
+            objConexion.MtdCerrarConexion();
+
+            // Procesar los resultados
+            ClUsuarioE obDatosUsuario = null;
+            string mensaje = mensajeParameter.Value.ToString();
+
+            if (string.IsNullOrEmpty(mensaje))
+            {
+                // Crear el objeto usuario si no hay mensaje de error
+                obDatosUsuario = new ClUsuarioE
+                {
+                    Documento = objDatos.Documento,
+                    Nombres = nombresParameter.Value.ToString(),
+                    Apellidos = apellidosParameter.Value.ToString(),
+                    Email = objDatos.Email, // Suponiendo que el email se asigna igual al documento
+                    Password = objDatos.Password,
+                    Rol = rolParameter.Value.ToString()
+                };
             }
-            return rol;
+            else if (mensaje == "Su cuenta aún está en proceso de activación.")
+            {
+                // Lanzar una excepción si la cuenta no está activada
+                throw new Exception(mensaje);
+            }
+
+            return obDatosUsuario;
         }
     }
 }

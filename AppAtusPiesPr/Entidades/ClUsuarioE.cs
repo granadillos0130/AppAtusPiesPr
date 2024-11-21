@@ -17,5 +17,6 @@ namespace AppAtusPiesPr.Entidades
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public string Descripcion { get; set; }
+        public string Rol { get; set; }
     }
 }

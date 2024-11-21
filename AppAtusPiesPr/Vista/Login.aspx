@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="AppAtusPiesPr.Vista.Login" %>
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Iniciar Sesión</title>
@@ -9,167 +7,211 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
             font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: row;
+            background: #1a1a1a;
+            border-radius: 15px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            width: 800px;
+            height: 500px;
+        }
+
+        .login-image {
+            width: 45%;
+            height: 100%;
             position: relative;
             overflow: hidden;
-            color: #fff;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+        .gif-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        body {
-            background: linear-gradient(-45deg, #000000, #333333, #555555, #777777);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+        .gif-container img {
+            width: 90%;
+            height: auto;
+            object-fit: contain;
         }
 
-        @keyframes neon {
-            0%, 100% {
-                box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #203a43, 0 0 80px #203a43, 0 0 90px #203a43, 0 0 100px #203a43, 0 0 150px #203a43;
-            }
-
-            50% {
-                box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #2c5364, 0 0 80px #2c5364, 0 0 90px #2c5364, 0 0 100px #2c5364, 0 0 150px #2c5364;
-            }
+        .form-container {
+            width: 55%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #1a1a1a;
+            color: #ffffff;
         }
 
-        .container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            width: 350px;
-            position: relative;
-            z-index: 1;
-            animation: neon 1.5s ease-in-out infinite alternate;
-        }
-
-        h2 {
+        .form-container h2 {
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 2rem;
             text-align: center;
-            margin-bottom: 20px;
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
-        .form-control {
-            border-radius: 5px;
-            box-shadow: none;
+        .form-container .control-label {
+            margin-bottom: 8px;
+            display: block;
+            color: #ffffff;
+        }
+
+        .form-container .form-control {
+            border-radius: 8px;
+            border: 1px solid #444;
+            padding: 12px;
+            font-size: 1rem;
+            background: #333333;
+            color: #ffffff;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .form-container .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+            outline: none;
+        }
+
+        .form-container .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .form-container .btn-primary {
+            background-color: #007bff;
             border: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
+            font-weight: bold;
         }
 
-            .form-control::placeholder {
-                color: #ccc;
-            }
-
-        .btn-primary {
-            background-color: #203a43;
-            border: none;
-            border-radius: 5px;
+        .form-container .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
         }
-
-            .btn-primary:hover {
-                background-color: #2c5364;
-            }
 
         .text-danger {
-            font-size: 0.9em;
-        }
-
-        .link {
-            text-align: center;
+            color: #dc3545;
             margin-top: 10px;
+            text-align: center;
         }
 
-            .link a {
-                color: #2c5364;
-                text-decoration: none;
-            }
-
-                .link a:hover {
-                    text-decoration: underline;
-                }
-
-        .is-invalid {
-            border-color: #e74c3c;
+        .link, .register-vendor {
+            margin-top: 15px;
+            text-align: center;
         }
 
-        /* Estilos para la modal */
+        .link a, .register-vendor a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .link a:hover, .register-vendor a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        /* Modal Styles */
         .modal-content {
-            background: rgba(0, 0, 0, 0.9);
-            border-radius: 10px;
+            background: #222;
             color: #fff;
+            border-radius: 15px;
         }
 
         .modal-header {
-            border-bottom: none;
+            border-bottom: 1px solid #444;
+            padding: 20px;
+            background: #1a1a1a;
         }
 
-        .modal-title {
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .close {
+        .modal-header .close {
             color: #fff;
+            opacity: 0.8;
+        }
+
+        .modal-header .close:hover {
             opacity: 1;
         }
 
-            .close:hover {
-                color: #e74c3c;
-            }
-
-        .modal-body .form-group {
-            margin-bottom: 15px;
+        .modal-body {
+            padding: 20px;
+            background: #222;
         }
-
-        .modal-body .form-control {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-            .modal-body .form-control::placeholder {
-                color: #ccc;
-            }
 
         .modal-footer {
-            border-top: none;
+            border-top: 1px solid #444;
+            padding: 20px;
+            background: #1a1a1a;
         }
 
-            .modal-footer .btn {
-                border-radius: 5px;
+        .modal .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .modal .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                width: 95%;
+                height: auto;
+                max-width: 400px;
+                margin: 20px;
             }
 
-            .modal-footer .btn-secondary {
-                background-color: #2c5364;
+            .login-image,
+            .form-container {
+                width: 100%;
             }
 
-                .modal-footer .btn-secondary:hover {
-                    background-color: #3c6474;
-                }
+            .login-image {
+                height: 200px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-container h2 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+        }
     </style>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -180,13 +222,13 @@
                 $('.modal .form-control').each(function () {
                     if ($(this).val() === '') {
                         isValid = false;
-                        $(this).addClass('is-invalid'); // Agregar clase para indicar error
+                        $(this).addClass('is-invalid');
                     } else {
-                        $(this).removeClass('is-invalid'); // Eliminar clase si está correcto
+                        $(this).removeClass('is-invalid');
                     }
                 });
                 if (!isValid) {
-                    event.preventDefault(); // Detener el envío del formulario si hay errores
+                    event.preventDefault();
                     alert('Por favor, completa todos los campos obligatorios.');
                 }
             });
@@ -195,29 +237,31 @@
 </head>
 <body>
     <form id="form1" runat="server" novalidate>
-        <div class="container">
-            <h2>Iniciar Sesión</h2>
-            <div class="form-group">
-                <asp:Label ID="lblEmail" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingresa tu Documento" required></asp:TextBox>
-                <span class="text-danger" id="emailError" runat="server" visible="false">Por favor, ingresa un correo válido.</span>
+        <div class="main-container">
+            <div class="login-image">
+                <div class="gif-container">
+                    <img src="https://i.gifer.com/4KDr.gif" alt="Login animation"/>
+                </div>
             </div>
-            <div class="form-group">
-                <asp:Label ID="lblContrasena" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
-                <asp:TextBox ID="txtContrasena" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
-                <span class="text-danger" id="passwordError" runat="server" visible="false">La contraseña es obligatoria.</span>
+            <div class="form-container">
+                <h2>Iniciar Sesión</h2>
+                <div class="form-group">
+                    <asp:Label ID="lblEmail" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingresa tu Documento" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblContrasena" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtContrasena" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
+                </div>
+                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="btn btn-primary" OnClick="btnIngresar_Click" />
+                <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" CssClass="text-danger"></asp:Label>
+                <div class="link">
+                    <a href="#" data-toggle="modal" data-target="#registerModal">¿No tienes una cuenta? Regístrate aquí</a>
+                </div>
+                <div class="register-vendor">
+                    <a href="#" data-toggle="modal" data-target="#registerVendedorModal">¿Eres vendedor? Regístrate aquí</a>
+                </div>
             </div>
-            <div>
-                <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" />
-            </div>
-            
-            <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" CssClass="text-danger"></asp:Label>
-            <div class="link">
-                <a href="#" data-toggle="modal" data-target="#registerModal">¿No tienes una cuenta? Regístrate aquí</a>
-            </div>
-
-
-
         </div>
 
         <!-- Modal de Registro -->
@@ -259,7 +303,6 @@
                             <asp:Label ID="lblDireccion" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
                             <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required></asp:TextBox>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -268,12 +311,54 @@
                 </div>
             </div>
         </div>
-    </form>
+        <!-- Modal de Registro de Vendedor -->
+<div class="modal fade" id="registerVendedorModal" tabindex="-1" role="dialog" aria-labelledby="registerVendedorModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="registerVendedorModalLabel">Registrar Vendedor</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <asp:Label ID="lblDocumentoVend" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtDocumentoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblNombreVend" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtNombreVend" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblApellidoVend" runat="server" Text="Apellido:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtApellidoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu apellido" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblCorreoVend" runat="server" Text="Correo:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtCorreoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblContrasenaVend" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtContrasenaVend" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblTelefonoVend" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtTelefonoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblDireccionVend" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtDireccionVend" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required></asp:TextBox>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <asp:Button ID="btnRegistrarVendedor" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrarVendedor_Click" />
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- Burbujas en el fondo -->
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
+    </form>
 </body>
 </html>
