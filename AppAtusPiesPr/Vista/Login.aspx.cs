@@ -1,4 +1,4 @@
-﻿using AppAtusPiesPr.Entidades;
+using AppAtusPiesPr.Entidades;
 using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
@@ -12,8 +12,6 @@ namespace AppAtusPiesPr.Vista
     public partial class Login : System.Web.UI.Page
     {
         private ClClienteL clientoLo = new ClClienteL();
-        private ClVendedorL vendedorLo = new ClVendedorL();
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -83,9 +81,6 @@ namespace AppAtusPiesPr.Vista
 
             try
             {
-
-
-
                 // Llamar al método de autenticación
                 ClUsuarioE oUser = clientoLo.MtdIngreso(obUsuarioEn);
 
@@ -122,68 +117,14 @@ namespace AppAtusPiesPr.Vista
                 {
                     // Mostrar mensaje de error si las credenciales no son válidas
                     lblMensaje.Text = "Credenciales incorrectas.";
+
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 lblMensaje.Text = ex.Message;
+
             }
         }
-
-        protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
-        {
-            // Validar que todos los campos estén completos
-            if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtNombreVend.Text) ||
-                string.IsNullOrWhiteSpace(txtApellidoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtCorreoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtContrasenaVend.Text) ||
-                string.IsNullOrWhiteSpace(txtTelefonoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtDireccionVend.Text))
-            {
-                lblMensaje.Text = "Por favor, completa todos los campos.";
-                return;
-            }
-
-            // Crear un nuevo vendedor
-            ClUsuarioE nuevoVendedor = new ClUsuarioE
-            {
-                Documento = txtDocumentoVend.Text,
-                Nombres = txtNombreVend.Text,
-                Apellidos = txtApellidoVend.Text,
-                Email = txtCorreoVend.Text,
-                Password = txtContrasenaVend.Text,
-                Telefono = txtTelefonoVend.Text,
-                Direccion = txtDireccionVend.Text
-                // Estado inicial
-            };
-
-            // Registrar el nuevo vendedor
-            int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor);
-
-            if (idVendedor > 0)
-            {
-                lblMensaje.Text = "Registro de vendedor exitoso. Su Cuenta esta en Proceso de Activacion.";
-                // Limpiar los campos del formulario
-                LimpiarCamposVendedor();
-            }
-            else
-            {
-                lblMensaje.Text = "Error al registrar el vendedor. Intente nuevamente.";
-            }
-        }
-
-        // Método para limpiar los campos del formulario
-        private void LimpiarCamposVendedor()
-        {
-            txtDocumentoVend.Text = "";
-            txtNombreVend.Text = "";
-            txtApellidoVend.Text = "";
-            txtCorreoVend.Text = "";
-            txtContrasenaVend.Text = "";
-            txtTelefonoVend.Text = "";
-            txtDireccionVend.Text = "";
-        }
-
-
     }
-}
+        }
