@@ -30,5 +30,11 @@ namespace AppAtusPiesPr.Logica
             ClAdminD ListaSolicitudes = new ClAdminD();
             return ListaSolicitudes.MtdListarSolicitudes();
         }
+
+        public bool MtdAceptarSolicitud(int idVendedor)
+        {
+            ClAdminD AceptarSoli = new ClAdminD();
+            return AceptarSoli.MtdAceptarSolicitud(idVendedor);
+        }
     }
 }
