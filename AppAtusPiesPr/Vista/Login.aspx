@@ -14,18 +14,22 @@
             justify-content: center;
             align-items: center;
             font-family: 'Arial', sans-serif;
-            background: #f5f5f5;
+            background: #e8e8e8;
+            font-family: Arial, sans-serif; /* Define la fuente base para toda la página */
         }
 
         .main-container {
             display: flex;
             flex-direction: row;
             background: #1a1a1a;
-            border-radius: 15px;
+            border-radius: 10px;
+            border-radius: 10px;
             box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
             overflow: hidden;
             width: 800px;
             height: 500px;
+            border: 1px solid #999;
+            color: black;
         }
 
         .login-image {
@@ -59,13 +63,13 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: #1a1a1a;
+            background: white;
             color: #ffffff;
         }
 
         .form-container h2 {
             margin-bottom: 30px;
-            color: #ffffff;
+            color: black;
             font-weight: bold;
             font-size: 2rem;
             text-align: center;
@@ -78,22 +82,22 @@
         .form-container .control-label {
             margin-bottom: 8px;
             display: block;
-            color: #ffffff;
+            color: black;
         }
 
         .form-container .form-control {
-            border-radius: 8px;
+            border-radius: 5px;
             border: 1px solid #444;
             padding: 12px;
             font-size: 1rem;
-            background: #333333;
-            color: #ffffff;
+            background: white;
+            color: black;
             width: 100%;
             transition: all 0.3s ease;
         }
 
         .form-container .form-control:focus {
-            border-color: #007bff;
+            border-color: #999;
             box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
             outline: none;
         }
@@ -102,19 +106,20 @@
             width: 100%;
             padding: 12px;
             font-size: 1.1rem;
-            border-radius: 8px;
+            border-radius: 5px;
             margin-bottom: 20px;
             transition: all 0.3s ease;
         }
 
         .form-container .btn-primary {
-            background-color: #007bff;
+            background-color: black;
             border: none;
             font-weight: bold;
+            color: white;
         }
 
         .form-container .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #272727;
             transform: translateY(-1px);
         }
 
