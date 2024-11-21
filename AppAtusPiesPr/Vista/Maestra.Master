@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
     <title>A tus Pies - Panel</title>
@@ -17,191 +17,201 @@
     <style>
         body {
             font-family: 'Nunito', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
+            color: #2d3436;
         }
 
-        .navbar-nav {
-            background: #000;
+        .navbar-top {
+            background: linear-gradient(90deg, #ffffff, #f1f3f5);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #e9ecef;
         }
 
-        .sidebar {
-            background: #000;
-            color: #fff;
-        }
-
-        .sidebar .nav-item .nav-link {
-            color: #fff;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .sidebar .nav-item .nav-link:hover {
-            background: #444;
-        }
-
-        .sidebar .nav-item.active .nav-link {
-            background: #444;
+        .navbar-top .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: #2d3436;
+            font-size: 1.5rem;
             font-weight: bold;
+            transition: all 0.3s ease;
         }
 
-        .topbar {
-            background: #fff;
-            border-bottom: 1px solid #ddd;
+        .navbar-top .navbar-brand:hover {
+            transform: scale(1.05);
+            color: #4a69bd;
         }
 
-        .topbar .navbar-nav .nav-item .nav-link {
-            color: #000;
+        .navbar-top .navbar-brand i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+            color: #4a69bd;
         }
 
-        .topbar .navbar-nav .nav-item .nav-link:hover {
-            color: #444;
+        .navbar-top .search-bar {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .topbar-divider {
-            border-left: 1px solid #ddd;
+        .navbar-top .search-bar input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 2px solid #e9ecef;
+            background-color: #ffffff;
+            color: #2d3436;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-top .search-bar input:focus {
+            border-color: #4a69bd;
+            box-shadow: 0 3px 15px rgba(74, 105, 189, 0.2);
+        }
+
+        .navbar-top .user-menu {
+            color: #2d3436;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-top .user-menu:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-top .user-menu img {
+            margin-left: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #4a69bd;
+        }
+
+        .navbar-bottom {
+            background-color: #ffffff;
+            padding: 0.5rem 2rem;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .navbar-bottom .nav-link {
+            color: #636e72;
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-bottom .nav-link:hover {
+            color: #4a69bd;
+            background-color: #f1f3f5;
+            transform: translateY(-3px);
+        }
+
+        .navbar-bottom .nav-link i {
+            color: #4a69bd;
         }
 
         footer {
-            background: #000;
-            color: #fff;
+            background-color: #ffffff;
+            color: #636e72;
+            padding: 1rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        footer .copyright {
-            margin: 0;
-        }
-
-        .bg-white {
-            background-color: #fff !important;
-        }
-
-        .collapse-inner {
-            background-color: #f4f4f4;
+        footer span {
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+    <!-- Navbar superior -->
+    <div class="navbar-top">
+        <div class="navbar-brand">
+            <i class="fas fa-shoe-prints"></i>
+            A tus Pies
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar...">
+        </div>
+        <div class="user-menu">
+            <span>
+                <asp:Label ID="lblUsuario" runat="server"></asp:Label>
+                <br>
+                <small>
+                    <asp:Label ID="LblPuesto" runat="server"></asp:Label>
+                </small>
+            </span>
+            <img src="https://via.placeholder.com/60" alt="User Image">
+        </div>
+    </div>
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" runat="server">
+    <!-- Navbar inferior -->
+    <div class="navbar-bottom">
+        <a class="nav-link" href="RegistroProducto.aspx" id="menuRegistrarProducto" runat="server">
+            <i class="fas fa-plus-circle"></i>
+            Registrar Producto
+        </a>
+        <a class="nav-link" href="ProductosMasVendidos.aspx" id="menuMasVendidos" runat="server">
+            <i class="fas fa-chart-line"></i>
+            Más Vendidos
+        </a>
+        <a class="nav-link" href="ProductoRegistradoCategoria.aspx" id="menuProductosPorCategoria" runat="server">
+            <i class="fas fa-boxes"></i>
+            Productos por Categoría
+        </a>
+        <a class="nav-link" href="RegistrarVendedor.aspx" id="menuRegistrarVendedor" runat="server">
+            <i class="fas fa-user-plus"></i>
+            Registrar Vendedor
+        </a>
+        <a class="nav-link" href="ListarVendedor.aspx" id="menuListarVendedores" runat="server">
+            <i class="fas fa-users"></i>
+            Listar Vendedores
+        </a>
+        <a class="nav-link" href="ListarUsuario.aspx" id="menuListarUsuarios" runat="server">
+            <i class="fas fa-user-friends"></i>
+            Listar Usuarios
+        </a>
+    </div>
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.aspx">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-shoe-prints"></i>
-                </div>
-                <asp:Label ID="LblPuesto" runat="server" CssClass="sidebar-brand-text mx-3"></asp:Label>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.aspx">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">Opciones</div>
-
-            <!-- Vendedores -->
-            <li class="nav-item" id="menuVendedores" runat="server">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVendedores" aria-expanded="true" aria-controls="collapseVendedores">
-                    <i class="fas fa-user-tag"></i>
-                    <span>Vendedores</span>
-                </a>
-                <div id="collapseVendedores" class="collapse" aria-labelledby="headingVendedores" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="RegistroProducto.aspx">Registrar Producto</a>
-                        <a class="collapse-item" href="ProductosMasVendidos.aspx">Más Vendidos</a>
-                        <a class="collapse-item" href="ProductoRegistradoCategoria.aspx">Productos por Categoría</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Administrador -->
-            <li class="nav-item" id="menuAdmin" runat="server">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
-                    <i class="fas fa-users-cog"></i>
-                    <span>Usuarios</span>
-                </a>
-                <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="RegistrarVendedor.aspx">Registrar Vendedor</a>
-                        <a class="collapse-item" href="ListarVendedor.aspx">Listar Vendedores</a>
-                        <a class="collapse-item" href="ListarUsuario.aspx">Listar Usuarios</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Footer -->
-            <footer class="sticky-footer">
-                <div class="container my-auto">
-                    <div class="copyright text-center">
-                        <span>&copy; A tus Pies 2024</span>
-                    </div>
-                </div>
-            </footer>
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
             <!-- Main Content -->
-            <div id="content">
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- User Information -->
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <asp:Label ID="lblUsuario" runat="server"></asp:Label>
-                                </span>
-                                <img class="img-profile rounded-circle" src="https://via.placeholder.com/60" alt="User Image">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configuración
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="Logout.aspx">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Cerrar Sesión
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Content -->
-                <div class="container-fluid">
-                    <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
-                </div>
+            <div class="container-fluid">
+                <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <span>&copy; A tus Pies 2024</span>
+    </footer>
 
     <!-- Scripts -->
     <script src="vendor/jquery/jquery.min.js"></script>
