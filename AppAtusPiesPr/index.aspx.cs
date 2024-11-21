@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace AppAtusPiesPr
 {
-    public partial class index : System.Web.UI.Page
+    public partial class Index2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,7 +19,6 @@ namespace AppAtusPiesPr
                 cargarCategorias();
             }
         }
-
         private void cargarProductos()
         {
             ClProductoL objProductoL = new ClProductoL();
@@ -34,5 +33,6 @@ namespace AppAtusPiesPr
             Repeater2.DataSource = oLogica.MtdListarCategorias();
             Repeater2.DataBind();
         }
+
     }
 }
