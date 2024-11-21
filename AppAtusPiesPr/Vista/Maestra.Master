@@ -74,7 +74,6 @@
                         <a class="collapse-item" href="ProductosMasVendidos.aspx">Productos Mas vendidos</a>
                         <a class="collapse-item" href="ProductoRegistradoCategoria.aspx">Listado de productos </a>
 
-                        <a class="collapse-item" href="cards.html"></a>
 
                         <a class="collapse-item" href="ActualizarProducto.aspx">Actualizar Productos</a>
                     </div>
