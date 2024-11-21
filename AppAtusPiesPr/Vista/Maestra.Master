@@ -141,6 +141,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="ListarVendedor.aspx">Listar Vendedores</a>
                         <a class="collapse-item" href="ListarUsuario.aspx">Listar Usuarios</a>
+                        <a class="collapse-item" href="ListarUsuario.aspx">Solicitud de Mensaje</a>
                     </div>
                 </div>
             </li>
