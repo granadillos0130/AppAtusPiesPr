@@ -120,6 +120,9 @@
                 <div id="collapseVendedores" class="collapse" aria-labelledby="headingVendedores" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 7b488fa393e9cb923283e1939a286f0f8f5c030e
                         <h6 class="collapse-header">Opciones para Vendedores:</h6>
                         <a class="collapse-item" href="RegistroProducto.aspx">Registrar producto</a>
 
@@ -128,11 +131,14 @@
 
 
                         <a class="collapse-item" href="ActualizarProducto.aspx">Actualizar Productos</a>
+<<<<<<< HEAD
 =======
                         <a class="collapse-item" href="RegistroProducto.aspx">Registrar Producto</a>
                         <a class="collapse-item" href="ProductosMasVendidos.aspx">Más Vendidos</a>
                         <a class="collapse-item" href="ProductoRegistradoCategoria.aspx">Productos por Categoría</a>
 >>>>>>> 9f482192d02934095d060d364947c3502f3ff13e
+=======
+>>>>>>> 7b488fa393e9cb923283e1939a286f0f8f5c030e
                     </div>
                 </div>
             </li>
@@ -141,13 +147,13 @@
             <li class="nav-item" id="menuAdmin" runat="server">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
                     <i class="fas fa-users-cog"></i>
-                    <span>Usuarios</span>
+                    <span>Administrador</span>
                 </a>
                 <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="RegistrarVendedor.aspx">Registrar Vendedor</a>
                         <a class="collapse-item" href="ListarVendedor.aspx">Listar Vendedores</a>
                         <a class="collapse-item" href="ListarUsuario.aspx">Listar Usuarios</a>
+                        <a class="collapse-item" href="ListarUsuario.aspx">Solicitud de Mensaje</a>
                     </div>
                 </div>
             </li>
