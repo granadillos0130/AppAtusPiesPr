@@ -72,37 +72,49 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            string documento = txtEmail.Text.Trim();
-            string password = txtContrasena.Text.Trim();
-
-            try
+            // Crear una instancia del modelo de usuario con los datos ingresados
+            ClUsuarioE obUsuarioEn = new ClUsuarioE
             {
-                string rol = clientoLo.ValidarLogin(documento, password);
+                Documento = txtEmail.Text,
+                Password = txtContrasena.Text
+            };
 
-                if (!string.IsNullOrEmpty(rol))
+            // Llamar al método de autenticación
+            ClUsuarioE oUser = clientoLo.MtdIngreso(obUsuarioEn);
+
+            // Verificar si el usuario existe
+            if (oUser != null)
+            {
+                // Configurar variables de sesión
+                Session["email"] = oUser.Email;
+                Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
+                Session["rol"] = oUser.Rol;
+                Session["idUsuario"] = oUser.IdUsuario;
+
+                // Redirigir según el rol del usuario
+                switch (oUser.Rol)
                 {
-                    // Almacenar rol en sesión
-                    Session["rol"] = rol;
-                    Session["usuario"] = documento;
-
-                    if (rol=="Cliente")
-                    {
-                        Response.Redirect("../index.aspx");
-                    }
-                    else
-                    {
+                    case "Admin":
                         Response.Redirect("BlankPage.aspx");
-                    }
-                    
-                }
-                else
-                {
-                    lblMensaje.Text = "Credenciales incorrectas.";
+                        break;
+
+                    case "Vendedor":
+                        Response.Redirect("BlankPage.aspx");
+                        break;
+
+                    case "Cliente":
+                        Response.Redirect("../index.aspx");
+                        break;
+
+                    default:
+                        lblMensaje.Text = "Rol no reconocido.";
+                        break;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                lblMensaje.Text = "Error al intentar iniciar sesión: " + ex.Message;
+                // Mostrar mensaje de error si las credenciales no son válidas
+                lblMensaje.Text = "Credenciales incorrectas.";
             }
         }
     }

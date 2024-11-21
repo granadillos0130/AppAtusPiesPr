@@ -16,9 +16,9 @@ namespace AppAtusPiesPr.Logica
             return clienteDa.MtdRegistrarCliente(cliente);
         }
 
-        public string ValidarLogin(string documento, string password)
+        public ClUsuarioE MtdIngreso(ClUsuarioE usuario)
         {
-            return clienteDa.MtdValidarLogin(documento, password);
+            return clienteDa.MtdIngreso(usuario);
         }
     }
 }
