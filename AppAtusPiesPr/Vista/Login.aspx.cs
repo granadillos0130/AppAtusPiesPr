@@ -12,6 +12,8 @@ namespace AppAtusPiesPr.Vista
     public partial class Login : System.Web.UI.Page
     {
         private ClClienteL clientoLo = new ClClienteL();
+        private ClVendedorL vendedorLo = new ClVendedorL();
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -79,43 +81,109 @@ namespace AppAtusPiesPr.Vista
                 Password = txtContrasena.Text
             };
 
-            // Llamar al método de autenticación
-            ClUsuarioE oUser = clientoLo.MtdIngreso(obUsuarioEn);
-
-            // Verificar si el usuario existe
-            if (oUser != null)
+            try
             {
-                // Configurar variables de sesión
-                Session["email"] = oUser.Email;
-                Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
-                Session["rol"] = oUser.Rol;
-                Session["idUsuario"] = oUser.IdUsuario;
 
-                // Redirigir según el rol del usuario
-                switch (oUser.Rol)
+
+
+                // Llamar al método de autenticación
+                ClUsuarioE oUser = clientoLo.MtdIngreso(obUsuarioEn);
+
+                // Verificar si el usuario existe
+                if (oUser != null)
                 {
-                    case "Admin":
-                        Response.Redirect("BlankPage.aspx");
-                        break;
+                    // Configurar variables de sesión
+                    Session["email"] = oUser.Email;
+                    Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
+                    Session["rol"] = oUser.Rol;
+                    Session["idUsuario"] = oUser.IdUsuario;
 
-                    case "Vendedor":
-                        Response.Redirect("BlankPage.aspx");
-                        break;
+                    // Redirigir según el rol del usuario
+                    switch (oUser.Rol)
+                    {
+                        case "Admin":
+                            Response.Redirect("BlankPage.aspx");
+                            break;
 
-                    case "Cliente":
-                        Response.Redirect("../index.aspx");
-                        break;
+                        case "Vendedor":
+                            Response.Redirect("BlankPage.aspx");
+                            break;
 
-                    default:
-                        lblMensaje.Text = "Rol no reconocido.";
-                        break;
+                        case "Cliente":
+                            Response.Redirect("../index.aspx");
+                            break;
+
+                        default:
+                            lblMensaje.Text = "Rol no reconocido.";
+                            break;
+                    }
                 }
+                else
+                {
+                    // Mostrar mensaje de error si las credenciales no son válidas
+                    lblMensaje.Text = "Credenciales incorrectas.";
+                }
+            }
+            catch (Exception ex) {
+                lblMensaje.Text = ex.Message;
+            }
+        }
+
+        protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
+        {
+            // Validar que todos los campos estén completos
+            if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text) ||
+                string.IsNullOrWhiteSpace(txtNombreVend.Text) ||
+                string.IsNullOrWhiteSpace(txtApellidoVend.Text) ||
+                string.IsNullOrWhiteSpace(txtCorreoVend.Text) ||
+                string.IsNullOrWhiteSpace(txtContrasenaVend.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefonoVend.Text) ||
+                string.IsNullOrWhiteSpace(txtDireccionVend.Text))
+            {
+                lblMensaje.Text = "Por favor, completa todos los campos.";
+                return;
+            }
+
+            // Crear un nuevo vendedor
+            ClUsuarioE nuevoVendedor = new ClUsuarioE
+            {
+                Documento = txtDocumentoVend.Text,
+                Nombres = txtNombreVend.Text,
+                Apellidos = txtApellidoVend.Text,
+                Email = txtCorreoVend.Text,
+                Password = txtContrasenaVend.Text,
+                Telefono = txtTelefonoVend.Text,
+                Direccion = txtDireccionVend.Text
+                // Estado inicial
+            };
+
+            // Registrar el nuevo vendedor
+            int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor);
+
+            if (idVendedor > 0)
+            {
+                lblMensaje.Text = "Registro de vendedor exitoso. Su Cuenta esta en Proceso de Activacion.";
+                // Limpiar los campos del formulario
+                LimpiarCamposVendedor();
             }
             else
             {
-                // Mostrar mensaje de error si las credenciales no son válidas
-                lblMensaje.Text = "Credenciales incorrectas.";
+                lblMensaje.Text = "Error al registrar el vendedor. Intente nuevamente.";
             }
         }
+
+        // Método para limpiar los campos del formulario
+        private void LimpiarCamposVendedor()
+        {
+            txtDocumentoVend.Text = "";
+            txtNombreVend.Text = "";
+            txtApellidoVend.Text = "";
+            txtCorreoVend.Text = "";
+            txtContrasenaVend.Text = "";
+            txtTelefonoVend.Text = "";
+            txtDireccionVend.Text = "";
+        }
+
+
     }
 }

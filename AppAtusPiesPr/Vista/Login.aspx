@@ -259,7 +259,7 @@
                     <a href="#" data-toggle="modal" data-target="#registerModal">¿No tienes una cuenta? Regístrate aquí</a>
                 </div>
                 <div class="register-vendor">
-                    <a href="RegisterVendor.aspx">¿Eres vendedor? Regístrate aquí</a>
+                    <a href="#" data-toggle="modal" data-target="#registerVendedorModal">¿Eres vendedor? Regístrate aquí</a>
                 </div>
             </div>
         </div>
@@ -311,6 +311,54 @@
                 </div>
             </div>
         </div>
+        <!-- Modal de Registro de Vendedor -->
+<div class="modal fade" id="registerVendedorModal" tabindex="-1" role="dialog" aria-labelledby="registerVendedorModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="registerVendedorModalLabel">Registrar Vendedor</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <asp:Label ID="lblDocumentoVend" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtDocumentoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblNombreVend" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtNombreVend" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblApellidoVend" runat="server" Text="Apellido:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtApellidoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu apellido" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblCorreoVend" runat="server" Text="Correo:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtCorreoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblContrasenaVend" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtContrasenaVend" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblTelefonoVend" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtTelefonoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblDireccionVend" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtDireccionVend" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required></asp:TextBox>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <asp:Button ID="btnRegistrarVendedor" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrarVendedor_Click" />
+            </div>
+        </div>
+    </div>
+</div>
+
     </form>
 </body>
 </html>
