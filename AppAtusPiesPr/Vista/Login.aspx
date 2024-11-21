@@ -14,110 +14,204 @@
             justify-content: center;
             align-items: center;
             font-family: 'Arial', sans-serif;
-            background: #f4f4f9;
+            background: #f5f5f5;
         }
 
         .main-container {
             display: flex;
-            background: #ffffff;
+            flex-direction: row;
+            background: #1a1a1a;
             border-radius: 15px;
             box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
             overflow: hidden;
-            max-width: 900px;
-            width: 100%;
+            width: 800px;
+            height: 500px;
         }
 
         .login-image {
-            flex: 1;
-            background: url('https://media.giphy.com/media/l0MYzKvvW7ZyrSNgc/giphy.gif') no-repeat center center;
-            background-size: cover;
+            width: 45%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .form-container {
-            flex: 1;
-            padding: 40px;
+        .gif-container {
+            width: 100%;
+            height: 100%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
 
-        .form-container h2 {
-            margin-bottom: 20px;
-            color: #333;
-            font-weight: bold;
+        .gif-container img {
+            width: 90%;
+            height: auto;
+            object-fit: contain;
         }
 
-        .form-container .form-group {
-            width: 100%;
+        .form-container {
+            width: 55%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .form-container h2 {
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
             margin-bottom: 20px;
+        }
+
+        .form-container .control-label {
+            margin-bottom: 8px;
+            display: block;
+            color: #ffffff;
         }
 
         .form-container .form-control {
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            padding: 12px;
             font-size: 1rem;
+            background: #333333;
+            color: #ffffff;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .form-container .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+            outline: none;
         }
 
         .form-container .btn {
             width: 100%;
-            padding: 10px 15px;
-            font-size: 1rem;
-            border-radius: 5px;
+            padding: 12px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
 
         .form-container .btn-primary {
             background-color: #007bff;
             border: none;
-            transition: background-color 0.3s ease;
+            font-weight: bold;
         }
 
         .form-container .btn-primary:hover {
             background-color: #0056b3;
+            transform: translateY(-1px);
         }
 
-        .form-container .link {
+        .text-danger {
+            color: #dc3545;
             margin-top: 10px;
-        }
-
-        .form-container .link a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .form-container .link a:hover {
-            text-decoration: underline;
-        }
-
-        .register-vendor {
-            margin-top: 20px;
             text-align: center;
         }
 
-        .register-vendor a {
-            color: #28a745;
-            font-weight: bold;
+        .link, .register-vendor {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .link a, .register-vendor a {
+            color: #007bff;
             text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
         }
 
-        .register-vendor a:hover {
-            color: #218838;
+        .link a:hover, .register-vendor a:hover {
+            color: #0056b3;
+            text-decoration: underline;
         }
 
+        /* Modal Styles */
         .modal-content {
+            background: #222;
+            color: #fff;
             border-radius: 15px;
         }
 
-        .modal-header, .modal-footer {
+        .modal-header {
+            border-bottom: 1px solid #444;
+            padding: 20px;
+            background: #1a1a1a;
+        }
+
+        .modal-header .close {
+            color: #fff;
+            opacity: 0.8;
+        }
+
+        .modal-header .close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 20px;
+            background: #222;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #444;
+            padding: 20px;
+            background: #1a1a1a;
+        }
+
+        .modal .btn-secondary {
+            background-color: #6c757d;
             border: none;
         }
 
-        .modal-title {
-            font-weight: bold;
-            color: #333;
+        .modal .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                width: 95%;
+                height: auto;
+                max-width: 400px;
+                margin: 20px;
+            }
+
+            .login-image,
+            .form-container {
+                width: 100%;
+            }
+
+            .login-image {
+                height: 200px;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .form-container h2 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
         }
     </style>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -128,9 +222,9 @@
                 $('.modal .form-control').each(function () {
                     if ($(this).val() === '') {
                         isValid = false;
-                        $(this).addClass('is-invalid'); // Indicar error
+                        $(this).addClass('is-invalid');
                     } else {
-                        $(this).removeClass('is-invalid'); // Quitar error
+                        $(this).removeClass('is-invalid');
                     }
                 });
                 if (!isValid) {
@@ -144,10 +238,11 @@
 <body>
     <form id="form1" runat="server" novalidate>
         <div class="main-container">
-            <!-- Imagen GIF alusiva al calzado -->
-            <div class="login-image"></div>
-
-            <!-- Contenedor del formulario -->
+            <div class="login-image">
+                <div class="gif-container">
+                    <img src="https://i.gifer.com/4KDr.gif" alt="Login animation"/>
+                </div>
+            </div>
             <div class="form-container">
                 <h2>Iniciar Sesión</h2>
                 <div class="form-group">
