@@ -1,4 +1,4 @@
-﻿using AppAtusPiesPr.Entidades;
+using AppAtusPiesPr.Entidades;
 using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
