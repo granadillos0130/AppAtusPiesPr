@@ -21,58 +21,63 @@ namespace AppAtusPiesPr.Vista
         {
             try
             {
-                ClProductoE objProduE = new ClProductoE();
+                ClProductoEmpresaE objProduE = new ClProductoEmpresaE();
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtCodigo.Text) ||
-                string.IsNullOrWhiteSpace(txtTalla.Text))
+                string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ||
+                string.IsNullOrWhiteSpace(txtReferencia.Text) ||
+                string.IsNullOrWhiteSpace(txtCategoria.Text) ||
+                 string.IsNullOrWhiteSpace(txtMarca.Text)) 
+
                 {
-                    MostrarMensaje("Todos los campos son requeridos");
+                    MostrarMensajeError("Todos los campos son requeridos");
                     return;
                 }
-                objProduE.Nombre = txtNombre.Text.Trim();
-                objProduE.Codigo = txtCodigo.Text.Trim();
-                objProduE.Talla = txtTalla.Text.Trim();
+                objProduE.nombreProducto = txtNombre.Text.Trim();
+                objProduE.descripcionProducto = txtDescripcionProduc.Text.Trim();
+                objProduE.referencia = txtReferencia.Text.Trim();
+                objProduE.descripcionCategoria = txtCategoria.Text.Trim();
+                objProduE.nombreMarca = txtMarca.Text.Trim();
 
 
                 if (!int.TryParse(txtStock.Text, out int cantidad))
                 {
-                    MostrarMensaje("Por favor ingrese un número válido para el stock");
+                    MostrarMensajeError("Por favor ingrese un número válido para el stock");
                     return;
                 }
                 if (cantidad < 0)
                 {
-                    MostrarMensaje("El stock no puede ser negativo");
+                    MostrarMensajeError("El stock no puede ser negativo");
                     return;
                 }
-                objProduE.CantidadStock = cantidad;
+                objProduE.cantidadStock = cantidad;
 
 
 
                 if (!int.TryParse(txtPrecio.Text, out int money))
                 {
-                    MostrarMensaje("Por favor ingrese un valor válido para el precio");
+                    MostrarMensajeError("Por favor ingrese un valor válido para el precio");
                     return;
                 }
                 if (money < 0)
                 {
-                    MostrarMensaje("El precio no puede ser negativo");
+                    MostrarMensajeError("El precio no puede ser negativo");
                     return;
                 }
-                objProduE.Precio = money;
+                objProduE.precioVenta = money;
 
 
 
-                if (!int.TryParse(txtVendedor.Text, out int Vendedor))
+                if (!int.TryParse(txtDescuento.Text, out int descuento))
                 {
-                    MostrarMensaje("Por favor ingrese un número válido para el ID del vendedor");
+                    MostrarMensajeError("Por favor ingrese un número válido para el Descuento");
                     return;
                 }
-                if (Vendedor <= 0)
+                if (descuento <= 0)
                 {
-                    MostrarMensaje("El ID del vendedor debe ser un número positivo");
+                    MostrarMensajeError("El descuento debe ser un número positivo");
                     return;
                 }
-                objProduE.idVendedor = Vendedor;
+                objProduE.idVendedor = descuento;
 
                 if (inRuta.HasFile)
                 {
@@ -81,7 +86,7 @@ namespace AppAtusPiesPr.Vista
                     if (!extension.Equals(".jpg") && !extension.Equals(".png") &&
                         !extension.Equals(".jpeg") && !extension.Equals(".gif"))
                     {
-                        MostrarMensaje("Solo se permiten archivos de imagen (jpg, png, jpeg, gif)");
+                        MostrarMensajeError("Solo se permiten archivos de imagen (jpg, png, jpeg, gif)");
                         return;
                     }
 
@@ -98,34 +103,43 @@ namespace AppAtusPiesPr.Vista
 
                     string rutaCompleta = Path.Combine(directorioDestino, nombreUnico);
                     inRuta.SaveAs(rutaCompleta);
-                    objProduE.Presentacion = "~/Vista/img/" + nombreUnico;
+                    objProduE.imagen = "~/Vista/img/" + nombreUnico;
                 }
 
                 ClProductoL objProductoL = new ClProductoL();
                 objProductoL.MtdRegistroProd(objProduE);
 
-                MostrarMensaje("Producto registrado exitosamente");
+                MostrarMensajeExito("Producto registrado exitosamente");
                 LimpiarCampos();
 
             }
             catch (Exception ex)
             {
-                MostrarMensaje("Error al registrar el producto: " + ex.Message);
+                MostrarMensajeError("Error al registrar el producto: " + ex.Message);
             }
+
         }
-        private void MostrarMensaje(string mensaje)
+        private void MostrarMensajeExito(string mensaje)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
-                $"alert('{mensaje.Replace("'", "\\'")}')", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "sweetAlertSuccess",
+                $"Swal.fire({{ icon: 'success', title: 'Éxito', text: '{mensaje.Replace("'", "\\'")}' }})", true);
+        }
+
+        private void MostrarMensajeError(string mensaje)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "sweetAlertError",
+                $"Swal.fire({{ icon: 'error', title: 'Error', text: '{mensaje.Replace("'", "\\'")}' }})", true);
         }
         private void LimpiarCampos()
         {
             txtNombre.Text = "";
-            txtCodigo.Text = "";
-            txtTalla.Text = "";
+            txtDescripcionProduc.Text = "";
+            txtReferencia.Text = "";
+            txtCategoria.Text = "";
+            txtMarca.Text = "";
             txtStock.Text = "";
             txtPrecio.Text = "";
-            txtVendedor.Text = "";
+            txtDescuento.Text = "";
         }
     }
     }

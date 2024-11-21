@@ -19,43 +19,98 @@
                         <form runat="server">
                             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                             
+                            <!-- Nombre del Producto -->
                             <div class="mb-3">
                                 <label for="txtNombre" class="form-label">Nombre del Producto</label>
-                                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"  />
+                                <div class="input-group">
+                                    <span class="input-group-text">🏷️</span>
+                                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="txtCodigo" class="form-label">Código del Producto</label>
-                                <asp:TextBox ID="txtCodigo" runat="server" CssClass="form-control" />
-                            </div>
-
+                            <!-- Cantidad Stock -->
                             <div class="mb-3">
                                 <label for="txtStock" class="form-label">Cantidad Stock</label>
-                                <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" />
+                                <div class="input-group">
+                                    <span class="input-group-text">📦</span>
+                                    <asp:TextBox ID="txtStock" runat="server" CssClass="form-control" />
+                                </div>
                             </div>
 
+                            <!-- Precio -->
                             <div class="mb-3">
                                 <label for="txtPrecio" class="form-label">Precio</label>
-                                <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control"  />
+                                <div class="input-group">
+                                    <span class="input-group-text">💲</span>
+                                    <asp:TextBox ID="txtPrecio" runat="server" CssClass="form-control" />
+                                </div>
                             </div>
 
+                            <!-- Descripción del Producto -->
                             <div class="mb-3">
-                                <label for="txtTalla" class="form-label">Talla</label>
-                                <asp:TextBox ID="txtTalla" runat="server" CssClass="form-control"  />
+                                <label for="txtDescripcionProduc" class="form-label">Descripción del Producto</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">✍️</span>
+                                    <asp:TextBox ID="txtDescripcionProduc" runat="server" CssClass="form-control" TextMode="MultiLine" />
+                                </div>
                             </div>
 
+                            <!-- Referencia -->
                             <div class="mb-3">
-                                <label for="txtVendedor" class="form-label">ID Vendedor</label>
-                                <asp:TextBox ID="txtVendedor" runat="server" CssClass="form-control"  />
+                                <label for="txtReferencia" class="form-label">Referencia</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">🔢</span>
+                                    <asp:TextBox ID="txtReferencia" runat="server" CssClass="form-control" />
+                                </div>
                             </div>
 
+                            <!-- Categoría -->
                             <div class="mb-3">
-                                <label for="inRuta" class="form-label">Añade una Imagen</label>
-                                <br />
+                                <label for="txtCategoria" class="form-label">Categoría</label>
+                                <asp:DropDownList ID="txtCategoria" runat="server" CssClass="form-select">
+                                    <asp:ListItem Value="">Seleccione un Tipo de calzado</asp:ListItem>
+                                    <asp:ListItem Value="deportivo">Calzado deportivo</asp:ListItem>
+                                    <asp:ListItem Value="casual">Calzado casual</asp:ListItem>
+                                    <asp:ListItem Value="tecnico">Calzado técnico</asp:ListItem>
+                                    <asp:ListItem Value="correr">Calzado para correr</asp:ListItem>
+                                    <asp:ListItem Value="crossfit">Calzado para crossfit</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+
+                            <!-- Descuento -->
+                            <div class="mb-3">
+                                <label for="txtDescuento" class="form-label">Descuento</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">🔖</span>
+                                    <asp:TextBox ID="txtDescuento" runat="server" CssClass="form-control" />
+                                </div>
+                            </div>
+
+                            <!-- Marca -->
+                            <div class="mb-3">
+                                <label for="txtMarca" class="form-label">Marca</label>
+                                <asp:DropDownList ID="txtMarca" runat="server" CssClass="form-select">
+                                    <asp:ListItem Value="0">Seleccione una Marca</asp:ListItem>
+                                    <asp:ListItem Value="Nike">Nike</asp:ListItem>
+                                    <asp:ListItem Value="Adidas">Adidas</asp:ListItem>
+                                    <asp:ListItem Value="Reebok">Reebok</asp:ListItem>
+                                    <asp:ListItem Value="Puma">Puma</asp:ListItem>
+                                    <asp:ListItem Value="New Balance">New Balance</asp:ListItem>
+                                    <asp:ListItem Value="Under Armour">Under Armour</asp:ListItem>
+                                    <asp:ListItem Value="Asics">Asics</asp:ListItem>
+                                    <asp:ListItem Value="Saucony">Saucony</asp:ListItem>
+                                    <asp:ListItem Value="Hoka">Hoka</asp:ListItem>
+                                    <asp:ListItem Value="Mizuno">Mizuno</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+
+                            <!-- Añadir Imagen -->
+                            <div class="mb-3">
+                                <label for="inRuta" class="form-label">Añade una Imagen</label><br />
                                 <asp:FileUpload ID="inRuta" runat="server"  />
-                               
                             </div>
 
+                            <!-- Botón Registrar -->
                             <div class="d-grid">
                                 <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary btn-block" OnClick="btnRegistrar_Click" />
                             </div>

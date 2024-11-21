@@ -17,12 +17,19 @@ namespace AppAtusPiesPr.Entidades
 
         public int Precio { get; set; }
 
-        public string Presentacion { get; set; }
+        public string imagen { get; set; }
 
         public string Estado { get; set; }
 
         public string Talla { get; set; }
 
+        public string DescripcionProducto { get; set; }
+
+        public string Presentacion { get; set; }
+        public int descuento { get; set; }
+
+        public  string descripcionCategoria { get; set; }
+        public string referencia { get; set; }
         public int idVendedor { get; set; }
         public string Descripcion { get; set; }
         public int CantidadVendida {  get; set; }
@@ -41,6 +48,9 @@ namespace AppAtusPiesPr.Entidades
         public string descripcionProducto { get; set; }
         public string referencia { get; set; }
         public string imagen { get; set; }
+
+        public string Estado { get; set; }
+        public string descripcionCategoria { get; set; }
         public int descuento { get; set; }
         public string nombres { get; set; }
         public string nombreMarca { get; set; }

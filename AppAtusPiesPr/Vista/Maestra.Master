@@ -119,9 +119,14 @@
                 </a>
                 <div id="collapseVendedores" class="collapse" aria-labelledby="headingVendedores" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="RegistroProducto.aspx">Registrar Producto</a>
-                        <a class="collapse-item" href="ProductosMasVendidos.aspx">Más Vendidos</a>
-                        <a class="collapse-item" href="ProductoRegistradoCategoria.aspx">Productos por Categoría</a>
+                        <h6 class="collapse-header">Opciones para Vendedores:</h6>
+                        <a class="collapse-item" href="RegistroProducto.aspx">Registrar producto</a>
+
+                        <a class="collapse-item" href="ProductosMasVendidos.aspx">Productos Mas vendidos</a>
+                        <a class="collapse-item" href="ProductoRegistradoCategoria.aspx">Listado de productos </a>
+
+
+                        <a class="collapse-item" href="ActualizarProducto.aspx">Actualizar Productos</a>
                     </div>
                 </div>
             </li>

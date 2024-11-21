@@ -11,10 +11,10 @@ namespace AppAtusPiesPr.Logica
 {
     public class ClProductoL
     {
-        public ClProductoE MtdRegistroProd(ClProductoE objDatosProd)
+        public ClProductoEmpresaE MtdRegistroProd(ClProductoEmpresaE objDatosProdu)
         {
             ClProductoD objProdD = new ClProductoD();  
-            ClProductoE objData = objProdD.MtdRegistrarProducto(objDatosProd);
+            ClProductoEmpresaE objData = objProdD.MtdRegistrarProducto(objDatosProdu);
             return objData;
         }
 
@@ -47,7 +47,7 @@ namespace AppAtusPiesPr.Logica
 
 
 
-        public ClProductoE MtdActualizacionProduc(ClProductoE objProdActu)
+        public ClProductoEmpresaE MtdActualizacionProduc(ClProductoEmpresaE objProdActu)
         {
             ClProductoD objActuP = new ClProductoD();
             return objActuP.mtdActualizarProducto(objProdActu);
