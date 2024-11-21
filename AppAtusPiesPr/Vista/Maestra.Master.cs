@@ -27,12 +27,24 @@ namespace AppAtusPiesPr.Vista
                 if (rol == "Admin")
                 {
                     LblPuesto.Text = "Administrador";
-                    menuVendedores.Visible = false;
+                    menuRegistrarProducto.Visible = false;
+                    menuMasVendidos.Visible = false;
+                    menuProductosPorCategoria.Visible = false;
+
+
+
                 }
                 else if (rol == "Vendedor")
                 {
                     LblPuesto.Text = "Vendedor";
-                    menuAdmin.Visible = false;
+                    menuListarUsuarios.Visible = false;
+                    menuRegistrarVendedor.Visible = false;
+                    menuListarVendedores.Visible = false;
+                   
+
+
+
+
                 }
                 else
                 {
