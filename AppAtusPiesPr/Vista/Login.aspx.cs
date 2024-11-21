@@ -132,7 +132,7 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
         {
-            // Validar que todos los campos estén completos
+            // Validación del formulario
             if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text) ||
                 string.IsNullOrWhiteSpace(txtNombreVend.Text) ||
                 string.IsNullOrWhiteSpace(txtApellidoVend.Text) ||
@@ -154,8 +154,8 @@ namespace AppAtusPiesPr.Vista
                 Email = txtCorreoVend.Text,
                 Password = txtContrasenaVend.Text,
                 Telefono = txtTelefonoVend.Text,
-                Direccion = txtDireccionVend.Text
-                // Estado inicial
+                Direccion = txtDireccionVend.Text,
+                
             };
 
             // Registrar el nuevo vendedor
@@ -163,7 +163,7 @@ namespace AppAtusPiesPr.Vista
 
             if (idVendedor > 0)
             {
-                lblMensaje.Text = "Registro de vendedor exitoso. Su Cuenta esta en Proceso de Activacion.";
+                lblMensaje.Text = "Registro de vendedor exitoso. El estado es 'PROCESO'.";
                 // Limpiar los campos del formulario
                 LimpiarCamposVendedor();
             }
@@ -173,7 +173,6 @@ namespace AppAtusPiesPr.Vista
             }
         }
 
-        // Método para limpiar los campos del formulario
         private void LimpiarCamposVendedor()
         {
             txtDocumentoVend.Text = "";
@@ -184,6 +183,10 @@ namespace AppAtusPiesPr.Vista
             txtTelefonoVend.Text = "";
             txtDireccionVend.Text = "";
         }
+
+
+        // Método para limpiar los campos del formulario
+        
 
 
     }

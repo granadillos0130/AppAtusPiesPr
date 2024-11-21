@@ -42,6 +42,5 @@ namespace AppAtusPiesPr.Datos
             return idVendedor;
         }
 
-
     }
 }
