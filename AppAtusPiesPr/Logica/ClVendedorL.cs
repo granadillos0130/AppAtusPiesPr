@@ -15,6 +15,7 @@ namespace AppAtusPiesPr.Logica
             return oVendedor.MtdRegistrarVendedor(vendedor);
         }
 
+       
 
 
     }
