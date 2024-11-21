@@ -62,21 +62,24 @@ namespace AppAtusPiesPr.Vista
                 }
 
                 // Crear objeto con los datos del producto
-                ClProductoE objProductoE = new ClProductoE
+                ClProductoEmpresaE objProductoE = new ClProductoEmpresaE
                 {
                     idProducto = int.TryParse(txtProducto.Text, out int id) ? id : 0,//Convertimos las cadenas en enteros, si falla se le asigna 0 
-                    Nombre = txtNombre.Text,
-                    Codigo = txtCodigo.Text,
-                    CantidadStock = int.TryParse(txtStock.Text, out int stock) ? stock : 0,
+                    nombreProducto = txtNombre.Text,
+                    cantidadStock = int.TryParse(txtStock.Text, out int stock) ? stock : 0,
+                    precioVenta = int.TryParse(txtPrecio.Text, out int precio) ? precio : 0,
+                    descripcionProducto = txtDescripcionProduc.Text,
                     Estado = txtEstado.Text,
-                    Precio = int.TryParse(txtPrecio.Text, out int precio) ? precio : 0,
-                    Talla = txtTalla.Text,
-                    Presentacion = rutaImagen// Solo se actualiza si se subió una nueva imagen
+                    descuento = int.TryParse(txtDescuento.Text, out int descuento) ? precio : 0,
+                    referencia = txtReferencia.Text,
+                    descripcionCategoria = txtCategoria.Text,
+                    nombreMarca = txtMarca.Text,
+                    imagen= rutaImagen// Solo se actualiza si se subió una nueva imagen
                 };
 
                 
                 ClProductoL objProductoL = new ClProductoL();
-                ClProductoE objDatos = objProductoL.MtdActualizacionProduc(objProductoE);
+                ClProductoEmpresaE objDatos = objProductoL.MtdActualizacionProduc(objProductoE);
 
                 if (objDatos != null)
                 {
@@ -86,11 +89,15 @@ namespace AppAtusPiesPr.Vista
                     // Limpiar campos
                     txtProducto.Text = "";
                     txtNombre.Text = "";
-                    txtCodigo.Text = "";
                     txtStock.Text = "";
-                    txtEstado.Text = "";
                     txtPrecio.Text = "";
-                    txtTalla.Text = "";
+                    txtDescripcionProduc.Text = "";
+                    txtEstado.Text = "";
+                    txtDescuento.Text = "";
+                    txtReferencia.Text = "";
+                    txtCategoria.Text = "";
+                    txtMarca.Text = "";
+
                 }
                 else
                 {
