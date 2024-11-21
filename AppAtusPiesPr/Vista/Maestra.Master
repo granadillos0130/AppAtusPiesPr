@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Maestra.master.cs" Inherits="AppAtusPiesPr.Vista.Maestra" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Maestra.master.cs" Inherits="AppAtusPiesPr.Vista.Maestra" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
