@@ -38,7 +38,7 @@ namespace AppAtusPiesPr.Vista
                 {
                     LblPuesto.Text = "Vendedor";
                     menuListarUsuarios.Visible = false;
-                    menuRegistrarVendedor.Visible = false;
+                    menuPeticiones.Visible = false;
                     menuListarVendedores.Visible = false;
                    
 

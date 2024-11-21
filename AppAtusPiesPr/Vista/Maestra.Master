@@ -184,9 +184,9 @@
             <i class="fas fa-boxes"></i>
             Productos por Categoría
         </a>
-        <a class="nav-link" href="RegistrarVendedor.aspx" id="menuRegistrarVendedor" runat="server">
+        <a class="nav-link" href="Peticiones.aspx" id="menuPeticiones" runat="server">
             <i class="fas fa-user-plus"></i>
-            Registrar Vendedor
+            Solicitudes 
         </a>
         <a class="nav-link" href="ListarVendedor.aspx" id="menuListarVendedores" runat="server">
             <i class="fas fa-users"></i>

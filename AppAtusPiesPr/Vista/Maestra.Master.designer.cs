@@ -69,13 +69,13 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.HtmlControls.HtmlAnchor menuProductosPorCategoria;
 
         /// <summary>
-        /// Control menuRegistrarVendedor.
+        /// Control menuPeticiones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuRegistrarVendedor;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuPeticiones;
 
         /// <summary>
         /// Control menuListarVendedores.
