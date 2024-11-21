@@ -130,11 +130,10 @@
             <li class="nav-item" id="menuAdmin" runat="server">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
                     <i class="fas fa-users-cog"></i>
-                    <span>Usuarios</span>
+                    <span>Administrador</span>
                 </a>
                 <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="RegistrarVendedor.aspx">Registrar Vendedor</a>
                         <a class="collapse-item" href="ListarVendedor.aspx">Listar Vendedores</a>
                         <a class="collapse-item" href="ListarUsuario.aspx">Listar Usuarios</a>
                     </div>
