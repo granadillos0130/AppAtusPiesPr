@@ -81,28 +81,7 @@ namespace AppAtusPiesPr.Datos
             }
         }
 
-        public DataTable ListarSolicitudes()
-        {
-            try
-            {
-                ClConexion oConexion = new ClConexion();
-                using (SqlConnection con = oConexion.MtdAbrirConexion())
-                {
-                    using (SqlCommand cmd = new SqlCommand("spListarSolicitudes", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable Lista = new DataTable();
-                        da.Fill(Lista);
-                        return Lista;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Errro al listar las Solicitudes" + ex.Message);
-            }
-        }
+       
 
     }
 }
