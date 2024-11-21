@@ -58,7 +58,7 @@ namespace AppAtusPiesPr.Datos
             }
         }
 
-        public DataTable ListarSolicitudes()
+        public DataTable MtdListarSolicitudes()
         {
             try
             {

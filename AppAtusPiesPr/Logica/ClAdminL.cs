@@ -24,5 +24,11 @@ namespace AppAtusPiesPr.Logica
             ClAdminD ListaUsuario = new ClAdminD();
             return ListaUsuario.MtdListarUsuarios();
         }
+
+        public DataTable MtdObtenerSolicitudes()
+        {
+            ClAdminD ListaSolicitudes = new ClAdminD();
+            return ListaSolicitudes.MtdListarSolicitudes();
+        }
     }
 }
