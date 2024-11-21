@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                      <!-- Precio -->
+                
                     <div class="mb-3">
                         <label for="txtPrecio" class="form-label">Precio</label>
                         <div class="input-group">
