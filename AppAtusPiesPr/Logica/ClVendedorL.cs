@@ -9,11 +9,12 @@ namespace AppAtusPiesPr.Logica
 {
     public class ClVendedorL
     {
-        private ClVendedorD oVendedor = new ClVendedorD();
+        ClVendedorD oVendedor = new ClVendedorD();
         public int RegistrarVendedor(ClUsuarioE vendedor)
         {
             return oVendedor.MtdRegistrarVendedor(vendedor);
         }
+
 
 
     }

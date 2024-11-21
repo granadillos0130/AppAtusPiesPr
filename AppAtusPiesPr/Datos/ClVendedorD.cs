@@ -10,6 +10,7 @@ namespace AppAtusPiesPr.Datos
 {
     public class ClVendedorD
     {
+
         public int MtdRegistrarVendedor(ClUsuarioE vendedor)
         {
             int idVendedor = 0;
@@ -40,6 +41,7 @@ namespace AppAtusPiesPr.Datos
             }
             return idVendedor;
         }
+
 
     }
 }
