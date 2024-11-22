@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace AppAtusPiesPr.Vista
 {
-    public partial class moduloCatalogo : System.Web.UI.Page
+    public partial class moduloCatalogoFiltrado2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -31,7 +31,7 @@ namespace AppAtusPiesPr.Datos
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception("Error al listar los vendedores: " + ex.Message);
             }
         }
@@ -53,8 +53,9 @@ namespace AppAtusPiesPr.Datos
                     }
                 }
             }
-            catch(Exception ex) 
-            { throw new Exception("Errro al listar los Usuarios" + ex.Message); 
+            catch (Exception ex)
+            {
+                throw new Exception("Errro al listar los Usuarios" + ex.Message);
             }
         }
 
@@ -81,7 +82,20 @@ namespace AppAtusPiesPr.Datos
             }
         }
 
-       
+        public bool MtdAceptarSolicitud(int idVendedor)
+        {
+            ClConexion oConexion = new ClConexion();
+            using (SqlConnection con = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("spAceptarSolicitud",con))
+                {
+                    cmd.CommandType= CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("idVendedor", idVendedor);
 
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    return filasAfectadas > 0;
+                }
+            }
+        }
     }
 }

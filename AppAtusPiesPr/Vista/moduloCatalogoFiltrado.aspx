@@ -1,55 +1,19 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="moduloCatalogoFiltrado.aspx.cs" Inherits="AppAtusPiesPr.Vista.moduloCatalogo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/IndexMaestra.Master" AutoEventWireup="true" CodeBehind="moduloCatalogoFiltrado.aspx.cs" Inherits="AppAtusPiesPr.Vista.moduloCatalogoFiltrado2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset='utf-8' />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <title>ATP </title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css' />
 
     <link rel="shortcut icon" href="recursos/ATP.png" />
-</head>
-<body>
-    <form id="form1" runat="server">
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
+
         <div>
             <div class="container">
-                <header>
-
-                    <!-- MENÚ -->
-                    <div class="navbar">
-                        <nav>
-                            <ul class="menu">
-                                <li><a href="#">WINTER 24</a></li>
-                                <li><a href="#">WOMEN</a></li>
-                                <li><a href="#">MEN</a></li>
-                                <li><a href="#">GIFTS</a></li>
-                                <li><a href="#">COUTURE</a></li>
-                                <li><a href="#">EXPLORE</a></li>
-                            </ul>
-                        </nav>
-
-                        <a href="../index.aspx" class="logo">A TUS PIES</a>
-
-                        <div class="right-section">
-                            <div class="search-bar">
-                                <input type="text" placeholder="Search...">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <a href="Vista/modulos/moduloCarrito.aspx" class="save-button2">
-                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                            </a>
-                            <a href="Login.aspx" class="login">LOGIN</a>
-
-                            <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
-                        </div>
-                    </div>
-                    <hr />
-
-                </header>
 
                 <!--Filtros-->
                 <center>
@@ -112,7 +76,5 @@
 
             </div>
         </div>
-    </form>
-</body>
-</html>
 
+</asp:Content>

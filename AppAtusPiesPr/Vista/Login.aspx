@@ -14,18 +14,22 @@
             justify-content: center;
             align-items: center;
             font-family: 'Arial', sans-serif;
-            background: #f5f5f5;
+            background: #e8e8e8;
+            font-family: Arial, sans-serif; /* Define la fuente base para toda la página */
         }
 
         .main-container {
             display: flex;
             flex-direction: row;
             background: #1a1a1a;
-            border-radius: 15px;
+            border-radius: 10px;
+            border-radius: 10px;
             box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
             overflow: hidden;
             width: 800px;
             height: 500px;
+            border: 1px solid #999;
+            color: black;
         }
 
         .login-image {
@@ -59,13 +63,13 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: #1a1a1a;
+            background: white;
             color: #ffffff;
         }
 
         .form-container h2 {
             margin-bottom: 30px;
-            color: #ffffff;
+            color: black;
             font-weight: bold;
             font-size: 2rem;
             text-align: center;
@@ -78,22 +82,22 @@
         .form-container .control-label {
             margin-bottom: 8px;
             display: block;
-            color: #ffffff;
+            color: black;
         }
 
         .form-container .form-control {
-            border-radius: 8px;
+            border-radius: 5px;
             border: 1px solid #444;
             padding: 12px;
             font-size: 1rem;
-            background: #333333;
-            color: #ffffff;
+            background: white;
+            color: black;
             width: 100%;
             transition: all 0.3s ease;
         }
 
         .form-container .form-control:focus {
-            border-color: #007bff;
+            border-color: #999;
             box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
             outline: none;
         }
@@ -102,19 +106,20 @@
             width: 100%;
             padding: 12px;
             font-size: 1.1rem;
-            border-radius: 8px;
+            border-radius: 5px;
             margin-bottom: 20px;
             transition: all 0.3s ease;
         }
 
         .form-container .btn-primary {
-            background-color: #007bff;
+            background-color: black;
             border: none;
             font-weight: bold;
+            color: white;
         }
 
         .form-container .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #272727;
             transform: translateY(-1px);
         }
 
@@ -215,24 +220,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#btnRegistrar').click(function (event) {
-                var isValid = true;
-                $('.modal .form-control').each(function () {
-                    if ($(this).val() === '') {
-                        isValid = false;
-                        $(this).addClass('is-invalid');
-                    } else {
-                        $(this).removeClass('is-invalid');
-                    }
-                });
-                if (!isValid) {
-                    event.preventDefault();
-                    alert('Por favor, completa todos los campos obligatorios.');
-                }
-            });
-        });
+    
     </script>
 </head>
 <body>
@@ -261,77 +249,90 @@
                 <div class="register-vendor">
                     <a href="#" data-toggle="modal" data-target="#registerVendedorModal">¿Eres vendedor? Regístrate aquí</a>
                 </div>
+                            <div class="link">
+    <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">¿Olvidaste tu contraseña?</a>
+</div>
             </div>
         </div>
 
         <!-- Modal de Registro -->
- <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="registerModalLabel">Registrar Usuario</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <asp:Label ID="lblDocumento" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label ID="lblNombre" runat="server" Text="Nombres:" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label ID="lblApellido" runat="server" Text="Apellidos:" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Ingresa tus apellidos" required></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label ID="lblCorreo" runat="server" Text="Correo:" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label ID="lblContrasenaReg" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="txtContrasenaReg" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label ID="lblTelefono" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label ID="lblDireccion" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
+                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Modal de Olvidar Contraseña -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="registerModalLabel">Registrar Usuario</h4>
+                <h4 class="modal-title" id="forgotPasswordModalLabel">Recuperar Contraseña</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <asp:Label ID="lblDocumento" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">🪪</div>
-                        <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required></asp:TextBox>
-                    </div>
+                    <asp:Label ID="lblEmailRecuperar" runat="server" Text="Correo Electrónico:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtEmailRecuperar" runat="server" CssClass="form-control" Placeholder="Ingresa tu correo" required></asp:TextBox>
                 </div>
-                <div class="form-group">
-                    <asp:Label ID="lblNombre" runat="server" Text="Nombres:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">🚹</div>
-                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblApellido" runat="server" Text="Apellidos:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">🚹</div>
-                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Ingresa tus apellidos" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblCorreo" runat="server" Text="Correo:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">📘</div>
-                        <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblContrasenaReg" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">🛡️</div>
-                        <asp:TextBox ID="txtContrasenaReg" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblTelefono" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">📶</div>
-                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblDireccion" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">📬</div>
-                        <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required></asp:TextBox>
-                    </div>
-                </div>
+                <asp:Label ID="lblMensajeRecuperar" runat="server" CssClass="text-danger"></asp:Label>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click" />
+                <asp:Button ID="btnEnviarRecuperar" runat="server" Text="Enviar Enlace" CssClass="btn btn-primary" OnClick="btnEnviarRecuperar_Click" />
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+
 
         <!-- Modal de Registro de Vendedor -->
 <div class="modal fade" id="registerVendedorModal" tabindex="-1" role="dialog" aria-labelledby="registerVendedorModalLabel" aria-hidden="true">
@@ -343,6 +344,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body">
                 <div class="form-group">
                     <asp:Label ID="lblDocumentoVend" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
