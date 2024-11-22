@@ -14,39 +14,6 @@
 
         <div>
             <div class="container">
-                <header>
-
-                    <!-- MENÚ -->
-                    <div class="navbar">
-                        <nav>
-                            <ul class="menu">
-                                <li><a href="#">WINTER 24</a></li>
-                                <li><a href="#">WOMEN</a></li>
-                                <li><a href="#">MEN</a></li>
-                                <li><a href="#">GIFTS</a></li>
-                                <li><a href="#">COUTURE</a></li>
-                                <li><a href="#">EXPLORE</a></li>
-                            </ul>
-                        </nav>
-
-                        <a href="../index.aspx" class="logo">A TUS PIES</a>
-
-                        <div class="right-section">
-                            <div class="search-bar">
-                                <input type="text" placeholder="Search...">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <a href="Vista/modulos/moduloCarrito.aspx" class="save-button2">
-                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                            </a>
-                            <a href="Login.aspx" class="login">LOGIN</a>
-
-                            <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
-                        </div>
-                    </div>
-                    <hr />
-
-                </header>
 
                 <!--Filtros-->
                 <center>
