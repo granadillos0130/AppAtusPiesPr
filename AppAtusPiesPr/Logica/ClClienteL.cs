@@ -20,5 +20,25 @@ namespace AppAtusPiesPr.Logica
         {
             return clienteDa.MtdIngreso(usuario);
         }
+
+        public bool IsEmailExist(string email)
+        {
+            return clienteDa.IsEmailExist(email);
+        }
+
+        public void SaveTemporaryPassword(string email, string temporaryPassword)
+        {
+            clienteDa.SaveTemporaryPassword(email, temporaryPassword);
+        }
+
+        public bool IsResetCodeValid(string resetCode)
+        {
+            return clienteDa.IsResetCodeValid(resetCode);
+        }
+
+        public void UpdatePassword(string resetCode, string newPassword)
+        {
+            clienteDa.UpdatePassword(resetCode, newPassword);
+        }
     }
 }

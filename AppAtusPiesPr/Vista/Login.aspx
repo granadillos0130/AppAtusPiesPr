@@ -220,24 +220,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#btnRegistrar').click(function (event) {
-                var isValid = true;
-                $('.modal .form-control').each(function () {
-                    if ($(this).val() === '') {
-                        isValid = false;
-                        $(this).addClass('is-invalid');
-                    } else {
-                        $(this).removeClass('is-invalid');
-                    }
-                });
-                if (!isValid) {
-                    event.preventDefault();
-                    alert('Por favor, completa todos los campos obligatorios.');
-                }
-            });
-        });
+    
     </script>
 </head>
 <body>
@@ -266,6 +249,9 @@
                 <div class="register-vendor">
                     <a href="#" data-toggle="modal" data-target="#registerVendedorModal">¿Eres vendedor? Regístrate aquí</a>
                 </div>
+                            <div class="link">
+    <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">¿Olvidaste tu contraseña?</a>
+</div>
             </div>
         </div>
 
@@ -316,6 +302,38 @@
                 </div>
             </div>
         </div>
+
+<!-- Modal de Olvidar Contraseña -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="forgotPasswordModalLabel">Recuperar Contraseña</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <asp:Label ID="lblEmailRecuperar" runat="server" Text="Correo Electrónico:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtEmailRecuperar" runat="server" CssClass="form-control" Placeholder="Ingresa tu correo" required></asp:TextBox>
+                </div>
+                <asp:Label ID="lblMensajeRecuperar" runat="server" CssClass="text-danger"></asp:Label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <asp:Button ID="btnEnviarRecuperar" runat="server" Text="Enviar Enlace" CssClass="btn btn-primary" OnClick="btnEnviarRecuperar_Click" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
         <!-- Modal de Registro de Vendedor -->
 <div class="modal fade" id="registerVendedorModal" tabindex="-1" role="dialog" aria-labelledby="registerVendedorModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -326,6 +344,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body">
                 <div class="form-group">
                     <asp:Label ID="lblDocumentoVend" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
