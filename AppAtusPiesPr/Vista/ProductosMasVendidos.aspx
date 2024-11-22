@@ -7,7 +7,18 @@
         <div class="container" style="margin-top=0">
         <h1 class="text-center mb-4">Productos más vendidos </h1>
         <div class="table-responsive">
-        <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
+       
+             
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Fecha de Inicio:"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:Label ID="Label2" runat="server" Text="Fecha de Fin:"></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:Button ID="Button1" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+            <asp:Label ID="Label3" runat="server" Text="" ForeColor="Red" Visible="False"></asp:Label>
+        </div>
+            
+            <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
     <Columns>
         <asp:BoundField DataField="idProducto" HeaderText="ID Producto" />
         <asp:BoundField DataField="Nombre" HeaderText="Nombre" />

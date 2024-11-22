@@ -43,15 +43,15 @@ namespace AppAtusPiesPr.Entidades
         public int idVendedor { get; set; }
         public int idProducto { get; set; }
         public string nombreProducto { get; set; }
-        public int cantidadStock { get; set; }
-        public int precioVenta { get; set; }
+        public int? cantidadStock { get; set; } //puede aceptar valores nulos
+        public int? precioVenta { get; set; }
         public string descripcionProducto { get; set; }
         public string referencia { get; set; }
         public string imagen { get; set; }
 
         public string Estado { get; set; }
         public string descripcionCategoria { get; set; }
-        public int descuento { get; set; }
+        public int? descuento { get; set; }
         public string nombres { get; set; }
         public string nombreMarca { get; set; }
 
