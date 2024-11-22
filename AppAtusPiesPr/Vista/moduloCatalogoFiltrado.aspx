@@ -1,20 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="moduloCatalogoFiltrado.aspx.cs" Inherits="AppAtusPiesPr.Vista.moduloCatalogo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/IndexMaestra.Master" AutoEventWireup="true" CodeBehind="moduloCatalogoFiltrado.aspx.cs" Inherits="AppAtusPiesPr.Vista.moduloCatalogoFiltrado2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset='utf-8' />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <title>ATP </title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css' />
 
     <link rel="shortcut icon" href="recursos/ATP.png" />
-</head>
-<body>
-    <form id="form1" runat="server">
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
+
         <div>
             <div class="container">
                 <header>
@@ -112,7 +109,5 @@
 
             </div>
         </div>
-    </form>
-</body>
-</html>
 
+</asp:Content>
