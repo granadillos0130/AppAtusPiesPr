@@ -1866,13 +1866,6 @@
     <Compile Include="Vista\ProductosMasVendidos.aspx.designer.cs">
       <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\RegistrarVendedor.aspx.cs">
-      <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Vista\RegistrarVendedor.aspx.designer.cs">
-      <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Vista\RegistroProducto.aspx.cs">
       <DependentUpon>RegistroProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
