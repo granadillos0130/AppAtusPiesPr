@@ -19,7 +19,7 @@
                         <asp:Repeater ID="Repeater2" runat="server">
                             <ItemTemplate>
                                 <li>
-                                    <a href='<%# "vista/moduloCatalogoFiltrado2.aspx?id=" + Eval("idCategoria") %>'>
+                                    <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                         <%# Eval("descripcion") %>
                                     </a>
                                 </li>
@@ -57,7 +57,7 @@
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
                         <h4 class="card-title">
                             <a href="#">
-                                <%# Eval("nombres") %>
+                                <%# Eval("NombreVendedor") %>
                             </a>
                         </h4>
                         <div class="card-info">

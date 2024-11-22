@@ -8,11 +8,8 @@
     <link rel="shortcut icon" href="recursos/ATP.png" />
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
-
-        <div>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+            <div>
             <div class="container">
 
                 <!--Filtros-->
@@ -76,5 +73,5 @@
 
             </div>
         </div>
-
 </asp:Content>
+
