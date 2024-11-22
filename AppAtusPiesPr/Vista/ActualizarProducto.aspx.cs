@@ -64,20 +64,20 @@ namespace AppAtusPiesPr.Vista
                 // Crear objeto con los datos del producto
                 ClProductoEmpresaE objProductoE = new ClProductoEmpresaE
                 {
-                    idProducto = int.TryParse(txtProducto.Text, out int id) ? id : 0,//Convertimos las cadenas en enteros, si falla se le asigna 0 
-                    nombreProducto = txtNombre.Text,
-                    cantidadStock = int.TryParse(txtStock.Text, out int stock) ? stock : 0,
-                    precioVenta = int.TryParse(txtPrecio.Text, out int precio) ? precio : 0,
-                    descripcionProducto = txtDescripcionProduc.Text,
-                    Estado = txtEstado.Text,
-                    descuento = int.TryParse(txtDescuento.Text, out int descuento) ? precio : 0,
-                    referencia = txtReferencia.Text,
-                    descripcionCategoria = txtCategoria.Text,
-                    nombreMarca = txtMarca.Text,
-                    imagen= rutaImagen// Solo se actualiza si se subió una nueva imagen
+                    idProducto = int.Parse(txtProducto.Text),
+                    nombreProducto = string.IsNullOrWhiteSpace(txtNombre.Text) ? null : txtNombre.Text, //Verifica si el campo esta vacio o contiene solo espacios en blanco
+                    cantidadStock = string.IsNullOrWhiteSpace(txtStock.Text) ? (int?)null : int.Parse(txtStock.Text),//El int?null indica que el tipo de datos es anulable lo que significa que acepta el valor null
+                    precioVenta = string.IsNullOrWhiteSpace(txtPrecio.Text) ? (int?)null : int.Parse(txtPrecio.Text),
+                    descripcionProducto = string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ? null : txtDescripcionProduc.Text,
+                    Estado = string.IsNullOrWhiteSpace(txtEstado.Text) ? null : txtEstado.Text,
+                    descuento = string.IsNullOrWhiteSpace(txtDescuento.Text) ? (int?)null : int.Parse(txtDescuento.Text),
+                    referencia = string.IsNullOrWhiteSpace(txtReferencia.Text) ? null : txtReferencia.Text,
+                    descripcionCategoria = string.IsNullOrWhiteSpace(txtCategoria.Text) ? null : txtCategoria.Text,
+                    nombreMarca = string.IsNullOrWhiteSpace(txtMarca.Text) ? null : txtMarca.Text,
+                    imagen = rutaImagen
                 };
 
-                
+
                 ClProductoL objProductoL = new ClProductoL();
                 ClProductoEmpresaE objDatos = objProductoL.MtdActualizacionProduc(objProductoE);
 

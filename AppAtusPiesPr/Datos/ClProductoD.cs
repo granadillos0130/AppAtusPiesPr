@@ -50,9 +50,7 @@ namespace AppAtusPiesPr.Datos
                     // Parámetro obligatorio
                     cmd.Parameters.AddWithValue("@idProductoEmpresa", objData.idProducto);
 
-                    // Parámetros opcionales que pueden ser nulos
-
-                    cmd.Parameters.AddWithValue("@nombre", (object)objData.nombreProducto?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@nombre", (object)objData.nombreProducto ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@cantidadStock", (object)objData.cantidadStock ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@precio", (object)objData.precioVenta ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@descripcionProducto", (object)objData.descripcionProducto ?? DBNull.Value);
