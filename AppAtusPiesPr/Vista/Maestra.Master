@@ -150,25 +150,43 @@
 <body id="page-top">
 
     <!-- Navbar superior -->
-    <div class="navbar-top">
-        <div class="navbar-brand">
-            <i class="fas fa-shoe-prints"></i>
-            A tus Pies
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Buscar...">
-        </div>
-        <div class="user-menu">
-            <span>
+   <div class="navbar-top">
+    <div class="navbar-brand">
+        <i class="fas fa-shoe-prints"></i>
+        A tus Pies
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar...">
+    </div>
+   <form runat="server">
+    <div class="user-menu dropdown">
+        <div class="d-flex align-items-center cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="text-black">
                 <asp:Label ID="lblUsuario" runat="server"></asp:Label>
                 <br>
                 <small>
                     <asp:Label ID="LblPuesto" runat="server"></asp:Label>
                 </small>
             </span>
-            <img src="https://via.placeholder.com/60" alt="User Image">
+            <img src="https://via.placeholder.com/60" alt="User Image" class="user-img ml-2">
+        </div>
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu shadow animated--grow-in">
+            <a class="dropdown-item" href="EditarPerfil.aspx">
+                <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                Editar Perfil
+            </a>
+            <asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="dropdown-item">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Cerrar Sesión
+            </asp:LinkButton>
+            <div class="dropdown-divider"></div>
         </div>
     </div>
+</form>
+
+</div>
+
 
     <!-- Navbar inferior -->
     <div class="navbar-bottom">
