@@ -176,7 +176,7 @@ body {
     width: 32%; /* Ajusta ligeramente el tamaño para evitar problemas de espacio */
     min-width: 300px; /* Define un ancho mínimo para que las tarjetas no se hagan demasiado pequeñas */
     border: 1px solid #999;
-    text-align: center;
+    text-align: left;
     padding: 15px;
     box-sizing: border-box;
     display: flex;

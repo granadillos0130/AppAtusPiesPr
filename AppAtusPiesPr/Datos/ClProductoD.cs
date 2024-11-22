@@ -10,20 +10,23 @@ namespace AppAtusPiesPr.Datos
 {
     public class ClProductoD
     {
-        public ClProductoE MtdRegistrarProducto(ClProductoE objdata)
+        public ClProductoEmpresaE MtdRegistrarProducto(ClProductoEmpresaE objdata)
         {
             ClConexion objConexion = new ClConexion();
-            SqlCommand cmd = new SqlCommand("SpinsertarProducto", objConexion.MtdAbrirConexion());
+            SqlCommand cmd = new SqlCommand("spInsertarProductoEmpresa", objConexion.MtdAbrirConexion());
 
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@codigo", objdata.Codigo);
-            cmd.Parameters.AddWithValue("@nombre", objdata.Nombre);
-            cmd.Parameters.AddWithValue("@cantidadStock", Convert.ToInt32(objdata.CantidadStock));
-            cmd.Parameters.AddWithValue("@precio", Convert.ToInt32(objdata.Precio));
-            cmd.Parameters.AddWithValue("@presentacion", objdata.Presentacion ?? (object)DBNull.Value);
-            cmd.Parameters.AddWithValue("@talla", objdata.Talla);
-            cmd.Parameters.AddWithValue("@idvendedor", Convert.ToInt32(objdata.idVendedor));
+            cmd.Parameters.AddWithValue("@nombre", objdata.nombreProducto);
+            cmd.Parameters.AddWithValue("@cantidadStock", Convert.ToInt32(objdata.cantidadStock));
+            cmd.Parameters.AddWithValue("@precio", Convert.ToInt32(objdata.precioVenta));
+            cmd.Parameters.AddWithValue("@descripcionProducto",  objdata.descripcionProducto);
+            cmd.Parameters.AddWithValue("@referencia", objdata.referencia);
+            cmd.Parameters.AddWithValue("@imagen", objdata.imagen ?? (object)DBNull.Value);
+            cmd.Parameters.AddWithValue("@descuento", Convert.ToInt32(objdata.descuento));
+            cmd.Parameters.AddWithValue("@descripcionCategoria", objdata.descripcionCategoria);
+            cmd.Parameters.AddWithValue("@nombreMarca", objdata.nombreMarca);
+            
 
             cmd.ExecuteNonQuery();
             objConexion.MtdCerrarConexion();
@@ -32,7 +35,7 @@ namespace AppAtusPiesPr.Datos
 
 
 
-        public ClProductoE mtdActualizarProducto(ClProductoE objData)
+        public ClProductoEmpresaE mtdActualizarProducto(ClProductoEmpresaE objData)
         {
             try
             {
@@ -40,21 +43,26 @@ namespace AppAtusPiesPr.Datos
                 SqlConnection connection = oConex.MtdAbrirConexion();
 
 
-                using (SqlCommand cmd = new SqlCommand("SpActualizarProducto", connection))
+                using (SqlCommand cmd = new SqlCommand("SpActualizarProductoEmpresa", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Parámetro obligatorio
-                    cmd.Parameters.AddWithValue("@idProducto", objData.idProducto);
+                    cmd.Parameters.AddWithValue("@idProductoEmpresa", objData.idProducto);
 
                     // Parámetros opcionales que pueden ser nulos
-                    cmd.Parameters.AddWithValue("@codigo", (object)objData.Codigo ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@nombre", (object)objData.Nombre ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@precio", (object)objData.Precio ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@cantidadStock", (object)objData.CantidadStock ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@talla", (object)objData.Talla ?? DBNull.Value);
+
+                    cmd.Parameters.AddWithValue("@nombre", (object)objData.nombreProducto?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@cantidadStock", (object)objData.cantidadStock ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@precio", (object)objData.precioVenta ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@descripcionProducto", (object)objData.descripcionProducto ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@referencia", (object)objData.referencia ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@imagen", (object)objData.imagen ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@descuento", (object)objData.descuento ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@estado", (object)objData.Estado ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@presentacion", (object)objData.Presentacion ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@descripcionCategoria", (object)objData.descripcionCategoria ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@nombreMarca", (object)objData.nombreMarca ?? DBNull.Value);
+
 
                     cmd.ExecuteNonQuery();
                 }

@@ -94,10 +94,10 @@
     <Content Include="Vista\ListarVendedor.aspx" />
     <Content Include="Vista\Login.aspx" />
     <Content Include="Vista\moduloCompra.aspx" />
+    <Content Include="Vista\Peticiones.aspx" />
     <Content Include="Vista\ProductosMasVendidos.aspx" />
     <Content Include="Vista\RecuperarContra.aspx" />
     <Content Include="Vista\recursos\ATP.png" />
-    <Content Include="Vista\RegistrarVendedor.aspx" />
     <Content Include="Vista\RegistroProducto.aspx" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.min.js" />
@@ -1804,6 +1804,13 @@
     <Compile Include="Vista\BlankPage.aspx.designer.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\IndexMaestra.Master.cs">
+      <DependentUpon>IndexMaestra.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\IndexMaestra.Master.designer.cs">
+      <DependentUpon>IndexMaestra.Master</DependentUpon>
+    </Compile>
     <Compile Include="Vista\ListarUsuario.aspx.cs">
       <DependentUpon>ListarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1846,6 +1853,13 @@
     <Compile Include="Vista\moduloCompra.aspx.designer.cs">
       <DependentUpon>moduloCompra.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\Peticiones.aspx.cs">
+      <DependentUpon>Peticiones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Peticiones.aspx.designer.cs">
+      <DependentUpon>Peticiones.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\ProductosMasVendidos.aspx.cs">
       <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1853,6 +1867,7 @@
     <Compile Include="Vista\ProductosMasVendidos.aspx.designer.cs">
       <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
     </Compile>
+
     <Compile Include="Vista\RecuperarContra.aspx.cs">
       <DependentUpon>RecuperarContra.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1867,6 +1882,8 @@
     <Compile Include="Vista\RegistrarVendedor.aspx.designer.cs">
       <DependentUpon>RegistrarVendedor.aspx</DependentUpon>
     </Compile>
+
+
     <Compile Include="Vista\RegistroProducto.aspx.cs">
       <DependentUpon>RegistroProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2050,6 +2067,7 @@
     <Content Include="Vista\vendor\jquery\jquery.min.map" />
     <Content Include="Vista\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Vista\Maestra.Master" />
+    <Content Include="Vista\IndexMaestra.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

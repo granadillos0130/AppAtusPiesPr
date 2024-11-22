@@ -24,13 +24,13 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
-        /// Control accordionSidebar.
+        /// Control lblUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl accordionSidebar;
+        protected global::System.Web.UI.WebControls.Label lblUsuario;
 
         /// <summary>
         /// Control LblPuesto.
@@ -42,31 +42,67 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.Label LblPuesto;
 
         /// <summary>
-        /// Control menuVendedores.
+        /// Control btnCerrarSesion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuVendedores;
+        protected global::System.Web.UI.WebControls.LinkButton btnCerrarSesion;
 
         /// <summary>
-        /// Control menuAdmin.
+        /// Control menuRegistrarProducto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuAdmin;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuRegistrarProducto;
 
         /// <summary>
-        /// Control lblUsuario.
+        /// Control menuMasVendidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuMasVendidos;
+
+        /// <summary>
+        /// Control menuProductosPorCategoria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuProductosPorCategoria;
+
+        /// <summary>
+        /// Control menuPeticiones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuPeticiones;
+
+        /// <summary>
+        /// Control menuListarVendedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuListarVendedores;
+
+        /// <summary>
+        /// Control menuListarUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuListarUsuarios;
 
         /// <summary>
         /// Control body.

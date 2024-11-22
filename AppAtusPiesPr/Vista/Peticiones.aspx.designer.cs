@@ -7,29 +7,38 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AppAtusPiesPr
+namespace AppAtusPiesPr.Vista
 {
 
 
-    public partial class Index2
+    public partial class Peticiones
     {
 
         /// <summary>
-        /// Control Repeater2.
+        /// Control formPeticiones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater2;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formPeticiones;
 
         /// <summary>
-        /// Control Repeater1.
+        /// Control lblError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.WebControls.Label lblError;
+
+        /// <summary>
+        /// Control gvSolicitudes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvSolicitudes;
     }
 }
