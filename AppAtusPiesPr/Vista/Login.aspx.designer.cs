@@ -213,6 +213,42 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.Button btnRegistrar;
 
         /// <summary>
+        /// Control lblEmailRecuperar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmailRecuperar;
+
+        /// <summary>
+        /// Control txtEmailRecuperar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEmailRecuperar;
+
+        /// <summary>
+        /// Control lblMensajeRecuperar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensajeRecuperar;
+
+        /// <summary>
+        /// Control btnEnviarRecuperar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEnviarRecuperar;
+
+        /// <summary>
         /// Control lblDocumentoVend.
         /// </summary>
         /// <remarks>

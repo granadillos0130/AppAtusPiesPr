@@ -42,6 +42,15 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.Label LblPuesto;
 
         /// <summary>
+        /// Control btnCerrarSesion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCerrarSesion;
+
+        /// <summary>
         /// Control menuRegistrarProducto.
         /// </summary>
         /// <remarks>
@@ -69,13 +78,13 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.HtmlControls.HtmlAnchor menuProductosPorCategoria;
 
         /// <summary>
-        /// Control menuRegistrarVendedor.
+        /// Control menuPeticiones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuRegistrarVendedor;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuPeticiones;
 
         /// <summary>
         /// Control menuListarVendedores.
