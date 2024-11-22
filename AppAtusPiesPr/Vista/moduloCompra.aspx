@@ -1,51 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="moduloCompra.aspx.cs" Inherits="AppAtusPiesPr.Vista.moduloCompra" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>ATP</title>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/IndexMaestra.Master" AutoEventWireup="true" CodeBehind="moduloCompra.aspx.cs" Inherits="AppAtusPiesPr.Vista.moduloCompra2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <title>ATP</title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css' />
     <link rel="shortcut icon" href="recursos/ATP.png" />
-</head>
-<body>
-    <form runat="server">
-
-        <header>
-
-            <!-- MENÚ -->
-            <div class="navbar">
-                <nav>
-                    <ul class="menu">
-                        <li><a href="#">WINTER 24</a></li>
-                        <li><a href="#">WOMEN</a></li>
-                        <li><a href="#">MEN</a></li>
-                        <li><a href="#">GIFTS</a></li>
-                        <li><a href="#">COUTURE</a></li>
-                        <li><a href="#">EXPLORE</a></li>
-                    </ul>
-                </nav>
-
-                <a href="../index.aspx" class="logo">A TUS PIES</a>
-
-                <div class="right-section">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search..."/>
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <a href="vista/modulos/login.html" class="login">LOGIN</a>
-
-                    <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
-                </div>
-            </div>
-            <hr />
-
-        </header>
-
-        <!--Filtros-->
-        <center>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
+            <center>
 
             <div class="navbarFiltros">
                 <nav>
@@ -139,6 +102,4 @@
             <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
             <br />
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>

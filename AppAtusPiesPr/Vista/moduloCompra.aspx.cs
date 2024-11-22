@@ -10,9 +10,10 @@ using System.Web.UI.WebControls;
 
 namespace AppAtusPiesPr.Vista
 {
-    public partial class moduloCompra : System.Web.UI.Page
+    public partial class moduloCompra2 : System.Web.UI.Page
     {
         private ClProductoL oLogica = new ClProductoL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -82,9 +83,6 @@ namespace AppAtusPiesPr.Vista
             Repeater2.DataBind();
         }
 
-        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }

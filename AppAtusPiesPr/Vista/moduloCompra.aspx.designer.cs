@@ -11,7 +11,7 @@ namespace AppAtusPiesPr.Vista
 {
 
 
-    public partial class moduloCompra
+    public partial class moduloCompra2
     {
 
         /// <summary>
