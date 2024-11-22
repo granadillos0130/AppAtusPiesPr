@@ -348,31 +348,52 @@
             <div class="modal-body">
                 <div class="form-group">
                     <asp:Label ID="lblDocumentoVend" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
-                    <asp:TextBox ID="txtDocumentoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required></asp:TextBox>
+                    <div class="input-group">
+                        <div class="input-group-text">🪪</div>
+                        <asp:TextBox ID="txtDocumentoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required></asp:TextBox>
+                    </div>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblNombreVend" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-                    <asp:TextBox ID="txtNombreVend" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required></asp:TextBox>
+                    <div class="input-group">
+                        <div class="input-group-text">🚹</div>
+                        <asp:TextBox ID="txtNombreVend" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required></asp:TextBox>
+                    </div>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblApellidoVend" runat="server" Text="Apellido:" CssClass="control-label"></asp:Label>
-                    <asp:TextBox ID="txtApellidoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu apellido" required></asp:TextBox>
+                    <div class="input-group">
+                        <div class="input-group-text">🚹</div>
+                        <asp:TextBox ID="txtApellidoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu apellido" required></asp:TextBox>
+                    </div>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblCorreoVend" runat="server" Text="Correo:" CssClass="control-label"></asp:Label>
-                    <asp:TextBox ID="txtCorreoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required></asp:TextBox>
+                    <div class="input-group">
+                        <div class="input-group-text">📘</div>
+                        <asp:TextBox ID="txtCorreoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required></asp:TextBox>
+                    </div>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblContrasenaVend" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
-                    <asp:TextBox ID="txtContrasenaVend" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
+                    <div class="input-group">
+                        <div class="input-group-text">🛡️</div>
+                        <asp:TextBox ID="txtContrasenaVend" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
+                    </div>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblTelefonoVend" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
-                    <asp:TextBox ID="txtTelefonoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required></asp:TextBox>
+                    <div class="input-group">
+                        <div class="input-group-text">📶</div>
+                        <asp:TextBox ID="txtTelefonoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required></asp:TextBox>
+                    </div>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblDireccionVend" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
-                    <asp:TextBox ID="txtDireccionVend" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required></asp:TextBox>
+                    <div class="input-group">
+                        <div class="input-group-text">📬</div>
+                        <asp:TextBox ID="txtDireccionVend" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required></asp:TextBox>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -382,6 +403,7 @@
         </div>
     </div>
 </div>
+
 
     </form>
 </body>
