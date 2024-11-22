@@ -80,6 +80,12 @@ namespace AppAtusPiesPr.Datos
                 {
                     Direction = ParameterDirection.Output
                 };
+                SqlParameter idUsuarioParameter = new SqlParameter("@idUsuario", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                comando.Parameters.Add(idUsuarioParameter);
+
                 comando.Parameters.Add(apellidosParameter);
 
                 SqlParameter mensajeParameter = new SqlParameter("@mensaje", SqlDbType.VarChar, 255)
@@ -104,7 +110,8 @@ namespace AppAtusPiesPr.Datos
                         Apellidos = apellidosParameter.Value.ToString(),
                         Email = objDatos.Email, // Suponiendo que el email se asigna igual al documento
                         Password = objDatos.Password,
-                        Rol = rolParameter.Value.ToString()
+                        Rol = rolParameter.Value.ToString(),
+                        IdUsuario = Convert.ToInt32(idUsuarioParameter.Value)
                     };
                 }
                 else if (mensaje == "Su cuenta aún está en proceso de activación.")
