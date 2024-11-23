@@ -119,7 +119,7 @@ namespace AppAtusPiesPr.Datos
                                 idProdctoEmpresa = Convert.ToInt32(reader["idProdctoEmpresa"]),
                                 nombreProducto = reader["nombreProducto"].ToString(),
                                 cantidadStock = Convert.ToInt32(reader["cantidadStock"]),
-                                precioVenta = Convert.ToInt32(reader["precioVenta"]),
+                                precioVenta = Convert.ToInt32(reader["precio"]),
                                 descripcionProducto = reader["descripcionProducto"].ToString(),
                                 referencia = reader["referencia"].ToString(),
                                 imagen = reader["imagen"].ToString(),

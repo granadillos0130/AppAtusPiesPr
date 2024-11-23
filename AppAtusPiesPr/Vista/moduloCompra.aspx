@@ -5,8 +5,7 @@
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css' />
     <link rel="shortcut icon" href="recursos/ATP.png" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-</asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
             <center>
 
@@ -102,4 +101,5 @@
             <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
             <br />
         </div>
+
 </asp:Content>
