@@ -51,7 +51,7 @@ namespace AppAtusPiesPr.Datos
                 using(SqlCommand cmd = new SqlCommand("spPerfilVendedor", conexion))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@idVendedor", oUsuario.IdUsuario);
+                    cmd.Parameters.AddWithValue("@idVendedor", idVendedor);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
@@ -64,6 +64,7 @@ namespace AppAtusPiesPr.Datos
                                 Apellidos = reader["apellidos"].ToString(),
                                 Telefono = reader["telefono"].ToString(),
                                 Descripcion = reader["descripcion"].ToString(),
+                                numProducto = Convert.ToInt32(reader["TotalProductos"])
                             };
                         }
                     }

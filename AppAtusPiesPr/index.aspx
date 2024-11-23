@@ -56,7 +56,8 @@
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
                         <h4 class="card-title">
-                            <a href="Vista/perfilInfoVendedor.aspx?="<%# Eval("") %>><%# Eval("NombreVendedor") %>
+                            <a href='<%# "vista/perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
+                                <%# Eval("NombreVendedor") %>
                             </a>
                         </h4>
                         <div class="card-info">
