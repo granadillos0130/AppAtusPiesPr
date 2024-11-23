@@ -91,5 +91,37 @@ namespace AppAtusPiesPr.Datos
 
 
 
+        public ClUsuarioE mtdPerfilVendedor(int idVendedor)
+        {
+            ClUsuarioE oUsuario = null;
+            ClConexion oConex = new ClConexion();
+            using(SqlConnection conexion = oConex.MtdAbrirConexion())
+            {
+                using(SqlCommand cmd = new SqlCommand("spPerfilVendedor", conexion))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idVendedor", idVendedor);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        if (oUsuario == null)
+                        {
+                            oUsuario = new ClUsuarioE
+                            {
+                                IdUsuario = Convert.ToInt32(reader["idVendedor"]),
+                                Nombres = reader["nombres"].ToString(),
+                                Apellidos = reader["apellidos"].ToString(),
+                                Telefono = reader["telefono"].ToString(),
+                                Descripcion = reader["descripcion"].ToString(),
+                                numProducto = Convert.ToInt32(reader["TotalProductos"])
+                            };
+                        }
+                    }
+                    reader.Close();
+                }
+            }
+            return oUsuario;
+        }
+
     }
 }
