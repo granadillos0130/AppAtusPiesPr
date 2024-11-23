@@ -15,7 +15,10 @@ namespace AppAtusPiesPr.Logica
             return oVendedor.MtdRegistrarVendedor(vendedor);
         }
 
-       
+       public ClUsuarioE mtdPerfilVendedor(int idVendedor)
+        {
+            return oVendedor.mtdPerfilVendedor(idVendedor);
+        }
 
 
     }
