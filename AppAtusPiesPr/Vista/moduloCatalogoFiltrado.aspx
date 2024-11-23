@@ -68,6 +68,7 @@
                     <p>&copy; 2024 A TUS PIES. Todos los derechos reservados.</p>
                     <p>Diseñado con amor para brindar estilo y comodidad.</p>
                     <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
+
                     <br />
                 </div>
 
