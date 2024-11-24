@@ -123,5 +123,51 @@ namespace AppAtusPiesPr.Datos
             return oUsuario;
         }
 
+        public List<ClProductoE> MtdObtenerProductosPorVendedorYCategoria(int? idVendedor = null, int? idCategoria = null)
+        {
+            List<ClProductoE> productos = new List<ClProductoE>();
+            ClConexion conexion = new ClConexion();
+
+            try
+            {
+                using (SqlConnection conn = conexion.MtdAbrirConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand("SpListarProductosPorVendedorYCategoria", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idVendedor", idVendedor.HasValue ? (object)idVendedor.Value : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idCategoria", idCategoria.HasValue ? (object)idCategoria.Value : DBNull.Value);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                ClProductoE producto = new ClProductoE
+                                {
+                                    idProducto = reader["IdProducto"] != DBNull.Value ? Convert.ToInt32(reader["IdProducto"]) : 0,
+                                    Nombre = reader["NombreProducto"]?.ToString() ?? string.Empty,
+                                    CantidadStock = reader["CantidadStock"] != DBNull.Value ? Convert.ToInt32(reader["CantidadStock"]) : 0,
+                                    Precio = reader["Precio"] != DBNull.Value ? Convert.ToInt32(reader["Precio"]) : 0, // Para int
+                                    Descripcion = reader["DescripcionProducto"]?.ToString() ?? string.Empty,
+                                    Categoria = reader["Categoria"]?.ToString() ?? "Sin Categoría",
+                                    Marca = reader["Marca"]?.ToString() ?? "Sin Marca",
+                                    NombreVendedor = reader["NombreVendedor"]?.ToString() ?? "Sin Vendedor"
+                                };
+                                productos.Add(producto);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los productos por vendedor y categoría: " + ex.Message);
+            }
+
+            return productos;
+        }
+
+
+
     }
 }
