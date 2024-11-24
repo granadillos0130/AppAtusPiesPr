@@ -115,7 +115,7 @@ namespace AppAtusPiesPr.Vista
 
 
         /// <summary>
-        /// Control menuListarUsuarios.
+        /// Control menuEstadoPedido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
