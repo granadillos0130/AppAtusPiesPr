@@ -192,11 +192,11 @@
             </a>
             <a class="nav-link" href="ProductosMasVendidos.aspx" id="menuMasVendidos" runat="server">
                 <i class="fas fa-chart-line"></i>
-                Más Vendidos
+                Mas vendidos
             </a>
             <a class="nav-link" href="ProductoRegistradoCategoria.aspx" id="menuProductosPorCategoria" runat="server">
                 <i class="fas fa-boxes"></i>
-                Productos por Categoría
+                Productos por Categoria
             </a>
             <a class="nav-link" href="Peticiones.aspx" id="menuPeticiones" runat="server">
                 <i class="fas fa-user-plus"></i>
