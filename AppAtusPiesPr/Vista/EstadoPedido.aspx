@@ -30,8 +30,6 @@
                     <asp:BoundField DataField="nombreProducto" HeaderText="Nombre Producto" SortExpression="nombreProducto" />
                     <asp:BoundField DataField="cantidadStock" HeaderText="Cantidad Stock" SortExpression="cantidadStock" />
                     <asp:BoundField DataField="descripcionProducto" HeaderText="Descripción Producto" SortExpression="descripcionProducto" />
-                     <asp:BoundField DataField="precioProducto" HeaderText="Precio del Producto" SortExpression="precioProducto" />
-                     <asp:BoundField DataField="referenciaProducto" HeaderText="Referencia del Producto" SortExpression="referenciaProducto" />
                     <asp:BoundField DataField="fechaPedido" HeaderText="Fecha Pedido" DataFormatString="{0:yyyy-MM-dd}" />
                     <asp:BoundField DataField="estado" HeaderText="Estado Pedido"  SortExpression="estadoProducto"/>
 
