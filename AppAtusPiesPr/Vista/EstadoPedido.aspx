@@ -13,9 +13,9 @@
             <div class="col-md-4">
                 <label for="ddlEstado" class="form-label">Seleccionar Estado:</label>
                 <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-control">
-                    <asp:ListItem Text="pendiente" Value="Pendiente"></asp:ListItem>
-                    <asp:ListItem Text="entregado" Value="Entregado"></asp:ListItem>
-                    <asp:ListItem Text="procesado" Value="Enviado"></asp:ListItem>
+                    <asp:ListItem Text="Pendiente" Value="Pendiente"></asp:ListItem>
+                    <asp:ListItem Text="Entregado" Value="Entregado"></asp:ListItem>
+                    <asp:ListItem Text="Procesado" Value="Enviado"></asp:ListItem>
                 </asp:DropDownList>
             </div>
             <div class="col-md-2 align-self-end">
@@ -30,6 +30,8 @@
                     <asp:BoundField DataField="nombreProducto" HeaderText="Nombre Producto" SortExpression="nombreProducto" />
                     <asp:BoundField DataField="cantidadStock" HeaderText="Cantidad Stock" SortExpression="cantidadStock" />
                     <asp:BoundField DataField="descripcionProducto" HeaderText="Descripción Producto" SortExpression="descripcionProducto" />
+                     <asp:BoundField DataField="precioProducto" HeaderText="Precio del Producto" SortExpression="descripcionProducto" />
+                     <asp:BoundField DataField="referenciaProducto" HeaderText="Referencia del Producto" SortExpression="descripcionProducto" />
                     <asp:BoundField DataField="fechaPedido" HeaderText="Fecha Pedido" DataFormatString="{0:yyyy-MM-dd}" />
                     <asp:BoundField DataField="estado" HeaderText="Estado Pedido"  SortExpression="estadoProducto"/>
 
