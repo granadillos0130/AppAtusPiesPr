@@ -211,7 +211,7 @@
                 Listar Usuarios
             </a>
             <a class="nav-link" href="EstadoPedido.aspx" id="menuEstadoPedido" runar="server"> 
-                <i class="fas fa-plus-circle"> </i>
+                <i class="fas fa-podcast"> </i>
                 Estado Pedido
                 
             </a>
