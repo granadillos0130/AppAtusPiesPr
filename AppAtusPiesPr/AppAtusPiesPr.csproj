@@ -97,6 +97,7 @@
     <Content Include="Vista\moduloCompra.aspx" />
     <Content Include="Vista\perfilInfoVendedor.aspx" />
     <Content Include="Vista\Peticiones.aspx" />
+    <Content Include="Vista\ProductoRegistradoCategoria.aspx" />
     <Content Include="Vista\ProductosMasVendidos.aspx" />
     <Content Include="Vista\recursos\ATP.png" />
     <Content Include="Vista\RegistroProducto.aspx" />
@@ -1874,6 +1875,13 @@
     </Compile>
     <Compile Include="Vista\Peticiones.aspx.designer.cs">
       <DependentUpon>Peticiones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ProductoRegistradoCategoria.aspx.cs">
+      <DependentUpon>ProductoRegistradoCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ProductoRegistradoCategoria.aspx.designer.cs">
+      <DependentUpon>ProductoRegistradoCategoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\ProductosMasVendidos.aspx.cs">
       <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
