@@ -15,6 +15,7 @@
     <!-- Custom styles -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
+        /* Estilos originales conservados */
         body {
             font-family: 'Nunito', sans-serif;
             background-color: #f4f6f9;
@@ -148,83 +149,79 @@
     </style>
 </head>
 <body id="page-top">
-
-    <!-- Navbar superior -->
-   <div class="navbar-top">
-    <div class="navbar-brand">
-        <i class="fas fa-shoe-prints"></i>
-        A tus Pies
-    </div>
-    <div class="search-bar">
-        <input type="text" placeholder="Buscar...">
-    </div>
-   <form runat="server">
-    <div class="user-menu dropdown">
-        <div class="d-flex align-items-center cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="text-black">
-                <asp:Label ID="lblUsuario" runat="server"></asp:Label>
-                <br>
-                <small>
-                    <asp:Label ID="LblPuesto" runat="server"></asp:Label>
-                </small>
-            </span>
-            <img src="https://via.placeholder.com/60" alt="User Image" class="user-img ml-2">
-        </div>
-        <!-- Dropdown Menu -->
-        <div class="dropdown-menu shadow animated--grow-in">
-            <a class="dropdown-item" href="EditarPerfil.aspx">
-                <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
-                Editar Perfil
-            </a>
-            <asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="dropdown-item">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Cerrar Sesión
-            </asp:LinkButton>
-            <div class="dropdown-divider"></div>
-        </div>
-    </div>
-</form>
-
-</div>
-
-
-    <!-- Navbar inferior -->
-    <div class="navbar-bottom">
-        <a class="nav-link" href="RegistroProducto.aspx" id="menuRegistrarProducto" runat="server">
-            <i class="fas fa-plus-circle"></i>
-            Registrar Producto
-        </a>
-        <a class="nav-link" href="ProductosMasVendidos.aspx" id="menuMasVendidos" runat="server">
-            <i class="fas fa-chart-line"></i>
-            Más Vendidos
-        </a>
-        <a class="nav-link" href="ProductoRegistradoCategoria.aspx" id="menuProductosPorCategoria" runat="server">
-            <i class="fas fa-boxes"></i>
-            Productos por Categoría
-        </a>
-        <a class="nav-link" href="Peticiones.aspx" id="menuPeticiones" runat="server">
-            <i class="fas fa-user-plus"></i>
-            Solicitudes 
-        </a>
-        <a class="nav-link" href="ListarVendedor.aspx" id="menuListarVendedores" runat="server">
-            <i class="fas fa-users"></i>
-            Listar Vendedores
-        </a>
-        <a class="nav-link" href="ListarUsuario.aspx" id="menuListarUsuarios" runat="server">
-            <i class="fas fa-user-friends"></i>
-            Listar Usuarios
-        </a>
-    </div>
-
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-            <!-- Main Content -->
-            <div class="container-fluid">
-                <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
+    <form id="form1" runat="server">
+        <!-- Navbar superior -->
+        <div class="navbar-top">
+            <div class="navbar-brand">
+                <i class="fas fa-shoe-prints"></i>
+                A tus Pies
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <div class="user-menu dropdown">
+                <div class="d-flex align-items-center cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="text-black">
+                        <asp:Label ID="lblUsuario" runat="server"></asp:Label>
+                        <br>
+                        <small>
+                            <asp:Label ID="LblPuesto" runat="server"></asp:Label>
+                        </small>
+                    </span>
+                    <img src="https://via.placeholder.com/60" alt="User Image" class="user-img ml-2">
+                </div>
+                <div class="dropdown-menu shadow animated--grow-in">
+                    <a class="dropdown-item" href="EditarPerfil.aspx">
+                        <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Editar Perfil
+                    </a>
+                    <asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="dropdown-item">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Cerrar Sesión
+                    </asp:LinkButton>
+                    <div class="dropdown-divider"></div>
+                </div>
             </div>
         </div>
-    </div>
+
+        <!-- Navbar inferior -->
+        <div class="navbar-bottom">
+            <a class="nav-link" href="RegistroProducto.aspx" id="menuRegistrarProducto" runat="server">
+                <i class="fas fa-plus-circle"></i>
+                Registrar Producto
+            </a>
+            <a class="nav-link" href="ProductosMasVendidos.aspx" id="menuMasVendidos" runat="server">
+                <i class="fas fa-chart-line"></i>
+                Más Vendidos
+            </a>
+            <a class="nav-link" href="ProductoRegistradoCategoria.aspx" id="menuProductosPorCategoria" runat="server">
+                <i class="fas fa-boxes"></i>
+                Productos por Categoría
+            </a>
+            <a class="nav-link" href="Peticiones.aspx" id="menuPeticiones" runat="server">
+                <i class="fas fa-user-plus"></i>
+                Solicitudes 
+            </a>
+            <a class="nav-link" href="ListarVendedor.aspx" id="menuListarVendedores" runat="server">
+                <i class="fas fa-users"></i>
+                Listar Vendedores
+            </a>
+            <a class="nav-link" href="ListarUsuario.aspx" id="menuListarUsuarios" runat="server">
+                <i class="fas fa-user-friends"></i>
+                Listar Usuarios
+            </a>
+        </div>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <!-- Main Content -->
+                <div class="container-fluid">
+                    <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
 
     <!-- Footer -->
     <footer>
