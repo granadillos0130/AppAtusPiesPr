@@ -8,11 +8,8 @@
     <link rel="shortcut icon" href="recursos/ATP.png" />
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="body" runat="server">
-
-        <div>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+            <div>
             <div class="container">
 
                 <!--Filtros-->
@@ -41,29 +38,29 @@
                 </center>
 
                 <br>
-                <!-- Contenedor para las tarjetas -->
                 <div class="cards-container">
-                    <!-- Tarjeta 1 -->
-                    <asp:Repeater ID="Repeater1" runat="server">
-                        <ItemTemplate>
-                            <div class="card">
-                                <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' class="card-image" />
-                                <p class="card-title"><%# Eval("nombreProducto") %></p>
-
-                                <div class="card-info">
-                                    <div class="card-details">
-                                        <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
-                                        <a href="#" class="save-button">
-                                            <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                                        </a>
-                                        <center>
-                                        </center>
-                                    </div>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+    <asp:Repeater ID="Repeater1" runat="server">
+        <ItemTemplate>
+            <div class="card">
+                <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
+                <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
+                <h4 class="card-title">
+                    <a href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
+                        <%# Eval("nombres") %>
+                    </a>
+                </h4>
+                <div class="card-info">
+                    <div class="card-details">
+                        <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                        <a href="#" class="save-button">
+                            <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                        </a>
+                    </div>
                 </div>
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+</div>
 
                 <!-- PIE DE PAGINA -->
                 <div class="pie-pagina">
@@ -71,10 +68,11 @@
                     <p>&copy; 2024 A TUS PIES. Todos los derechos reservados.</p>
                     <p>Diseñado con amor para brindar estilo y comodidad.</p>
                     <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
+
                     <br />
                 </div>
 
             </div>
         </div>
-
 </asp:Content>
+

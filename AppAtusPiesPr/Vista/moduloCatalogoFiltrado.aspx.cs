@@ -18,6 +18,7 @@ namespace AppAtusPiesPr.Vista
                 int idCategoria = Convert.ToInt32(Request.QueryString["id"]); // Obtener idCategoria desde la URL
                 cargarProductos(idCategoria);
                 cargarCategorias();
+
             }
         }
 

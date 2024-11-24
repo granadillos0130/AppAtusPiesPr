@@ -15,6 +15,14 @@ namespace AppAtusPiesPr.Logica
             return oVendedor.MtdRegistrarVendedor(vendedor);
         }
 
+       public ClUsuarioE mtdPerfilVendedor(int idVendedor)
+        {
+            return oVendedor.mtdPerfilVendedor(idVendedor);
+        }
+        public List<ClProductoE> MtdObtenerProductosMasVendidosPorVendedor(int idVendedor, DateTime fechaInicio, DateTime fechaFin)
+        {
+            return oVendedor.MtdObtenerProductosMasVendidosPorVendedor(idVendedor, fechaInicio, fechaFin);
+        }
 
 
 

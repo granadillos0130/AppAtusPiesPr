@@ -23,6 +23,7 @@ namespace AppAtusPiesPr.Vista
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater Repeater2;
 
+
         /// <summary>
         /// Control Repeater1.
         /// </summary>

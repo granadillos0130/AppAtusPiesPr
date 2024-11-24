@@ -97,7 +97,7 @@ namespace AppAtusPiesPr.Vista
                     Session["email"] = oUser.Email;
                     Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
                     Session["rol"] = oUser.Rol;
-                    Session["idUsuario"] = oUser.IdUsuario;
+                    Session["idVendedor"] = oUser.IdUsuario;
 
                     // Redirigir según el rol del usuario
                     switch (oUser.Rol)

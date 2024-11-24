@@ -10,39 +10,38 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="menuSinSesion" runat="server" style="display: block;">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                <header>
-                    <!-- MENÚ -->
-                    <div class="navbar">
-                        <nav>
-                            <ul class="menu">
-                                <li><a href="#">WINTER</a></li>
-                                <li><a href="#">WOMEN</a></li>
-                                <li><a href="#">MEN</a></li>
-                                <li><a href="#">GIFTS</a></li>
-                                <li><a href="#">COUTURE</a></li>
-                                <li><a href="#">EXPLORE</a></li>
-                            </ul>
-                        </nav>
-                        <a href="index.html" class="logo">A TUS PIES</a>
-                        <div class="right-section">
-                            <div class="search-bar">
-                                <input type="text" placeholder="Search..." />
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <a href="Vista/modulos/moduloCarrito.aspx" class="save-button2">
-                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                            </a><a href="vista/Login.aspx" class="login">LOGIN</a> <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
-                        </div>
-                    </div>
-                    <hr />
-                </header>
-            </asp:ContentPlaceHolder>
-        </div>
-        <div id="menuConSesion" runat="server" style="display: block;">
+        <!-- Menú sin sesión -->
+        <div id="menuSinSesion" runat="server" Visible="false">
             <header>
-                <!-- MENÚ -->
+                <div class="navbar">
+                    <nav>
+                        <ul class="menu">
+                            <li><a href="#">WINTER</a></li>
+                            <li><a href="#">WOMEN</a></li>
+                            <li><a href="#">MEN</a></li>
+                            <li><a href="#">GIFTS</a></li>
+                            <li><a href="#">COUTURE</a></li>
+                            <li><a href="#">EXPLORE</a></li>
+                        </ul>
+                    </nav>
+                    <a href="../index.aspx" class="logo">A TUS PIES</a>
+                    <div class="right-section">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search..." />
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <a href="Vista/modulos/moduloCarrito.aspx" class="save-button2">
+                            <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                        </a><a href="vista/Login.aspx" class="login">LOGIN</a> <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
+                    </div>
+                </div>
+                <hr />
+            </header>
+        </div>
+
+        <!-- Menú con sesión -->
+        <div id="menuConSesion" runat="server" Visible="false">
+            <header>
                 <div class="navbar">
                     <nav>
                         <ul class="menu">
@@ -54,7 +53,7 @@
                             <li><a href="#">EXPLORE</a></li>
                         </ul>
                     </nav>
-                    <a href="index.html" class="logo">A TUS PIES</a>
+                    <a href="../index.aspx" class="logo">A TUS PIES</a>
                     <div class="right-section">
                         <div class="search-bar">
                             <input type="text" placeholder="Search..." />
@@ -68,8 +67,8 @@
                 <hr />
             </header>
         </div>
-    </form>
-                <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
 
+        <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
+    </form>
 </body>
 </html>
