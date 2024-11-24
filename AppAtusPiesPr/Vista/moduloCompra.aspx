@@ -77,7 +77,7 @@
                 <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
                 <h4 class="card-title">
                     <a href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
-                        <%# Eval("nombres") %>
+                        <%# Eval("NombreVendedor") %>
                     </a>
                 </h4>
                 <div class="card-info">
