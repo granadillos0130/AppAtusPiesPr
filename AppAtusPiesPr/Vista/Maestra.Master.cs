@@ -40,6 +40,7 @@ namespace AppAtusPiesPr.Vista
                     menuRegistrarProducto.Visible = false;
                     menuMasVendidos.Visible = false;
                     menuProductosPorCategoria.Visible = false;
+                    menuEstadoPedido.Visible = false;
 
 
 

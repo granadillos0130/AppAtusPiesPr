@@ -73,6 +73,7 @@
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
     <Content Include="Vista\css\sb-admin-2.min.css" />
+    <Content Include="Vista\EstadoPedido.aspx" />
     <Content Include="Vista\imagenes\Jordan1RetroLowOGSPTravisScott.jpg" />
     <Content Include="Vista\imagenes\JumpmanJackdeJORDANxTravisScott.png" />
     <Content Include="Vista\imagenes\thumb-jordan-5-off-white-white.gif" />
@@ -1803,6 +1804,13 @@
     </Compile>
     <Compile Include="Vista\BlankPage.aspx.designer.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EstadoPedido.aspx.cs">
+      <DependentUpon>EstadoPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\EstadoPedido.aspx.designer.cs">
+      <DependentUpon>EstadoPedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\IndexMaestra.Master.cs">
       <DependentUpon>IndexMaestra.Master</DependentUpon>

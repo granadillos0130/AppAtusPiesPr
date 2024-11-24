@@ -10,6 +10,34 @@ namespace AppAtusPiesPr.Datos
 {
     public class ClAdminD
     {
+        public DataTable MtdListarPedidosEstado(int idVendedor,string estado)
+        {
+            try
+            {
+                ClConexion oConexion = new ClConexion();
+                using (SqlConnection conn = oConexion.MtdAbrirConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_ListarPedidosPorEstado", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idVendedor",idVendedor);
+                        cmd.Parameters.AddWithValue("@estado", estado);
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable Lista = new DataTable();
+                        da.Fill(Lista);
+
+                        return Lista;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al listar los pedidos: " + ex.Message);
+            }
+        }
+
 
         public DataTable MtdListarVendedores()
         {
