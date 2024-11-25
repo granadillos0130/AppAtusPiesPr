@@ -212,7 +212,7 @@
             </a>
 
            <a class="nav-link" href="EstadoPedido.aspx" id="menuEstadoPedido" runat="server">
-                <i class="fas fa-plus-circle"> </i>
+                <i class="fas fa-truck"> </i>
                 Estado Pedido
                 
             </a>
