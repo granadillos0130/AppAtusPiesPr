@@ -4,9 +4,7 @@
     <h2>Productos Registrados por Categoría</h2>
     <asp:DropDownList ID="ddlCategorias" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCategorias_SelectedIndexChanged">
         <asp:ListItem Text="Todas las categorías" Value="0" />
-        <asp:ListItem Text="Electrónica" Value="1" />
-        <asp:ListItem Text="Ropa" Value="2" />
-        <asp:ListItem Text="Accesorios" Value="3" />
+ 
     </asp:DropDownList>
 
     <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False">
