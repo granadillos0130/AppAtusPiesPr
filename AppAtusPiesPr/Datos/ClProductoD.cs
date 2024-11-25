@@ -247,6 +247,7 @@ namespace AppAtusPiesPr.Datos
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dtProductos);
             }
+
             conexion.MtdCerrarConexion();
             return dtProductos;
         }
