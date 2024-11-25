@@ -15,6 +15,22 @@ body {
     font-weight: bold;
 }
 
+/* Estilos para que el botón se vea igual al texto "Perfil" */
+.btnCerrarSesion {
+    all: unset; /* Resetea todos los estilos predeterminados */
+    font-family: inherit; /* Usa la misma fuente que el texto "Perfil" */
+    font-size: inherit; /* Asegura el mismo tamaño de fuente */
+    color: inherit; /* Usa el mismo color del texto */
+    cursor: pointer; /* Cambia el cursor al estilo puntero */
+    text-decoration: none; /* Elimina subrayado */
+    display: inline; /* Asegura que se comporte como texto */
+    margin-left: 10px; /* Espaciado para separarlo del texto "Perfil" */
+}
+
+    .btnCerrarSesion:hover {
+        text-decoration: underline; /* Subrayado opcional al pasar el cursor */
+    }
+
 
 .header-menu {
     text-align: left;

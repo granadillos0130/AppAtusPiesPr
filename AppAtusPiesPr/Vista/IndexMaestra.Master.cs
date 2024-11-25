@@ -37,5 +37,20 @@ namespace AppAtusPiesPr.Vista
                 }
             }
         }
+
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+
+            HttpCookie cookies = Request.Cookies[".ASPXAUTH"];
+            if (cookies != null)
+            {
+                cookies.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(cookies);
+            }
+
+            Response.Redirect("index.aspx");
+        }
     }
 }
