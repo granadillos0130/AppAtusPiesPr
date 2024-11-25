@@ -19,7 +19,7 @@
                 </asp:DropDownList>
             </div>
             <div class="col-md-2 align-self-end">
-                <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary w-100" OnClick="btnFiltrar_Click" />
+                <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary w-100" OnClick="btnFiltrar_Click" />
             </div>
         </div>
 
