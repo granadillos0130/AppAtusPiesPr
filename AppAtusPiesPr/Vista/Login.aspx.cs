@@ -146,7 +146,6 @@ namespace AppAtusPiesPr.Vista
                 return;
             }
 
-            // Crear un nuevo vendedor
             ClUsuarioE nuevoVendedor = new ClUsuarioE
             {
                 Documento = txtDocumentoVend.Text,
@@ -159,7 +158,6 @@ namespace AppAtusPiesPr.Vista
                 
             };
 
-            // Registrar el nuevo vendedor
             int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor);
 
             if (idVendedor > 0)
@@ -187,33 +185,33 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnEnviarRecuperar_Click(object sender, EventArgs e)
         {
-            // Captura el correo ingresado en el campo del formulario
+          
             string userEmail = txtEmailRecuperar.Text.Trim();
-            // Verifica si el correo electrónico existe en la base de datos utilizando la capa lógica
+          
             if (clientoLo.IsEmailExist(userEmail))
             {
-                // Genera una contraseña temporal
-                string temporaryPassword = GenerateTemporaryPassword();
-                // Guarda la contraseña temporal en la base de datos
+               
+                string temporaryPassword = GenerarTemporalPassword();
+               
                 clientoLo.SaveTemporaryPassword(userEmail, temporaryPassword);
-                // Envía el correo con la contraseña temporal
-                SendTemporaryPasswordEmail(userEmail, temporaryPassword);
-                // Muestra un mensaje de éxito en la interfaz
+               
+                EnviarTemporalPasswordEmail(userEmail, temporaryPassword);
+               
                 lblMensajeRecuperar.Text = "Se ha enviado un correo con la contraseña temporal.";
                 lblMensajeRecuperar.ForeColor = System.Drawing.Color.Green;
             }
             else
             {
-                // Si el correo no está registrado, muestra un mensaje de error
+           
                 lblMensajeRecuperar.Text = "Correo electrónico no encontrado.";
                 lblMensajeRecuperar.ForeColor = System.Drawing.Color.Red;
             }
 
         }
 
-        private string GenerateTemporaryPassword()
+        private string GenerarTemporalPassword()
         {
-            const int length = 10; // Longitud de la contraseña temporal
+            const int length = 10; 
             const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*?";
 
             Random random = new Random();
@@ -230,10 +228,10 @@ namespace AppAtusPiesPr.Vista
 
 
 
-        // Método para enviar el correo de restablecimiento
-        private void SendTemporaryPasswordEmail(string email, string temporaryPassword)
+        
+        private void EnviarTemporalPasswordEmail(string email, string temporaryPassword)
         {
-            // Contenido del correo electrónico
+           
             string body = $@"
 <!DOCTYPE html>
 <html lang='en'>
@@ -332,7 +330,7 @@ namespace AppAtusPiesPr.Vista
 </body>
 </html>";
 
-            // Configuración del correo
+           
             MailMessage message = new MailMessage("96ferney@gmail.com", email)
             {
                 Subject = "Contraseña Temporal",
@@ -340,12 +338,12 @@ namespace AppAtusPiesPr.Vista
                 IsBodyHtml = true
             };
 
-            // Configuración del cliente SMTP
+           
             SmtpClient client = new SmtpClient("smtp.gmail.com")
             {
-                Port = 587, // Puerto para conexiones STARTTLS
+                Port = 587, 
                 Credentials = new System.Net.NetworkCredential("ssferney@gmail.com", "ircu qqav zkjw quhg"), // Credenciales del servidor de correo
-                EnableSsl = true // Habilita SSL para mayor seguridad
+                EnableSsl = true 
             };
 
             try
