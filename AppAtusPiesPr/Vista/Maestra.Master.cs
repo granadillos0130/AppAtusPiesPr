@@ -41,6 +41,7 @@ namespace AppAtusPiesPr.Vista
                     menuMasVendidos.Visible = false;
                     menuProductosPorCategoria.Visible = false;
                     menuEstadoPedido.Visible = false;
+                    menuActualizarProducto.Visible = false;
 
 
 

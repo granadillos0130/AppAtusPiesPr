@@ -215,6 +215,11 @@
                 Estado Pedido
                 
             </a>
+
+            <a class="nav-link" href="ActualizarProducto.aspx" id="menuActualizarProducto" runat="server">
+                <i class="fas fa-edit"></i> 
+                Actualizar Producto
+            </a>
         </div>
 
         <!-- Content Wrapper -->
