@@ -56,7 +56,7 @@
         </div>
 
     </div>
-
+    <hr>
     <br />
 
     <!-- Contenedor para las tarjetas -->
