@@ -235,15 +235,102 @@ namespace AppAtusPiesPr.Vista
         {
             // Contenido del correo electrónico
             string body = $@"
-    <html>
-    <body>
-        <p>Hola,</p>
-        <p>Has solicitado restablecer tu contraseña. Tu nueva contraseña temporal es: <strong>{temporaryPassword}</strong></p>
-        <p>Por favor, utiliza esta contraseña para iniciar sesión y asegúrate de cambiarla inmediatamente después de iniciar sesión.</p>
-        <p>Gracias,</p>
-        <p>El equipo de soporte</p>
-    </body>
-    </html>";
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Restablecimiento de Contraseña</title>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333333;
+        }}
+        .email-container {{
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #dddddd;
+        }}
+        .email-header {{
+            background-color: #4a90e2;
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+        }}
+        .email-header h1 {{
+            margin: 0;
+            font-size: 24px;
+        }}
+        .email-body {{
+            padding: 20px;
+            line-height: 1.6;
+            color: #555555;
+        }}
+        .email-body p {{
+            margin: 10px 0;
+        }}
+        .email-body strong {{
+            color: #4a90e2;
+        }}
+        .email-footer {{
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #aaaaaa;
+            background-color: #f7f7f7;
+            border-top: 1px solid #dddddd;
+        }}
+        .email-button {{
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }}
+        .email-button:hover {{
+            background-color: #357ab7;
+        }}
+    </style>
+</head>
+<body>
+    <div class='email-container'>
+        <!-- Header -->
+        <div class='email-header'>
+            <h1>Restablecimiento de Contraseña</h1>
+        </div>
+
+        <!-- Body -->
+        <div class='email-body'>
+            <p>Hola,</p>
+            <p>Has solicitado restablecer tu contraseña. Tu nueva contraseña temporal es:</p>
+            <p style='text-align: center; font-size: 18px; font-weight: bold; color: #4a90e2; border: 1px dashed #4a90e2; padding: 10px; border-radius: 5px;'>
+                {temporaryPassword}
+            </p>
+            <p>Por favor, utiliza esta contraseña para iniciar sesión y asegúrate de cambiarla inmediatamente después de iniciar sesión para mantener tu cuenta segura.</p>
+            <p>
+                Si no solicitaste este cambio, por favor, <a href='#' style='color: #4a90e2; text-decoration: none;'>contacta a nuestro soporte</a> de inmediato.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class='email-footer'>
+            <p>Gracias,<br>El equipo de soporte</p>
+        </div>
+    </div>
+</body>
+</html>";
 
             // Configuración del correo
             MailMessage message = new MailMessage("96ferney@gmail.com", email)
