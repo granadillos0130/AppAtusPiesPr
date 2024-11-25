@@ -61,6 +61,10 @@ namespace AppAtusPiesPr.Logica
         {
             return productoD.MtdListarProductosPorCategoria(idCategoria);
         }
+        public DataTable MtdListarPorVendedor(int idVendedor)
+        {
+            return productoD.MtdListarProductosVendedor(idVendedor);
+        }
 
         // Método para obtener productos por categoría
         public List<ClProductoE> MtdObtenerProductosPorCategoria(string categoria = null)
