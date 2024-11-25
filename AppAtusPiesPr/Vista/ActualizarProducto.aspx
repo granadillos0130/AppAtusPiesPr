@@ -12,7 +12,7 @@
 
 <asp:Content ID="body" ContentPlaceHolderID="body" runat="server">
     <div class="container mt-4">
-        <form runat="server" class="needs-validation" novalidate>
+    
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
             <div class="card">
@@ -142,6 +142,6 @@
                         CssClass="btn btn-primary" OnClick="btnActualizar_Click" />
                 </div>
             </div>
-        </form>
+        
     </div>
 </asp:Content>

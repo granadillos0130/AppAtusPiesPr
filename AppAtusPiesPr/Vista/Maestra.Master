@@ -210,10 +210,16 @@
                 <i class="fas fa-user-friends"></i>
                 Listar Usuarios
             </a>
-            <a class="nav-link" href="EstadoPedido.aspx" id="menuEstadoPedido" runar="server"> 
-                <i class="fas fa-vest-patches"> </i>
+
+           <a class="nav-link" href="EstadoPedido.aspx" id="menuEstadoPedido" runat="server">
+                <i class="fas fa-plus-circle"> </i>
                 Estado Pedido
                 
+            </a>
+
+            <a class="nav-link" href="ActualizarProducto.aspx" id="menuActualizarProducto" runat="server">
+                <i class="fas fa-edit"></i> 
+                Actualizar Producto
             </a>
         </div>
 
