@@ -27,7 +27,7 @@
 
     </center>
 
-    <hr />
+    <hr /> 
     <br />
 
     <div class="alert alert-danger" role="alert" runat="server" visible="false" id="lblMensaje"></div>
