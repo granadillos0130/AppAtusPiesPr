@@ -13,8 +13,7 @@ namespace AppAtusPiesPr.Vista
         {
             if (!IsPostBack)
             {
-                CargarCategorias();
-                CargarProductos(); // Cargar productos al iniciar
+            
             }
         }
 
@@ -70,6 +69,40 @@ namespace AppAtusPiesPr.Vista
         {
             // Recargar los productos cuando se cambia de categoría
             CargarProductos();
+        }
+
+        protected void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Recuperar el id del vendedor desde la sesión
+                int? idVendedor = Convert.ToInt32(Session["idVendedor"]);
+
+                // Obtener el valor seleccionado del DropDownList
+                int? idCategoria = ddlCategorias.SelectedValue != "0"
+                    ? (int?)Convert.ToInt32(ddlCategorias.SelectedValue)
+                    : null; // Si es "0", significa "todas las categorías"
+
+                // Instanciar la lógica del vendedor
+                ClVendedorL vendedorLogica = new ClVendedorL();
+
+                // Obtener los productos filtrados por la categoría seleccionada y el vendedor
+                List<ClProductoE> productos = vendedorLogica.ObtenerProductosPorVendedorYCategoria(idVendedor, idCategoria);
+
+                // Vincular los productos filtrados al GridView
+                gvProductos.DataSource = productos;
+                gvProductos.DataBind();
+
+                // Verificar si no hay productos
+                if (productos == null || productos.Count == 0)
+                {
+                    Response.Write("<script>alert('No se encontraron productos para la categoría seleccionada.');</script>");
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write($"<script>alert('Error al filtrar los productos: {ex.Message}');</script>");
+            }
         }
     }
 }
