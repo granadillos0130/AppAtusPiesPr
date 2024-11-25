@@ -4,7 +4,7 @@
     <title>ATP </title>
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='stylesheet' type='text/css' media='screen' href='vista/css/main.css' />
-
+    <script src="Vista/js/main.js"></script>
     <link rel="shortcut icon" href="vista/recursos/ATP.png" />
 </asp:Content>
 
@@ -49,7 +49,7 @@
         <br />
 
         <!-- Contenedor para las tarjetas -->
-        <div class="cards-container">
+        <div id="cardsContainer" class="cards-container">
             <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
                     <div class="card">
