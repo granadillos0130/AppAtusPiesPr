@@ -94,7 +94,6 @@ namespace AppAtusPiesPr.Vista
                 if (oUser != null)
                 {
                     // Configurar variables de sesión
-                    Session["idUsuario"] = oUser.IdUsuario;  // Almacena el idUsuario (idCliente si usas otro nombre)
                     Session["email"] = oUser.Email;
                     Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
                     Session["rol"] = oUser.Rol;
@@ -147,6 +146,7 @@ namespace AppAtusPiesPr.Vista
                 return;
             }
 
+            // Crear un nuevo vendedor
             ClUsuarioE nuevoVendedor = new ClUsuarioE
             {
                 Documento = txtDocumentoVend.Text,
@@ -159,6 +159,7 @@ namespace AppAtusPiesPr.Vista
                 
             };
 
+            // Registrar el nuevo vendedor
             int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor);
 
             if (idVendedor > 0)
@@ -186,33 +187,33 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnEnviarRecuperar_Click(object sender, EventArgs e)
         {
-          
+            // Captura el correo ingresado en el campo del formulario
             string userEmail = txtEmailRecuperar.Text.Trim();
-          
+            // Verifica si el correo electrónico existe en la base de datos utilizando la capa lógica
             if (clientoLo.IsEmailExist(userEmail))
             {
-               
-                string temporaryPassword = GenerarTemporalPassword();
-               
+                // Genera una contraseña temporal
+                string temporaryPassword = GenerateTemporaryPassword();
+                // Guarda la contraseña temporal en la base de datos
                 clientoLo.SaveTemporaryPassword(userEmail, temporaryPassword);
-               
-                EnviarTemporalPasswordEmail(userEmail, temporaryPassword);
-               
+                // Envía el correo con la contraseña temporal
+                SendTemporaryPasswordEmail(userEmail, temporaryPassword);
+                // Muestra un mensaje de éxito en la interfaz
                 lblMensajeRecuperar.Text = "Se ha enviado un correo con la contraseña temporal.";
                 lblMensajeRecuperar.ForeColor = System.Drawing.Color.Green;
             }
             else
             {
-           
+                // Si el correo no está registrado, muestra un mensaje de error
                 lblMensajeRecuperar.Text = "Correo electrónico no encontrado.";
                 lblMensajeRecuperar.ForeColor = System.Drawing.Color.Red;
             }
 
         }
 
-        private string GenerarTemporalPassword()
+        private string GenerateTemporaryPassword()
         {
-            const int length = 10; 
+            const int length = 10; // Longitud de la contraseña temporal
             const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*?";
 
             Random random = new Random();
@@ -229,122 +230,35 @@ namespace AppAtusPiesPr.Vista
 
 
 
-        
-        private void EnviarTemporalPasswordEmail(string email, string temporaryPassword)
+        // Método para enviar el correo de restablecimiento
+        private void SendTemporaryPasswordEmail(string email, string temporaryPassword)
         {
-           
+            // Contenido del correo electrónico
             string body = $@"
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Restablecimiento de Contraseña</title>
-    <style>
-        body {{
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f7f7f7;
-            color: #333333;
-        }}
-        .email-container {{
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            border: 1px solid #dddddd;
-        }}
-        .email-header {{
-            background-color: #4a90e2;
-            padding: 20px;
-            text-align: center;
-            color: #ffffff;
-        }}
-        .email-header h1 {{
-            margin: 0;
-            font-size: 24px;
-        }}
-        .email-body {{
-            padding: 20px;
-            line-height: 1.6;
-            color: #555555;
-        }}
-        .email-body p {{
-            margin: 10px 0;
-        }}
-        .email-body strong {{
-            color: #4a90e2;
-        }}
-        .email-footer {{
-            text-align: center;
-            padding: 20px;
-            font-size: 12px;
-            color: #aaaaaa;
-            background-color: #f7f7f7;
-            border-top: 1px solid #dddddd;
-        }}
-        .email-button {{
-            display: inline-block;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background-color: #4a90e2;
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }}
-        .email-button:hover {{
-            background-color: #357ab7;
-        }}
-    </style>
-</head>
-<body>
-    <div class='email-container'>
-        <!-- Header -->
-        <div class='email-header'>
-            <h1>Restablecimiento de Contraseña</h1>
-        </div>
+    <html>
+    <body>
+        <p>Hola,</p>
+        <p>Has solicitado restablecer tu contraseña. Tu nueva contraseña temporal es: <strong>{temporaryPassword}</strong></p>
+        <p>Por favor, utiliza esta contraseña para iniciar sesión y asegúrate de cambiarla inmediatamente después de iniciar sesión.</p>
+        <p>Gracias,</p>
+        <p>El equipo de soporte</p>
+    </body>
+    </html>";
 
-        <!-- Body -->
-        <div class='email-body'>
-            <p>Hola,</p>
-            <p>Has solicitado restablecer tu contraseña. Tu nueva contraseña temporal es:</p>
-            <p style='text-align: center; font-size: 18px; font-weight: bold; color: #4a90e2; border: 1px dashed #4a90e2; padding: 10px; border-radius: 5px;'>
-                {temporaryPassword}
-            </p>
-            <p>Por favor, utiliza esta contraseña para iniciar sesión y asegúrate de cambiarla inmediatamente después de iniciar sesión para mantener tu cuenta segura.</p>
-            <p>
-                Si no solicitaste este cambio, por favor, <a href='#' style='color: #4a90e2; text-decoration: none;'>contacta a nuestro soporte</a> de inmediato.
-            </p>
-        </div>
-
-        <!-- Footer -->
-        <div class='email-footer'>
-            <p>Gracias,<br>El equipo de soporte</p>
-        </div>
-    </div>
-</body>
-</html>";
-
-           
-            MailMessage message = new MailMessage("96ferney@gmail.com", email)
+            // Configuración del correo
+            MailMessage message = new MailMessage("pratuspies@gmail.com", email)
             {
                 Subject = "Contraseña Temporal",
                 Body = body,
                 IsBodyHtml = true
             };
 
-           
+            // Configuración del cliente SMTP
             SmtpClient client = new SmtpClient("smtp.gmail.com")
             {
-                Port = 587, 
-                Credentials = new System.Net.NetworkCredential("ssferney@gmail.com", "ircu qqav zkjw quhg"), // Credenciales del servidor de correo
-                EnableSsl = true 
+                Port = 587, // Puerto para conexiones STARTTLS
+                Credentials = new System.Net.NetworkCredential("pratuspies@gmail.com", "zlre rota ykjk qkbq"), // Credenciales del servidor de correo
+                EnableSsl = true // Habilita SSL para mayor seguridad
             };
 
             try
