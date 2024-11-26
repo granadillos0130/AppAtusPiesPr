@@ -28,7 +28,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
     <div class="container mt-4">
-        <h1 class="mb-4">Productos Más Vendidos</h1>
+        <h2 class="mb-4">Productos Más Vendidos</h2>
 
         <div class="row">
             <!-- Fecha de Inicio -->
