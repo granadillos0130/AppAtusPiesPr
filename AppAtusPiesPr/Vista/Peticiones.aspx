@@ -19,8 +19,8 @@
                 <asp:BoundField DataField="Direccion" HeaderText="Dirección" />
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
-                        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-success btn-sm"
-                            CommandArgument='<%# Eval("idVendedor") %>' OnCommand="btnAceptar_Command" />
+                       <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" CssClass="btn btn-primary btn-sm"
+                         CommandArgument='<%# Eval("idVendedor") %>' OnCommand="btnAceptar_Command" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

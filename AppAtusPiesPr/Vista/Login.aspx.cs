@@ -94,7 +94,6 @@ namespace AppAtusPiesPr.Vista
                 if (oUser != null)
                 {
                     // Configurar variables de sesión
-                    Session["idUsuario"] = oUser.IdUsuario;  // Almacena el idUsuario (idCliente si usas otro nombre)
                     Session["email"] = oUser.Email;
                     Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
                     Session["rol"] = oUser.Rol;
@@ -198,14 +197,14 @@ namespace AppAtusPiesPr.Vista
                
                 EnviarTemporalPasswordEmail(userEmail, temporaryPassword);
                
-                lblMensajeRecuperar.Text = "Se ha enviado un correo con la contraseña temporal.";
-                lblMensajeRecuperar.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Text = "Se ha enviado un correo con la contraseña temporal.";
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
             }
             else
             {
            
-                lblMensajeRecuperar.Text = "Correo electrónico no encontrado.";
-                lblMensajeRecuperar.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Correo electrónico no encontrado.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
             }
 
         }
@@ -332,7 +331,7 @@ namespace AppAtusPiesPr.Vista
 </html>";
 
            
-            MailMessage message = new MailMessage("96ferney@gmail.com", email)
+            MailMessage message = new MailMessage("pratuspies@gmail.com", email)
             {
                 Subject = "Contraseña Temporal",
                 Body = body,
@@ -343,7 +342,7 @@ namespace AppAtusPiesPr.Vista
             SmtpClient client = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587, 
-                Credentials = new System.Net.NetworkCredential("ssferney@gmail.com", "ircu qqav zkjw quhg"), // Credenciales del servidor de correo
+                Credentials = new System.Net.NetworkCredential("pratuspies@gmail.com", "zlre rota ykjk qkbq"), // Credenciales del servidor de correo
                 EnableSsl = true 
             };
 
@@ -355,8 +354,8 @@ namespace AppAtusPiesPr.Vista
             catch (Exception ex)
             {
                 // Manejo de errores en caso de fallo en el envío del correo
-                lblMensajeRecuperar.Text = "Error al enviar el correo: " + ex.Message;
-                lblMensajeRecuperar.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Error al enviar el correo: " + ex.Message;
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
             }
         }
 

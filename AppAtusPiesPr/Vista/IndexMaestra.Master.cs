@@ -53,7 +53,8 @@ namespace AppAtusPiesPr.Vista
                 Response.Cookies.Add(cookies);
             }
 
-            Response.Redirect("../index.aspx");
+            Response.Redirect("~/index.aspx");
+
         }
 
     }
