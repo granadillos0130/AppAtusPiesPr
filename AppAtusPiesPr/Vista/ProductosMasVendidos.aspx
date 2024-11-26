@@ -48,7 +48,7 @@
             </div>
         </div>
         
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-success mt-3" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary mt-3" OnClick="btnBuscar_Click" />
 
         <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-striped mt-3">
             <Columns>
