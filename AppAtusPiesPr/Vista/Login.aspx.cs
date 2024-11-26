@@ -94,6 +94,7 @@ namespace AppAtusPiesPr.Vista
                 if (oUser != null)
                 {
                     // Configurar variables de sesión
+                    Session["idUsuario"] = oUser.IdUsuario;  // Almacena el idUsuario (idCliente si usas otro nombre)
                     Session["email"] = oUser.Email;
                     Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
                     Session["rol"] = oUser.Rol;
