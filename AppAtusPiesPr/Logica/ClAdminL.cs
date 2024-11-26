@@ -65,7 +65,7 @@ namespace AppAtusPiesPr.Logica
             try
             {
                 MailMessage mensaje = new MailMessage();
-                mensaje.From = new MailAddress("granadossantiago2006@gmail.com"); // Dirección del remitente
+                mensaje.From = new MailAddress("pratuspies@gmail.com"); // Dirección del remitente
                 mensaje.To.Add(email); // Dirección del destinatario
                 mensaje.Subject = "¡Tu cuenta ha sido activada en A Tus Pies!";
                 mensaje.Body = @"<!DOCTYPE html>
@@ -175,7 +175,7 @@ namespace AppAtusPiesPr.Logica
                 // Configuración del servidor SMTP
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com");
                 smtp.Port = 587; // Puerto para TLS
-                smtp.Credentials = new System.Net.NetworkCredential("granadossantiago2006@gmail.com", "vjzk tcwj puqt wopg"); // Password de Aplicación
+                smtp.Credentials = new System.Net.NetworkCredential("pratuspies@gmail.com", "zlre rota ykjk qkbq"); // Password de Aplicación
                 smtp.EnableSsl = true; // Habilitar conexión segura (TLS)
 
                 smtp.Send(mensaje); // Enviar el correo
