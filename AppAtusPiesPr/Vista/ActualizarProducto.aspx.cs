@@ -105,15 +105,15 @@ namespace AppAtusPiesPr.Vista
                 ClProductoEmpresaE objProductoE = new ClProductoEmpresaE
                 {
                     idProducto = Convert.ToInt32(ddlProducto.SelectedValue),
-                    nombreProducto = txtNombre.Text.Trim(),
-                    cantidadStock = string.IsNullOrWhiteSpace(txtStock.Text) ? (int?)null : int.Parse(txtStock.Text),
+                    nombreProducto = string.IsNullOrWhiteSpace(txtNombre.Text) ? null : txtNombre.Text, //Verifica si el campo esta vacio o contiene solo espacios en blanco
+                    cantidadStock = string.IsNullOrWhiteSpace(txtStock.Text) ? (int?)null : int.Parse(txtStock.Text),//El int?null indica que el tipo de datos es anulable lo que significa que acepta el valor null
                     precioVenta = string.IsNullOrWhiteSpace(txtPrecio.Text) ? (int?)null : int.Parse(txtPrecio.Text),
-                    descripcionProducto = txtDescripcionProduc.Text.Trim(),
-                    Estado = txtEstado.SelectedValue,
+                    descripcionProducto = string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ? null : txtDescripcionProduc.Text,
+                    Estado = string.IsNullOrWhiteSpace(txtEstado.Text) ? null : txtEstado.Text,
                     descuento = string.IsNullOrWhiteSpace(txtDescuento.Text) ? (int?)null : int.Parse(txtDescuento.Text),
-                    referencia = txtReferencia.Text.Trim(),
-                    descripcionCategoria = txtCategoria.SelectedValue,
-                    nombreMarca = txtMarca.SelectedValue,
+                    referencia = string.IsNullOrWhiteSpace(txtReferencia.Text) ? null : txtReferencia.Text,
+                    descripcionCategoria = string.IsNullOrWhiteSpace(txtCategoria.Text) ? null : txtCategoria.Text,
+                    nombreMarca = string.IsNullOrWhiteSpace(txtMarca.Text) ? null : txtMarca.Text,
                     imagen = rutaImagen
                 };
 
