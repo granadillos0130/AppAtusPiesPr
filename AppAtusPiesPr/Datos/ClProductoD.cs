@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace AppAtusPiesPr.Datos
@@ -180,6 +181,41 @@ namespace AppAtusPiesPr.Datos
             return oCategoria;
         }
 
+        //Metodo para listar productos
+
+        public List<ClProductoEmpresaE> MtdListarProducto(int? idVendedor = null)
+        {
+            List<ClProductoEmpresaE> oProducto = new List<ClProductoEmpresaE>();
+            try
+            {
+                ClConexion conex = new ClConexion();
+                SqlCommand cmd = new SqlCommand("SpListarTodosLosProductos", conex.MtdAbrirConexion());
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@idVendedor", (object)idVendedor ?? DBNull.Value);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    oProducto.Add(new ClProductoEmpresaE
+                    {
+                        idProducto = Convert.ToInt32(reader["idProducto"]),
+                        nombreProducto = reader["nombreProducto"].ToString()
+                    });
+                }
+
+                conex.MtdCerrarConexion();
+            }
+            catch (Exception ex)
+            {
+             
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return oProducto;
+        }
+
 
         // método para listar los productos más vendidos
         public List<ClProductoE> MtdListaProductosMasVendidos(DateTime fechaInicio, DateTime fechaFin)
@@ -211,6 +247,52 @@ namespace AppAtusPiesPr.Datos
             return productos;
         }
 
+        //Metodo para obtener los productos del vendedor
+
+        public List<ClProductoEmpresaE> MtdObtenerProductosPorVendedorYProducto(int? idVendedor = null, int? idProducto = null)
+        {
+            List<ClProductoEmpresaE> productos = new List<ClProductoEmpresaE>();
+            ClConexion conexx = new ClConexion();
+
+            try
+            {
+                using (SqlConnection cone = conexx.MtdAbrirConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand("SpListarProductosPorVendedorYProducto", cone))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@idProducto", idProducto.HasValue ? (object)idProducto.Value : DBNull.Value);
+                        cmd.Parameters.AddWithValue("@idVendedor", idVendedor.HasValue ? (object)idVendedor.Value : DBNull.Value);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                ClProductoEmpresaE product = new ClProductoEmpresaE
+                                {
+                                    idProducto = reader["IdProducto"] != DBNull.Value ? Convert.ToInt32(reader["IdProducto"]) : 0,
+                                    nombreProducto = reader["NombreProducto"]?.ToString() ?? string.Empty,
+                                    cantidadStock = reader["CantidadStock"] != DBNull.Value ? Convert.ToInt32(reader["CantidadStock"]) : 0,
+                                    precioVenta = reader["Precio"] != DBNull.Value ? Convert.ToInt32(reader["Precio"]) : 0,
+                                    descripcionProducto = reader["DescripcionProducto"]?.ToString() ?? string.Empty,
+                                    descripcionCategoria = reader["Categoria"]?.ToString() ?? "Sin Categoría",
+                                    NombreVendedor = reader["NombreVendedor"]?.ToString() ?? "Sin Vendedor",
+                                    nombreMarca = reader["Marca"]?.ToString() ?? "Sin Marca"
+                                };
+
+                                productos.Add(product);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener los productos por vendedor: " + ex.Message);
+            }
+
+            return productos;
+        }
 
 
         // Método para listar productos por categoría
