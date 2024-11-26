@@ -246,7 +246,7 @@ namespace AppAtusPiesPr.Vista
     </html>";
 
             // Configuración del correo
-            MailMessage message = new MailMessage("96ferney@gmail.com", email)
+            MailMessage message = new MailMessage("pratuspies@gmail.com", email)
             {
                 Subject = "Contraseña Temporal",
                 Body = body,
@@ -257,7 +257,7 @@ namespace AppAtusPiesPr.Vista
             SmtpClient client = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587, // Puerto para conexiones STARTTLS
-                Credentials = new System.Net.NetworkCredential("ssferney@gmail.com", "ircu qqav zkjw quhg"), // Credenciales del servidor de correo
+                Credentials = new System.Net.NetworkCredential("pratuspies@gmail.com", "zlre rota ykjk qkbq"), // Credenciales del servidor de correo
                 EnableSsl = true // Habilita SSL para mayor seguridad
             };
 
