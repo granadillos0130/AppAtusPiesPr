@@ -17,7 +17,6 @@
                     <div class="card-body">
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-                        <!-- Nombre del Producto -->
                         <div class="mb-3">
                             <label for="txtNombre" class="form-label">Nombre del Producto</label>
                             <div class="input-group">
@@ -26,7 +25,7 @@
                             </div>
                         </div>
 
-                        <!-- Cantidad Stock -->
+                    
                         <div class="mb-3">
                             <label for="txtStock" class="form-label">Cantidad Stock</label>
                             <div class="input-group">
@@ -35,7 +34,6 @@
                             </div>
                         </div>
 
-                        <!-- Precio -->
                         <div class="mb-3">
                             <label for="txtPrecio" class="form-label">Precio</label>
                             <div class="input-group">
@@ -44,7 +42,7 @@
                             </div>
                         </div>
 
-                        <!-- Descripción del Producto -->
+                  
                         <div class="mb-3">
                             <label for="txtDescripcionProduc" class="form-label">Descripción del Producto</label>
                             <div class="input-group">
@@ -53,7 +51,7 @@
                             </div>
                         </div>
 
-                        <!-- Referencia -->
+                    
                         <div class="mb-3">
                             <label for="txtReferencia" class="form-label">Referencia</label>
                             <div class="input-group">
@@ -62,10 +60,10 @@
                             </div>
                         </div>
 
-                        <!-- Categoría -->
+                        
                         <div class="mb-3">
                             <label for="txtCategoria" class="form-label">Categoría</label>
-                            <asp:DropDownList ID="txtCategoria" runat="server" CssClass="form-select">
+                            <asp:DropDownList ID="txtCategoria" runat="server" CssClass="form-control" class="form-label">
                                 <asp:ListItem Value="">Seleccione un Tipo de calzado</asp:ListItem>
                                 <asp:ListItem Value="deportivo">Calzado deportivo</asp:ListItem>
                                 <asp:ListItem Value="casual">Calzado casual</asp:ListItem>
@@ -75,7 +73,7 @@
                             </asp:DropDownList>
                         </div>
 
-                        <!-- Descuento -->
+                    
                         <div class="mb-3">
                             <label for="txtDescuento" class="form-label">Descuento</label>
                             <div class="input-group">
@@ -84,10 +82,10 @@
                             </div>
                         </div>
 
-                        <!-- Marca -->
+                       
                         <div class="mb-3">
                             <label for="txtMarca" class="form-label">Marca</label>
-                            <asp:DropDownList ID="txtMarca" runat="server" CssClass="form-select">
+                            <asp:DropDownList ID="txtMarca" runat="server" CssClass="form-control" class="form-label">
                                 <asp:ListItem Value="0">Seleccione una Marca</asp:ListItem>
                                 <asp:ListItem Value="Nike">Nike</asp:ListItem>
                                 <asp:ListItem Value="Adidas">Adidas</asp:ListItem>
@@ -102,13 +100,13 @@
                             </asp:DropDownList>
                         </div>
 
-                        <!-- Añadir Imagen -->
+                        
                         <div class="mb-3">
                             <label for="inRuta" class="form-label">Añade una Imagen</label><br />
                             <asp:FileUpload ID="inRuta" runat="server" />
                         </div>
 
-                        <!-- Botón Registrar -->
+                        
                         <div class="d-grid">
                             <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary btn-block" OnClick="btnRegistrar_Click" />
                         </div>

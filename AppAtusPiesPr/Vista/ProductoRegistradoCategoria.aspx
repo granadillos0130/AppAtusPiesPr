@@ -9,7 +9,7 @@
     <div class="container" style="margin-top:0"><br />
 
     
-    <h2 class="text-left mb-6">Productos Registrados por Categoría:</h2>
+    <h2 class="text-left mb-6">Productos Registrados por Categoría</h2>
     
     
     <div class="row mb-4">

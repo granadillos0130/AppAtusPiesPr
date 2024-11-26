@@ -69,26 +69,26 @@ namespace AppAtusPiesPr.Logica
                 mensaje.To.Add(email); // Dirección del destinatario
                 mensaje.Subject = "¡Tu cuenta ha sido activada en A Tus Pies!";
                 mensaje.Body = @"
-    <h1 style='color: #4CAF50;'>¡Felicidades!</h1>
-    <p>Tu cuenta ha sido activada correctamente en <strong>A Tus Pies</strong>.</p>
-    <p>Ahora puedes acceder a nuestra plataforma para comenzar a subir tus productos y ofrecerlos a miles de compradores interesados en lo que tienes para ofrecer.</p>
-    <h3>¿Qué puedes hacer ahora?</h3>
-    <ul>
-        <li>Iniciar sesión en tu cuenta.</li>
-        <li>Subir tus productos con fotos, descripciones y precios.</li>
-        <li>Gestionar tus ventas y recibir pedidos directamente desde nuestra plataforma.</li>
-    </ul>
-    <p>Estamos aquí para ayudarte a crecer. Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos.</p>
-    <p><strong>Visítanos en:</strong> <a href='https://www.atuspies.com' style='color: #4CAF50;'>A Tus Pies</a></p>
-    <p>¡Gracias por ser parte de nuestra comunidad!</p>
-    <p>Atentamente,<br>El equipo de A Tus Pies</p>";
+                <h1 style='color: #4CAF50;'>¡Felicidades!</h1>
+                <p>Tu cuenta ha sido activada correctamente en <strong>A Tus Pies</strong>.</p>
+                <p>Ahora puedes acceder a nuestra plataforma para comenzar a subir tus productos y ofrecerlos a miles de compradores interesados en lo que tienes para ofrecer.</p>
+                <h3>¿Qué puedes hacer ahora?</h3>
+                <ul>
+                    <li>Iniciar sesión en tu cuenta.</li>
+                    <li>Subir tus productos con fotos, descripciones y precios.</li>
+                    <li>Gestionar tus ventas y recibir pedidos directamente desde nuestra plataforma.</li>
+                </ul>
+                <p>Estamos aquí para ayudarte a crecer. Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos.</p>
+                <p><strong>Visítanos en:</strong> <a href='https://www.atuspies.com' style='color: #4CAF50;'>A Tus Pies</a></p>
+                <p>¡Gracias por ser parte de nuestra comunidad!</p>
+                <p>Atentamente,<br>El equipo de A Tus Pies</p>";
                 mensaje.IsBodyHtml = true; // Importante para soportar HTML en el mensaje.
 
 
                 // Configuración del servidor SMTP
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com");
                 smtp.Port = 587; // Puerto para TLS
-                smtp.Credentials = new System.Net.NetworkCredential("granadossantiago2006@gmail.com", "degj jfht juau nzbv"); // Password de Aplicación
+                smtp.Credentials = new System.Net.NetworkCredential("granadossantiago2006@gmail.com", "vjzk tcwj puqt wopg"); // Password de Aplicación
                 smtp.EnableSsl = true; // Habilitar conexión segura (TLS)
 
                 smtp.Send(mensaje); // Enviar el correo
