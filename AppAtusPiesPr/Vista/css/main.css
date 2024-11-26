@@ -189,8 +189,8 @@ body {
 /* CARDS */
 .card {
     background-color: white;
-    width: 32%; /* Ajusta ligeramente el tamaño para evitar problemas de espacio */
-    min-width: 300px; /* Define un ancho mínimo para que las tarjetas no se hagan demasiado pequeñas */
+    width: 23%; /* Ajusta ligeramente el tamaño para evitar problemas de espacio */
+    min-width: 250px; /* Define un ancho mínimo para que las tarjetas no se hagan demasiado pequeñas */
     border: 1px solid #999;
     text-align: left;
     padding: 15px;
