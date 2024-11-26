@@ -30,14 +30,20 @@
     <hr />
     <br />
 
+    <center>
+        <h2>Perfil del Vendedor</h2>
+        <br>
+    </center>
+
     <div class="alert alert-danger" role="alert" runat="server" visible="false" id="lblMensaje"></div>
-        <!-- Foto del Vendedor -->
+    <!-- Foto del Vendedor -->
     <div class="producto-detalle">
         <div class="producto-imagen">
             <asp:Image alt="Imagen 1" ID="ImgVendedor" runat="server" />
         </div>
 
         <!-- Información del Vendedor -->
+
         <div class="producto-info">
             <h1>
                 <asp:Label ID="lblTituloProducto" runat="server"></asp:Label></h1>
@@ -56,7 +62,7 @@
         </div>
 
     </div>
-
+    <hr>
     <br />
 
     <!-- Contenedor para las tarjetas -->

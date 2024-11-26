@@ -2,6 +2,7 @@
 using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Web;
@@ -19,14 +20,20 @@ namespace AppAtusPiesPr.Vista
             {
                 cargarCategorias();
 
-                string vendedorId = Request.QueryString["id"];
-                if (!string.IsNullOrEmpty(vendedorId) && int.TryParse(vendedorId, out int id))
-                {
-                    cargarVendedor(id);
+                int idVendedor = Convert.ToInt32(Request.QueryString["id"]); // Obtener idCategoria desde la URL
 
-                }
+                    cargarVendedor(idVendedor);
+                    cargarProductos(idVendedor);
+
             }
 
+        }
+        private void cargarProductos(int idVendedor)
+        {
+            ClProductoL objProductoL = new ClProductoL();
+            DataTable dt = objProductoL.MtdListarPorVendedor(idVendedor);
+            Repeater1.DataSource = dt;
+            Repeater1.DataBind();
         }
         private void cargarCategorias()
         {

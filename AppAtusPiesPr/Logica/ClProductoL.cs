@@ -39,6 +39,22 @@ namespace AppAtusPiesPr.Logica
             return tblDatos;
         }
        
+        //Metodo para listar Producto
+
+        public List<ClProductoEmpresaE> MtdListarProduc(int? idVendedor=null)
+        {
+            ClProductoD objPro = new ClProductoD();
+            List<ClProductoEmpresaE> tblDatos = objPro.MtdListarProducto(idVendedor);
+            return tblDatos;
+        }
+
+        //Metodo para listar producto por vendedor
+        public List<ClProductoEmpresaE> ObtenerProductoPorVendedorYProducto(int? idVendedor = null,int? idProducto= null)
+        {
+            ClProductoD productoDatos = new ClProductoD();
+            return productoDatos.MtdObtenerProductosPorVendedorYProducto(idVendedor,idProducto);
+        }
+
         public List<ClProductoE> MtdObtenerProductosMasVendidos(DateTime fechaInicio, DateTime fechaFin)
         {
             ClProductoD productoD = new ClProductoD();
@@ -60,6 +76,10 @@ namespace AppAtusPiesPr.Logica
         public DataTable MtdListarPorFiltro(int idCategoria)
         {
             return productoD.MtdListarProductosPorCategoria(idCategoria);
+        }
+        public DataTable MtdListarPorVendedor(int idVendedor)
+        {
+            return productoD.MtdListarProductosVendedor(idVendedor);
         }
 
         // Método para obtener productos por categoría

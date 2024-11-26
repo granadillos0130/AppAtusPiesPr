@@ -23,6 +23,13 @@ namespace AppAtusPiesPr.Logica
         {
             return oVendedor.MtdObtenerProductosMasVendidosPorVendedor(idVendedor, fechaInicio, fechaFin);
         }
+        public List<ClProductoE> ObtenerProductosPorVendedorYCategoria(int? idVendedor = null, int? idCategoria = null)
+        {
+            ClVendedorD vendedorDatos = new ClVendedorD();
+            return vendedorDatos.MtdObtenerProductosPorVendedorYCategoria(idVendedor, idCategoria);
+        }
+
+
 
 
 

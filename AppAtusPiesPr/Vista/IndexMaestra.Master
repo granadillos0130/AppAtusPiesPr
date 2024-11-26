@@ -61,7 +61,12 @@
                         </div>
                         <a href="Vista/modulos/moduloCarrito.aspx" class="save-button2">
                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                        </a><a href="vista/Login.aspx" class="login">Perfil</a> <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
+                        </a>
+
+                        <asp:HyperLink class="btnCerrarSesion" ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
+
+                        <asp:Button class="btnCerrarSesion"  ID="btnCerrarSesion" runat="server" Text="Cerrar Sesion" OnClick="btnCerrarSesion_Click"/>
+                    
                     </div>
                 </div>
                 <hr />
@@ -69,6 +74,7 @@
         </div>
 
         <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
+
     </form>
 </body>
 </html>

@@ -35,6 +35,10 @@ namespace AppAtusPiesPr.Entidades
         public int CantidadVendida {  get; set; }
         public decimal TotalVentas { get; set; }
         public string Marca { get; set; }
+        public string Categoria { get; set; }
+        public string NombreVendedor { get; set; }
+
+
     }
 
     public class ClProductoEmpresaE
@@ -54,6 +58,7 @@ namespace AppAtusPiesPr.Entidades
         public int? descuento { get; set; }
         public string nombres { get; set; }
         public string nombreMarca { get; set; }
+        public string NombreVendedor { get; set; }
 
         // Nueva propiedad para las tallas asociadas
         public List<ClTallaE> TallasDisponibles { get; set; }

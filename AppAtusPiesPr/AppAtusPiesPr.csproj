@@ -73,6 +73,7 @@
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
     <Content Include="Vista\css\sb-admin-2.min.css" />
+    <Content Include="Vista\EstadoPedido.aspx" />
     <Content Include="Vista\imagenes\Jordan1RetroLowOGSPTravisScott.jpg" />
     <Content Include="Vista\imagenes\JumpmanJackdeJORDANxTravisScott.png" />
     <Content Include="Vista\imagenes\thumb-jordan-5-off-white-white.gif" />
@@ -95,7 +96,9 @@
     <Content Include="Vista\moduloCatalogoFiltrado.aspx" />
     <Content Include="Vista\moduloCompra.aspx" />
     <Content Include="Vista\perfilInfoVendedor.aspx" />
+    <Content Include="Vista\perfilUsuario.aspx" />
     <Content Include="Vista\Peticiones.aspx" />
+    <Content Include="Vista\ProductoRegistradoCategoria.aspx" />
     <Content Include="Vista\ProductosMasVendidos.aspx" />
     <Content Include="Vista\recursos\ATP.png" />
     <Content Include="Vista\RegistroProducto.aspx" />
@@ -1804,6 +1807,13 @@
     <Compile Include="Vista\BlankPage.aspx.designer.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\EstadoPedido.aspx.cs">
+      <DependentUpon>EstadoPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\EstadoPedido.aspx.designer.cs">
+      <DependentUpon>EstadoPedido.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\IndexMaestra.Master.cs">
       <DependentUpon>IndexMaestra.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1860,12 +1870,26 @@
     <Compile Include="Vista\perfilInfoVendedor.aspx.designer.cs">
       <DependentUpon>perfilInfoVendedor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\perfilUsuario.aspx.cs">
+      <DependentUpon>perfilUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\perfilUsuario.aspx.designer.cs">
+      <DependentUpon>perfilUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Peticiones.aspx.cs">
       <DependentUpon>Peticiones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Vista\Peticiones.aspx.designer.cs">
       <DependentUpon>Peticiones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ProductoRegistradoCategoria.aspx.cs">
+      <DependentUpon>ProductoRegistradoCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ProductoRegistradoCategoria.aspx.designer.cs">
+      <DependentUpon>ProductoRegistradoCategoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\ProductosMasVendidos.aspx.cs">
       <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
