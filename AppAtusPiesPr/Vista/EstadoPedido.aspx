@@ -5,8 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-    <div class="container" style="margin-top:0">
-        <h2 class="text-center mb-6">Estado Pedidos</h2>
+    <div class="container" style="margin-top:0"> <br />
+        <h2 class="text-left mb-6">Estado Pedidos</h2>
         
        
         <div class="row mb-4">
@@ -19,7 +19,7 @@
                 </asp:DropDownList>
             </div>
             <div class="col-md-2 align-self-end">
-                <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary w-100" OnClick="btnFiltrar_Click" />
+                <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" CssClass="btn btn-primary w-100" OnClick="btnFiltrar_Click" />
             </div>
         </div>
 

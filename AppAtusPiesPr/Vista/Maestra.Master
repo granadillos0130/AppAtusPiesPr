@@ -177,7 +177,7 @@
                     </a>
                     <asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="dropdown-item">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Cerrar Sesión
+                        Cerrar Sesion
                     </asp:LinkButton>
                     <div class="dropdown-divider"></div>
                 </div>
@@ -212,7 +212,7 @@
             </a>
 
            <a class="nav-link" href="EstadoPedido.aspx" id="menuEstadoPedido" runat="server">
-                <i class="fas fa-plus-circle"> </i>
+                <i class="fas fa-truck"> </i>
                 Estado Pedido
                 
             </a>

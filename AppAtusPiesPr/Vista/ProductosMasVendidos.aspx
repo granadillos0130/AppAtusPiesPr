@@ -28,7 +28,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
     <div class="container mt-4">
-        <h1 class="mb-4">Productos Más Vendidos</h1>
+        <h2 class="mb-4">Productos Más Vendidos</h2>
 
         <div class="row">
             <!-- Fecha de Inicio -->
@@ -48,7 +48,7 @@
             </div>
         </div>
         
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-success mt-3" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary mt-3" OnClick="btnBuscar_Click" />
 
         <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-striped mt-3">
             <Columns>
