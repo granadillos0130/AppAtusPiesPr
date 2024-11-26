@@ -23,10 +23,14 @@
                 <div class="card-body">
                    
                     
+
+                      <div class="mb-3">
+                          <label for="txtPro" class="form-label">Seleccione un  Producto</label>
      <asp:DropDownList ID="ddlProducto" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProducto_SelectedIndexChanged" CssClass="form-control" class="form-label"> 
         <asp:ListItem Text="Todas los productos" Value="0" />
              </asp:DropDownList>
-
+                  </div>
+                  
                     <br />
 
                     <div class="mb-3">
