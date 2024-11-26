@@ -21,18 +21,11 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label for="txtProducto" class="form-label">ID Producto</label>
-                        <div class="input-group">
-                            <span class="input-group-text">🆔</span>
-                            <asp:TextBox ID="txtProducto" runat="server" CssClass="form-control"
-                                placeholder="Ingrese ID del producto"></asp:TextBox>
-                            <div class="invalid-feedback">
-                                Por favor ingrese el ID del producto
-                       
-                            </div>
-                        </div>
-                    </div>
+                   
+                    
+     <asp:DropDownList ID="ddlProducto" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProducto_SelectedIndexChanged" CssClass="form-control" class="form-label">
+        <asp:ListItem Text="Todas las categorías" Value="0" />
+             </asp:DropDownList>
 
                     <div class="mb-3">
                         <label for="txtNombre" class="form-label">Nombre del Producto</label>
