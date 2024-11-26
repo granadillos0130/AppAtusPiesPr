@@ -14,6 +14,11 @@ namespace AppAtusPiesPr.Logica
     public class ClAdminL
     {
 
+        public DataTable MtdListarPedido(int idVendedor,string estado)
+        {
+            ClAdminD ListEstado = new ClAdminD();
+            return ListEstado.MtdListarPedidosEstado(idVendedor,estado);
+        }
         public DataTable MtdListarVendedores()
         {
             ClAdminD Lista = new ClAdminD();

@@ -69,7 +69,7 @@
 
         <br />
 
-<div class="cards-container">
+<div id="cardsContainer" class="cards-container">
     <asp:Repeater ID="Repeater1" runat="server">
         <ItemTemplate>
             <div class="card">
