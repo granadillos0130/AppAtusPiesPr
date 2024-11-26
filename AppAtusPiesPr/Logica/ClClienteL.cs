@@ -2,6 +2,7 @@
 using AppAtusPiesPr.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -11,6 +12,10 @@ namespace AppAtusPiesPr.Logica
     {
         private ClClienteD clienteDa = new ClClienteD();
 
+        public ClUsuarioE mtdPerfilCliente(int idCliente)
+        {
+            return clienteDa.mtdPerfilCliente(idCliente);
+        }
         public int RegistrarCliente(ClUsuarioE cliente)
         {
             return clienteDa.MtdRegistrarCliente(cliente);
