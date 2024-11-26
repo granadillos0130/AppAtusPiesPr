@@ -197,14 +197,14 @@ namespace AppAtusPiesPr.Vista
                
                 EnviarTemporalPasswordEmail(userEmail, temporaryPassword);
                
-                lblMensajeRecuperar.Text = "Se ha enviado un correo con la contraseña temporal.";
-                lblMensajeRecuperar.ForeColor = System.Drawing.Color.Green;
+                lblMensaje.Text = "Se ha enviado un correo con la contraseña temporal.";
+                lblMensaje.ForeColor = System.Drawing.Color.Green;
             }
             else
             {
            
-                lblMensajeRecuperar.Text = "Correo electrónico no encontrado.";
-                lblMensajeRecuperar.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Correo electrónico no encontrado.";
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
             }
 
         }
@@ -354,8 +354,8 @@ namespace AppAtusPiesPr.Vista
             catch (Exception ex)
             {
                 // Manejo de errores en caso de fallo en el envío del correo
-                lblMensajeRecuperar.Text = "Error al enviar el correo: " + ex.Message;
-                lblMensajeRecuperar.ForeColor = System.Drawing.Color.Red;
+                lblMensaje.Text = "Error al enviar el correo: " + ex.Message;
+                lblMensaje.ForeColor = System.Drawing.Color.Red;
             }
         }
 
