@@ -5,12 +5,52 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
 
 namespace AppAtusPiesPr.Datos
 {
     public class ClClienteD
     {
         private ClConexion conexion = new ClConexion();
+
+        public ClUsuarioE mtdPerfilCliente(int idCliente)
+        {
+            ClUsuarioE cliente = new ClUsuarioE();
+            ClConexion oConex = new ClConexion();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("spListarPerfil", oConex.MtdAbrirConexion());
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idCliente", idCliente);
+                cmd.ExecuteNonQuery();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cliente = new ClUsuarioE
+                    {
+                        IdUsuario = Convert.ToInt32(reader["idCliente"]),
+                        Documento = reader["documento"].ToString(),
+                        Nombres = reader["nombres"].ToString(),
+                        Apellidos = reader["apellidos"].ToString(),
+                        Email = reader["email"].ToString(),
+                        Password = reader["password"].ToString(),
+                        Telefono = reader["telefono"].ToString(),
+                        Direccion = reader["direccion"].ToString(),
+                        estado = reader["estado"].ToString()
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al mostrar la información: " + ex.Message);
+            }
+
+            oConex.MtdCerrarConexion();
+
+            return cliente;
+
+        }
 
         public int MtdRegistrarCliente(ClUsuarioE cliente)
         {

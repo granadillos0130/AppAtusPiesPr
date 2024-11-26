@@ -51,6 +51,24 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuConSesion;
 
         /// <summary>
+        /// Control nombreCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink nombreCliente;
+
+        /// <summary>
+        /// Control btnCerrarSesion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCerrarSesion;
+
+        /// <summary>
         /// Control body.
         /// </summary>
         /// <remarks>
