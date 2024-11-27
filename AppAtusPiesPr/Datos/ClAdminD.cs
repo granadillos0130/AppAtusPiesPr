@@ -125,5 +125,22 @@ namespace AppAtusPiesPr.Datos
                 }
             }
         }
+
+        public bool MtdInactivarVendedor(int idVendedor)
+        {
+            ClConexion oConexion = new ClConexion();
+            using (SqlConnection con = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpInactivarVendedor",con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("idVendedor", idVendedor);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    return filasAfectadas > 0;
+                }
+            }
+        }
+
     }
 }
