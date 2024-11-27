@@ -10,7 +10,7 @@ namespace AppAtusPiesPr.Datos
 {
     public class ClAdminD
     {
-        public DataTable MtdListarPedidosEstado(int idVendedor,string estado)
+        public DataTable MtdListarPedidosEstado(int idVendedor, string estado)
         {
             try
             {
@@ -20,7 +20,7 @@ namespace AppAtusPiesPr.Datos
                     using (SqlCommand cmd = new SqlCommand("sp_ListarPedidosPorEstado", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@idVendedor",idVendedor);
+                        cmd.Parameters.AddWithValue("@idVendedor", idVendedor);
                         cmd.Parameters.AddWithValue("@estado", estado);
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -115,9 +115,9 @@ namespace AppAtusPiesPr.Datos
             ClConexion oConexion = new ClConexion();
             using (SqlConnection con = oConexion.MtdAbrirConexion())
             {
-                using (SqlCommand cmd = new SqlCommand("spAceptarSolicitud",con))
+                using (SqlCommand cmd = new SqlCommand("spAceptarSolicitud", con))
                 {
-                    cmd.CommandType= CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("idVendedor", idVendedor);
 
                     int filasAfectadas = cmd.ExecuteNonQuery();
@@ -131,7 +131,7 @@ namespace AppAtusPiesPr.Datos
             ClConexion oConexion = new ClConexion();
             using (SqlConnection con = oConexion.MtdAbrirConexion())
             {
-                using (SqlCommand cmd = new SqlCommand("SpInactivarVendedor",con))
+                using (SqlCommand cmd = new SqlCommand("SpInactivarVendedor", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("idVendedor", idVendedor);
@@ -141,6 +141,52 @@ namespace AppAtusPiesPr.Datos
                 }
             }
         }
+
+        public List<ClUsuarioE> MtdBuscarVendedor(string documento, string estado)
+        {
+            List<ClUsuarioE> usuario = new List<ClUsuarioE>();
+
+            ClConexion conexion = new ClConexion();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SpBuscarVendedor", conexion.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Agregar parámetros, manejando nulos o vacíos para permitir filtros opcionales
+                    cmd.Parameters.AddWithValue("@documento", string.IsNullOrWhiteSpace(documento) ? DBNull.Value : (object)documento);
+                    cmd.Parameters.AddWithValue("@estado", string.IsNullOrWhiteSpace(estado) ? DBNull.Value : (object)estado);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ClUsuarioE oU = new ClUsuarioE()
+                            {
+                                IdUsuario = reader.GetInt32(reader.GetOrdinal("idVendedor")),
+                                Nombres = reader.GetString(reader.GetOrdinal("nombres")),
+                                Apellidos = reader.GetString(reader.GetOrdinal("apellidos")),
+                                Documento = reader.GetString(reader.GetOrdinal("documento")),
+                                Email = reader.GetString(reader.GetOrdinal("email")),
+                                Telefono = reader.GetString(reader.GetOrdinal("telefono")),
+                                estado = reader.GetString(reader.GetOrdinal("estado"))
+                            };
+                            usuario.Add(oU);
+                        }
+                    }
+                }
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                conexion.MtdCerrarConexion();
+
+            }
+            return usuario;
+        }
+
 
     }
 }

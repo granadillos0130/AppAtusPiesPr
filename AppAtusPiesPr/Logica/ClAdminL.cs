@@ -37,6 +37,12 @@ namespace AppAtusPiesPr.Logica
             return ListaSolicitudes.MtdListarSolicitudes();
         }
 
+        public List<ClUsuarioE> MtdFiltroVendedor(string docu, string estado)
+        {
+            ClAdminD FiltroVendedor = new ClAdminD();
+            return FiltroVendedor.MtdBuscarVendedor(docu, estado);
+        }
+
         public bool MtdAceptarSolicitud(int idVendedor, string email)
         {
             ClAdminD AceptarSoli = new ClAdminD();

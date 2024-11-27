@@ -1,5 +1,7 @@
-﻿using AppAtusPiesPr.Logica;
+﻿using AppAtusPiesPr.Entidades;
+using AppAtusPiesPr.Logica;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -21,7 +23,27 @@ namespace AppAtusPiesPr.Vista
             ClAdminL vendedorL = new ClAdminL();
             DataTable vendedor = vendedorL.MtdListarVendedores();
 
-            gvVendedores.DataSource = vendedor;
+            List<ClUsuarioE> objVendedores = new List<ClUsuarioE>();
+
+            foreach (DataRow fila in vendedor.Rows) {
+
+                objVendedores.Add(new ClUsuarioE{
+                
+                    IdUsuario = int.Parse( fila["idVendedor"].ToString()),
+                    Nombres = fila["nombres"].ToString(),
+                    Apellidos = fila["apellidos"].ToString(),
+                    Documento = fila["documento"].ToString(),
+                    Email = fila["email"].ToString(),
+                    Telefono = fila["telefono"].ToString(),
+                    Direccion = fila["direccion"].ToString(),
+                    estado = fila["estado"].ToString()
+
+                });
+            
+            
+            }
+
+            gvVendedores.DataSource = objVendedores;
             gvVendedores.DataBind();
         }
 
@@ -106,6 +128,35 @@ namespace AppAtusPiesPr.Vista
                         $"}});", true);
             }
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+            string Documento = string.IsNullOrWhiteSpace(txtDocumento.Text) ? null : txtDocumento.Text;
+            string estado = string.IsNullOrWhiteSpace(ddlEstado.SelectedValue) ? null : ddlEstado.SelectedValue;
+          
+
+            ClAdminL vendedorL = new ClAdminL();
+            List<ClUsuarioE> vendedores = vendedorL.MtdFiltroVendedor(Documento,estado);
+
+            if (vendedores != null && vendedores.Count > 0)
+            {
+
+                gvVendedores.DataSource = vendedores;
+                gvVendedores.DataBind();
+            }
+            else
+            {
+
+                gvVendedores.DataSource = null;
+                gvVendedores.DataBind();
+
+                // Mostrar mensaje de alerta usando SweetAlert
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "Swal.fire('No se encontraron vendedores.');", true);
+            }
+        }
+
+
     }
 }
 
