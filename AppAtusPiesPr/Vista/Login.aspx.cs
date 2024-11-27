@@ -143,6 +143,7 @@ namespace AppAtusPiesPr.Vista
                 Session["rol"] = role.RoleName;
                 Session["idUsuario"] = role.IdUsuario;
 
+
                 // Redirigir según el rol seleccionado
                 RedirigirSegunRol(role.RoleName);
             }
