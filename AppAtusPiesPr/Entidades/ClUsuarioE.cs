@@ -5,6 +5,7 @@ using System.Web;
 
 namespace AppAtusPiesPr.Entidades
 {
+    [Serializable]
     public class ClUsuarioE
     {
         public int IdUsuario { get; set; }
@@ -20,5 +21,6 @@ namespace AppAtusPiesPr.Entidades
         public string Rol { get; set; }
         public int numProducto { get; set; }
         public string estado { get; set; }
+        public List<ClRolE> Roles { get; set; }
     }
 }
