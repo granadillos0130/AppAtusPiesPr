@@ -255,6 +255,9 @@
             </div>
         </div>
 
+        
+
+
         <!-- Modal de Registro -->
         <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -403,7 +406,23 @@
         </div>
     </div>
 </div>
-
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">Seleccione el perfil</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <asp:DropDownList ID="ddlRoles" runat="server" CssClass="form-control"></asp:DropDownList>
+        </div>
+        <div class="modal-footer">
+            <asp:Button ID="btnSeleccionarRol" runat="server" CssClass="btn btn-primary" Text="Ingresar" OnClick="btnSeleccionarRol_Click" />
+        </div>
+    </div>
+</div>
 
     </form>
 </body>

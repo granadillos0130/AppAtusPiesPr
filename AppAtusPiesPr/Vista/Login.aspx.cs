@@ -84,39 +84,37 @@ namespace AppAtusPiesPr.Vista
 
             try
             {
-
-
-
                 // Llamar al método de autenticación
                 ClUsuarioE oUser = clientoLo.MtdIngreso(obUsuarioEn);
 
                 // Verificar si el usuario existe
                 if (oUser != null)
                 {
-                    // Configurar variables de sesión
-                    Session["email"] = oUser.Email;
-                    Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
-                    Session["rol"] = oUser.Rol;
-                    Session["idVendedor"] = oUser.IdUsuario;
-
-                    // Redirigir según el rol del usuario
-                    switch (oUser.Rol)
+                    // Verificar si hay múltiples roles
+                    if (oUser.Roles.Count > 1)
                     {
-                        case "Admin":
-                            Response.Redirect("BlankPage.aspx");
-                            break;
+                        // Guardar la lista de roles en el ViewState
+                        ViewState["Roles"] = oUser.Roles;
+                        ViewState["Usuario"] = oUser;
 
-                        case "Vendedor":
-                            Response.Redirect("BlankPage.aspx");
-                            break;
+                        // Configurar el DropDownList con los roles
+                        ddlRoles.DataSource = oUser.Roles.Select(r => r.RoleName).ToList();
+                        ddlRoles.DataBind();
 
-                        case "Cliente":
-                            Response.Redirect("../index.aspx");
-                            break;
+                        // Mostrar el modal para seleccionar el rol
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowModal", "$('#myModal').modal('show');", true);
+                    }
+                    else if (oUser.Roles.Count == 1)
+                    {
+                        // Configurar variables de sesión
+                        var role = oUser.Roles[0];
+                        Session["email"] = oUser.Documento; // Suponiendo que el email es igual al documento
+                        Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
+                        Session["rol"] = role.RoleName;
+                        Session["idUsuario"] = role.IdUsuario;
 
-                        default:
-                            lblMensaje.Text = "Rol no reconocido.";
-                            break;
+                        // Redirigir según el rol del usuario
+                        RedirigirSegunRol(role.RoleName);
                     }
                 }
                 else
@@ -130,6 +128,49 @@ namespace AppAtusPiesPr.Vista
                 lblMensaje.Text = ex.Message;
             }
         }
+
+        protected void btnSeleccionarRol_Click(object sender, EventArgs e)
+        {
+            string rolSeleccionado = ddlRoles.SelectedValue;
+            List<ClRolE> roles = (List<ClRolE>)ViewState["Roles"];
+            ClUsuarioE oUser = (ClUsuarioE)ViewState["Usuario"]; // Recuperar el usuario del ViewState
+            ClRolE role = roles.FirstOrDefault(r => r.RoleName == rolSeleccionado);
+            if (role != null)
+            {
+                // Configurar variables de sesión
+                Session["email"] = oUser.Documento; // Suponiendo que el email es igual al documento
+                Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
+                Session["rol"] = role.RoleName;
+                Session["idUsuario"] = role.IdUsuario;
+
+                // Redirigir según el rol seleccionado
+                RedirigirSegunRol(role.RoleName);
+            }
+        }
+
+
+        private void RedirigirSegunRol(string rol)
+        {
+            switch (rol)
+            {
+                case "Admin":
+                    Response.Redirect("BlankPage.aspx");
+                    break;
+
+                case "Vendedor":
+                    Response.Redirect("BlankPage.aspx");
+                    break;
+
+                case "Cliente":
+                    Response.Redirect("../index.aspx");
+                    break;
+
+                default:
+                    lblMensaje.Text = "Rol no reconocido.";
+                    break;
+            }
+        }
+
 
         protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
         {

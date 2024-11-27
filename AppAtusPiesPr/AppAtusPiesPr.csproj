@@ -1780,6 +1780,7 @@
     <Compile Include="Datos\ClProductoD.cs" />
     <Compile Include="Datos\ClVendedorD.cs" />
     <Compile Include="Entidades\ClProductoE.cs" />
+    <Compile Include="Entidades\ClRolE.cs" />
     <Compile Include="Entidades\ClUsuarioE.cs" />
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
