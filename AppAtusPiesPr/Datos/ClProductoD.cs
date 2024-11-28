@@ -223,7 +223,7 @@ namespace AppAtusPiesPr.Datos
                 {
                     oProducto.Add(new ClProductoEmpresaE
                     {
-                        idProducto = Convert.ToInt32(reader["idProducto"]),
+                     
                         nombreProducto = reader["nombreProducto"].ToString()
                     });
                 }
