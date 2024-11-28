@@ -261,7 +261,7 @@ namespace AppAtusPiesPr.Datos
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@descripcion", oDatos.descripcion);
-                    int count = (int)cmd.ExecuteScalar();  
+                    int count = (int)cmd.ExecuteScalar();
 
                     existe = count > 0;
                 }
@@ -272,14 +272,6 @@ namespace AppAtusPiesPr.Datos
             }
 
             return existe;
-        }
-
-
-
-
-            }
-
-            return listaVendedor;
         }
 
     }
