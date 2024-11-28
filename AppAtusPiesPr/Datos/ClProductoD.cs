@@ -129,6 +129,7 @@ namespace AppAtusPiesPr.Datos
                     cmd.Parameters.AddWithValue("@idProductoEmpresa", idProdctoEmpresa);
 
                     SqlDataReader reader = cmd.ExecuteReader();
+                    var cont = reader.HasRows;
 
                     // Leer información del producto
                     while (reader.Read())
@@ -146,9 +147,11 @@ namespace AppAtusPiesPr.Datos
                                 imagen = reader["imagen"].ToString(),
                                 descuento = Convert.ToInt32(reader["descuento"]),
                                 nombres = reader["nombres"].ToString(),
+                                apellidoVendedor = reader["apellidos"].ToString(),
                                 nombreMarca = reader["nombreMarca"].ToString(),
                                 // Inicializamos la lista de tallas
-                                TallasDisponibles = new List<ClTallaE>()
+                                TallasDisponibles = new List<ClTallaE>(),
+                                idVendedor = Convert.ToInt32(reader["idVendedor"]),
                             };
                         }
                     }

@@ -65,8 +65,8 @@
 
                         <asp:HyperLink class="btnCerrarSesion" ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
 
-                        <asp:Button class="btnCerrarSesion"  ID="btnCerrarSesion" runat="server" Text="Cerrar Sesion" OnClick="btnCerrarSesion_Click"/>
-                    
+                        <asp:Button ID="btnCerrarSesion" runat="server" Class="btnCerrarSesionIcono" OnClick="btnCerrarSesion_Click" Text="" />
+
                     </div>
                 </div>
                 <hr />

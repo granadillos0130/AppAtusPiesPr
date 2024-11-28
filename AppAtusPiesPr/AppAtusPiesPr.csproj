@@ -101,6 +101,7 @@
     <Content Include="Vista\ProductoRegistradoCategoria.aspx" />
     <Content Include="Vista\ProductosMasVendidos.aspx" />
     <Content Include="Vista\recursos\ATP.png" />
+    <Content Include="Vista\recursos\logout.png" />
     <Content Include="Vista\RegistroProducto.aspx" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.min.js" />

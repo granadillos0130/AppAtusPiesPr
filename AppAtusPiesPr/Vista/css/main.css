@@ -15,6 +15,20 @@ body {
     font-weight: bold;
 }
 
+/* Botón de cerrar sesión */
+.btnCerrarSesionIcono {
+    width: 20px; /* Tamaño del botón */
+    height: 20px; /* Tamaño del botón */
+    background-image: url('../recursos/logout.png'); /* URL del ícono */
+    background-size: cover; /* Hace que la imagen se ajuste al tamaño del botón */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-color: #ffffff;
+    border: none; /* Elimina el borde del botón */
+    padding: 0; /* Elimina el padding para que el ícono quede centrado */
+    cursor: pointer;
+}
+
+
 /* Estilos para que el botón se vea igual al texto "Perfil" */
 .btnCerrarSesion {
     all: unset; /* Resetea todos los estilos predeterminados */
@@ -262,15 +276,13 @@ body {
 
 .card-title {
     font-size: 16px;
-    font-weight: bold;
     color: #000000;
     word-wrap: break-word;
-    margin: 10px 0 0 0;
 }
 
 .card-details {
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: 5px;
+    font-size: 16px;
     color: gray;
 }
 
@@ -495,6 +507,20 @@ label {
     color: #333;
 }
 
+.cardseller {
+    color: #555;
+    font-size: 16px;
+    margin: 5px 0;
+    text-decoration: none; /* Elimina el subrayado */
+}
+
+.cardprice {
+    font-size: 16px;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
 .btn-agregar-carrito {
     display: inline-block;
     width: 100%; /* O ajusta según el diseño */
@@ -515,3 +541,10 @@ label {
     .btn-agregar-carrito:hover {
         background-color: #333; /* Cambia a un gris más claro al pasar el ratón */
     }
+
+.cardButtons {
+    display: flex; /* Activa el diseño en fila */
+    align-items: center; /* Alinea verticalmente los botones */
+    gap: 10px; /* Espacio entre los botones */
+    margin-top: 10px; /* Espaciado con el contenido superior */
+}
