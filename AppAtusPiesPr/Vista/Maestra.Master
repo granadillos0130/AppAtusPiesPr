@@ -206,9 +206,9 @@
                 <i class="fas fa-users"></i>
                 Listar Vendedores
             </a>
-            <a class="nav-link" href="ListarUsuario.aspx" id="menuListarUsuarios" runat="server">
+            <a class="nav-link" href="AgregarCategoria.aspx" id="menuCategoria" runat="server">
                 <i class="fas fa-user-friends"></i>
-                Listar Usuarios
+                Agregar Categoria
             </a>
 
            <a class="nav-link" href="EstadoPedido.aspx" id="menuEstadoPedido" runat="server">

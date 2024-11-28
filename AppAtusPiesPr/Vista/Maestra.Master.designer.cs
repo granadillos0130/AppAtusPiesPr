@@ -105,13 +105,13 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.HtmlControls.HtmlAnchor menuListarVendedores;
 
         /// <summary>
-        /// Control menuListarUsuarios.
+        /// Control menuCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuListarUsuarios;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuCategoria;
 
         /// <summary>
         /// Control menuEstadoPedido.

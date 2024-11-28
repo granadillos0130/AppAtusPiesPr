@@ -49,7 +49,7 @@ namespace AppAtusPiesPr.Vista
                 else if (rol == "Vendedor")
                 {
                     LblPuesto.Text = "Vendedor";
-                    menuListarUsuarios.Visible = false;
+                    menuCategoria.Visible = false;
                     menuPeticiones.Visible = false;
                     menuListarVendedores.Visible = false;
                    
