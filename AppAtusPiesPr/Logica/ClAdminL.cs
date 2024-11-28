@@ -43,6 +43,13 @@ namespace AppAtusPiesPr.Logica
             return FiltroVendedor.MtdBuscarVendedor(docu, estado);
         }
 
+
+        public bool MtdValidarCategoria(ClCategoriaE oDatos)
+        {
+            ClAdminD Categoria = new ClAdminD();
+            return Categoria.MtdValidacionCategoria(oDatos);
+        }
+
         public bool MtdRegistrarCategoria(ClCategoriaE oDatos)
         {
             ClAdminD registrar = new ClAdminD();
@@ -335,6 +342,7 @@ namespace AppAtusPiesPr.Logica
                             <h1>¡Tu cuenta ha sido desactivada!</h1>
                         </div>
 
+
                         <!-- Body -->
                         <div class='email-body'>
                             <p>Hola,</p>
@@ -344,6 +352,7 @@ namespace AppAtusPiesPr.Logica
                             <p><a href='https://www.atuspies.com/soporte' class='email-button'>Contacta con soporte</a></p>
                             <p>Te agradecemos por ser parte de nuestra comunidad y esperamos poder ayudarte a resolver cualquier inconveniente.</p>
                         </div>
+
 
                         <!-- Footer -->
                         <div class='email-footer'>

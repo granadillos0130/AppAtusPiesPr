@@ -245,6 +245,37 @@ namespace AppAtusPiesPr.Datos
             {
 
 
+            }
+            return listaVendedor;
+        }
+
+        public bool MtdValidacionCategoria(ClCategoriaE oDatos)
+        {
+            bool existe = false;
+
+            ClConexion oConexion = new ClConexion();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spValidacionCategoria", oConexion.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", oDatos.descripcion);
+                    int count = (int)cmd.ExecuteScalar();  
+
+                    existe = count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar la categoría: " + ex.Message);
+            }
+
+            return existe;
+        }
+
+
+
 
             }
 
