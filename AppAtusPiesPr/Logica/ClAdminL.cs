@@ -43,6 +43,12 @@ namespace AppAtusPiesPr.Logica
             return FiltroVendedor.MtdBuscarVendedor(docu, estado);
         }
 
+        public bool MtdValidarCategoria(ClCategoriaE oDatos)
+        {
+            ClAdminD Categoria = new ClAdminD();
+            return Categoria.MtdValidacionCategoria(oDatos);
+        }
+
         public bool MtdRegistrarCategoria(ClCategoriaE oDatos)
         {
             ClAdminD registrar = new ClAdminD();
