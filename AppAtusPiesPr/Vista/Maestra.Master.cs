@@ -43,8 +43,6 @@ namespace AppAtusPiesPr.Vista
                     menuEstadoPedido.Visible = false;
                     menuActualizarProducto.Visible = false;
 
-
-
                 }
                 else if (rol == "Vendedor")
                 {
