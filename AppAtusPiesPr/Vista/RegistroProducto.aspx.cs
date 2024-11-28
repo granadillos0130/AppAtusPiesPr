@@ -23,7 +23,7 @@ namespace AppAtusPiesPr.Vista
             {
                 ClProductoEmpresaE objProduE = new ClProductoEmpresaE();
 
-                objProduE.idVendedor = int.Parse( Session["idVendedor"].ToString());
+                objProduE.idVendedor = int.Parse( Session["idUsuario"].ToString());
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ||
                 string.IsNullOrWhiteSpace(txtReferencia.Text) ||

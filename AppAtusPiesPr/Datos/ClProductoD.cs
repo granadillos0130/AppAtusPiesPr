@@ -17,7 +17,7 @@ namespace AppAtusPiesPr.Datos
 
             try
             {
-                int? idVendedor = HttpContext.Current.Session["idVendedor"] as int?;
+                int? idVendedor = HttpContext.Current.Session["idUsuario"] as int?;
 
                 // Verificar si el idVendedor existe en la sesión
                 if (!idVendedor.HasValue)
