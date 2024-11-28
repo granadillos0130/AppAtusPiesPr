@@ -59,6 +59,7 @@ namespace AppAtusPiesPr.Entidades
         public string nombres { get; set; }
         public string apellidoVendedor { get; set; }
         public string nombreMarca { get; set; }
+        public string NombreVendedor { get; set; }
 
         // Nueva propiedad para las tallas asociadas
         public List<ClTallaE> TallasDisponibles { get; set; }

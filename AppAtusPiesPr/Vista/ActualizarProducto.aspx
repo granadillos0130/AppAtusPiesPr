@@ -21,18 +21,13 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label for="txtProducto" class="form-label">ID Producto</label>
-                        <div class="input-group">
-                            <span class="input-group-text">🆔</span>
-                            <asp:TextBox ID="txtProducto" runat="server" CssClass="form-control"
-                                placeholder="Ingrese ID del producto"></asp:TextBox>
-                            <div class="invalid-feedback">
-                                Por favor ingrese el ID del producto
-                       
-                            </div>
-                        </div>
-                    </div>
+                   
+                    
+     <asp:DropDownList ID="ddlProducto" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProducto_SelectedIndexChanged" CssClass="form-control" class="form-label"> 
+        <asp:ListItem Text="Todas los productos" Value="0" />
+             </asp:DropDownList>
+
+                    <br />
 
                     <div class="mb-3">
                         <label for="txtNombre" class="form-label">Nombre del Producto</label>
@@ -84,7 +79,7 @@
 
                     <div class="mb-3">
                         <label for="txtEstado" class="form-label">Estado</label>
-                        <asp:DropDownList ID="txtEstado" runat="server" CssClass="form-select">
+                        <asp:DropDownList ID="txtEstado" runat="server"  CssClass="form-control" class="form-label">
 
                             <asp:ListItem Value="disponible">Disponible</asp:ListItem>
                             <asp:ListItem Value="no disponible">No Disponible</asp:ListItem>
@@ -93,7 +88,7 @@
 
                     <div class="mb-3">
                         <label for="txtMarca" class="form-label">Marca</label>
-                        <asp:DropDownList ID="txtMarca" runat="server" CssClass="form-select">
+                        <asp:DropDownList ID="txtMarca" runat="server" CssClass="form-control" class="form-label">
                             <asp:ListItem Value="0">Seleccione una Marca</asp:ListItem>
                             <asp:ListItem Value="Nike">Nike</asp:ListItem>
                             <asp:ListItem Value="Adidas">Adidas</asp:ListItem>
@@ -119,7 +114,7 @@
 
                     <div class="mb-3">
      <label for="txtCategoria" class="form-label">Categoría</label>
-     <asp:DropDownList ID="txtCategoria" runat="server" CssClass="form-select">
+     <asp:DropDownList ID="txtCategoria" runat="server"  CssClass="form-control" class="form-label">
          <asp:ListItem Value="">Seleccione un Tipo de calzado</asp:ListItem>
          <asp:ListItem Value="deportivo">Calzado deportivo</asp:ListItem>
          <asp:ListItem Value="casual">Calzado casual</asp:ListItem>
