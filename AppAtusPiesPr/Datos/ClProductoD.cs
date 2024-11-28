@@ -13,24 +13,46 @@ namespace AppAtusPiesPr.Datos
     {
         public ClProductoEmpresaE MtdRegistrarProducto(ClProductoEmpresaE objdata)
         {
-            ClConexion objConexion = new ClConexion();
-            SqlCommand cmd = new SqlCommand("spInsertarProductoEmpresa", objConexion.MtdAbrirConexion());
 
-            cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@nombre", objdata.nombreProducto);
-            cmd.Parameters.AddWithValue("@cantidadStock", Convert.ToInt32(objdata.cantidadStock));
-            cmd.Parameters.AddWithValue("@precio", Convert.ToInt32(objdata.precioVenta));
-            cmd.Parameters.AddWithValue("@descripcionProducto",  objdata.descripcionProducto);
-            cmd.Parameters.AddWithValue("@referencia", objdata.referencia);
-            cmd.Parameters.AddWithValue("@imagen", objdata.imagen ?? (object)DBNull.Value);
-            cmd.Parameters.AddWithValue("@descuento", Convert.ToInt32(objdata.descuento));
-            cmd.Parameters.AddWithValue("@descripcionCategoria", objdata.descripcionCategoria);
-            cmd.Parameters.AddWithValue("@nombreMarca", objdata.nombreMarca);
-            
+            try
+            {
+                int? idVendedor = HttpContext.Current.Session["idUsuario"] as int?;
 
-            cmd.ExecuteNonQuery();
-            objConexion.MtdCerrarConexion();
+                // Verificar si el idVendedor existe en la sesión
+                if (!idVendedor.HasValue)
+                {
+                    // Si no existe el idVendedor, manejar el error o lanzar una excepción
+                    throw new InvalidOperationException("El vendedor no está autenticado.");
+                }
+
+                ClConexion objConexion = new ClConexion();
+                SqlCommand cmd = new SqlCommand("spInsertarProductoEmpresa", objConexion.MtdAbrirConexion());
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@idVendedor", Convert.ToInt32(objdata.idVendedor));
+                cmd.Parameters.AddWithValue("@nombre", objdata.nombreProducto);
+                cmd.Parameters.AddWithValue("@cantidadStock", Convert.ToInt32(objdata.cantidadStock));
+                cmd.Parameters.AddWithValue("@precio", Convert.ToInt32(objdata.precioVenta));
+                cmd.Parameters.AddWithValue("@descripcionProducto", objdata.descripcionProducto);
+                cmd.Parameters.AddWithValue("@referencia", objdata.referencia);
+                cmd.Parameters.AddWithValue("@imagen", objdata.imagen ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@descuento", Convert.ToInt32(objdata.descuento));
+                cmd.Parameters.AddWithValue("@descripcionCategoria", objdata.descripcionCategoria);
+                cmd.Parameters.AddWithValue("@nombreMarca", objdata.nombreMarca);
+
+
+                cmd.ExecuteNonQuery();
+                objConexion.MtdCerrarConexion();
+                
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
             return objdata;
         }
 
@@ -107,6 +129,7 @@ namespace AppAtusPiesPr.Datos
                     cmd.Parameters.AddWithValue("@idProductoEmpresa", idProdctoEmpresa);
 
                     SqlDataReader reader = cmd.ExecuteReader();
+                    var cont = reader.HasRows;
 
                     // Leer información del producto
                     while (reader.Read())
@@ -124,9 +147,11 @@ namespace AppAtusPiesPr.Datos
                                 imagen = reader["imagen"].ToString(),
                                 descuento = Convert.ToInt32(reader["descuento"]),
                                 nombres = reader["nombres"].ToString(),
+                                apellidoVendedor = reader["apellidos"].ToString(),
                                 nombreMarca = reader["nombreMarca"].ToString(),
                                 // Inicializamos la lista de tallas
-                                TallasDisponibles = new List<ClTallaE>()
+                                TallasDisponibles = new List<ClTallaE>(),
+                                idVendedor = Convert.ToInt32(reader["idVendedor"]),
                             };
                         }
                     }
@@ -201,7 +226,7 @@ namespace AppAtusPiesPr.Datos
                 {
                     oProducto.Add(new ClProductoEmpresaE
                     {
-                        idProducto = Convert.ToInt32(reader["idProducto"]),
+                     
                         nombreProducto = reader["nombreProducto"].ToString()
                     });
                 }

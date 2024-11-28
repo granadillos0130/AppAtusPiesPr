@@ -46,7 +46,7 @@ namespace AppAtusPiesPr.Vista
             try
             {
                 // Recuperar el id del vendedor desde la sesión
-                int? idVendedor = Convert.ToInt32(Session["idVendedor"]);
+                int? idVendedor = Convert.ToInt32(Session["idUsuario"]);
                 // Obtener la categoría seleccionada, si es "0" significa "todas"
                 int? idCategoria = ddlCategorias.SelectedValue != "0" ? (int?)Convert.ToInt32(ddlCategorias.SelectedValue) : null;
 

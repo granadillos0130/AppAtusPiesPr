@@ -89,8 +89,9 @@ namespace AppAtusPiesPr.Datos
 
         public ClUsuarioE MtdIngreso(ClUsuarioE objDatos)
         {
-            ClUsuarioE obDatosUsuario = null;
+            ClUsuarioE obDatosUsuario = new ClUsuarioE();
             SqlConnection con = null;
+
             try
             {
                 con = conexion.MtdAbrirConexion();
@@ -104,28 +105,22 @@ namespace AppAtusPiesPr.Datos
                 comando.Parameters.AddWithValue("@password", objDatos.Password);
 
                 // Configurar parámetros de salida
-                SqlParameter rolParameter = new SqlParameter("@rol", SqlDbType.VarChar, 50)
+                SqlParameter rolesParameter = new SqlParameter("@roles", SqlDbType.NVarChar, 255)
                 {
                     Direction = ParameterDirection.Output
                 };
-                comando.Parameters.Add(rolParameter);
+                comando.Parameters.Add(rolesParameter);
 
-                SqlParameter nombresParameter = new SqlParameter("@nombres", SqlDbType.VarChar, 100)
+                SqlParameter nombresParameter = new SqlParameter("@nombres", SqlDbType.NVarChar, 100)
                 {
                     Direction = ParameterDirection.Output
                 };
                 comando.Parameters.Add(nombresParameter);
 
-                SqlParameter apellidosParameter = new SqlParameter("@apellidos", SqlDbType.VarChar, 100)
+                SqlParameter apellidosParameter = new SqlParameter("@apellidos", SqlDbType.NVarChar, 100)
                 {
                     Direction = ParameterDirection.Output
                 };
-                SqlParameter idUsuarioParameter = new SqlParameter("@idUsuario", SqlDbType.Int)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                comando.Parameters.Add(idUsuarioParameter);
-
                 comando.Parameters.Add(apellidosParameter);
 
                 SqlParameter mensajeParameter = new SqlParameter("@mensaje", SqlDbType.VarChar, 255)
@@ -138,25 +133,32 @@ namespace AppAtusPiesPr.Datos
                 comando.ExecuteNonQuery();
 
                 // Procesar los resultados
+                string roles = rolesParameter.Value.ToString();
                 string mensaje = mensajeParameter.Value.ToString();
 
                 if (string.IsNullOrEmpty(mensaje))
                 {
-                    // Crear el objeto usuario si no hay mensaje de error
+                    // El usuario tiene múltiples roles posibles
                     obDatosUsuario = new ClUsuarioE
                     {
                         Documento = objDatos.Documento,
                         Nombres = nombresParameter.Value.ToString(),
                         Apellidos = apellidosParameter.Value.ToString(),
-                        Email = objDatos.Email, // Suponiendo que el email se asigna igual al documento
-                        Password = objDatos.Password,
-                        Rol = rolParameter.Value.ToString(),
-                        IdUsuario = Convert.ToInt32(idUsuarioParameter.Value)
+                        Roles = roles.Split(',')
+                                    .Select(r =>
+                                    {
+                                        var parts = r.Split('-');
+                                        return new ClRolE
+                                        {
+                                            RoleName = parts[0],
+                                            IdUsuario = Convert.ToInt32(parts[1])
+                                        };
+                                    }).ToList()
                     };
                 }
-                else if (mensaje == "Su cuenta aún está en proceso de activación.")
+                else
                 {
-                    // Lanzar una excepción si la cuenta no está activada
+                    // Lanzar una excepción si hay un mensaje de error
                     throw new Exception(mensaje);
                 }
             }
@@ -170,7 +172,6 @@ namespace AppAtusPiesPr.Datos
 
             return obDatosUsuario;
         }
-
         public bool IsEmailExist(string email)
         {
             bool emailExist = false;

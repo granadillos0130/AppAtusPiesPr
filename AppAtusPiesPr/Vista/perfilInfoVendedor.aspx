@@ -66,22 +66,28 @@
     <br />
 
     <!-- Contenedor para las tarjetas -->
-    <div class="cards-container">
-        <!-- Tarjeta 1 -->
+    <div id="cardsContainer" class="cards-container">
         <asp:Repeater ID="Repeater1" runat="server">
             <ItemTemplate>
                 <div class="card">
-                    <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Chaqueta" class="card-image" />
-                    <p class="card-title"><%# Eval("nombreProducto") %></p>
-
+                    <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
+                    <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
+                    <h4 class="card-title"></h4>
                     <div class="card-info">
                         <div class="card-details">
-                            <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
-                            <a href="#" class="save-button">
-                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                            <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
+                                <%# Eval("nombres") %><br>
                             </a>
-                            <center>
-                            </center>
+                            <div class="cardprice">
+                                <p>$<%# Eval("precio") %></p>
+
+                            </div>
+                            <div class="cardButtons">
+                                <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                                <a href="#" class="save-button">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

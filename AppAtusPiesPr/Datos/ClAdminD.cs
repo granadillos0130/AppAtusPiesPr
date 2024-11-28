@@ -244,6 +244,7 @@ namespace AppAtusPiesPr.Datos
             catch (Exception e)
             {
 
+
             }
             return listaVendedor;
         }
@@ -273,6 +274,13 @@ namespace AppAtusPiesPr.Datos
             return existe;
         }
 
+
+
+
+            }
+
+            return listaVendedor;
+        }
 
     }
 }

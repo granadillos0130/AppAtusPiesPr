@@ -2,9 +2,6 @@
 using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
-using AppAtusPiesPr.Entidades;
-using AppAtusPiesPr.Logica;
-
 namespace AppAtusPiesPr.Vista
 {
     public partial class ProductosMasVendidos : System.Web.UI.Page
@@ -56,7 +53,7 @@ namespace AppAtusPiesPr.Vista
         }
         private void cargarProductos(DateTime fechaInicio, DateTime fechaFin)
         {
-            if (Session["idVendedor"] == null)
+            if (Session["idUsuario"] == null)
             {
                 lblMensaje.Text = "No se ha encontrado la información del vendedor en la sesión.";
                 lblMensaje.Visible = true;
@@ -64,13 +61,12 @@ namespace AppAtusPiesPr.Vista
             }
 
             int idVendedor;
-            if (!int.TryParse(Session["idVendedor"].ToString(), out idVendedor))
+            if (!int.TryParse(Session["idUsuario"].ToString(), out idVendedor))
             {
                 lblMensaje.Text = "El ID del vendedor en la sesión no es válido.";
                 lblMensaje.Visible = true;
                 return;
             }
-
 
 
             List<ClProductoE> productos = productoL.MtdObtenerProductosMasVendidosPorVendedor(idVendedor, fechaInicio, fechaFin);
@@ -88,11 +84,5 @@ namespace AppAtusPiesPr.Vista
                 lblMensaje.Visible = true;
             }
         }
-
-
-
-
-
-
     }
 }

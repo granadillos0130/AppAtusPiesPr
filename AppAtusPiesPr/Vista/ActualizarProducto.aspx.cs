@@ -24,7 +24,7 @@ namespace AppAtusPiesPr.Vista
         {
             try
             {
-                int? idVendedor = Convert.ToInt32(Session["idVendedor"]);
+                int? idVendedor = Convert.ToInt32(Session["idUsuario"]);
 
                 ClProductoL productoL = new ClProductoL();
                 List<ClProductoEmpresaE> productosVendedor = productoL.MtdListarProduc(idVendedor);
@@ -61,7 +61,7 @@ namespace AppAtusPiesPr.Vista
         {
             try
             {
-                int? idVendedor = Convert.ToInt32(Session["idVendedor"]);
+                int? idVendedor = Convert.ToInt32(Session["idUsuario"]);
                 int idProducto = Convert.ToInt32(ddlProducto.SelectedValue);
 
                 ClProductoL productoLogica = new ClProductoL();
