@@ -51,29 +51,29 @@ namespace AppAtusPiesPr.Vista
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                // Obtener el valor de "estado" de forma segura
+               
                 var estado = DataBinder.Eval(e.Row.DataItem, "estado");
 
                 if (estado != null)
                 {
-                    // Si "estado" no es null, lo convertimos a string
+                   
                     string estadoStr = estado.ToString().ToLower();
 
-                    // Buscar el botón de inactivación
+                   
                     Button btnInactivar = (Button)e.Row.FindControl("btnInactivar");
 
                     if (estadoStr == "activo")
                     {
-                        btnInactivar.Visible = true;  // Muestra el botón si el estado es 'activo'
+                        btnInactivar.Visible = true; 
                     }
                     else
                     {
-                        btnInactivar.Visible = false;  // Oculta el botón si el estado no es 'activo'
+                        btnInactivar.Visible = false; 
                     }
                 }
                 else
                 {
-                    // Si "estado" es null, ocultar el botón de inactivar (o manejar el caso de otra forma)
+
                     Button btnInactivar = (Button)e.Row.FindControl("btnInactivar");
                     btnInactivar.Visible = false;
                 }
