@@ -69,7 +69,7 @@
   <ItemGroup>
     <Content Include="index.aspx" />
     <Content Include="Vista\ActualizarProducto.aspx" />
-    <Content Include="Vista\AgregarCategoria.aspx" />
+    <Content Include="Vista\AgregarCategorias.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
@@ -1801,12 +1801,12 @@
     <Compile Include="Vista\ActualizarProducto.aspx.designer.cs">
       <DependentUpon>ActualizarProducto.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\AgregarCategoria.aspx.cs">
-      <DependentUpon>AgregarCategoria.aspx</DependentUpon>
+    <Compile Include="Vista\AgregarCategorias.aspx.cs">
+      <DependentUpon>AgregarCategorias.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\AgregarCategoria.aspx.designer.cs">
-      <DependentUpon>AgregarCategoria.aspx</DependentUpon>
+    <Compile Include="Vista\AgregarCategorias.aspx.designer.cs">
+      <DependentUpon>AgregarCategorias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\BlankPage.aspx.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>

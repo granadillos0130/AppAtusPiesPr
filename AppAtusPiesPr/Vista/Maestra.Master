@@ -206,7 +206,7 @@
                 <i class="fas fa-users"></i>
                 Listar Vendedores
             </a>
-            <a class="nav-link" href="AgregarCategoria.aspx" id="menuCategoria" runat="server">
+            <a class="nav-link" href="AgregarCategorias.aspx" id="menuCategoria" runat="server">
                 <i class="fas fa-user-friends"></i>
                 Agregar Categoria
             </a>
