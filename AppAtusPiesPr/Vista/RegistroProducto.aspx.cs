@@ -22,10 +22,13 @@ namespace AppAtusPiesPr.Vista
             try
             {
                 ClProductoEmpresaE objProduE = new ClProductoEmpresaE();
+
+                objProduE.idVendedor = int.Parse( Session["idVendedor"].ToString());
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ||
                 string.IsNullOrWhiteSpace(txtReferencia.Text) ||
                 string.IsNullOrWhiteSpace(txtCategoria.Text) ||
+                 string.IsNullOrWhiteSpace(txtDescuento.Text) ||
                  string.IsNullOrWhiteSpace(txtMarca.Text)) 
 
                 {
@@ -36,6 +39,7 @@ namespace AppAtusPiesPr.Vista
                 objProduE.descripcionProducto = txtDescripcionProduc.Text.Trim();
                 objProduE.referencia = txtReferencia.Text.Trim();
                 objProduE.descripcionCategoria = txtCategoria.Text.Trim();
+                objProduE.descuento = int.Parse( txtDescuento.Text.Trim());
                 objProduE.nombreMarca = txtMarca.Text.Trim();
 
 
@@ -77,7 +81,7 @@ namespace AppAtusPiesPr.Vista
                     MostrarMensajeError("El descuento debe ser un número positivo");
                     return;
                 }
-                objProduE.idVendedor = descuento;
+                objProduE.descuento = descuento;
 
                 if (inRuta.HasFile)
                 {
