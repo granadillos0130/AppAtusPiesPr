@@ -17,6 +17,8 @@ namespace AppAtusPiesPr.Vista
         {
             if (!IsPostBack)
             {
+
+
                 menuConSesion.Visible = false;
                 menuSinSesion.Visible = false;
 
@@ -28,6 +30,7 @@ namespace AppAtusPiesPr.Vista
                     if (!string.IsNullOrEmpty(rol) && rol == "Cliente")
                     {
                         menuConSesion.Visible = true;
+
                     }
                     else
                     {

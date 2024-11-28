@@ -72,7 +72,6 @@ namespace AppAtusPiesPr.Vista
             }
 
 
-
             List<ClProductoE> productos = productoL.MtdObtenerProductosMasVendidosPorVendedor(idVendedor, fechaInicio, fechaFin);
 
             if (productos.Count > 0)
@@ -88,11 +87,5 @@ namespace AppAtusPiesPr.Vista
                 lblMensaje.Visible = true;
             }
         }
-
-
-
-
-
-
     }
 }

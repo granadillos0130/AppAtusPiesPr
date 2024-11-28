@@ -55,17 +55,22 @@
                     <div class="card">
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
-                        <h4 class="card-title">
-                            <a href='<%# "vista/perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
-                                <%# Eval("NombreVendedor") %>
-                            </a>
-                        </h4>
+                        <h4 class="card-title"></h4>
                         <div class="card-info">
                             <div class="card-details">
+                                <a class="cardseller" href='<%# "vista/perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
+                                    <%# Eval("NombreVendedor") %><p> </p><%# Eval("apellidos") %><br>
+                                </a>
+                                <div class="cardprice">
+                                <p>$<%# Eval("precio") %></p>
+
+                                    </div>
+                                <div class="cardButtons">
                                 <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
                                 <a href="#" class="save-button">
                                     <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                                 </a>
+                                    </div>
                             </div>
                         </div>
                     </div>

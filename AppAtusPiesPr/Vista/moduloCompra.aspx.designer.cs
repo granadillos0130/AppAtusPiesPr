@@ -60,6 +60,15 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.Label nombreVendedor;
 
         /// <summary>
+        /// Control apellidoVendedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label apellidoVendedor;
+
+        /// <summary>
         /// Control stockProducto.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,24 @@ namespace AppAtusPiesPr.Vista
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAgregarCarrito;
+
+        /// <summary>
+        /// Control nombreV.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreV;
+
+        /// <summary>
+        /// Control apellidoV.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label apellidoV;
 
         /// <summary>
         /// Control Repeater1.

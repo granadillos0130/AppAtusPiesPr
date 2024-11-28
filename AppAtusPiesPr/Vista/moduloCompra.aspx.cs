@@ -18,22 +18,23 @@ namespace AppAtusPiesPr.Vista
         {
             if (!IsPostBack)
             {
-                cargarProductos();
                 cargarCategorias();
 
-                string productoId = Request.QueryString["id"];
-                if (!string.IsNullOrEmpty(productoId) && int.TryParse(productoId, out int id))
-                {
-                    cargarProducto(id);
 
+                string productoId = Request.QueryString["id"];
+
+                if (!string.IsNullOrEmpty(productoId) && int.TryParse(productoId, out int idProducto))
+                {
+                    cargarProducto(idProducto);  // Cargar el producto
                 }
+
             }
         }
 
         private void cargarProducto(int idProducto)
         {
             ClProductoEmpresaE oProductoE = oLogica.MtdInfoProductos(idProducto);
-
+            int idVendedor = 0;
             if (oProductoE != null)
             {
                 lblTituloProducto.Text = oProductoE.nombreProducto;
@@ -44,9 +45,16 @@ namespace AppAtusPiesPr.Vista
                 referenciaProducto.Text = oProductoE.referencia;
                 descuento.Text = oProductoE.descuento.ToString();
                 nombreVendedor.Text = oProductoE.nombres;
+                apellidoVendedor.Text = oProductoE.apellidoVendedor;
+                nombreV.Text = oProductoE.nombres;
+                apellidoV.Text = oProductoE.apellidoVendedor;
                 PrecioProducto.Text = oProductoE.precioVenta.ToString();
                 marcaProducto.Text = oProductoE.nombreMarca;
                 productoDescripcion.Text = oProductoE.descripcionProducto;
+
+                idVendedor = oProductoE.idVendedor;
+                Console.WriteLine($"ID Vendedor: {idVendedor}");
+               
 
                 if (oProductoE.TallasDisponibles != null && oProductoE.TallasDisponibles.Count > 0)
                 {
@@ -61,20 +69,50 @@ namespace AppAtusPiesPr.Vista
                     ddlTallas.Items.Clear();
                     ddlTallas.Items.Insert(0, new ListItem("No Hay Tallas Disponibles", "0"));
                 }
+
+
             }
             else
             {
                 lblMensaje.InnerText = "No se encontró la información del Producto.";
             }
+            cargarProductos(idVendedor);
         }
 
-        private void cargarProductos()
+        private void cargarProductos(int idVendedor)
         {
-            ClProductoL objProductoL = new ClProductoL();
-            DataTable dt = objProductoL.MtdListarProductos();
-            Repeater1.DataSource = dt;
-            Repeater1.DataBind();
+            try
+            {
+                Console.WriteLine($"ID Vendedor pasado a cargarProductos: {idVendedor}");
+
+                ClProductoL objProductoL = new ClProductoL();
+
+                
+                DataTable dt = objProductoL.MtdListarPorVendedor(idVendedor);
+                int conta = dt.Rows.Count;
+
+                if (dt == null)
+                {
+                    lblMensaje.InnerText = "Error: La consulta no ha devuelto datos.";
+                    return;
+                }
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    Repeater1.DataSource = dt;
+                    Repeater1.DataBind();
+                }
+                else
+                {
+                    lblMensaje.InnerText = "Este vendedor no tiene productos disponibles.";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.InnerText = "Error al mostrar la información: " + ex.Message;
+            }
         }
+
 
         private void cargarCategorias()
         {
