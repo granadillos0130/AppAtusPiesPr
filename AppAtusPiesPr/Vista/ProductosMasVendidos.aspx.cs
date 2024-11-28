@@ -2,9 +2,6 @@
 using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
-using AppAtusPiesPr.Entidades;
-using AppAtusPiesPr.Logica;
-
 namespace AppAtusPiesPr.Vista
 {
     public partial class ProductosMasVendidos : System.Web.UI.Page
