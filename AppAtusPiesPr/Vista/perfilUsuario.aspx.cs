@@ -25,6 +25,24 @@ namespace AppAtusPiesPr.Vista
                 cargarCategorias();
             }
         }
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+        }
+
+
+        private void limpiarCampos()
+        {
+            txtDocumento.Text = "";
+            txtNombres.Text = "";
+            txtApellidos.Text = "";
+            txtEmail.Text = "";
+            txtPass.Text = "";
+            txtTelefono.Text = "";
+            txtDireccion.Text = "";
+        }
         private void cargarCategorias()
         {
             ClProductoL oLogica = new ClProductoL();
@@ -41,12 +59,62 @@ namespace AppAtusPiesPr.Vista
                 nombreCliente.Text = oCliente.Nombres;
                 apellidoCliente.Text = oCliente.Apellidos;
                 emailCliente.Text = oCliente.Email;
-                passCliente.Text = oCliente.Email;
+                passCliente.Text = oCliente.Password;
                 telCliente.Text = oCliente.Telefono;
                 direcCliente.Text = oCliente.Direccion;
                 estadoCliente.Text = oCliente.estado;
             }
 
         }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (Session["idUsuario"] != null)
+            {
+                int idCliente = Convert.ToInt32(Session["idUsuario"]);  // Obtener el idCliente desde la sesión
+
+                ClUsuarioE oUsuario = new ClUsuarioE
+                {
+                    IdUsuario = idCliente,
+                    Documento = txtDocumento.Text,
+                    Nombres = txtNombres.Text,
+                    Apellidos = txtApellidos.Text,
+                    Email = txtEmail.Text,
+                    Password = txtPass.Text,
+                    Telefono = txtTelefono.Text,
+                    Direccion = txtDireccion.Text
+                };
+
+                ClClienteL oLogica = new ClClienteL();
+                ClUsuarioE objData = oLogica.mtdActualizarInfoCliente(oUsuario);
+
+                if (objData != null)
+                {
+                    MostrarMensajeExito("Se actualizó la información con éxito");
+                    limpiarCampos();
+                    Response.Redirect(Request.RawUrl + "?status=success", false);
+                }
+                else
+                {
+                    MostrarMensajeError("Error, no se pudo actualizar la información");
+                    limpiarCampos();
+                    Response.Redirect(Request.RawUrl + "?status=success", false);
+                }
+
+            }
+        }
+
+        private void MostrarMensajeExito(string mensaje)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                $"Swal.fire('¡Éxito!', '{mensaje}', 'success');", true);
+        }
+
+        private void MostrarMensajeError(string mensaje)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                $"Swal.fire('Error', '{mensaje}', 'error');", true);
+        }
+
     }
 }

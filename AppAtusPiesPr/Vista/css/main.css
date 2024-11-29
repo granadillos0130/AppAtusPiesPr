@@ -14,7 +14,6 @@ body {
     font-size: 24px;
     font-weight: bold;
 }
-
 /* Botón de cerrar sesión */
 .btnCerrarSesionIcono {
     width: 20px; /* Tamaño del botón */
@@ -26,8 +25,11 @@ body {
     border: none; /* Elimina el borde del botón */
     padding: 0; /* Elimina el padding para que el ícono quede centrado */
     cursor: pointer;
+    display: inline-block; /* Asegura que se comporte como un bloque en línea */
+    transform: rotate(270deg); /* Gira el ícono 90 grados hacia la derecha */
+    /* Asegúrate de que el contenedor tenga un tamaño adecuado */
+    transform-origin: center; /* Establece el origen de la rotación en el centro del botón */
 }
-
 
 /* Estilos para que el botón se vea igual al texto "Perfil" */
 .btnCerrarSesion {
@@ -44,6 +46,7 @@ body {
     .btnCerrarSesion:hover {
         text-decoration: underline; /* Subrayado opcional al pasar el cursor */
     }
+
 
 
 .header-menu {
@@ -548,3 +551,5 @@ label {
     gap: 10px; /* Espacio entre los botones */
     margin-top: 10px; /* Espaciado con el contenido superior */
 }
+
+
