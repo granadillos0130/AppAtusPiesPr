@@ -175,7 +175,8 @@ namespace AppAtusPiesPr.Datos
                         }
                     }
                 }
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -187,6 +188,91 @@ namespace AppAtusPiesPr.Datos
             return usuario;
         }
 
+        public bool MtdAgregarCategoria(ClCategoriaE oDatos)
+        {
+            bool validacion;
+
+            ClConexion oConexion = new ClConexion();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SpAgregarCategoria", oConexion.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", oDatos.descripcion);
+                    cmd.ExecuteNonQuery();
+
+                    validacion = true;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                validacion = false;
+
+            }
+
+            return validacion;
+        }
+
+        public List<ClUsuarioE> MtdObtenerVendedorEmail()
+        {
+            List<ClUsuarioE> listaVendedor = new List<ClUsuarioE>();
+
+            ClConexion oConexion = new ClConexion();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SpVendedoresEmail", oConexion.MtdAbrirConexion()))
+                {
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ClUsuarioE oU = new ClUsuarioE()
+                            {
+                                Nombres = reader.GetString(reader.GetOrdinal("nombres")),
+                                Apellidos = reader.GetString(reader.GetOrdinal("apellidos")),
+                                Email = reader.GetString(reader.GetOrdinal("email")),
+                            };
+                            listaVendedor.Add(oU);
+                        }
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+
+
+            }
+            return listaVendedor;
+        }
+
+        public bool MtdValidacionCategoria(ClCategoriaE oDatos)
+        {
+            bool existe = false;
+
+            ClConexion oConexion = new ClConexion();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spValidacionCategoria", oConexion.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", oDatos.descripcion);
+                    int count = (int)cmd.ExecuteScalar();
+
+                    existe = count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar la categoría: " + ex.Message);
+            }
+
+            return existe;
+        }
 
     }
 }

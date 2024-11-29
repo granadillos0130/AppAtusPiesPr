@@ -24,7 +24,7 @@
 
         <div class="table-responsive">
 
-    <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-strip">
+    <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-striped mt-3">
         <Columns>
             <asp:BoundField DataField="idProducto" HeaderText="ID Producto" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
