@@ -16,6 +16,10 @@ namespace AppAtusPiesPr.Logica
         {
             return clienteDa.mtdPerfilCliente(idCliente);
         }
+        public ClUsuarioE mtdActualizarInfoCliente(ClUsuarioE dataCliente)
+        {
+            return clienteDa.mtdActualiarInfoCliente(dataCliente);
+        }
         public int RegistrarCliente(ClUsuarioE cliente)
         {
             return clienteDa.MtdRegistrarCliente(cliente);

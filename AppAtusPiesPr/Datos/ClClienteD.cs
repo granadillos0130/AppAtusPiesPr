@@ -52,6 +52,29 @@ namespace AppAtusPiesPr.Datos
 
         }
 
+        public ClUsuarioE mtdActualiarInfoCliente(ClUsuarioE objData)
+        {
+
+                ClConexion conex = new ClConexion();
+                SqlConnection connection = conex.MtdAbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand("spActualizarDatosPerfilCliente", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idCliente", objData.IdUsuario);
+                    cmd.Parameters.AddWithValue("@documento", objData.Documento);
+                    cmd.Parameters.AddWithValue("@nombres", objData.Nombres);
+                    cmd.Parameters.AddWithValue("@apellidos", objData.Apellidos);
+                    cmd.Parameters.AddWithValue("@email", objData.Email);
+                    cmd.Parameters.AddWithValue("@password", objData.Password);
+                    cmd.Parameters.AddWithValue("@telefono", objData.Telefono);
+                    cmd.Parameters.AddWithValue("@direccion", objData.Direccion);
+                    cmd.ExecuteNonQuery();
+                }
+                conex.MtdCerrarConexion();
+                return objData;
+
+        }
         public int MtdRegistrarCliente(ClUsuarioE cliente)
         {
             int idCliente = 0;
