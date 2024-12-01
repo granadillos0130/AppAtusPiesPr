@@ -51,7 +51,7 @@
                             <input type="text" placeholder="Search..." />
                             <i class="fas fa-search"></i>
                         </div>
-                        <a href="vista/carritoCompras.aspx" class="save-button2">
+                        <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                         </a>
 
