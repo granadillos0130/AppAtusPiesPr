@@ -59,18 +59,20 @@
                         <div class="card-info">
                             <div class="card-details">
                                 <a class="cardseller" href='<%# "vista/perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
-                                    <%# Eval("NombreVendedor") %><p> </p><%# Eval("apellidos") %><br>
+                                    <%# Eval("NombreVendedor") %><p></p>
+                                    <%# Eval("apellidos") %><br>
                                 </a>
                                 <div class="cardprice">
-                                <p>$<%# Eval("precio") %></p>
+                                    <p>$<%# Eval("precio") %></p>
 
-                                    </div>
+                                </div>
                                 <div class="cardButtons">
-                                <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
-                                <a href="#" class="save-button">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                                </a>
-                                    </div>
+                                    <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                                    <a class="save-button" data-id='<%# Eval("idProdctoEmpresa") %>'>
+                                        <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                                    </a>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -87,5 +89,5 @@
             <br />
         </div>
     </div>
-
+    <script src="Vista/js/carrito.js"></script>
 </asp:Content>
