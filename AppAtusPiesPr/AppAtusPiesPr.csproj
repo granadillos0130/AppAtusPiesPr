@@ -70,6 +70,7 @@
     <Content Include="index.aspx" />
     <Content Include="Vista\ActualizarProducto.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
+    <Content Include="Vista\carritoCompras.aspx" />
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
     <Content Include="Vista\css\sb-admin-2.min.css" />
@@ -84,6 +85,7 @@
     <Content Include="Vista\img\undraw_profile_2.svg" />
     <Content Include="Vista\img\undraw_profile_3.svg" />
     <Content Include="Vista\img\undraw_rocket.svg" />
+    <Content Include="Vista\js\carrito.js" />
     <Content Include="Vista\js\demo\chart-area-demo.js" />
     <Content Include="Vista\js\demo\chart-bar-demo.js" />
     <Content Include="Vista\js\demo\chart-pie-demo.js" />
@@ -1807,6 +1809,13 @@
     </Compile>
     <Compile Include="Vista\BlankPage.aspx.designer.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\carritoCompras.aspx.cs">
+      <DependentUpon>carritoCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\carritoCompras.aspx.designer.cs">
+      <DependentUpon>carritoCompras.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\EstadoPedido.aspx.cs">
       <DependentUpon>EstadoPedido.aspx</DependentUpon>
