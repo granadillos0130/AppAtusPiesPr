@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
@@ -24,7 +25,7 @@
 
         <div class="table-responsive">
 
-    <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-striped mt-3">
+    <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-striped mt-3"  OnRowCommand="gvProductos_RowCommand">
         <Columns>
             <asp:BoundField DataField="idProducto" HeaderText="ID Producto" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -34,6 +35,16 @@
             <asp:BoundField DataField="Categoria" HeaderText="Categoría" />
             <asp:BoundField DataField="Marca" HeaderText="Marca" />
             <asp:BoundField DataField="NombreVendedor" HeaderText="Vendedor" />
+
+             <asp:TemplateField HeaderText="Eliminar Producto">
+                <ItemTemplate>
+                    <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" 
+                        CommandName="EliminarProducto" 
+                        CommandArgument='<%# Eval("idProducto") %>' 
+                        CssClass="btn btn-danger btn-sm" 
+                        OnClientClick="return confirm('¿Está seguro de eliminar este producto?');" />
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
             
