@@ -50,6 +50,7 @@
 
         <!-- Contenedor para las tarjetas -->
         <div id="cardsContainer" class="cards-container">
+
             <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
                     <div class="card">
