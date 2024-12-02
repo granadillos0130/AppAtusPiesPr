@@ -274,5 +274,25 @@ namespace AppAtusPiesPr.Datos
             return existe;
         }
 
+        public bool MtdDenegarSolicitud(int idVendedor) {
+
+            ClConexion oConexion = new ClConexion();
+
+            using (SqlConnection conn = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDenegarSolicitud",conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("idVendedor", idVendedor);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    return filasAfectadas > 0;
+                }
+            }
+        
+        }
+        
+
+
     }
 }
