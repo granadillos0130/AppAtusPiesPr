@@ -2,6 +2,7 @@
 using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
+using System.Web.UI;
 namespace AppAtusPiesPr.Vista
 {
     public partial class ProductosMasVendidos : System.Web.UI.Page
@@ -17,6 +18,17 @@ namespace AppAtusPiesPr.Vista
             }
         }
 
+        private void MostrarAlerta(string icon, string title, string text)
+        {
+            string script = $@"Swal.fire({{
+    icon: '{icon}',
+    title: '{title}',
+    text: '{text}',
+    confirmButtonColor: '#3085d6'
+}});";
+            ScriptManager.RegisterStartupScript(this, GetType(), title.Replace(" ", ""), script, true);
+        }
+
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -27,8 +39,7 @@ namespace AppAtusPiesPr.Vista
 
                 if (string.IsNullOrEmpty(fechaInicioStr) || string.IsNullOrEmpty(fechaFinStr))
                 {
-                    lblMensaje.Text = "Por favor selecciona las fechas de inicio y fin.";
-                    lblMensaje.Visible = true;
+                    MostrarAlerta("warning", "Fechas incompletas", "Por favor selecciona las fechas de inicio y fin.");
                     return;
                 }
 
@@ -37,52 +48,64 @@ namespace AppAtusPiesPr.Vista
 
                 if (fechaInicio > fechaFin)
                 {
-                    lblMensaje.Text = "La fecha de inicio no puede ser mayor que la fecha de fin.";
-                    lblMensaje.Visible = true;
+                    MostrarAlerta("error", "Fechas inválidas", "La fecha de inicio no puede ser mayor que la fecha de fin.");
                     return;
                 }
 
                 cargarProductos(fechaInicio, fechaFin);
-                lblMensaje.Visible = false;
             }
             catch (Exception ex)
             {
-                lblMensaje.Text = "Error: " + ex.Message;
-                lblMensaje.Visible = true;
+                MostrarAlerta("error", "Error inesperado", "Ocurrió un error al procesar la solicitud. Detalles: " + ex.Message);
             }
         }
+
         private void cargarProductos(DateTime fechaInicio, DateTime fechaFin)
+{
+    if (Session["idUsuario"] == null)
+    {
+        MostrarAlerta("error", "Sesión no válida", "No se encontró la información del vendedor en la sesión. Por favor, inicia sesión nuevamente.");
+        return;
+    }
+
+    int idVendedor;
+    if (!int.TryParse(Session["idUsuario"].ToString(), out idVendedor))
+    {
+        MostrarAlerta("error", "ID de Vendedor inválido", "El ID del vendedor en la sesión no es válido.");
+        return;
+    }
+
+    try
+    {
+        List<ClProductoEmpresaE> productos = productoL.MtdObtenerProductosMasVendidosPorVendedor(idVendedor, fechaInicio, fechaFin);
+
+        // Asignar imagen predeterminada si no existe una imagen
+        foreach (var producto in productos)
         {
-            if (Session["idUsuario"] == null)
+            if (string.IsNullOrEmpty(producto.imagen))
             {
-                lblMensaje.Text = "No se ha encontrado la información del vendedor en la sesión.";
-                lblMensaje.Visible = true;
-                return;
-            }
-
-            int idVendedor;
-            if (!int.TryParse(Session["idUsuario"].ToString(), out idVendedor))
-            {
-                lblMensaje.Text = "El ID del vendedor en la sesión no es válido.";
-                lblMensaje.Visible = true;
-                return;
-            }
-
-
-            List<ClProductoE> productos = productoL.MtdObtenerProductosMasVendidosPorVendedor(idVendedor, fechaInicio, fechaFin);
-
-            if (productos.Count > 0)
-            {
-                gvProductos.DataSource = productos;
-                gvProductos.DataBind();
-            }
-            else
-            {
-                gvProductos.DataSource = null;
-                gvProductos.DataBind();
-                lblMensaje.Text = "No se encontraron productos para el rango de fechas especificado.";
-                lblMensaje.Visible = true;
+                producto.imagen = "~/Images/no-image-found.png"; // Ruta de la imagen predeterminada
             }
         }
+
+        if (productos.Count > 0)
+        {
+            gvProductos.DataSource = productos;
+            gvProductos.DataBind();
+            MostrarAlerta("success", "Productos cargados", "No se encontraron registro de ventas.");
+        }
+        else
+        {
+            gvProductos.DataSource = null;
+            gvProductos.DataBind();
+            MostrarAlerta("info", "Sin resultados", "No se  encontraron registro de ventas.");
+        }
+    }
+    catch (Exception ex)
+    {
+        MostrarAlerta("error", "Error al cargar productos", "Ocurrió un error al intentar cargar los productos. Detalles: " + ex.Message);
+    }
+}
+
     }
 }

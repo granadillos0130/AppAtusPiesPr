@@ -42,9 +42,9 @@ namespace AppAtusPiesPr.Datos
             return idVendedor;
         }
         // Método para listar los productos mas vendidos  según el vendedor que inicie sesión 
-        public List<ClProductoE> MtdObtenerProductosMasVendidosPorVendedor(int idVendedor, DateTime fechaInicio, DateTime fechaFin)
+        public List<ClProductoEmpresaE> MtdObtenerProductosMasVendidosPorVendedor(int idVendedor, DateTime fechaInicio, DateTime fechaFin)
         {
-            List<ClProductoE> productos = new List<ClProductoE>();
+            List<ClProductoEmpresaE> productos = new List<ClProductoEmpresaE>();
             ClConexion conexion = new ClConexion();
 
             try
@@ -62,14 +62,14 @@ namespace AppAtusPiesPr.Datos
                         {
                             while (reader.Read())
                             {
-                                ClProductoE producto = new ClProductoE
+                                ClProductoEmpresaE producto = new ClProductoEmpresaE
                                 {
-                                    idProducto = reader["IdProducto"] != DBNull.Value ? Convert.ToInt32(reader["IdProducto"]) : 0,
-                                    Nombre = reader["NombreProducto"]?.ToString() ?? string.Empty,
-                                    Descripcion = reader["DescripcionProducto"]?.ToString() ?? string.Empty,
+                                    idProdctoEmpresa = reader["IdProducto"] != DBNull.Value ? Convert.ToInt32(reader["IdProducto"]) : 0,
+                                    nombreProducto = reader["NombreProducto"]?.ToString() ?? string.Empty,
+                                    imagen = reader["imagen"]?.ToString() ?? string.Empty,
                                     CantidadVendida = reader["CantidadVendida"] != DBNull.Value ? Convert.ToInt32(reader["CantidadVendida"]) : 0,
-                                    TotalVentas = reader["TotalVentas"] != DBNull.Value ? Convert.ToDecimal(reader["TotalVentas"]) : 0,
-                                    Marca = reader["Marca"]?.ToString() ?? string.Empty
+                                    totalVentas = reader["TotalVentas"] != DBNull.Value ? Convert.ToDecimal(reader["TotalVentas"]) : 0,
+                                    marca = reader["Marca"]?.ToString() ?? string.Empty
                                 };
 
                                 if (producto.CantidadVendida > 0)
