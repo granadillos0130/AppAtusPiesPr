@@ -1,6 +1,16 @@
 ﻿<%@ Page Title="Solicitudes" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="Peticiones.aspx.cs" Inherits="AppAtusPiesPr.Vista.Peticiones" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Añadir CSS directamente en el archivo -->
+    <style>
+        .table th {
+            background-color: #007bff;
+            color: white;
+        }
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
