@@ -71,5 +71,34 @@ namespace AppAtusPiesPr.Vista
             // Recargar los productos cuando se cambia de categoría
             CargarProductos();
         }
+
+        protected void gvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EliminarProducto")
+            {
+                try
+                {
+                    // Obtener el ID del producto desde el CommandArgument del botón
+                    int idProducto = Convert.ToInt32(e.CommandArgument);
+
+                    // Instanciar la capa lógica de productos
+                    ClProductoL productoLogica = new ClProductoL();
+
+                    // Llamar al método para eliminar el producto
+                    ClProductoEmpresaE productoEliminado = productoLogica.MtdEliminarProducto(idProducto);
+
+                    // Volver a cargar los productos para reflejar el cambio
+                    CargarProductos();
+
+                    // Mostrar mensaje de éxito
+                    Response.Write("<script>alert('Producto eliminado con éxito');</script>");
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de errores
+                    Response.Write($"<script>alert('Error al eliminar el producto: {ex.Message}');</script>");
+                }
+            }
+        }
     }
 }

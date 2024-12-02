@@ -57,6 +57,29 @@ namespace AppAtusPiesPr.Datos
         }
 
 
+        public ClProductoEmpresaE MtdEliminarProducto(int id)
+        {
+            try
+            {
+                ClConexion objCone = new ClConexion();
+                SqlCommand cmd = new SqlCommand("Sp_EliminarProductos", objCone.MtdAbrirConexion());
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idProductoEmpresa", id);
+                cmd.ExecuteNonQuery();
+                objCone.MtdCerrarConexion();
+
+                ClProductoEmpresaE objPro = new ClProductoEmpresaE();
+
+                return objPro;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
 
         public ClProductoEmpresaE mtdActualizarProducto(ClProductoEmpresaE objData)
         {
