@@ -80,23 +80,18 @@ namespace AppAtusPiesPr.Vista
                 {
                     // Obtener el ID del producto desde el CommandArgument del botón
                     int idProducto = Convert.ToInt32(e.CommandArgument);
-
-                    // Instanciar la capa lógica de productos
                     ClProductoL productoLogica = new ClProductoL();
-
-                    // Llamar al método para eliminar el producto
                     ClProductoEmpresaE productoEliminado = productoLogica.MtdEliminarProducto(idProducto);
-
-                    // Volver a cargar los productos para reflejar el cambio
                     CargarProductos();
 
-                    // Mostrar mensaje de éxito
-                    Response.Write("<script>alert('Producto eliminado con éxito');</script>");
+
+                    string script = "Swal.fire('¡Éxito!', 'Producto eliminado con éxito', 'success');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "SweetAlertSuccess", script, true);
                 }
                 catch (Exception ex)
                 {
-                    // Manejo de errores
-                    Response.Write($"<script>alert('Error al eliminar el producto: {ex.Message}');</script>");
+                    string script = $"Swal.fire('¡Error!', 'Error al eliminar el producto: {ex.Message}', 'error');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "SweetAlertError", script, true);
                 }
             }
         }
