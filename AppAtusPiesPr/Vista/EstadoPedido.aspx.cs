@@ -24,11 +24,11 @@ namespace AppAtusPiesPr.Vista
 
         private void CargarPedidos(string estado)
         {
-            if (HttpContext.Current.Session["idVendedor"] != null)
+            if (HttpContext.Current.Session["idUsuario"] != null)
             {
                 try
                 {
-                    int idVendedor = Convert.ToInt32(HttpContext.Current.Session["idVendedor"]);
+                    int idVendedor = Convert.ToInt32(HttpContext.Current.Session["idUsuario"]);
                     ClAdminL adminL = new ClAdminL();
                     DataTable pedidos = adminL.MtdListarPedido(idVendedor, estado);
 
