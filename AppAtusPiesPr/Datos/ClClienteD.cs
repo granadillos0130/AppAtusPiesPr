@@ -74,19 +74,15 @@ namespace AppAtusPiesPr.Datos
                     cmd.ExecuteNonQuery();
                 }
                 conex.MtdCerrarConexion();
-                return objData;
+            enviarNotificacion(objData);
 
+            return objData;
         }
         private void enviarNotificacion(ClUsuarioE objData)
         {
             try
             {
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com")
-                {
-                    Port = 587,
-                    Credentials = new NetworkCredential("pratuspies@gmail.com", "zlre rota ykjk qkbq"),
-                    EnableSsl = true,
-                };
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
 
                 MailMessage mensaje = new MailMessage();
                 mensaje.From = new MailAddress("pratuspies@gmail.com"); // Dirección del remitente
@@ -165,7 +161,7 @@ namespace AppAtusPiesPr.Datos
                     <div class='email-container'>
                         <!-- Header -->
                         <div class='email-header'>
-                            <h1>¡Tu cuenta ha sido desactivada!</h1>
+                            <h1>¡Tus Datos Han Sido Modificados!</h1>
                         </div>
 
 
