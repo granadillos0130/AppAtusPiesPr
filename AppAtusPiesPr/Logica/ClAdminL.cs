@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using static AppAtusPiesPr.Entidades.ClUsuarioE;
 
 namespace AppAtusPiesPr.Logica
 {
@@ -48,6 +49,12 @@ namespace AppAtusPiesPr.Logica
         {
             ClAdminD Categoria = new ClAdminD();
             return Categoria.MtdValidacionCategoria(oDatos);
+        }
+
+        public List<ClEstadisticaVendedorE> MtdEstadistica(string documento,string año,string mes)
+        {
+            ClAdminD EstadisticaD = new ClAdminD();
+            return EstadisticaD.MtdBuscarEstadisticasPorVendedor(documento,año,mes); 
         }
 
         public bool MtdRegistrarCategoria(ClCategoriaE oDatos)

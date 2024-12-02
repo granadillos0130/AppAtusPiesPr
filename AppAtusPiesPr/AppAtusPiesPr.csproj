@@ -75,6 +75,7 @@
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
     <Content Include="Vista\css\sb-admin-2.min.css" />
+    <Content Include="Vista\EstadisticaVendedor.aspx" />
     <Content Include="Vista\EstadoPedido.aspx" />
     <Content Include="Vista\imagenes\Jordan1RetroLowOGSPTravisScott.jpg" />
     <Content Include="Vista\imagenes\JumpmanJackdeJORDANxTravisScott.png" />
@@ -1825,6 +1826,13 @@
     </Compile>
     <Compile Include="Vista\carritoCompras.aspx.designer.cs">
       <DependentUpon>carritoCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EstadisticaVendedor.aspx.cs">
+      <DependentUpon>EstadisticaVendedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\EstadisticaVendedor.aspx.designer.cs">
+      <DependentUpon>EstadisticaVendedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\EstadoPedido.aspx.cs">
       <DependentUpon>EstadoPedido.aspx</DependentUpon>
