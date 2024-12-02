@@ -104,7 +104,7 @@ function vaciarCarrito() {
 
 // Evento para agregar productos al carrito
 document.addEventListener('DOMContentLoaded', () => {
-    let botonesGuardar = document.querySelectorAll('.save-button');
+    let botonesGuardar = document.querySelectorAll('.save-button, .btn-agregar-carrito');
     botonesGuardar.forEach(boton => {
         boton.addEventListener('click', (e) => {
             e.preventDefault();
