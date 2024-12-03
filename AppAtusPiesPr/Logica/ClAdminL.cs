@@ -85,7 +85,7 @@ namespace AppAtusPiesPr.Logica
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("La solicitud fue aceptada, pero ocurrió un error al enviar el correo: " + ex.Message);
+                    throw new Exception("La Categoria fue registrada, pero ocurrió un error al enviar el correo: " + ex.Message);
                 }
             }
 
@@ -125,14 +125,14 @@ namespace AppAtusPiesPr.Logica
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("La solicitud fue aceptada, pero ocurrió un error al enviar el correo: " + ex.Message);
+                    throw new Exception("La solicitud fue Rechazada, pero ocurrió un error al enviar el correo: " + ex.Message);
                 }
             }
 
             return exito;
         }
 
-        public bool MtdInactivarVendedor(int idVendedor, string email)
+        public bool MtdInactivarVendedor(int idVendedor, string email,string nombreVendedor,string apellidoVendedor)
         {
             ClAdminD Inactivar = new ClAdminD();
             bool exito = Inactivar.MtdInactivarVendedor(idVendedor);
@@ -141,7 +141,7 @@ namespace AppAtusPiesPr.Logica
             {
                 try
                 {
-                    EnviarCorreoInactivar(email);
+                    EnviarCorreoInactivar(email,nombreVendedor,apellidoVendedor);
                 }
                 catch (Exception ex)
                 {
@@ -284,7 +284,7 @@ namespace AppAtusPiesPr.Logica
         }
 
         //ENVIAR CORREO DE INACTIVAR
-        private void EnviarCorreoInactivar(string email)
+        private void EnviarCorreoInactivar(string email,string nombreVendedor,string apellidoVendedor)
         {
             try
             {
@@ -368,17 +368,15 @@ namespace AppAtusPiesPr.Logica
                             <h1>¡Tu cuenta ha sido desactivada!</h1>
                         </div>
 
-
                         <!-- Body -->
                         <div class='email-body'>
-                            <p>Hola,</p>
+                            <p>Hola {nombreVendedor} {apellidoVendedor},</p>
                             <p>Lamentablemente, tu cuenta en <strong>A Tus Pies</strong> ha sido desactivada.</p>
                             <p>Si crees que esto ha ocurrido por error o deseas más información sobre la desactivación de tu cuenta, por favor no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte.</p>
                             <p>Si deseas reactivar tu cuenta, por favor visita el siguiente enlace:</p>
                             <p><a href='https://www.atuspies.com/soporte' class='email-button'>Contacta con soporte</a></p>
                             <p>Te agradecemos por ser parte de nuestra comunidad y esperamos poder ayudarte a resolver cualquier inconveniente.</p>
                         </div>
-
 
                         <!-- Footer -->
                         <div class='email-footer'>
@@ -387,7 +385,7 @@ namespace AppAtusPiesPr.Logica
                     </div>
                 </body>
                 </html>
-                ";
+                       ";
                 mensaje.IsBodyHtml = true; // Importante para soportar HTML en el mensaje.
 
 
@@ -419,13 +417,13 @@ namespace AppAtusPiesPr.Logica
                 MailMessage mensaje = new MailMessage();
                 mensaje.From = new MailAddress("pratuspies@gmail.com"); // Dirección del remitente
                 mensaje.To.Add(email); // Dirección del destinatario
-                mensaje.Subject = "Solicitud Rechazada en ATusPies: "; // Asunto personalizado
+                mensaje.Subject = "Nueva Categoria de Zapatos!!!!: "; // Asunto personalizado
                 mensaje.Body = $@"<!DOCTYPE html>
                 <html lang='es'>
                 <head>
                     <meta charset='UTF-8'>
                     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                    <title>Notificación de rechazo de solicitud</title>
+                    <title>Notificación de Nueva Categoría</title>
                     <style>
                         body {{
                             font-family: Arial, sans-serif;
@@ -444,7 +442,7 @@ namespace AppAtusPiesPr.Logica
                             border: 1px solid #dddddd;
                         }}
                         .email-header {{
-                            background-color: #e74c3c; /* Rojo */
+                            background-color: #3498db; /* Azul */
                             padding: 20px;
                             text-align: center;
                             color: #ffffff;
@@ -462,7 +460,7 @@ namespace AppAtusPiesPr.Logica
                             margin: 10px 0;
                         }}
                         .email-body strong {{
-                            color: #e74c3c; /* Rojo */
+                            color: #3498db; /* Azul */
                         }}
                         .email-footer {{
                             text-align: center;
@@ -476,7 +474,7 @@ namespace AppAtusPiesPr.Logica
                             display: inline-block;
                             margin: 20px 0;
                             padding: 10px 20px;
-                            background-color: #e74c3c; /* Rojo */
+                            background-color: #3498db; /* Azul */
                             color: #ffffff;
                             text-decoration: none;
                             font-size: 16px;
@@ -485,7 +483,7 @@ namespace AppAtusPiesPr.Logica
                             transition: background-color 0.3s ease;
                         }}
                         .email-button:hover {{
-                            background-color: #c0392b; /* Rojo oscuro al hacer hover */
+                            background-color: #2980b9; /* Azul oscuro al hacer hover */
                         }}
                     </style>
                 </head>
@@ -493,16 +491,16 @@ namespace AppAtusPiesPr.Logica
                     <div class='email-container'>
                         <!-- Header -->
                         <div class='email-header'>
-                            <h1>Solicitud de Vendedor Rechazada</h1>
+                            <h1>¡Nueva Categoría Disponible!</h1>
                         </div>
 
                         <!-- Body -->
                         <div class='email-body'>
                             <p>Hola {nombreVendedor} {apellidoVendedor},</p>
-                            <p>Lamentablemente, tu solicitud para ser parte de nuestro equipo de vendedores en <strong>A Tus Pies</strong> ha sido rechazada en esta ocasión.</p>
-                            <p>Sin embargo, te animamos a mejorar algunos aspectos y volver a intentarlo en el futuro. Estamos siempre en busca de vendedores con pasión y dedicación, y creemos que puedes lograrlo.</p>
-                            <p>Si necesitas algún consejo o más detalles sobre cómo puedes mejorar tu solicitud, no dudes en ponerte en contacto con nosotros.</p>
-                            <p>Gracias por tu interés y esfuerzo. ¡Esperamos verte nuevamente en el futuro!</p>
+                            <p>Nos complace informarte que se ha abierto una nueva categoría en <strong>A Tus Pies</strong>: <strong>{nombreCategoria}</strong>!</p>
+                            <p>Te invitamos a explorar esta nueva categoría y, si estás interesado, a unirte para ofrecer tus productos en ella. Sabemos que tu experiencia y dedicación serán un aporte valioso para nuestra comunidad.</p>
+                            <p>Si tienes alguna pregunta o necesitas más detalles sobre cómo unirte a esta categoría, no dudes en ponerte en contacto con nosotros.</p>
+                            <p>¡Esperamos contar contigo en esta nueva aventura!</p>
                         </div>
 
                         <!-- Footer -->
@@ -512,7 +510,6 @@ namespace AppAtusPiesPr.Logica
                     </div>
                 </body>
                 </html>
-
                 ";
                 mensaje.IsBodyHtml = true; // Importante para soportar HTML en el mensaje.
 
@@ -542,7 +539,8 @@ namespace AppAtusPiesPr.Logica
                 MailMessage mensaje = new MailMessage();
                 mensaje.From = new MailAddress("pratuspies@gmail.com"); // Dirección del remitente
                 mensaje.To.Add(email); // Dirección del destinatario
-                mensaje.Subject = "Nueva categoría registrada: " ; // Asunto personalizado
+                mensaje.Subject = "Solicitud Rechazada: " ; // Asunto personalizado
+                mensaje.Body = "Solicitud Rechazada en ATusPies: "; // Asunto personalizado
                 mensaje.Body = $@"<!DOCTYPE html>
                 <html lang='es'>
                 <head>
@@ -635,7 +633,8 @@ namespace AppAtusPiesPr.Logica
                     </div>
                 </body>
                 </html>
-                ";
+
+                "; ;
                 mensaje.IsBodyHtml = true; // Importante para soportar HTML en el mensaje.
 
                 // Configuración del servidor SMTP
