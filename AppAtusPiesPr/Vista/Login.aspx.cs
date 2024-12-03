@@ -194,6 +194,7 @@ namespace AppAtusPiesPr.Vista
 
                 default:
                     lblMensaje.Text = "Rol no reconocido.";
+                    MostrarAlerta("error","Rol no encontrado","El rol seleccionado no existe.");
                     break;
             }
         }
@@ -201,7 +202,6 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
         {
-            // Validación del formulario
             if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text) ||
                 string.IsNullOrWhiteSpace(txtNombreVend.Text) ||
                 string.IsNullOrWhiteSpace(txtApellidoVend.Text) ||
@@ -231,7 +231,6 @@ namespace AppAtusPiesPr.Vista
             if (idVendedor > 0)
             {
                 lblMensaje.Text = "Registro de vendedor exitoso. El estado es 'PROCESO'.";
-                // Limpiar los campos del formulario
                 LimpiarCamposVendedor();
             }
             else
@@ -420,14 +419,14 @@ namespace AppAtusPiesPr.Vista
 
             try
             {
-                // Intenta enviar el correo
+                
                 client.Send(message);
             }
             catch (Exception ex)
             {
-                // Manejo de errores en caso de fallo en el envío del correo
-                lblMensaje.Text = "Error al enviar el correo: " + ex.Message;
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
+               
+
+                MostrarAlerta("Error", "Error al enviar el correo.","Ocurrió un error al enviar el correo. Por favor, intenta nuevamente.");
             }
         }
 
