@@ -80,7 +80,12 @@ namespace AppAtusPiesPr.Vista
             }
 
             // Redirigir al usuario a la página de inicio o de login
-            Response.Redirect("Login.aspx");
+            Response.Redirect("../index.aspx");
+        }
+
+        protected void btnEditarPerfil_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("EditarPerfilVendeyAdmin.aspx");
         }
     }
 }

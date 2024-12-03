@@ -75,6 +75,7 @@
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
     <Content Include="Vista\css\sb-admin-2.min.css" />
+    <Content Include="Vista\EditarPerfilVendeyAdmin.aspx" />
     <Content Include="Vista\EstadisticaVendedor.aspx" />
     <Content Include="Vista\EstadoPedido.aspx" />
     <Content Include="Vista\imagenes\Jordan1RetroLowOGSPTravisScott.jpg" />
@@ -1783,6 +1784,7 @@
     <Compile Include="Datos\ClClienteD.cs" />
     <Compile Include="Datos\ClConexion.cs" />
     <Compile Include="Datos\ClProductoD.cs" />
+    <Compile Include="Datos\ClUsuarioD.cs" />
     <Compile Include="Datos\ClVendedorD.cs" />
     <Compile Include="Entidades\ClProductoE.cs" />
     <Compile Include="Entidades\ClRolE.cs" />
@@ -1797,6 +1799,7 @@
     <Compile Include="Logica\ClAdminL.cs" />
     <Compile Include="Logica\ClClienteL.cs" />
     <Compile Include="Logica\ClProductoL.cs" />
+    <Compile Include="Logica\ClUsuarioL.cs" />
     <Compile Include="Logica\ClVendedorL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vista\ActualizarProducto.aspx.cs">
@@ -1826,6 +1829,13 @@
     </Compile>
     <Compile Include="Vista\carritoCompras.aspx.designer.cs">
       <DependentUpon>carritoCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EditarPerfilVendeyAdmin.aspx.cs">
+      <DependentUpon>EditarPerfilVendeyAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\EditarPerfilVendeyAdmin.aspx.designer.cs">
+      <DependentUpon>EditarPerfilVendeyAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\EstadisticaVendedor.aspx.cs">
       <DependentUpon>EstadisticaVendedor.aspx</DependentUpon>

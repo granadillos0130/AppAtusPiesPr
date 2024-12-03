@@ -171,10 +171,10 @@
                     <img src="https://via.placeholder.com/60" alt="User Image" class="user-img ml-2">
                 </div>
                 <div class="dropdown-menu shadow animated--grow-in">
-                    <a class="dropdown-item" href="EditarPerfil.aspx">
-                        <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Editar Perfil
-                    </a>
+                     <asp:LinkButton ID="btnEditarPerfil" runat="server" OnClick="btnEditarPerfil_Click" CssClass="dropdown-item">
+     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+     Perfil
+ </asp:LinkButton>
                     <asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="dropdown-item">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Cerrar Sesion
