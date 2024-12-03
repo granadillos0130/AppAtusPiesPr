@@ -20,7 +20,35 @@ namespace AppAtusPiesPr.Vista
         {
 
         }
+        private void MostrarAlerta(string icon, string title, string text)
+        {
+            string script = $@"Swal.fire({{
+    icon: '{icon}',
+    title: '{title}',
+    text: '{text}',
+    confirmButtonColor: '#3085d6'
+}});";
+            ScriptManager.RegisterStartupScript(this, GetType(), title.Replace(" ", ""), script, true);
+        }
 
+        private void MostrarMensajeDeError(TextBox textBox, string mensaje)
+        {
+            string script = $@"
+    var input = document.getElementById('{textBox.ClientID}');
+    input.setAttribute('placeholder', '{mensaje}');
+    input.classList.add('is-invalid');
+    
+    // Eliminar mensaje de error y cambiar borde al comenzar a escribir
+    input.addEventListener('input', function() {{
+        if (input.value !== '') {{
+            input.classList.remove('is-invalid');
+            input.style.borderColor = ''; // Restablecer el color del borde
+            input.removeAttribute('placeholder');
+        }}
+    }});
+";
+            ScriptManager.RegisterStartupScript(this, GetType(), $"{textBox.ID}Error", script, true);
+        }
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             // Validación del formulario
@@ -227,29 +255,33 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnEnviarRecuperar_Click(object sender, EventArgs e)
         {
-          
             string userEmail = txtEmailRecuperar.Text.Trim();
-          
+
+            if (string.IsNullOrWhiteSpace(userEmail))
+            {
+                MostrarAlerta("warning", "Campo vacío", "Por favor, ingresa tu correo electrónico.");
+                return;
+            }
+
             if (clientoLo.IsEmailExist(userEmail))
             {
-               
                 string temporaryPassword = GenerarTemporalPassword();
-               
+
                 clientoLo.SaveTemporaryPassword(userEmail, temporaryPassword);
-               
+
                 EnviarTemporalPasswordEmail(userEmail, temporaryPassword);
-               
-                lblMensaje.Text = "Se ha enviado un correo con la contraseña temporal.";
-                lblMensaje.ForeColor = System.Drawing.Color.Green;
+
+                MostrarAlerta("success", "¡Éxito!", "Tu contraseña temporal ha sido enviada. Verifica tu correo electrónico.");
             }
             else
             {
-           
-                lblMensaje.Text = "Correo electrónico no encontrado.";
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                txtEmailRecuperar.Text = string.Empty;
+                MostrarAlerta("error", "Correo no encontrado", "El correo ingresado no coincide con nuestros registros. Intenta nuevamente.");
             }
 
+
         }
+
 
         private string GenerarTemporalPassword()
         {
