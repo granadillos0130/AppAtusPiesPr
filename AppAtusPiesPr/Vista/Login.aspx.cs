@@ -101,9 +101,15 @@ namespace AppAtusPiesPr.Vista
             txtDireccion.Text = "";
         }
 
+
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            // Crear una instancia del modelo de usuario con los datos ingresados
+            if (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtContrasena.Text))
+            {
+                MostrarAlerta("warning", "Campos vacíos", "Por favor, complete todos los campos.");
+                return;
+            }
+
             ClUsuarioE obUsuarioEn = new ClUsuarioE
             {
                 Documento = txtEmail.Text,
@@ -112,50 +118,42 @@ namespace AppAtusPiesPr.Vista
 
             try
             {
-                // Llamar al método de autenticación
                 ClUsuarioE oUser = clientoLo.MtdIngreso(obUsuarioEn);
 
-                // Verificar si el usuario existe
                 if (oUser != null)
                 {
-                    // Verificar si hay múltiples roles
                     if (oUser.Roles.Count > 1)
                     {
-                        // Guardar la lista de roles en el ViewState
                         ViewState["Roles"] = oUser.Roles;
                         ViewState["Usuario"] = oUser;
 
-                        // Configurar el DropDownList con los roles
                         ddlRoles.DataSource = oUser.Roles.Select(r => r.RoleName).ToList();
                         ddlRoles.DataBind();
 
-                        // Mostrar el modal para seleccionar el rol
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowModal", "$('#myModal').modal('show');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#myModal').modal('show');", true);
                     }
                     else if (oUser.Roles.Count == 1)
                     {
-                        // Configurar variables de sesión
                         var role = oUser.Roles[0];
-                        Session["email"] = oUser.Documento; // Suponiendo que el email es igual al documento
-                        Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
+                        Session["email"] = oUser.Documento;
+                        Session["usuario"] = $"{oUser.Nombres} {oUser.Apellidos}";
                         Session["rol"] = role.RoleName;
                         Session["idUsuario"] = role.IdUsuario;
 
-                        // Redirigir según el rol del usuario
                         RedirigirSegunRol(role.RoleName);
                     }
                 }
                 else
                 {
-                    // Mostrar mensaje de error si las credenciales no son válidas
-                    lblMensaje.Text = "Credenciales incorrectas.";
+                    MostrarAlerta("error", "Error de autenticación", "Credenciales incorrectas.");
                 }
             }
             catch (Exception ex)
             {
-                lblMensaje.Text = ex.Message;
+                MostrarAlerta("error", "Error", ex.Message);
             }
         }
+
 
         protected void btnSeleccionarRol_Click(object sender, EventArgs e)
         {
