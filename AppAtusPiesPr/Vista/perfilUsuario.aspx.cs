@@ -3,6 +3,7 @@ using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,11 +17,11 @@ namespace AppAtusPiesPr.Vista
         {
             if (!IsPostBack)
             {
-        if (Session["idUsuario"] != null)
-        {
-            int idCliente = Convert.ToInt32(Session["idUsuario"]);  // Obtener el idCliente desde la sesión
-            cargarDatosCliente(idCliente);
-        }
+                if (Session["idUsuario"] != null)
+                {
+                    int idCliente = Convert.ToInt32(Session["idUsuario"]);  // Obtener el idCliente desde la sesión
+                    cargarDatosCliente(idCliente);
+                }
                 
                 cargarCategorias();
             }
@@ -71,6 +72,14 @@ namespace AppAtusPiesPr.Vista
         {
             if (Session["idUsuario"] != null)
             {
+                string email = txtEmail.Text;
+
+                if (!email.Contains("@") || !email.Contains("."))
+                {
+                    MostrarMensajeError("Por favor, ingrese un email válido.");
+                    return; // Detener el proceso si el email no es válido
+                }
+
                 int idCliente = Convert.ToInt32(Session["idUsuario"]);  // Obtener el idCliente desde la sesión
 
                 ClUsuarioE oUsuario = new ClUsuarioE

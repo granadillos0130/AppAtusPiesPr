@@ -145,7 +145,7 @@ button[onclick*="myModal"]:hover {
 
                         <asp:TextBox CssClass="textField" ID="txtEmail" runat="server" placeholder="Email: "></asp:TextBox>
 
-                        <asp:TextBox CssClass="textField" ID="txtPass" runat="server" placeholder="Contraseña: "></asp:TextBox>
+                        <asp:TextBox CssClass="textField" ID="txtPass" type="password" runat="server" placeholder="Contraseña: "></asp:TextBox>
 
                         <asp:TextBox CssClass="textField" ID="txtTelefono" runat="server" placeholder="Telefono: "></asp:TextBox>
 

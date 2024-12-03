@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Productos Más Vendidos" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="ProductosMasVendidos.aspx.cs" Inherits="AppAtusPiesPr.Vista.ProductosMasVendidos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
         .flatpickr-wrapper {
             margin-bottom: 15px;
@@ -28,7 +29,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
 
     <div class="container mt-4">
-        <h2 class="mb-4">Productos Más Vendidos</h2>
+        <h2 class="mb-4">Productos Vendidos</h2>
 
         <div class="row">
             <!-- Fecha de Inicio -->
@@ -52,12 +53,16 @@
 
         <asp:GridView ID="gvProductos" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-striped mt-3">
             <Columns>
-                <asp:BoundField DataField="IdProducto" HeaderText="ID Producto" />
-                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
+                
+                <asp:BoundField DataField="NombreProducto" HeaderText="Nombre" />
+                 <asp:TemplateField HeaderText="Imagen">
+            <ItemTemplate>
+                <asp:Image ID="imgProducto" runat="server" ImageUrl='<%# Eval("ImagenUrl") %>' Width="100px" Height="100px" />
+            </ItemTemplate>
+        </asp:TemplateField>
                 <asp:BoundField DataField="CantidadVendida" HeaderText="Cantidad Vendida" />
-                <asp:BoundField DataField="TotalVentas" HeaderText="Total Ventas" DataFormatString="{0:C}" />
-                <asp:BoundField DataField="Marca" HeaderText="Marca" />
+                <asp:BoundField DataField="totalVentas" HeaderText="Total Ventas" DataFormatString="{0:C}" />
+                <asp:BoundField DataField="marca" HeaderText="Marca" />
             </Columns>
         </asp:GridView>
 

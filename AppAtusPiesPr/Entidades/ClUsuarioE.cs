@@ -22,5 +22,12 @@ namespace AppAtusPiesPr.Entidades
         public int numProducto { get; set; }
         public string estado { get; set; }
         public List<ClRolE> Roles { get; set; }
+
+        public class ClEstadisticaVendedorE : ClUsuarioE
+        {
+            public int Año { get; set; }
+            public int Mes { get; set; }
+            public int TotalClientes { get; set; }
+        }
     }
 }

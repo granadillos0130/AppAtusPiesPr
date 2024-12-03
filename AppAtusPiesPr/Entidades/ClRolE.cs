@@ -5,6 +5,7 @@ using System.Web;
 
 namespace AppAtusPiesPr.Entidades
 {
+    [Serializable]
     public class ClRolE
     {
         public string RoleName { get; set; }

@@ -71,5 +71,29 @@ namespace AppAtusPiesPr.Vista
             // Recargar los productos cuando se cambia de categoría
             CargarProductos();
         }
+
+        protected void gvProductos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EliminarProducto")
+            {
+                try
+                {
+                    // Obtener el ID del producto desde el CommandArgument del botón
+                    int idProducto = Convert.ToInt32(e.CommandArgument);
+                    ClProductoL productoLogica = new ClProductoL();
+                    ClProductoEmpresaE productoEliminado = productoLogica.MtdEliminarProducto(idProducto);
+                    CargarProductos();
+
+
+                    string script = "Swal.fire('¡Éxito!', 'Producto eliminado con éxito', 'success');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "SweetAlertSuccess", script, true);
+                }
+                catch (Exception ex)
+                {
+                    string script = $"Swal.fire('¡Error!', 'Error al eliminar el producto: {ex.Message}', 'error');";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "SweetAlertError", script, true);
+                }
+            }
+        }
     }
 }

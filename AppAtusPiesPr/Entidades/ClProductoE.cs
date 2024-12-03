@@ -44,6 +44,9 @@ namespace AppAtusPiesPr.Entidades
     public class ClProductoEmpresaE
     {
         public int idProdctoEmpresa { get; set; }
+        public int CantidadVendida {get; set; }
+        public decimal totalVentas { get; set; }
+        public string marca {  get; set; }
         public int idVendedor { get; set; }
         public int idProducto { get; set; }
         public string nombreProducto { get; set; }
@@ -52,6 +55,13 @@ namespace AppAtusPiesPr.Entidades
         public string descripcionProducto { get; set; }
         public string referencia { get; set; }
         public string imagen { get; set; }
+        public string ImagenUrl
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(imagen) ? imagen : "~/Images/no-image-found.png";
+            }
+        }
 
         public string Estado { get; set; }
         public string descripcionCategoria { get; set; }
