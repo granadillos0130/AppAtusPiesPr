@@ -181,11 +181,12 @@ namespace AppAtusPiesPr.Vista
             switch (rol)
             {
                 case "Admin":
-                    Response.Redirect("BlankPage.aspx");
+                    Response.Redirect("Peticiones.aspx");
                     break;
 
                 case "Vendedor":
-                    Response.Redirect("BlankPage.aspx");
+                    Response.Redirect("ProductosMasVendidos.aspx");
+
                     break;
 
                 case "Cliente":
