@@ -13,6 +13,9 @@ namespace AppAtusPiesPr
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1)); // Fecha de expiración pasada
+            Response.Cache.SetNoStore();
             if (!IsPostBack)
             {
                 cargarProductos();

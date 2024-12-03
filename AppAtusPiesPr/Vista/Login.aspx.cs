@@ -20,7 +20,35 @@ namespace AppAtusPiesPr.Vista
         {
 
         }
+        private void MostrarAlerta(string icon, string title, string text)
+        {
+            string script = $@"Swal.fire({{
+    icon: '{icon}',
+    title: '{title}',
+    text: '{text}',
+    confirmButtonColor: '#3085d6'
+}});";
+            ScriptManager.RegisterStartupScript(this, GetType(), title.Replace(" ", ""), script, true);
+        }
 
+        private void MostrarMensajeDeError(TextBox textBox, string mensaje)
+        {
+            string script = $@"
+    var input = document.getElementById('{textBox.ClientID}');
+    input.setAttribute('placeholder', '{mensaje}');
+    input.classList.add('is-invalid');
+    
+    // Eliminar mensaje de error y cambiar borde al comenzar a escribir
+    input.addEventListener('input', function() {{
+        if (input.value !== '') {{
+            input.classList.remove('is-invalid');
+            input.style.borderColor = ''; // Restablecer el color del borde
+            input.removeAttribute('placeholder');
+        }}
+    }});
+";
+            ScriptManager.RegisterStartupScript(this, GetType(), $"{textBox.ID}Error", script, true);
+        }
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             // Validación del formulario
@@ -73,9 +101,15 @@ namespace AppAtusPiesPr.Vista
             txtDireccion.Text = "";
         }
 
+
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            // Crear una instancia del modelo de usuario con los datos ingresados
+            if (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtContrasena.Text))
+            {
+                MostrarAlerta("warning", "Campos vacíos", "Por favor, complete todos los campos.");
+                return;
+            }
+
             ClUsuarioE obUsuarioEn = new ClUsuarioE
             {
                 Documento = txtEmail.Text,
@@ -84,50 +118,42 @@ namespace AppAtusPiesPr.Vista
 
             try
             {
-                // Llamar al método de autenticación
                 ClUsuarioE oUser = clientoLo.MtdIngreso(obUsuarioEn);
 
-                // Verificar si el usuario existe
                 if (oUser != null)
                 {
-                    // Verificar si hay múltiples roles
                     if (oUser.Roles.Count > 1)
                     {
-                        // Guardar la lista de roles en el ViewState
                         ViewState["Roles"] = oUser.Roles;
                         ViewState["Usuario"] = oUser;
 
-                        // Configurar el DropDownList con los roles
                         ddlRoles.DataSource = oUser.Roles.Select(r => r.RoleName).ToList();
                         ddlRoles.DataBind();
 
-                        // Mostrar el modal para seleccionar el rol
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowModal", "$('#myModal').modal('show');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#myModal').modal('show');", true);
                     }
                     else if (oUser.Roles.Count == 1)
                     {
-                        // Configurar variables de sesión
                         var role = oUser.Roles[0];
-                        Session["email"] = oUser.Documento; // Suponiendo que el email es igual al documento
-                        Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
+                        Session["email"] = oUser.Documento;
+                        Session["usuario"] = $"{oUser.Nombres} {oUser.Apellidos}";
                         Session["rol"] = role.RoleName;
                         Session["idUsuario"] = role.IdUsuario;
 
-                        // Redirigir según el rol del usuario
                         RedirigirSegunRol(role.RoleName);
                     }
                 }
                 else
                 {
-                    // Mostrar mensaje de error si las credenciales no son válidas
-                    lblMensaje.Text = "Credenciales incorrectas.";
+                    MostrarAlerta("error", "Error de autenticación", "Credenciales incorrectas.");
                 }
             }
             catch (Exception ex)
             {
-                lblMensaje.Text = ex.Message;
+                MostrarAlerta("error", "Error", ex.Message);
             }
         }
+
 
         protected void btnSeleccionarRol_Click(object sender, EventArgs e)
         {
@@ -168,6 +194,7 @@ namespace AppAtusPiesPr.Vista
 
                 default:
                     lblMensaje.Text = "Rol no reconocido.";
+                    MostrarAlerta("error","Rol no encontrado","El rol seleccionado no existe.");
                     break;
             }
         }
@@ -175,7 +202,6 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
         {
-            // Validación del formulario
             if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text) ||
                 string.IsNullOrWhiteSpace(txtNombreVend.Text) ||
                 string.IsNullOrWhiteSpace(txtApellidoVend.Text) ||
@@ -205,7 +231,6 @@ namespace AppAtusPiesPr.Vista
             if (idVendedor > 0)
             {
                 lblMensaje.Text = "Registro de vendedor exitoso. El estado es 'PROCESO'.";
-                // Limpiar los campos del formulario
                 LimpiarCamposVendedor();
             }
             else
@@ -227,29 +252,33 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnEnviarRecuperar_Click(object sender, EventArgs e)
         {
-          
             string userEmail = txtEmailRecuperar.Text.Trim();
-          
+
+            if (string.IsNullOrWhiteSpace(userEmail))
+            {
+                MostrarAlerta("warning", "Campo vacío", "Por favor, ingresa tu correo electrónico.");
+                return;
+            }
+
             if (clientoLo.IsEmailExist(userEmail))
             {
-               
                 string temporaryPassword = GenerarTemporalPassword();
-               
+
                 clientoLo.SaveTemporaryPassword(userEmail, temporaryPassword);
-               
+
                 EnviarTemporalPasswordEmail(userEmail, temporaryPassword);
-               
-                lblMensaje.Text = "Se ha enviado un correo con la contraseña temporal.";
-                lblMensaje.ForeColor = System.Drawing.Color.Green;
+
+                MostrarAlerta("success", "¡Éxito!", "Tu contraseña temporal ha sido enviada. Verifica tu correo electrónico.");
             }
             else
             {
-           
-                lblMensaje.Text = "Correo electrónico no encontrado.";
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
+                txtEmailRecuperar.Text = string.Empty;
+                MostrarAlerta("error", "Correo no encontrado", "El correo ingresado no coincide con nuestros registros. Intenta nuevamente.");
             }
 
+
         }
+
 
         private string GenerarTemporalPassword()
         {
@@ -390,14 +419,14 @@ namespace AppAtusPiesPr.Vista
 
             try
             {
-                // Intenta enviar el correo
+                
                 client.Send(message);
             }
             catch (Exception ex)
             {
-                // Manejo de errores en caso de fallo en el envío del correo
-                lblMensaje.Text = "Error al enviar el correo: " + ex.Message;
-                lblMensaje.ForeColor = System.Drawing.Color.Red;
+               
+
+                MostrarAlerta("Error", "Error al enviar el correo.","Ocurrió un error al enviar el correo. Por favor, intenta nuevamente.");
             }
         }
 

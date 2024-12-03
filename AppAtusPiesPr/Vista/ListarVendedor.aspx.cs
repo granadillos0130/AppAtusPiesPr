@@ -90,16 +90,18 @@ namespace AppAtusPiesPr.Vista
 
                 GridViewRow fila = (GridViewRow)((Button)sender).NamingContainer;
                 string email = fila.Cells[4].Text;
+                string nombreVendedor = fila.Cells[1].Text;
+                string apellidoVendedor = fila.Cells[2].Text;
 
                 ClAdminL inactivar = new ClAdminL();
-                bool exito = inactivar.MtdInactivarVendedor(vendedorId, email);
+                bool exito = inactivar.MtdInactivarVendedor(vendedorId, email,nombreVendedor,apellidoVendedor);
 
                 if (exito)
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alertaExito",
                            "Swal.fire({ " +
                            "title: 'Solicitud Aceptada', " +
-                           "text: 'La solicitud ha sido aceptada correctamente y se ha enviado un correo al vendedor.', " +
+                           "text: 'La solicitud ha sido Rechazada correctamente y se ha enviado un correo al vendedor.', " +
                            "icon: 'success', " +
                            "confirmButtonText: 'Aceptar' " +
                            "});", true);
@@ -111,7 +113,7 @@ namespace AppAtusPiesPr.Vista
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alertaError",
                         "Swal.fire({ " +
                         "title: 'Error', " +
-                        "text: 'No se pudo aceptar la solicitud. Intenta de nuevo.', " +
+                        "text: 'No se pudo Rechazar la solicitud. Intenta de nuevo.', " +
                         "icon: 'error', " +
                         "confirmButtonText: 'Aceptar' " +
                         "});", true);
@@ -122,7 +124,7 @@ namespace AppAtusPiesPr.Vista
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertaExcepcion",
                         $"Swal.fire({{ " +
                         $"title: 'Error', " +
-                        $"text: 'Error al aceptar la solicitud: {ex.Message}', " +
+                        $"text: 'Error al Rechazar la solicitud: {ex.Message}', " +
                         $"icon: 'error', " +
                         $"confirmButtonText: 'Aceptar' " +
                         $"}});", true);
