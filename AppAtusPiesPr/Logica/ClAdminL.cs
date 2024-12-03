@@ -57,6 +57,12 @@ namespace AppAtusPiesPr.Logica
             return EstadisticaD.MtdBuscarEstadisticasPorVendedor(documento,año,mes); 
         }
 
+        public List<ClCategoriaE> MtdListaCategoria()
+        {
+            ClAdminD Categoria  = new ClAdminD();
+            return Categoria.MtdListarCategoria();
+        }
+
         public bool MtdRegistrarCategoria(ClCategoriaE oDatos)
         {
             ClAdminD registrar = new ClAdminD();

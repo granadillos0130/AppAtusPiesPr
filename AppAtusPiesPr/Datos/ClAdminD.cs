@@ -294,7 +294,7 @@ namespace AppAtusPiesPr.Datos
 
         }
 
-    
+
         public List<ClEstadisticaVendedorE> MtdBuscarEstadisticasPorVendedor(string documento, string año, string mes)
         {
             List<ClEstadisticaVendedorE> estadisticas = new List<ClEstadisticaVendedorE>();
@@ -306,10 +306,10 @@ namespace AppAtusPiesPr.Datos
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                   
+
                     cmd.Parameters.AddWithValue("@documentoVendedor", string.IsNullOrWhiteSpace(documento) ? DBNull.Value : (object)documento);
 
-                   
+
                     cmd.Parameters.AddWithValue("@año", string.IsNullOrWhiteSpace(año) ? DBNull.Value : (object)Convert.ToInt32(año));
                     cmd.Parameters.AddWithValue("@mes", string.IsNullOrWhiteSpace(mes) ? DBNull.Value : (object)Convert.ToInt32(mes));
 
@@ -345,10 +345,39 @@ namespace AppAtusPiesPr.Datos
             return estadisticas;
         }
 
+        public List<ClCategoriaE> MtdListarCategoria()
+        {
+            List<ClCategoriaE> ListaCategoria = new List<ClCategoriaE>();
+            ClConexion oConexion = new ClConexion();
+
+            using (SqlCommand cmd = new SqlCommand("SpListaCategorias", oConexion.MtdAbrirConexion()))
+            {
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        
+                        ClCategoriaE Categoria = new ClCategoriaE()
+                        {
+                            idCategoria = reader.GetInt32(reader.GetOrdinal("idCategoria")),
+                            descripcion = reader.GetString(reader.GetOrdinal("descripcion")),
+                        };
+
+                        
+                        ListaCategoria.Add(Categoria);
+                    }
+                }
+            }
+
+          
+            return ListaCategoria;
+        }
+
 
     }
-    
- }
+
+}
+
     
 
 

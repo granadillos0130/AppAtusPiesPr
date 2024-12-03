@@ -52,6 +52,7 @@ namespace AppAtusPiesPr.Vista
                     menuPeticiones.Visible = false;
                     menuListarVendedores.Visible = false;
                     Estadisticas.Visible = false;
+                    menuListaCategorias.Visible = false;
                    
 
 
