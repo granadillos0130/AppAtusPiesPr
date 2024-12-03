@@ -7,6 +7,33 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+
+     <script type="text/javascript">
+         function confirmDelete(button) {
+
+             //Obtiene el idProducto por medio del CommandArgument
+            var productId = button.getAttribute("CommandArgument");
+            event.preventDefault();
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esta acción!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Encuentra el botón y activa su evento de clic
+                    __doPostBack(button.name, '');
+                }
+            });
+            return false;
+        }
+    </script>
+
+
     <div class="container" style="margin-top:0"><br />
 
     
@@ -42,7 +69,7 @@
                         CommandName="EliminarProducto" 
                         CommandArgument='<%# Eval("idProducto") %>' 
                         CssClass="btn btn-danger btn-sm" 
-                        OnClientClick="return confirm('¿Está seguro de eliminar este producto?');" />
+                      OnClientClick="return confirmDelete(this);" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
