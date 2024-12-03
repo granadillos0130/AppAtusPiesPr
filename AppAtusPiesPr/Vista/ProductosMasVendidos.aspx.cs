@@ -33,7 +33,7 @@ namespace AppAtusPiesPr.Vista
         {
             try
             {
-                // Obtener fechas desde los campos ocultos
+                
                 string fechaInicioStr = hfFechaInicio.Value;
                 string fechaFinStr = hfFechaFin.Value;
 
@@ -79,12 +79,12 @@ namespace AppAtusPiesPr.Vista
     {
         List<ClProductoEmpresaE> productos = productoL.MtdObtenerProductosMasVendidosPorVendedor(idVendedor, fechaInicio, fechaFin);
 
-        // Asignar imagen predeterminada si no existe una imagen
+        
         foreach (var producto in productos)
         {
             if (string.IsNullOrEmpty(producto.imagen))
             {
-                producto.imagen = "~/Images/no-image-found.png"; // Ruta de la imagen predeterminada
+                producto.imagen = "~/Images/no-image-found.png";
             }
         }
 
@@ -92,7 +92,7 @@ namespace AppAtusPiesPr.Vista
         {
             gvProductos.DataSource = productos;
             gvProductos.DataBind();
-            MostrarAlerta("success", "Productos cargados", "No se encontraron registro de ventas.");
+            MostrarAlerta("success", "Productos cargados", "tus productos se han cargado correctamente.");
         }
         else
         {
