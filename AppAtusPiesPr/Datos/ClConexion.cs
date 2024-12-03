@@ -14,7 +14,9 @@ namespace AppAtusPiesPr.Datos
         {
 
 
+
             conex = new SqlConnection("Data Source=. ;Initial Catalog=dbZapateria2.0;Integrated Security=True;");
+
 
 
         }
