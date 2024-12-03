@@ -63,8 +63,10 @@
             </ul>
             <p class="devoluciones">Devoluciones y envíos gratuitos</p>
             <!-- Botón para agregar al carrito -->
-            <asp:Button ID="btnAgregarCarrito" runat="server" Text="Agregar al carrito" CssClass="btn-agregar-carrito" OnClick="btnAgregarCarrito_Click" />
-        </div>
+            <button type="button" class="btn-agregar-carrito" data-id='<%# Eval("idProdctoEmpresa") %>'>Agregar al Carrito</button>
+            
+
+            </div>
 
     </div>
     <hr>
@@ -93,7 +95,7 @@
                             </div>
                             <div class="cardButtons">
                                 <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
-                                <a href="#" class="save-button">
+                                <a class="save-button" data-id='<%# Eval("idProdctoEmpresa") %>'>
                                     <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                                 </a>
                             </div>
@@ -111,5 +113,5 @@
         <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
         <br />
     </div>
-
+    <script src="js/carrito.js"></script>
 </asp:Content>

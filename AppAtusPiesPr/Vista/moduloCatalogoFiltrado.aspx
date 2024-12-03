@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="cardButtons">
                                         <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
-                                        <a href="#" class="save-button">
+                                        <a class="save-button" data-id='<%# Eval("idProdctoEmpresa") %>'>
                                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                                         </a>
                                     </div>
@@ -67,7 +67,7 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
-
+            <script src="js/carrito.js"></script>
             <!-- PIE DE PAGINA -->
             <div class="pie-pagina">
                 <br />

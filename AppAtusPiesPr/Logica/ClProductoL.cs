@@ -18,6 +18,13 @@ namespace AppAtusPiesPr.Logica
             return objData;
         }
 
+        public ClProductoEmpresaE MtdEliminarProducto(int id)
+        {
+            ClProductoD objProD = new ClProductoD();
+            ClProductoEmpresaE objData = objProD.MtdEliminarProducto(id);
+            return objData; 
+        }
+
 
         public DataTable MtdListarProductos()
         {

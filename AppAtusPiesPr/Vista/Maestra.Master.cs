@@ -43,6 +43,7 @@ namespace AppAtusPiesPr.Vista
                     menuEstadoPedido.Visible = false;
                     menuActualizarProducto.Visible = false;
 
+
                 }
                 else if (rol == "Vendedor")
                 {
@@ -50,6 +51,7 @@ namespace AppAtusPiesPr.Vista
                     menuCategoria.Visible = false;
                     menuPeticiones.Visible = false;
                     menuListarVendedores.Visible = false;
+                    Estadisticas.Visible = false;
                    
 
 

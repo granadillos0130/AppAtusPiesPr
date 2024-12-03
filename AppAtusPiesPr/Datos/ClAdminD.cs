@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
+using static AppAtusPiesPr.Entidades.ClUsuarioE;
 
 namespace AppAtusPiesPr.Datos
 {
@@ -274,5 +276,79 @@ namespace AppAtusPiesPr.Datos
             return existe;
         }
 
+        public bool MtdDenegarSolicitud(int idVendedor) {
+
+            ClConexion oConexion = new ClConexion();
+
+            using (SqlConnection conn = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpDenegarSolicitud", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("idVendedor", idVendedor);
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+                    return filasAfectadas > 0;
+                }
+            }
+
+        }
+
+    
+        public List<ClEstadisticaVendedorE> MtdBuscarEstadisticasPorVendedor(string documento, string año, string mes)
+        {
+            List<ClEstadisticaVendedorE> estadisticas = new List<ClEstadisticaVendedorE>();
+
+            ClConexion conexion = new ClConexion();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SpEstadisticaVendedor", conexion.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                   
+                    cmd.Parameters.AddWithValue("@documentoVendedor", string.IsNullOrWhiteSpace(documento) ? DBNull.Value : (object)documento);
+
+                   
+                    cmd.Parameters.AddWithValue("@año", string.IsNullOrWhiteSpace(año) ? DBNull.Value : (object)Convert.ToInt32(año));
+                    cmd.Parameters.AddWithValue("@mes", string.IsNullOrWhiteSpace(mes) ? DBNull.Value : (object)Convert.ToInt32(mes));
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                ClEstadisticaVendedorE oEstadistica = new ClEstadisticaVendedorE()
+                                {
+                                    IdUsuario = reader.GetInt32(reader.GetOrdinal("idVendedor")),
+                                    Nombres = reader.GetString(reader.GetOrdinal("nombres")),
+                                    Apellidos = reader.GetString(reader.GetOrdinal("apellidos")),
+                                    Documento = reader.GetString(reader.GetOrdinal("documento")),
+                                    Año = reader.GetInt32(reader.GetOrdinal("año")),
+                                    Mes = reader.GetInt32(reader.GetOrdinal("mes")),
+                                    TotalClientes = reader.GetInt32(reader.GetOrdinal("totalClientes"))
+                                };
+                                estadisticas.Add(oEstadistica);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                throw new Exception("Error al obtener las estadísticas de vendedor", ex);
+            }
+
+            return estadisticas;
+        }
+
+
     }
-}
+    
+ }
+    
+
+

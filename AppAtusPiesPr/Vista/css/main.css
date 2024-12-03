@@ -254,6 +254,24 @@ body {
         background-color: #333;
     }
 
+.delete-carrito {
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: #ff2d2d;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    border: none; /* Eliminar el borde */
+}
+
+    .delete-carrito:hover {
+        background-color: #ff5151;
+    }
+
 /* Ajuste del botón de guardar */
 .save-button {
     width: 24px; /* Tamaño ajustado del botón */
@@ -551,5 +569,4 @@ label {
     gap: 10px; /* Espacio entre los botones */
     margin-top: 10px; /* Espaciado con el contenido superior */
 }
-
 
