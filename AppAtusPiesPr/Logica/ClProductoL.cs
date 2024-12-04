@@ -18,7 +18,12 @@ namespace AppAtusPiesPr.Logica
             return objData;
         }
 
-
+        public DataTable mtdBuscarProducto(string busqueda)
+        {
+            ClProductoD oDatos = new ClProductoD();
+            DataTable tblDatos = oDatos.buscarProductos(busqueda);
+            return tblDatos;
+        }
         public DataTable MtdListarProductos()
         {
             ClProductoD objProductoD = new ClProductoD();

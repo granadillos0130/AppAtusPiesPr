@@ -60,5 +60,13 @@ namespace AppAtusPiesPr.Vista
 
         }
 
+        protected void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            string busqueda = txtBusqueda.Text.Trim();
+            if (!string.IsNullOrEmpty(busqueda)) 
+            {
+                Response.Redirect($"index.aspx?busqueda={Server.UrlEncode(busqueda)}");
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AppAtusPiesPr.Logica;
+using AppAtusPiesPr.Vista;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,14 +12,29 @@ namespace AppAtusPiesPr
 {
     public partial class Index2 : System.Web.UI.Page
     {
+        ClProductoL oDatos = new ClProductoL();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
-                cargarProductos();
                 cargarCategorias();
+
+                string busqueda = Request.QueryString["busqueda"];
+                if (!string.IsNullOrEmpty(busqueda))
+                {
+                    busquedas(busqueda);
+
+                }
+                else
+                {
+
+                    cargarProductos();
+                }
             }
+
         }
+
         private void cargarProductos()
         {
             ClProductoL objProductoL = new ClProductoL();
@@ -32,6 +48,13 @@ namespace AppAtusPiesPr
             ClProductoL oLogica = new ClProductoL();
             Repeater2.DataSource = oLogica.MtdListarCategorias();
             Repeater2.DataBind();
+        }
+
+        private void busquedas(string busqueda)
+        {
+            DataTable dtProductos = oDatos.mtdBuscarProducto(busqueda);
+            Repeater1.DataSource = dtProductos;
+            Repeater1.DataBind();  
         }
 
     }

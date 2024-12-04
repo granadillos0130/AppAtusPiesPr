@@ -12,20 +12,24 @@
 <body>
     <form id="form1" runat="server">
         <!-- Menú sin sesión -->
-        <div id="menuSinSesion" runat="server" Visible="false">
+        <div id="menuSinSesion" runat="server" visible="false">
             <header>
                 <div class="navbar">
                     <nav>
                         <ul class="menu">
-                            <li><a href="#">Sobre Nosotros</a></li>
+                            <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
                         </ul>
                     </nav>
                     <a href="../index.aspx" class="logo">A TUS PIES</a>
                     <div class="right-section">
+
                         <div class="search-bar">
-                            <input type="text" placeholder="Search..." />
+                            <asp:TextBox ID="txtBusqueda" runat="server" CssClass="search-input"
+                                AutoPostBack="True" OnTextChanged="txtBusqueda_TextChanged"
+                                placeholder="Buscar productos..." />
                             <i class="fas fa-search"></i>
                         </div>
+
                         <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                         </a><a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">LOGIN</a> <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
@@ -36,12 +40,12 @@
         </div>
 
         <!-- Menú con sesión -->
-        <div id="menuConSesion" runat="server" Visible="false">
+        <div id="menuConSesion" runat="server" visible="false">
             <header>
                 <div class="navbar">
                     <nav>
                         <ul class="menu">
-                            <li><a href="#">Sobre Nosotros</a></li>
+                            <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
 
                         </ul>
                     </nav>

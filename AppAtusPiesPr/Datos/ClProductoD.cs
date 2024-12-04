@@ -57,7 +57,36 @@ namespace AppAtusPiesPr.Datos
         }
 
 
+        public DataTable buscarProductos(string busqueda)
+        {
+            try {
+                ClConexion oCnx = new ClConexion();
+                
+                using (SqlConnection connection = oCnx.MtdAbrirConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand("spBarraBusquedaProductos", connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Busqueda", busqueda);
 
+                        SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        adaptador.Fill(dt);
+
+
+                        cmd.ExecuteNonQuery();
+                        return dt;
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al buscar el producto: {ex.Message}");
+                return null;
+            }
+        }
         public ClProductoEmpresaE mtdActualizarProducto(ClProductoEmpresaE objData)
         {
             try
@@ -115,7 +144,7 @@ namespace AppAtusPiesPr.Datos
 
             return tblDatos;
         }
-
+        
         public ClProductoEmpresaE MtdInfoProducto(int idProdctoEmpresa)
         {
             ClProductoEmpresaE prodInfo = null;
@@ -182,6 +211,8 @@ namespace AppAtusPiesPr.Datos
 
             return prodInfo;
         }
+
+
 
         public List<ClCategoriaE> MtdListarCategorias()
         {
