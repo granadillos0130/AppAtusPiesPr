@@ -203,10 +203,10 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
         {
-            // Inicializar variable para los campos vacíos
+            
             List<string> camposVacios = new List<string>();
 
-            // Verificar si hay campos vacíos
+            
             if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text))
                 camposVacios.Add("Documento");
             if (string.IsNullOrWhiteSpace(txtNombreVend.Text))
@@ -222,18 +222,18 @@ namespace AppAtusPiesPr.Vista
             if (string.IsNullOrWhiteSpace(txtDireccionVend.Text))
                 camposVacios.Add("Dirección");
 
-            // Si hay campos vacíos, mostrar alerta y marcar los campos
+           
             if (camposVacios.Any())
             {
                 string campos = string.Join(", ", camposVacios);
                 MostrarAlerta("warning", "Campos vacíos", "Por favor, completa los siguientes campos: " + campos);
 
-                // Resaltar los campos vacíos
+               
                 ResaltarCamposVacios(camposVacios);
                 return;
             }
 
-            // Si todos los campos están llenos, continuar con el registro
+          
             ClUsuarioE nuevoVendedor = new ClUsuarioE
             {
                 Documento = txtDocumentoVend.Text,
@@ -249,18 +249,17 @@ namespace AppAtusPiesPr.Vista
 
             if (idVendedor > 0)
             {
-                // Registro exitoso: muestra la alerta de éxito
+                
                 MostrarAlerta("success", "Registro exitoso", "El vendedor fue registrado correctamente.");
 
-                // Limpiar los campos
+               
                 LimpiarCamposVendedor();
 
-                // Cerrar el modal
                 ScriptManager.RegisterStartupScript(this, GetType(), "CerrarModal", "$('#registerVendedorModal').modal('hide');", true);
             }
             else
             {
-                // Registro fallido: muestra un mensaje de error
+              
                 MostrarAlerta("error", "Error", "No se pudo registrar al vendedor. Intenta nuevamente.");
             }
         }
@@ -268,7 +267,7 @@ namespace AppAtusPiesPr.Vista
 
         private void ResaltarCamposVacios(List<string> camposVacios)
         {
-            // Remover clases previas de resaltar
+            
             txtDocumentoVend.CssClass = "form-control";
             txtNombreVend.CssClass = "form-control";
             txtApellidoVend.CssClass = "form-control";
@@ -277,7 +276,7 @@ namespace AppAtusPiesPr.Vista
             txtTelefonoVend.CssClass = "form-control";
             txtDireccionVend.CssClass = "form-control";
 
-            // Agregar la clase de resaltar a los campos vacíos
+          
             foreach (var campo in camposVacios)
             {
                 switch (campo)

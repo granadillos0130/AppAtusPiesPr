@@ -437,7 +437,7 @@
  <script>
    
      $('#registerVendedorModal').on('show.bs.modal', function () {
-         // Limpiar los campos y los errores de la validación al abrir la modal
+        
          document.getElementById('<%= txtDocumentoVend.ClientID %>').value = '';
         document.getElementById('<%= txtNombreVend.ClientID %>').value = '';
         document.getElementById('<%= txtApellidoVend.ClientID %>').value = '';
@@ -446,7 +446,7 @@
         document.getElementById('<%= txtTelefonoVend.ClientID %>').value = '';
         document.getElementById('<%= txtDireccionVend.ClientID %>').value = '';
 
-        // Limpiar los mensajes de error
+       
         document.getElementById('errorDocumento').innerText = '';
         document.getElementById('errorNombre').innerText = '';
         document.getElementById('errorApellido').innerText = '';
@@ -456,7 +456,7 @@
         document.getElementById('errorDireccion').innerText = '';
     });
 
-     // Función para validar y registrar
+     
      function validarYRegistrar() {
          var documento = document.getElementById('<%= txtDocumentoVend.ClientID %>').value;
         var nombre = document.getElementById('<%= txtNombreVend.ClientID %>').value;
@@ -468,7 +468,7 @@
 
         var fieldsValid = true;
 
-        // Limpiar los mensajes de error anteriores
+       
         document.getElementById('errorDocumento').innerText = '';
         document.getElementById('errorNombre').innerText = '';
         document.getElementById('errorApellido').innerText = '';
@@ -477,7 +477,7 @@
         document.getElementById('errorTelefono').innerText = '';
         document.getElementById('errorDireccion').innerText = '';
 
-        // Validar campos vacíos
+        
         if (!documento) {
             document.getElementById('errorDocumento').innerText = "Documento es obligatorio.";
             fieldsValid = false;
@@ -493,7 +493,7 @@
         if (!correo) {
             document.getElementById('errorCorreo').innerText = "Correo es obligatorio.";
             fieldsValid = false;
-        } else if (!correo.includes('@')) {  // Validación del correo con "@"
+        } else if (!correo.includes('@')) { 
             document.getElementById('errorCorreo').innerText = "El correo debe contener un '@'.";
             fieldsValid = false;
         }
@@ -511,19 +511,18 @@
         }
 
         if (!fieldsValid) {
-            return false;  // Si algún campo es vacío o no válido, no se envía el formulario
+            return false;  
         }
 
-        // Aquí puedes agregar la lógica de registro del vendedor si todo está correcto
+        
         return true;
     }
 
-    // Eliminar mensaje de error cuando el usuario empieza a escribir en el campo correspondiente
+   
     function limpiarError(campo) {
         document.getElementById('error' + campo).innerText = '';
     }
 
-    // Asociar la función de limpiarError con los eventos de input
     document.getElementById('<%= txtDocumentoVend.ClientID %>').oninput = function() { limpiarError('Documento'); };
     document.getElementById('<%= txtNombreVend.ClientID %>').oninput = function() { limpiarError('Nombre'); };
     document.getElementById('<%= txtApellidoVend.ClientID %>').oninput = function() { limpiarError('Apellido'); };
