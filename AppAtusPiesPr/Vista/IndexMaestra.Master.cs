@@ -17,7 +17,7 @@ namespace AppAtusPiesPr.Vista
         {
             if (!IsPostBack)
             {
-
+                Session["ModuloActual"] = "Productos"; // Cambiar según el módulo
 
                 menuConSesion.Visible = false;
                 menuSinSesion.Visible = false;
@@ -60,5 +60,38 @@ namespace AppAtusPiesPr.Vista
 
         }
 
+        protected void txtBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            string busqueda = txtBusqueda.Text.Trim();
+            string moduloActual = Session["ModuloActual"] as string;
+
+            if (!string.IsNullOrEmpty(busqueda)) 
+            {
+                switch (moduloActual)
+                {
+                    case "index":
+                        Response.Redirect($"index.aspx?busqueda={Server.UrlEncode(busqueda)}");
+                        break;
+                    case "perfilCliente":
+                        Response.Redirect($"perfilCliente.aspx?busqueda={Server.UrlEncode(busqueda)}");
+                        break;
+                    case "perfilInfoVendedor":
+                        Response.Redirect($"perfilInfoVendedor.aspx?busqueda={Server.UrlEncode(busqueda)}");
+                        break;
+                    case "moduloSobreNosotros":
+                        Response.Redirect($"moduloSobreNosotros.aspx?busqueda={Server.UrlEncode(busqueda)}");
+                        break;
+                    case "moduloCompra":
+                        Response.Redirect($"moduloCompra.aspx?busqueda={Server.UrlEncode(busqueda)}");
+                        break;
+                    case "moduloCatalgoFiltrado":
+                        Response.Redirect($"moduloCatalgoFiltrado.aspx?busqueda={Server.UrlEncode(busqueda)}");
+                        break;
+                    case "carritoCompras":
+                        Response.Redirect($"carritoCompras.aspx?busqueda={Server.UrlEncode(busqueda)}");
+                        break;
+                }
+            }
+        }
     }
 }
