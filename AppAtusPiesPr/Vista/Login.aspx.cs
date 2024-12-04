@@ -203,18 +203,37 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtNombreVend.Text) ||
-                string.IsNullOrWhiteSpace(txtApellidoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtCorreoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtContrasenaVend.Text) ||
-                string.IsNullOrWhiteSpace(txtTelefonoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtDireccionVend.Text))
+            // Inicializar variable para los campos vacíos
+            List<string> camposVacios = new List<string>();
+
+            // Verificar si hay campos vacíos
+            if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text))
+                camposVacios.Add("Documento");
+            if (string.IsNullOrWhiteSpace(txtNombreVend.Text))
+                camposVacios.Add("Nombre");
+            if (string.IsNullOrWhiteSpace(txtApellidoVend.Text))
+                camposVacios.Add("Apellido");
+            if (string.IsNullOrWhiteSpace(txtCorreoVend.Text))
+                camposVacios.Add("Correo");
+            if (string.IsNullOrWhiteSpace(txtContrasenaVend.Text))
+                camposVacios.Add("Contraseña");
+            if (string.IsNullOrWhiteSpace(txtTelefonoVend.Text))
+                camposVacios.Add("Teléfono");
+            if (string.IsNullOrWhiteSpace(txtDireccionVend.Text))
+                camposVacios.Add("Dirección");
+
+            // Si hay campos vacíos, mostrar alerta y marcar los campos
+            if (camposVacios.Any())
             {
-                lblMensaje.Text = "Por favor, completa todos los campos.";
+                string campos = string.Join(", ", camposVacios);
+                MostrarAlerta("warning", "Campos vacíos", "Por favor, completa los siguientes campos: " + campos);
+
+                // Resaltar los campos vacíos
+                ResaltarCamposVacios(camposVacios);
                 return;
             }
 
+            // Si todos los campos están llenos, continuar con el registro
             ClUsuarioE nuevoVendedor = new ClUsuarioE
             {
                 Documento = txtDocumentoVend.Text,
@@ -224,21 +243,72 @@ namespace AppAtusPiesPr.Vista
                 Password = txtContrasenaVend.Text,
                 Telefono = txtTelefonoVend.Text,
                 Direccion = txtDireccionVend.Text,
-                
             };
 
             int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor);
 
             if (idVendedor > 0)
             {
-                lblMensaje.Text = "Registro de vendedor exitoso. El estado es 'PROCESO'.";
+                // Registro exitoso: muestra la alerta de éxito
+                MostrarAlerta("success", "Registro exitoso", "El vendedor fue registrado correctamente.");
+
+                // Limpiar los campos
                 LimpiarCamposVendedor();
+
+                // Cerrar el modal
+                ScriptManager.RegisterStartupScript(this, GetType(), "CerrarModal", "$('#registerVendedorModal').modal('hide');", true);
             }
             else
             {
-                lblMensaje.Text = "Error al registrar el vendedor. Intente nuevamente.";
+                // Registro fallido: muestra un mensaje de error
+                MostrarAlerta("error", "Error", "No se pudo registrar al vendedor. Intenta nuevamente.");
             }
         }
+
+
+        private void ResaltarCamposVacios(List<string> camposVacios)
+        {
+            // Remover clases previas de resaltar
+            txtDocumentoVend.CssClass = "form-control";
+            txtNombreVend.CssClass = "form-control";
+            txtApellidoVend.CssClass = "form-control";
+            txtCorreoVend.CssClass = "form-control";
+            txtContrasenaVend.CssClass = "form-control";
+            txtTelefonoVend.CssClass = "form-control";
+            txtDireccionVend.CssClass = "form-control";
+
+            // Agregar la clase de resaltar a los campos vacíos
+            foreach (var campo in camposVacios)
+            {
+                switch (campo)
+                {
+                    case "Documento":
+                        txtDocumentoVend.CssClass += " is-invalid";
+                        break;
+                    case "Nombre":
+                        txtNombreVend.CssClass += " is-invalid";
+                        break;
+                    case "Apellido":
+                        txtApellidoVend.CssClass += " is-invalid";
+                        break;
+                    case "Correo":
+                        txtCorreoVend.CssClass += " is-invalid";
+                        break;
+                    case "Contraseña":
+                        txtContrasenaVend.CssClass += " is-invalid";
+                        break;
+                    case "Teléfono":
+                        txtTelefonoVend.CssClass += " is-invalid";
+                        break;
+                    case "Dirección":
+                        txtDireccionVend.CssClass += " is-invalid";
+                        break;
+                }
+            }
+        }
+
+
+
 
         private void LimpiarCamposVendedor()
         {
@@ -249,35 +319,6 @@ namespace AppAtusPiesPr.Vista
             txtContrasenaVend.Text = "";
             txtTelefonoVend.Text = "";
             txtDireccionVend.Text = "";
-        }
-
-        protected void btnEnviarRecuperar_Click(object sender, EventArgs e)
-        {
-            string userEmail = txtEmailRecuperar.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(userEmail))
-            {
-                MostrarAlerta("warning", "Campo vacío", "Por favor, ingresa tu correo electrónico.");
-                return;
-            }
-
-            if (clientoLo.IsEmailExist(userEmail))
-            {
-                string temporaryPassword = GenerarTemporalPassword();
-
-                clientoLo.SaveTemporaryPassword(userEmail, temporaryPassword);
-
-                EnviarTemporalPasswordEmail(userEmail, temporaryPassword);
-
-                MostrarAlerta("success", "¡Éxito!", "Tu contraseña temporal ha sido enviada. Verifica tu correo electrónico.");
-            }
-            else
-            {
-                txtEmailRecuperar.Text = string.Empty;
-                MostrarAlerta("error", "Correo no encontrado", "El correo ingresado no coincide con nuestros registros. Intenta nuevamente.");
-            }
-
-
         }
 
 
