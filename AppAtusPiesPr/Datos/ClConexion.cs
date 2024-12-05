@@ -13,8 +13,7 @@ namespace AppAtusPiesPr.Datos
         public ClConexion()
         {
 
-
-            conex = new SqlConnection("Data Source=.;Initial Catalog=dbZapateria2.0;User ID=ZapateriaAdso;Password=***********;Trust Server Certificate=True");
+            conex = new SqlConnection("Data Source=.;Initial Catalog=dbZapateria2.0;User ID=ZapateriaAdso;Password=***********;");
 
 
 
