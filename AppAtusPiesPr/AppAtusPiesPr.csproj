@@ -98,6 +98,7 @@
     <Content Include="Vista\ListarUsuario.aspx" />
     <Content Include="Vista\ListarVendedor.aspx" />
     <Content Include="Vista\Login.aspx" />
+    <Content Include="Vista\moduloBusqueda.aspx" />
     <Content Include="Vista\moduloCatalogoFiltrado.aspx" />
     <Content Include="Vista\moduloCompra.aspx" />
     <Content Include="Vista\moduloSobreNosotros.aspx" />
@@ -1886,6 +1887,13 @@
     </Compile>
     <Compile Include="Vista\Maestra.Master.designer.cs">
       <DependentUpon>Maestra.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\moduloBusqueda.aspx.cs">
+      <DependentUpon>moduloBusqueda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\moduloBusqueda.aspx.designer.cs">
+      <DependentUpon>moduloBusqueda.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\moduloCatalogoFiltrado.aspx.cs">
       <DependentUpon>moduloCatalogoFiltrado.aspx</DependentUpon>
