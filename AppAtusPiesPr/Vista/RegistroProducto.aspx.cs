@@ -28,7 +28,7 @@ namespace AppAtusPiesPr.Vista
                 string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ||
                 string.IsNullOrWhiteSpace(txtReferencia.Text) ||
                 string.IsNullOrWhiteSpace(txtCategoria.Text) ||
-                 string.IsNullOrWhiteSpace(txtDescuento.Text) ||
+                 
                  string.IsNullOrWhiteSpace(txtMarca.Text)) 
 
                 {
@@ -76,12 +76,16 @@ namespace AppAtusPiesPr.Vista
                     MostrarMensajeError("Por favor ingrese un número válido para el Descuento");
                     return;
                 }
-                if (descuento <= 0)
+                if (descuento < 0)
                 {
                     MostrarMensajeError("El descuento debe ser un número positivo");
                     return;
                 }
-                objProduE.descuento = descuento;
+                else
+                {
+objProduE.descuento = descuento;
+                }
+                
 
                 if (inRuta.HasFile)
                 {
