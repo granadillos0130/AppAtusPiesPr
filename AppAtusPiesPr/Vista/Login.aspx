@@ -258,56 +258,78 @@
 
         
 
+        <script>
+    // Función para ocultar la alerta de error cuando el campo es válido
+    function hideError(errorLabelId, inputField) {
+        // Verificamos si el campo no está vacío y, en el caso del correo, contiene '@'
+        if (inputField.value.trim() !== "" && 
+            (errorLabelId !== 'lblCorreoError' || inputField.value.includes('@'))) {
+            document.getElementById(errorLabelId).style.display = 'none';
+        } else {
+            document.getElementById(errorLabelId).style.display = 'inline';
+        }
+    }
+        </script>
 
-        <!-- Modal de Registro -->
-        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="registerModalLabel">Registrar Usuario</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <asp:Label ID="lblDocumento" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
-                            <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label ID="lblNombre" runat="server" Text="Nombres:" CssClass="control-label"></asp:Label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label ID="lblApellido" runat="server" Text="Apellidos:" CssClass="control-label"></asp:Label>
-                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Ingresa tus apellidos" required></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label ID="lblCorreo" runat="server" Text="Correo:" CssClass="control-label"></asp:Label>
-                            <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label ID="lblContrasenaReg" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
-                            <asp:TextBox ID="txtContrasenaReg" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label ID="lblTelefono" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
-                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label ID="lblDireccion" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
-                            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required></asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click" />
-                    </div>
+
+<!-- Modal de Registro -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="registerModalLabel">Registrar Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <asp:Label ID="lblDocumento" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required onkeyup="hideError('lblDocumentoError', this)"></asp:TextBox>
+                    <asp:Label ID="lblDocumentoError" runat="server" CssClass="text-danger" Visible="false">Campo obligatorio.</asp:Label>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblNombre" runat="server" Text="Nombres:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required onkeyup="hideError('lblNombreError', this)"></asp:TextBox>
+                    <asp:Label ID="lblNombreError" runat="server" CssClass="text-danger" Visible="false">Campo obligatorio.</asp:Label>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblApellido" runat="server" Text="Apellidos:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Ingresa tus apellidos" required onkeyup="hideError('lblApellidoError', this)"></asp:TextBox>
+                    <asp:Label ID="lblApellidoError" runat="server" CssClass="text-danger" Visible="false">Campo obligatorio.</asp:Label>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblCorreo" runat="server" Text="Correo:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtCorreo" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required onkeyup="hideError('lblCorreoError', this)"></asp:TextBox>
+                    <asp:Label ID="lblCorreoError" runat="server" CssClass="text-danger" Visible="false">El correo debe contener un '@'.</asp:Label>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblContrasenaReg" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtContrasenaReg" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required onkeyup="hideError('lblContrasenaError', this)"></asp:TextBox>
+                    <asp:Label ID="lblContrasenaError" runat="server" CssClass="text-danger" Visible="false">Campo obligatorio.</asp:Label>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblTelefono" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required onkeyup="hideError('lblTelefonoError', this)"></asp:TextBox>
+                    <asp:Label ID="lblTelefonoError" runat="server" CssClass="text-danger" Visible="false">Campo obligatorio.</asp:Label>
+                </div>
+                <div class="form-group">
+                    <asp:Label ID="lblDireccion" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
+                    <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required onkeyup="hideError('lblDireccionError', this)"></asp:TextBox>
+                    <asp:Label ID="lblDireccionError" runat="server" CssClass="text-danger" Visible="false">Campo obligatorio.</asp:Label>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrar_Click" />
+            </div>
         </div>
+    </div>
+</div>
 
-<!-- Modal de Olvidar Contraseña -->
+
+
+        <!-- Modal de Olvidar Contraseña -->
 <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
