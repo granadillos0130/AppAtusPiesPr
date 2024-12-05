@@ -56,8 +56,16 @@ namespace AppAtusPiesPr
         private void busquedas(string busqueda)
         {
             DataTable dtProductos = oDatos.mtdBuscarProducto(busqueda);
-            Repeater1.DataSource = dtProductos;
-            Repeater1.DataBind();  
+            if (dtProductos.Rows.Count > 0)
+            {
+                Repeater1.DataSource = dtProductos;
+                Repeater1.DataBind();
+            }
+            else
+            {
+                Repeater1.DataSource = null;
+                Repeater1.DataBind();
+            }
         }
 
     }
