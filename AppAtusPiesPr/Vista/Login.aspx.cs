@@ -51,44 +51,97 @@ namespace AppAtusPiesPr.Vista
         }
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+            bool isValid = true;
+
+            // Limpiar mensajes de error previos
+            lblDocumentoError.Visible = false;
+            lblNombreError.Visible = false;
+            lblApellidoError.Visible = false;
+            lblCorreoError.Visible = false;
+            lblContrasenaError.Visible = false;
+            lblTelefonoError.Visible = false;
+            lblDireccionError.Visible = false;
+
             // Validación del formulario
-            if (string.IsNullOrWhiteSpace(txtDocumento.Text) ||
-                string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtCorreo.Text) ||
-                string.IsNullOrWhiteSpace(txtContrasenaReg.Text) ||
-                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                string.IsNullOrWhiteSpace(txtDireccion.Text))
+            if (string.IsNullOrWhiteSpace(txtDocumento.Text))
             {
-                lblMensaje.Text = "Por favor, completa todos los campos.";
-                return;
+                lblDocumentoError.Visible = true;
+                isValid = false;
             }
 
-            // Crear un nuevo cliente
-            ClUsuarioE nuevoCliente = new ClUsuarioE
+            if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                Documento = txtDocumento.Text,
-                Nombres = txtNombre.Text,
-                Apellidos = txtApellido.Text,
-                Email = txtCorreo.Text,
-                Password = txtContrasenaReg.Text,
-                Telefono = txtTelefono.Text,
-                Direccion = txtDireccion.Text
-            };
+                lblNombreError.Visible = true;
+                isValid = false;
+            }
 
-            // Registrar el nuevo cliente
-            int idCliente = clientoLo.RegistrarCliente(nuevoCliente);
-
-            if (idCliente > 0)
+            if (string.IsNullOrWhiteSpace(txtApellido.Text))
             {
-                lblMensaje.Text = "Registro exitoso. Por favor, inicia sesión.";
-                // Limpiar los campos del formulario
-                LimpiarCampos();
+                lblApellidoError.Visible = true;
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtCorreo.Text) || !txtCorreo.Text.Contains("@"))
+            {
+                lblCorreoError.Visible = true;
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtContrasenaReg.Text))
+            {
+                lblContrasenaError.Visible = true;
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtTelefono.Text))
+            {
+                lblTelefonoError.Visible = true;
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDireccion.Text))
+            {
+                lblDireccionError.Visible = true;
+                isValid = false;
+            }
+
+            // Si la validación es exitosa, registrar al cliente
+            if (isValid)
+            {
+                // Crear un nuevo cliente
+                ClUsuarioE nuevoCliente = new ClUsuarioE
+                {
+                    Documento = txtDocumento.Text,
+                    Nombres = txtNombre.Text,
+                    Apellidos = txtApellido.Text,
+                    Email = txtCorreo.Text,
+                    Password = txtContrasenaReg.Text,
+                    Telefono = txtTelefono.Text,
+                    Direccion = txtDireccion.Text
+                };
+
+                // Registrar el nuevo cliente
+                int idCliente = clientoLo.RegistrarCliente(nuevoCliente);
+
+                if (idCliente > 0)
+                {
+                    MostrarAlerta("success", "¡Felicidades!", "Te has registrado con éxito. Ahora puedes iniciar sesión.");
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MostrarAlerta("error", "¡Ups! Algo salió mal", "Hubo un problema al registrar tus datos. Intenta nuevamente más tarde.");
+                }
             }
             else
             {
-                lblMensaje.Text = "Error al registrar. Intente nuevamente.";
+                // Evitar cerrar la modal si hay errores
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "MostrarModal", "$('#registerModal').modal('show');", true);
             }
         }
+
+
+
 
         private void LimpiarCampos()
         {
