@@ -65,10 +65,10 @@
                         <asp:Button ID="btnCerrarSesion" runat="server" Class="btnCerrarSesionIcono" OnClick="btnCerrarSesion_Click" Text="" />
 
                     </div>
+                 </header>
                 </div>
+
                 <hr />
-            </header>
-        </div>
 
         <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
 

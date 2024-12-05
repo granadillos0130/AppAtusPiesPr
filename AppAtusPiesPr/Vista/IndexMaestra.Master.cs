@@ -17,7 +17,7 @@ namespace AppAtusPiesPr.Vista
         {
             if (!IsPostBack)
             {
-                Session["ModuloActual"] = "Productos"; // Cambiar según el módulo
+                Session["ModuloActual"] = "index"; // Cambiar según el módulo
 
                 menuConSesion.Visible = false;
                 menuSinSesion.Visible = false;
