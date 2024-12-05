@@ -471,5 +471,39 @@ namespace AppAtusPiesPr.Vista
             }
         }
 
+        private void LimpiarEmail()
+        {
+            txtEmailRecuperar.Text = "";
+        }
+
+        protected void btnEnviarRecuperar_Click(object sender, EventArgs e)
+        {
+            string userEmail = txtEmailRecuperar.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(userEmail))
+            {
+                MostrarAlerta("warning", "Correo requerido", "Por favor, ingresa un correo electrónico válido para continuar con la recuperación de tu contraseña.");
+                return;
+            }
+
+            if (clientoLo.IsEmailExist(userEmail))
+            {
+                string temporaryPassword = GenerarTemporalPassword();
+                clientoLo.SaveTemporaryPassword(userEmail, temporaryPassword);
+                EnviarTemporalPasswordEmail(userEmail, temporaryPassword);
+
+                MostrarAlerta("success", "Correo enviado", "Hemos enviado un correo con una contraseña temporal. Por favor revisa tu bandeja de entrada o carpeta de spam.");
+                LimpiarEmail();
+            }
+            else
+            {
+                MostrarAlerta("error", "Correo no encontrado", "El correo electrónico ingresado no está registrado en nuestro sistema. Verifica y vuelve a intentarlo.");
+                LimpiarEmail();
+            }
+
+        }
+
+      
+
     }
 }
