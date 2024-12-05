@@ -95,7 +95,6 @@
     <Content Include="Vista\js\demo\datatables-demo.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
-    <Content Include="Vista\ListaCategorias.aspx" />
     <Content Include="Vista\ListarUsuario.aspx" />
     <Content Include="Vista\ListarVendedor.aspx" />
     <Content Include="Vista\Login.aspx" />
@@ -1859,13 +1858,6 @@
     </Compile>
     <Compile Include="Vista\IndexMaestra.Master.designer.cs">
       <DependentUpon>IndexMaestra.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Vista\ListaCategorias.aspx.cs">
-      <DependentUpon>ListaCategorias.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Vista\ListaCategorias.aspx.designer.cs">
-      <DependentUpon>ListaCategorias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\ListarUsuario.aspx.cs">
       <DependentUpon>ListarUsuario.aspx</DependentUpon>

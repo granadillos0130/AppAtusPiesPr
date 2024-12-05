@@ -336,9 +336,7 @@
 
 
 
-
-
-        <!-- Modal de Registro de Vendedor -->
+<!-- Modal de Registro de Vendedor -->
 <div class="modal fade" id="registerVendedorModal" tabindex="-1" role="dialog" aria-labelledby="registerVendedorModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -350,60 +348,70 @@
             </div>
 
             <div class="modal-body">
-                <div class="form-group">
-                    <asp:Label ID="lblDocumentoVend" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">🪪</div>
-                        <asp:TextBox ID="txtDocumentoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblNombreVend" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">🚹</div>
-                        <asp:TextBox ID="txtNombreVend" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblApellidoVend" runat="server" Text="Apellido:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">🚹</div>
-                        <asp:TextBox ID="txtApellidoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu apellido" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblCorreoVend" runat="server" Text="Correo:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">📘</div>
-                        <asp:TextBox ID="txtCorreoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblContrasenaVend" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">🛡️</div>
-                        <asp:TextBox ID="txtContrasenaVend" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblTelefonoVend" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">📶</div>
-                        <asp:TextBox ID="txtTelefonoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required></asp:TextBox>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <asp:Label ID="lblDireccionVend" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
-                    <div class="input-group">
-                        <div class="input-group-text">📬</div>
-                        <asp:TextBox ID="txtDireccionVend" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required></asp:TextBox>
-                    </div>
-                </div>
+               <div class="form-group">
+    <asp:Label ID="lblDocumentoVend" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
+    <div class="input-group">
+        <div class="input-group-text">🪪</div>
+        <asp:TextBox ID="txtDocumentoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu documento" required oninput="quitarErrorCampo(this)" />
+    </div>
+    <span id="errorDocumento" class="text-danger"></span> <!-- Mensaje de error aquí -->
+</div>
+<div class="form-group">
+    <asp:Label ID="lblNombreVend" runat="server" Text="Nombre:" CssClass="control-label"></asp:Label>
+    <div class="input-group">
+        <div class="input-group-text">🚹</div>
+       <asp:TextBox ID="txtNombreVend" runat="server" CssClass="form-control" placeholder="Ingresa tu nombre" required oninput="quitarErrorCampo(this)" />
+
+    </div>
+    <span id="errorNombre" class="text-danger"></span> <!-- Mensaje de error aquí -->
+</div>
+<div class="form-group">
+    <asp:Label ID="lblApellidoVend" runat="server" Text="Apellido:" CssClass="control-label"></asp:Label>
+    <div class="input-group">
+        <div class="input-group-text">🚹</div>
+     <asp:TextBox ID="txtApellidoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu apellido" required oninput="quitarErrorCampo(this)" />
+
+    </div>
+    <span id="errorApellido" class="text-danger"></span> <!-- Mensaje de error aquí -->
+</div>
+<div class="form-group">
+    <asp:Label ID="lblCorreoVend" runat="server" Text="Correo:" CssClass="control-label"></asp:Label>
+    <div class="input-group">
+        <div class="input-group-text">📘</div>
+        <asp:TextBox ID="txtCorreoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu correo" required oninput="quitarErrorCampo(this)" />
+
+    </div>
+    <span id="errorCorreo" class="text-danger"></span> <!-- Mensaje de error aquí -->
+</div>
+<div class="form-group">
+    <asp:Label ID="lblContrasenaVend" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
+    <div class="input-group">
+        <div class="input-group-text">🛡</div>
+<asp:TextBox ID="txtContrasenaVend" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required oninput="quitarErrorCampo(this)" />
+    </div>
+    <span id="errorContrasena" class="text-danger"></span> <!-- Mensaje de error aquí -->
+</div>
+<div class="form-group">
+    <asp:Label ID="lblTelefonoVend" runat="server" Text="Teléfono:" CssClass="control-label"></asp:Label>
+    <div class="input-group">
+        <div class="input-group-text">📶</div>
+<asp:TextBox ID="txtTelefonoVend" runat="server" CssClass="form-control" placeholder="Ingresa tu teléfono" required oninput="quitarErrorCampo(this)" />
+    </div>
+    <span id="errorTelefono" class="text-danger"></span> <!-- Mensaje de error aquí -->
+</div>
+<div class="form-group">
+    <asp:Label ID="lblDireccionVend" runat="server" Text="Dirección:" CssClass="control-label"></asp:Label>
+    <div class="input-group">
+        <div class="input-group-text">📬</div>
+<asp:TextBox ID="txtDireccionVend" runat="server" CssClass="form-control" placeholder="Ingresa tu dirección" required oninput="quitarErrorCampo(this)" />
+    </div>
+    <span id="errorDireccion" class="text-danger"></span> <!-- Mensaje de error aquí -->
+</div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <asp:Button ID="btnRegistrarVendedor" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrarVendedor_Click" />
-            </div>
+  <asp:Button ID="btnRegistrarVendedor" runat="server" Text="Registrar" CssClass="btn btn-primary" OnClick="btnRegistrarVendedor_Click" OnClientClick="return validarYRegistrar();" />            </div>
         </div>
     </div>
 </div>
@@ -424,6 +432,105 @@
         </div>
     </div>
 </div>
+
+    </form>
+ <script>
+   
+     $('#registerVendedorModal').on('show.bs.modal', function () {
+        
+         document.getElementById('<%= txtDocumentoVend.ClientID %>').value = '';
+        document.getElementById('<%= txtNombreVend.ClientID %>').value = '';
+        document.getElementById('<%= txtApellidoVend.ClientID %>').value = '';
+        document.getElementById('<%= txtCorreoVend.ClientID %>').value = '';
+        document.getElementById('<%= txtContrasenaVend.ClientID %>').value = '';
+        document.getElementById('<%= txtTelefonoVend.ClientID %>').value = '';
+        document.getElementById('<%= txtDireccionVend.ClientID %>').value = '';
+
+       
+        document.getElementById('errorDocumento').innerText = '';
+        document.getElementById('errorNombre').innerText = '';
+        document.getElementById('errorApellido').innerText = '';
+        document.getElementById('errorCorreo').innerText = '';
+        document.getElementById('errorContrasena').innerText = '';
+        document.getElementById('errorTelefono').innerText = '';
+        document.getElementById('errorDireccion').innerText = '';
+    });
+
+     
+     function validarYRegistrar() {
+         var documento = document.getElementById('<%= txtDocumentoVend.ClientID %>').value;
+        var nombre = document.getElementById('<%= txtNombreVend.ClientID %>').value;
+        var apellido = document.getElementById('<%= txtApellidoVend.ClientID %>').value;
+        var correo = document.getElementById('<%= txtCorreoVend.ClientID %>').value;
+        var contrasena = document.getElementById('<%= txtContrasenaVend.ClientID %>').value;
+        var telefono = document.getElementById('<%= txtTelefonoVend.ClientID %>').value;
+        var direccion = document.getElementById('<%= txtDireccionVend.ClientID %>').value;
+
+        var fieldsValid = true;
+
+       
+        document.getElementById('errorDocumento').innerText = '';
+        document.getElementById('errorNombre').innerText = '';
+        document.getElementById('errorApellido').innerText = '';
+        document.getElementById('errorCorreo').innerText = '';
+        document.getElementById('errorContrasena').innerText = '';
+        document.getElementById('errorTelefono').innerText = '';
+        document.getElementById('errorDireccion').innerText = '';
+
+        
+        if (!documento) {
+            document.getElementById('errorDocumento').innerText = "Documento es obligatorio.";
+            fieldsValid = false;
+        }
+        if (!nombre) {
+            document.getElementById('errorNombre').innerText = "Nombre es obligatorio.";
+            fieldsValid = false;
+        }
+        if (!apellido) {
+            document.getElementById('errorApellido').innerText = "Apellido es obligatorio.";
+            fieldsValid = false;
+        }
+        if (!correo) {
+            document.getElementById('errorCorreo').innerText = "Correo es obligatorio.";
+            fieldsValid = false;
+        } else if (!correo.includes('@')) { 
+            document.getElementById('errorCorreo').innerText = "El correo debe contener un '@'.";
+            fieldsValid = false;
+        }
+        if (!contrasena) {
+            document.getElementById('errorContrasena').innerText = "Contraseña es obligatoria.";
+            fieldsValid = false;
+        }
+        if (!telefono) {
+            document.getElementById('errorTelefono').innerText = "Teléfono es obligatorio.";
+            fieldsValid = false;
+        }
+        if (!direccion) {
+            document.getElementById('errorDireccion').innerText = "Dirección es obligatoria.";
+            fieldsValid = false;
+        }
+
+        if (!fieldsValid) {
+            return false;  
+        }
+
+        
+        return true;
+    }
+
+   
+    function limpiarError(campo) {
+        document.getElementById('error' + campo).innerText = '';
+    }
+
+    document.getElementById('<%= txtDocumentoVend.ClientID %>').oninput = function() { limpiarError('Documento'); };
+    document.getElementById('<%= txtNombreVend.ClientID %>').oninput = function() { limpiarError('Nombre'); };
+    document.getElementById('<%= txtApellidoVend.ClientID %>').oninput = function() { limpiarError('Apellido'); };
+    document.getElementById('<%= txtCorreoVend.ClientID %>').oninput = function() { limpiarError('Correo'); };
+    document.getElementById('<%= txtContrasenaVend.ClientID %>').oninput = function() { limpiarError('Contrasena'); };
+    document.getElementById('<%= txtTelefonoVend.ClientID %>').oninput = function() { limpiarError('Telefono'); };
+    document.getElementById('<%= txtDireccionVend.ClientID %>').oninput = function () { limpiarError('Direccion'); };
+ </script>
 
     </form>
 </body>

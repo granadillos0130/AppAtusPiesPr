@@ -203,18 +203,37 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtNombreVend.Text) ||
-                string.IsNullOrWhiteSpace(txtApellidoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtCorreoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtContrasenaVend.Text) ||
-                string.IsNullOrWhiteSpace(txtTelefonoVend.Text) ||
-                string.IsNullOrWhiteSpace(txtDireccionVend.Text))
+            
+            List<string> camposVacios = new List<string>();
+
+            
+            if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text))
+                camposVacios.Add("Documento");
+            if (string.IsNullOrWhiteSpace(txtNombreVend.Text))
+                camposVacios.Add("Nombre");
+            if (string.IsNullOrWhiteSpace(txtApellidoVend.Text))
+                camposVacios.Add("Apellido");
+            if (string.IsNullOrWhiteSpace(txtCorreoVend.Text))
+                camposVacios.Add("Correo");
+            if (string.IsNullOrWhiteSpace(txtContrasenaVend.Text))
+                camposVacios.Add("Contraseña");
+            if (string.IsNullOrWhiteSpace(txtTelefonoVend.Text))
+                camposVacios.Add("Teléfono");
+            if (string.IsNullOrWhiteSpace(txtDireccionVend.Text))
+                camposVacios.Add("Dirección");
+
+           
+            if (camposVacios.Any())
             {
-                lblMensaje.Text = "Por favor, completa todos los campos.";
+                string campos = string.Join(", ", camposVacios);
+                MostrarAlerta("warning", "Campos vacíos", "Por favor, completa los siguientes campos: " + campos);
+
+               
+                ResaltarCamposVacios(camposVacios);
                 return;
             }
 
+          
             ClUsuarioE nuevoVendedor = new ClUsuarioE
             {
                 Documento = txtDocumentoVend.Text,
@@ -224,21 +243,71 @@ namespace AppAtusPiesPr.Vista
                 Password = txtContrasenaVend.Text,
                 Telefono = txtTelefonoVend.Text,
                 Direccion = txtDireccionVend.Text,
-                
             };
 
             int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor);
 
             if (idVendedor > 0)
             {
-                lblMensaje.Text = "Registro de vendedor exitoso. El estado es 'PROCESO'.";
+                
+                MostrarAlerta("success", "Registro exitoso", "El vendedor fue registrado correctamente.");
+
+               
                 LimpiarCamposVendedor();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CerrarModal", "$('#registerVendedorModal').modal('hide');", true);
             }
             else
             {
-                lblMensaje.Text = "Error al registrar el vendedor. Intente nuevamente.";
+              
+                MostrarAlerta("error", "Error", "No se pudo registrar al vendedor. Intenta nuevamente.");
             }
         }
+
+
+        private void ResaltarCamposVacios(List<string> camposVacios)
+        {
+            
+            txtDocumentoVend.CssClass = "form-control";
+            txtNombreVend.CssClass = "form-control";
+            txtApellidoVend.CssClass = "form-control";
+            txtCorreoVend.CssClass = "form-control";
+            txtContrasenaVend.CssClass = "form-control";
+            txtTelefonoVend.CssClass = "form-control";
+            txtDireccionVend.CssClass = "form-control";
+
+          
+            foreach (var campo in camposVacios)
+            {
+                switch (campo)
+                {
+                    case "Documento":
+                        txtDocumentoVend.CssClass += " is-invalid";
+                        break;
+                    case "Nombre":
+                        txtNombreVend.CssClass += " is-invalid";
+                        break;
+                    case "Apellido":
+                        txtApellidoVend.CssClass += " is-invalid";
+                        break;
+                    case "Correo":
+                        txtCorreoVend.CssClass += " is-invalid";
+                        break;
+                    case "Contraseña":
+                        txtContrasenaVend.CssClass += " is-invalid";
+                        break;
+                    case "Teléfono":
+                        txtTelefonoVend.CssClass += " is-invalid";
+                        break;
+                    case "Dirección":
+                        txtDireccionVend.CssClass += " is-invalid";
+                        break;
+                }
+            }
+        }
+
+
+
 
         private void LimpiarCamposVendedor()
         {
@@ -249,35 +318,6 @@ namespace AppAtusPiesPr.Vista
             txtContrasenaVend.Text = "";
             txtTelefonoVend.Text = "";
             txtDireccionVend.Text = "";
-        }
-
-        protected void btnEnviarRecuperar_Click(object sender, EventArgs e)
-        {
-            string userEmail = txtEmailRecuperar.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(userEmail))
-            {
-                MostrarAlerta("warning", "Campo vacío", "Por favor, ingresa tu correo electrónico.");
-                return;
-            }
-
-            if (clientoLo.IsEmailExist(userEmail))
-            {
-                string temporaryPassword = GenerarTemporalPassword();
-
-                clientoLo.SaveTemporaryPassword(userEmail, temporaryPassword);
-
-                EnviarTemporalPasswordEmail(userEmail, temporaryPassword);
-
-                MostrarAlerta("success", "¡Éxito!", "Tu contraseña temporal ha sido enviada. Verifica tu correo electrónico.");
-            }
-            else
-            {
-                txtEmailRecuperar.Text = string.Empty;
-                MostrarAlerta("error", "Correo no encontrado", "El correo ingresado no coincide con nuestros registros. Intenta nuevamente.");
-            }
-
-
         }
 
 
