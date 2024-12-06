@@ -277,6 +277,11 @@ namespace AppAtusPiesPr.Datos
                 };
                 comando.Parameters.Add(mensajeParameter);
 
+                SqlParameter mensajeVParameter = new SqlParameter("@mensajeV", SqlDbType.VarChar, 255)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                comando.Parameters.Add(mensajeVParameter);
                 // Ejecutar el procedimiento almacenado
                 comando.ExecuteNonQuery();
 
