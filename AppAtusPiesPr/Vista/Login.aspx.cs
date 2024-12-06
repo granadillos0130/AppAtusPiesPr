@@ -31,7 +31,7 @@ namespace AppAtusPiesPr.Vista
             ScriptManager.RegisterStartupScript(this, GetType(), title.Replace(" ", ""), script, true);
         }
 
-        
+
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             bool isValid = true;
@@ -103,17 +103,20 @@ namespace AppAtusPiesPr.Vista
                     Direccion = txtDireccion.Text
                 };
 
-                // Registrar el nuevo cliente
-                int idCliente = clientoLo.RegistrarCliente(nuevoCliente);
+                // Verificar si el documento o el correo ya están registrados
+                string mensaje;
+                int idCliente = clientoLo.RegistrarCliente(nuevoCliente, out mensaje);
 
                 if (idCliente > 0)
                 {
+                    // Si el ID es mayor que 0, significa que el cliente fue registrado correctamente
                     MostrarAlerta("success", "¡Felicidades!", "Te has registrado con éxito. Ahora puedes iniciar sesión.");
                     LimpiarCampos();
                 }
                 else
                 {
-                    MostrarAlerta("error", "¡Ups! Algo salió mal", "Hubo un problema al registrar tus datos. Intenta nuevamente más tarde.");
+                    // Si el mensaje contiene un error, mostrarlo
+                    MostrarAlerta("error", "¡Ups! Algo salió mal", mensaje);
                 }
             }
             else
@@ -239,10 +242,9 @@ namespace AppAtusPiesPr.Vista
 
         protected void btnRegistrarVendedor_Click(object sender, EventArgs e)
         {
-            
             List<string> camposVacios = new List<string>();
 
-            
+            // Validar si los campos están vacíos
             if (string.IsNullOrWhiteSpace(txtDocumentoVend.Text))
                 camposVacios.Add("Documento");
             if (string.IsNullOrWhiteSpace(txtNombreVend.Text))
@@ -258,18 +260,18 @@ namespace AppAtusPiesPr.Vista
             if (string.IsNullOrWhiteSpace(txtDireccionVend.Text))
                 camposVacios.Add("Dirección");
 
-           
+            // Si hay campos vacíos, mostrar alerta
             if (camposVacios.Any())
             {
                 string campos = string.Join(", ", camposVacios);
                 MostrarAlerta("warning", "Campos vacíos", "Por favor, completa los siguientes campos: " + campos);
 
-               
+                // Resaltar los campos vacíos
                 ResaltarCamposVacios(camposVacios);
                 return;
             }
 
-          
+            // Crear el nuevo vendedor
             ClUsuarioE nuevoVendedor = new ClUsuarioE
             {
                 Documento = txtDocumentoVend.Text,
@@ -281,24 +283,30 @@ namespace AppAtusPiesPr.Vista
                 Direccion = txtDireccionVend.Text,
             };
 
-            int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor);
+            // Mensaje de salida
+            string mensaje;
+
+            // Intentar registrar al vendedor
+            int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor, out mensaje);
 
             if (idVendedor > 0)
             {
+                // Si el ID es mayor que 0, significa que se registró correctamente
+                MostrarAlerta("success", "Registro exitoso", "El vendedor fue registrado correctamente. Su cuenta está en proceso de activación.");
 
-                MostrarAlerta("success", "Registro exitoso", "El vendedor fue registrado correctamente su cuenta esta en proceso de activación");
-
-
+                // Limpiar los campos de entrada
                 LimpiarCamposVendedor();
 
+                // Cerrar el modal de registro
                 ScriptManager.RegisterStartupScript(this, GetType(), "CerrarModal", "$('#registerVendedorModal').modal('hide');", true);
             }
             else
             {
-              
-                MostrarAlerta("error", "Error", "No se pudo registrar al vendedor. Intenta nuevamente.");
+                // Si idVendedor es 0 o un valor negativo, mostrar el mensaje de error
+                MostrarAlerta("error", "Error", mensaje);
             }
         }
+
 
 
         private void ResaltarCamposVacios(List<string> camposVacios)

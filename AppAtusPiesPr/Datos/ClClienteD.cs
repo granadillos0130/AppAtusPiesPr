@@ -200,40 +200,51 @@ namespace AppAtusPiesPr.Datos
                 throw new Exception("Error al enviar el correo de notificación.", ex);
             }
         }
-        public int MtdRegistrarCliente(ClUsuarioE cliente)
+        public int MtdRegistrarCliente(ClUsuarioE cliente, out string mensaje)
         {
             int idCliente = 0;
-            SqlConnection con = null;
+            mensaje = string.Empty;  // Inicializar el mensaje vacío
+
             try
             {
-                con = conexion.MtdAbrirConexion();
-                SqlCommand cmd = new SqlCommand("spRegistrarCliente", con)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-                cmd.Parameters.AddWithValue("@documento", cliente.Documento);
-                cmd.Parameters.AddWithValue("@nombres", cliente.Nombres);
-                cmd.Parameters.AddWithValue("@apellidos", cliente.Apellidos);
-                cmd.Parameters.AddWithValue("@email", cliente.Email);
-                cmd.Parameters.AddWithValue("@password", cliente.Password);
-                cmd.Parameters.AddWithValue("@telefono", cliente.Telefono);
-                cmd.Parameters.AddWithValue("@direccion", cliente.Direccion);
+                ClConexion objConexion = new ClConexion();
 
-                idCliente = Convert.ToInt32(cmd.ExecuteScalar());
+                using (SqlConnection con = objConexion.MtdAbrirConexion())
+                {
+                    using (SqlCommand cmd = new SqlCommand("SpRegistrarCliente", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@documento", cliente.Documento);
+                        cmd.Parameters.AddWithValue("@nombres", cliente.Nombres);
+                        cmd.Parameters.AddWithValue("@apellidos", cliente.Apellidos);
+                        cmd.Parameters.AddWithValue("@email", cliente.Email);
+                        cmd.Parameters.AddWithValue("@password", cliente.Password);
+                        cmd.Parameters.AddWithValue("@telefono", cliente.Telefono);
+                        cmd.Parameters.AddWithValue("@direccion", cliente.Direccion);
+
+                        // Parámetro de salida para capturar el mensaje
+                        SqlParameter mensajeParam = new SqlParameter("@mensaje", SqlDbType.VarChar, 200)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(mensajeParam);
+
+                        // Ejecutar el procedimiento y obtener el ID del cliente
+                        idCliente = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        // Capturar el mensaje de salida
+                        mensaje = mensajeParam.Value.ToString();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 throw new Exception("Error al registrar cliente: " + ex.Message);
             }
-            finally
-            {
-                if (con != null && con.State == ConnectionState.Open)
-                {
-                    conexion.MtdCerrarConexion();
-                }
-            }
             return idCliente;
         }
+
 
         public ClUsuarioE MtdIngreso(ClUsuarioE objDatos)
         {

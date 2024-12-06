@@ -20,9 +20,9 @@ namespace AppAtusPiesPr.Logica
         {
             return clienteDa.mtdActualiarInfoCliente(dataCliente);
         }
-        public int RegistrarCliente(ClUsuarioE cliente)
+        public int RegistrarCliente(ClUsuarioE cliente, out string mensaje)
         {
-            return clienteDa.MtdRegistrarCliente(cliente);
+            return clienteDa.MtdRegistrarCliente(cliente,out mensaje);
         }
 
         public ClUsuarioE MtdIngreso(ClUsuarioE usuario)
