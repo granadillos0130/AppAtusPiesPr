@@ -106,7 +106,7 @@ namespace AppAtusPiesPr.Vista
                     string nombreImg = Path.GetFileName(inRuta.FileName);
                     // Crear nombre único para evitar sobrescritura
                     string nombreUnico = Guid.NewGuid().ToString() + extension;
-                    string directorioDestino = Server.MapPath("~/Vista/img/");
+                    string directorioDestino = Server.MapPath("~/Vista/imagenes/");
 
                     // Verificar si existe el directorio
                     if (!Directory.Exists(directorioDestino))
@@ -116,7 +116,7 @@ namespace AppAtusPiesPr.Vista
 
                     string rutaCompleta = Path.Combine(directorioDestino, nombreUnico);
                     inRuta.SaveAs(rutaCompleta);
-                    objProduE.imagen = "~/Vista/img/" + nombreUnico;
+                    objProduE.imagen = "~/Vista/imagenes/" + nombreUnico;
                 }
 
                 // Registrar producto en la base de datos
