@@ -10,9 +10,9 @@ namespace AppAtusPiesPr.Logica
     public class ClVendedorL
     {
         ClVendedorD oVendedor = new ClVendedorD();
-        public int RegistrarVendedor(ClUsuarioE vendedor)
+        public int RegistrarVendedor(ClUsuarioE vendedor,out string mensaje)
         {
-            return oVendedor.MtdRegistrarVendedor(vendedor);
+            return oVendedor.MtdRegistrarVendedor(vendedor,out mensaje);
         }
 
        public ClUsuarioE mtdPerfilVendedor(int idVendedor)

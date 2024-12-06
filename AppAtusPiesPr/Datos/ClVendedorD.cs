@@ -11,9 +11,11 @@ namespace AppAtusPiesPr.Datos
     public class ClVendedorD
     {
 
-        public int MtdRegistrarVendedor(ClUsuarioE vendedor)
+        public int MtdRegistrarVendedor(ClUsuarioE vendedor, out string mensaje)
         {
             int idVendedor = 0;
+            mensaje = string.Empty;  // Inicializar el mensaje vacío
+
             try
             {
                 ClConexion objConexion = new ClConexion();
@@ -23,6 +25,7 @@ namespace AppAtusPiesPr.Datos
                     using (SqlCommand cmd = new SqlCommand("spRegistrarVendedor", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
+
                         cmd.Parameters.AddWithValue("@documento", vendedor.Documento);
                         cmd.Parameters.AddWithValue("@nombres", vendedor.Nombres);
                         cmd.Parameters.AddWithValue("@apellidos", vendedor.Apellidos);
@@ -31,7 +34,18 @@ namespace AppAtusPiesPr.Datos
                         cmd.Parameters.AddWithValue("@telefono", vendedor.Telefono);
                         cmd.Parameters.AddWithValue("@direccion", vendedor.Direccion);
 
+                        // Parámetro de salida para capturar el mensaje
+                        SqlParameter mensajeParam = new SqlParameter("@mensaje", SqlDbType.VarChar, 200)
+                        {
+                            Direction = ParameterDirection.Output
+                        };
+                        cmd.Parameters.Add(mensajeParam);
+
+                        // Ejecutar el procedimiento y obtener el ID del vendedor
                         idVendedor = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        // Capturar el mensaje de salida
+                        mensaje = mensajeParam.Value.ToString();
                     }
                 }
             }
@@ -41,6 +55,7 @@ namespace AppAtusPiesPr.Datos
             }
             return idVendedor;
         }
+
         // Método para listar los productos mas vendidos  según el vendedor que inicie sesión 
         public List<ClProductoEmpresaE> MtdObtenerProductosMasVendidosPorVendedor(int idVendedor, DateTime fechaInicio, DateTime fechaFin)
         {
