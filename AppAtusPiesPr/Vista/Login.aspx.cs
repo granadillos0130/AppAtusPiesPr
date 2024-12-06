@@ -31,24 +31,7 @@ namespace AppAtusPiesPr.Vista
             ScriptManager.RegisterStartupScript(this, GetType(), title.Replace(" ", ""), script, true);
         }
 
-        private void MostrarMensajeDeError(TextBox textBox, string mensaje)
-        {
-            string script = $@"
-    var input = document.getElementById('{textBox.ClientID}');
-    input.setAttribute('placeholder', '{mensaje}');
-    input.classList.add('is-invalid');
-    
-    // Eliminar mensaje de error y cambiar borde al comenzar a escribir
-    input.addEventListener('input', function() {{
-        if (input.value !== '') {{
-            input.classList.remove('is-invalid');
-            input.style.borderColor = ''; // Restablecer el color del borde
-            input.removeAttribute('placeholder');
-        }}
-    }});
-";
-            ScriptManager.RegisterStartupScript(this, GetType(), $"{textBox.ID}Error", script, true);
-        }
+        
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             bool isValid = true;
@@ -302,10 +285,10 @@ namespace AppAtusPiesPr.Vista
 
             if (idVendedor > 0)
             {
-                
-                MostrarAlerta("success", "Registro exitoso", "El vendedor fue registrado correctamente.");
 
-               
+                MostrarAlerta("success", "Registro exitoso", "El vendedor fue registrado correctamente su cuenta esta en proceso de activación");
+
+
                 LimpiarCamposVendedor();
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CerrarModal", "$('#registerVendedorModal').modal('hide');", true);
