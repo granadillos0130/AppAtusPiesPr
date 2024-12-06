@@ -78,8 +78,10 @@
     <Content Include="Vista\EditarPerfilVendeyAdmin.aspx" />
     <Content Include="Vista\EstadisticaVendedor.aspx" />
     <Content Include="Vista\EstadoPedido.aspx" />
+    <Content Include="Vista\imagenes\AdidasNegras.jpeg" />
     <Content Include="Vista\imagenes\Jordan1RetroLowOGSPTravisScott.jpg" />
     <Content Include="Vista\imagenes\JumpmanJackdeJORDANxTravisScott.png" />
+    <Content Include="Vista\imagenes\NikeAirNegras.jpeg" />
     <Content Include="Vista\imagenes\thumb-jordan-5-off-white-white.gif" />
     <Content Include="Vista\imagenes\TravisScottNike.png" />
     <Content Include="Vista\img\undraw_posting_photo.svg" />
