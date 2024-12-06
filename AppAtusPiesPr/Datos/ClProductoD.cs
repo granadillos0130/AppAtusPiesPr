@@ -38,7 +38,7 @@ namespace AppAtusPiesPr.Datos
                 cmd.Parameters.AddWithValue("@descripcionProducto", objdata.descripcionProducto);
                 cmd.Parameters.AddWithValue("@referencia", objdata.referencia);
                 cmd.Parameters.AddWithValue("@imagen", objdata.imagen ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@descuento", int.Parse(objdata.descuento.ToString()) != null ? objdata.descuento : null);
+                cmd.Parameters.AddWithValue("@descuento", (object)objdata.descuento ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@descripcionCategoria", objdata.descripcionCategoria);
                 cmd.Parameters.AddWithValue("@nombreMarca", objdata.nombreMarca);
 
