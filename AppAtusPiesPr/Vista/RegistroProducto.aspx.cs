@@ -23,26 +23,26 @@ namespace AppAtusPiesPr.Vista
             {
                 ClProductoEmpresaE objProduE = new ClProductoEmpresaE();
 
-                objProduE.idVendedor = int.Parse( Session["idUsuario"].ToString());
-                if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ||
-                string.IsNullOrWhiteSpace(txtReferencia.Text) ||
-                string.IsNullOrWhiteSpace(txtCategoria.Text) ||
-                 
-                 string.IsNullOrWhiteSpace(txtMarca.Text)) 
+                objProduE.idVendedor = int.Parse(Session["idUsuario"].ToString());
 
+                // Validación de campos obligatorios
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                    string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ||
+                    string.IsNullOrWhiteSpace(txtReferencia.Text) ||
+                    string.IsNullOrWhiteSpace(txtCategoria.Text) ||
+                    string.IsNullOrWhiteSpace(txtMarca.Text))
                 {
                     MostrarMensajeError("Todos los campos son requeridos");
                     return;
                 }
+
                 objProduE.nombreProducto = txtNombre.Text.Trim();
                 objProduE.descripcionProducto = txtDescripcionProduc.Text.Trim();
                 objProduE.referencia = txtReferencia.Text.Trim();
                 objProduE.descripcionCategoria = txtCategoria.Text.Trim();
-                objProduE.descuento = int.Parse( txtDescuento.Text.Trim());
                 objProduE.nombreMarca = txtMarca.Text.Trim();
 
-
+                // Validación de stock
                 if (!int.TryParse(txtStock.Text, out int cantidad))
                 {
                     MostrarMensajeError("Por favor ingrese un número válido para el stock");
@@ -55,8 +55,7 @@ namespace AppAtusPiesPr.Vista
                 }
                 objProduE.cantidadStock = cantidad;
 
-
-
+                // Validación de precio
                 if (!int.TryParse(txtPrecio.Text, out int money))
                 {
                     MostrarMensajeError("Por favor ingrese un valor válido para el precio");
@@ -69,24 +68,30 @@ namespace AppAtusPiesPr.Vista
                 }
                 objProduE.precioVenta = money;
 
-
-
-                if (!int.TryParse(txtDescuento.Text, out int descuento))
+                // Verificar si el campo descuento está vacío
+                if (string.IsNullOrWhiteSpace(txtDescuento.Text))
                 {
-                    MostrarMensajeError("Por favor ingrese un número válido para el Descuento");
-                    return;
-                }
-                if (descuento < 0)
-                {
-                    MostrarMensajeError("El descuento debe ser un número positivo");
-                    return;
+                    objProduE.descuento = null;  // Si no se ingresa descuento, se asigna null
                 }
                 else
                 {
-objProduE.descuento = descuento;
-                }
-                
+                    // Si el campo no está vacío, verificar que sea un número válido
+                    if (!int.TryParse(txtDescuento.Text, out int descuento))
+                    {
+                        MostrarMensajeError("Por favor ingrese un número válido para el Descuento.");
+                        return;
+                    }
 
+                    // Validar que el descuento sea un número positivo
+                    if (descuento < 0)
+                    {
+                        MostrarMensajeError("El descuento debe ser un número positivo.");
+                        return;
+                    }
+                    objProduE.descuento = descuento;  // Asignar descuento
+                }
+
+                // Verificar si se ha cargado una imagen
                 if (inRuta.HasFile)
                 {
                     string extension = Path.GetExtension(inRuta.FileName).ToLower();
@@ -114,19 +119,20 @@ objProduE.descuento = descuento;
                     objProduE.imagen = "~/Vista/img/" + nombreUnico;
                 }
 
+                // Registrar producto en la base de datos
                 ClProductoL objProductoL = new ClProductoL();
                 objProductoL.MtdRegistroProd(objProduE);
 
+                // Mensaje de éxito
                 MostrarMensajeExito("Producto registrado exitosamente");
                 LimpiarCampos();
-
             }
             catch (Exception ex)
             {
                 MostrarMensajeError("Error al registrar el producto: " + ex.Message);
             }
-
         }
+
         private void MostrarMensajeExito(string mensaje)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "sweetAlertSuccess",
@@ -138,6 +144,7 @@ objProduE.descuento = descuento;
             ScriptManager.RegisterStartupScript(this, GetType(), "sweetAlertError",
                 $"Swal.fire({{ icon: 'error', title: 'Error', text: '{mensaje.Replace("'", "\\'")}' }})", true);
         }
+
         private void LimpiarCampos()
         {
             txtNombre.Text = "";
@@ -150,4 +157,4 @@ objProduE.descuento = descuento;
             txtDescuento.Text = "";
         }
     }
-    }
+}
