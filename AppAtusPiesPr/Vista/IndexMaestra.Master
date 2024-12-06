@@ -73,8 +73,11 @@
         <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
 
         
-    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+
+<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2024/12/04/03/20241204035742-QVX7PO4S.js"></script>
+
+    
 
 
     </form>
