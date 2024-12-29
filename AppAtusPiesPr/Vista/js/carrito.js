@@ -43,7 +43,7 @@ function mostrarCarrito() {
                             ${productoInfo.NombreVendedor} ${productoInfo.apellidos}
                         </a>
                         <div class="cardprice">
-                            <p>$${productoInfo.precio}</p><br>
+                            <p>$${producto.precio}</p><br>
                             <p>Cantidad: ${producto.cantidad}</p>
                         </div>
                         <div class="cardButtons">
@@ -64,6 +64,7 @@ function mostrarCarrito() {
 function obtenerInformacionProducto(idProducto) {
     return fetch(`https://tu-api.com/productos/${idProducto}`)
         .then(response => {
+            console.log(response); // Verifica el estado y la respuesta
             if (!response.ok) {
                 throw new Error(`Error al obtener el producto (HTTP ${response.status})`);
             }
@@ -71,17 +72,17 @@ function obtenerInformacionProducto(idProducto) {
         })
         .catch(error => {
             console.error("Error al obtener la información del producto:", error);
-            // Devuelve datos predeterminados si ocurre un error
             return {
                 idProdctoEmpresa: idProducto,
-                imagen: 'https://via.placeholder.com/150', // Imagen predeterminada
+                imagen: 'https://via.placeholder.com/150',
                 nombreProducto: `Producto ${idProducto}`,
                 NombreVendedor: 'Vendedor',
                 apellidos: 'Apellido',
-                precio: '0', // Precio predeterminado
-                idVendedor: '0' // ID predeterminado
+                precio: '0',
+                idVendedor: '0'
             };
         });
+
 }
 
 // Función para eliminar un producto del carrito

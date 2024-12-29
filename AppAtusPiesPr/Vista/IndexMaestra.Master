@@ -6,8 +6,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>ATP </title>
     <link href="css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -15,14 +17,13 @@
         <div id="menuSinSesion" runat="server" visible="false">
             <header>
                 <div class="navbar">
-                    <nav>
-                        <ul class="menu">
-                            <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
-                        </ul>
-                    </nav>
+                    <ul class="menu">
+                        <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
+                        <!-- Otros elementos del menú -->
+                    </ul>
+
                     <a href="../index.aspx" class="logo">A TUS PIES</a>
                     <div class="right-section">
-
                         <div class="search-bar">
                             <asp:TextBox ID="txtBusqueda" runat="server" CssClass="search-input"
                                 AutoPostBack="True" OnTextChanged="txtBusqueda_TextChanged"
@@ -30,10 +31,11 @@
                             <i class="fas fa-search"></i>
                         </div>
 
-
                         <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                        </a><a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">LOGIN</a> <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
+                        </a>
+                        <a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">LOGIN</a>
+                        <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
                     </div>
                 </div>
             </header>
@@ -68,18 +70,9 @@
             </header>
         </div>
 
-        <hr />
-
-        <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
-
-        
-
-<script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2024/12/04/03/20241204035742-QVX7PO4S.js"></script>
-
-    
-
-
+        <asp:ContentPlaceHolder ID="body" runat="server">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        </asp:ContentPlaceHolder>
     </form>
 </body>
 </html>

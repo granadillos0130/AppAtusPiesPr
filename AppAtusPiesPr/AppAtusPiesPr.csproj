@@ -95,6 +95,7 @@
     <Content Include="Vista\js\demo\chart-bar-demo.js" />
     <Content Include="Vista\js\demo\chart-pie-demo.js" />
     <Content Include="Vista\js\demo\datatables-demo.js" />
+    <Content Include="Vista\js\main.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
     <Content Include="Vista\ListarUsuario.aspx" />
