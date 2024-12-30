@@ -19,7 +19,7 @@
                     <asp:Repeater ID="Repeater2" runat="server">
                         <ItemTemplate>
                             <li>
-                                <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
+                                <a href='<%# "moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                     <%# Eval("descripcion") %>
                                 </a>
                             </li>
@@ -72,13 +72,12 @@
         <!-- Sección de comentarios -->
         <div class="comentarios mt-4">
             <h3>Comentarios</h3>
-            <form>
                 <div class="mb-3">
-                    <label for="comentarioInput" class="form-label">Escribe tu comentario</label>
+                    <label for="comentarioInput" class="form-label">¿Qué opinas sobre este producto? Escribe tu comentario</label>
                     <textarea class="form-control" id="comentarioInput" rows="3" placeholder="Deja tu opinión aquí..."></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Enviar comentario</button>
-            </form>
+                <button type="submit" class="btn btn-dark">Enviar comentario</button>
+
 
             <!-- Lista de reseñas (solo 3 visibles) -->
             <div class="comentarios-list mt-3">
@@ -114,7 +113,7 @@
             </div>
 
             <!-- Botón "Ver más" para abrir el modal -->
-            <button type="button" class="btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#modalReseñas">Ver más reseñas</button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalReseñas">Ver más reseñas</button>
         </div>
     </div>
 </div>
@@ -213,4 +212,5 @@
         <br />
     </div>
     <script src="js/carrito.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </asp:Content>

@@ -54,7 +54,7 @@
                     <a href="../index.aspx" class="logo">A TUS PIES</a>
                     <div class="search-bar">
                         <asp:TextBox ID="txtBusqueda2" runat="server" CssClass="search-input"
-                            AutoPostBack="True" OnTextChanged="txtBusqueda_TextChanged"
+                            AutoPostBack="True" OnTextChanged="txtBusqueda2_TextChanged"
                             placeholder="Buscar productos..." />
                         <i class="fas fa-search"></i>
                     </div>

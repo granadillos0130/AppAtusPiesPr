@@ -22,6 +22,7 @@ body {
     background-size: cover; /* Hace que la imagen se ajuste al tamaño del botón */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-color: #ffffff;
+    margin-left: 10px;
     border: none; /* Elimina el borde del botón */
     padding: 0; /* Elimina el padding para que el ícono quede centrado */
     cursor: pointer;
@@ -555,15 +556,15 @@ label {
 .btn-agregar-carrito {
     display: inline-block;
     width: 100%; /* O ajusta según el diseño */
-    max-width: 300px; /* Limita el ancho máximo */
-    padding: 12px 20px;
+    max-width: 200px; /* Limita el ancho máximo */
+    padding: 10px 15px;
     background-color: black;
     color: #cccccc;
     font-size: 16px;
     text-align: center;
     text-transform: uppercase;
     border: none;
-    border-radius: 2px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
