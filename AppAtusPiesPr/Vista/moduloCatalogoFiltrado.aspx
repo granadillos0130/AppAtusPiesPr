@@ -11,9 +11,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <div>
-        <div class="container">
 
-            <!--Filtros-->
+                    <!--Filtros-->
             <center>
 
                 <div class="navbarFiltros">
@@ -31,8 +30,9 @@
                         </ul>
                     </nav>
                 </div>
-                <hr>
             </center>
+
+        <div class="container">
 
             <center>
                 <p class="card-title"><%# Eval("descripcion")  %></p>
@@ -68,17 +68,20 @@
                 </asp:Repeater>
             </div>
             <script src="js/carrito.js"></script>
-            <!-- PIE DE PAGINA -->
-            <div class="pie-pagina">
-                <br />
-                <p>&copy; 2024 A TUS PIES. Todos los derechos reservados.</p>
-                <p>Diseñado con amor para brindar estilo y comodidad.</p>
-                <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
-
-                <br />
-            </div>
+            
 
         </div>
+
+        <!-- PIE DE PAGINA -->
+<div class="pie-pagina">
+    <br />
+    <p>&copy; 2024 A TUS PIES. Todos los derechos reservados.</p>
+    <p>Diseñado con amor para brindar estilo y comodidad.</p>
+    <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
+
+    <br />
+</div>
+
     </div>
 </asp:Content>
 

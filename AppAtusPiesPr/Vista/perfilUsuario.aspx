@@ -86,8 +86,6 @@ button[onclick*="myModal"]:hover {
         </div>
 
     </center>
-
-    <hr />
     <br />
 
     <center>

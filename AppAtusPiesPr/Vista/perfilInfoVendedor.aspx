@@ -27,7 +27,6 @@
 
     </center>
 
-    <hr />
     <br />
 
     <center>
