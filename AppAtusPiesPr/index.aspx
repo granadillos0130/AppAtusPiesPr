@@ -100,7 +100,14 @@
                                 </div>
                                 <div class="cardButtons">
                                     <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
-                                    <a class="save-button" data-id='<%# Eval("idProdctoEmpresa") %>'>
+                                    <a class="save-button"
+                                        data-id='<%# Eval("idProdctoEmpresa") %>'
+                                        data-nombre='<%# HttpUtility.HtmlAttributeEncode(Eval("nombreProducto").ToString()) %>'
+                                        data-imagen='<%# ResolveUrl(Eval("imagen").ToString()) %>'
+                                        data-precio='<%# Eval("precio") %>'
+                                        data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("NombreVendedor").ToString()) %>'
+                                        data-apellidos='<%# HttpUtility.HtmlAttributeEncode(Eval("apellidos").ToString()) %>'
+                                        data-idvendedor='<%# Eval("idVendedor") %>'>
                                         <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                                     </a>
 
