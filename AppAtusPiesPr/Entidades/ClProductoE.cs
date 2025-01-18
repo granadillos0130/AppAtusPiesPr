@@ -91,6 +91,8 @@ namespace AppAtusPiesPr.Entidades
     {
         public int idCategoria { get; set; }
         public string descripcion { get; set; }
+
+        public int TotalProductos {  get; set; }
     }
 
 }

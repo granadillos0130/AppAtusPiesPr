@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net.Mail;
+using System.Runtime.Remoting;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -61,6 +62,13 @@ namespace AppAtusPiesPr.Logica
         {
             ClAdminD Categoria  = new ClAdminD();
             return Categoria.MtdListarCategoria();
+        }
+
+        public List<ClCategoriaE> MtdEstadisticaCategoria(string Orden)
+        {
+            ClAdminD Categoria = new ClAdminD();
+            return Categoria.MtdEstadistcaCategoria( Orden);
+
         }
 
         public bool MtdRegistrarCategoria(ClCategoriaE oDatos)
