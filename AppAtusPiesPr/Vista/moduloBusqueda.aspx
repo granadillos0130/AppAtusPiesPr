@@ -33,37 +33,44 @@
         <br>
 
         <!-- Contenedor para las tarjetas -->
-        <div id="cardsContainer" class="cards-container">
+<div id="cardsContainer" class="cards-container">
 
-            <asp:Repeater ID="Repeater1" runat="server">
-                <ItemTemplate>
-                    <div class="card">
-                        <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
-                        <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
-                        <h4 class="card-title"></h4>
-                        <div class="card-info">
-                            <div class="card-details">
-                                <a class="cardseller" href='<%# "vista/perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
-                                    <%# Eval("NombreVendedor") %><p></p>
-                                    <%# Eval("apellidos") %><br>
-                                </a>
-                                <div class="cardprice">
-                                    <p>$<%# Eval("precio") %></p>
+    <asp:Repeater ID="Repeater1" runat="server">
+        <ItemTemplate>
+            <div class="card">
+                <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
+                <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
+                <h4 class="card-title"></h4>
+                <div class="card-info">
+                    <div class="card-details">
+                        <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
+                            <%# Eval("NombreVendedor") %>
+                            <%# Eval("apellidos") %><br>
+                        </a>
+                        <div class="cardprice">
+                            <p>$<%# Eval("precio") %></p>
 
-                                </div>
-                                <div class="cardButtons">
-                                    <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
-                                    <a class="save-button" data-id='<%# Eval("idProdctoEmpresa") %>'>
-                                        <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                                    </a>
+                        </div>
+                        <div class="cardButtons">
+                            <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                            <a class="save-button"
+                                data-id='<%# Eval("idProdctoEmpresa") %>'
+                                data-nombre='<%# HttpUtility.HtmlAttributeEncode(Eval("nombreProducto").ToString()) %>'
+                                data-imagen='<%# ResolveUrl(Eval("imagen").ToString()) %>'
+                                data-precio='<%# Eval("precio") %>'
+                                data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("NombreVendedor").ToString()) %>'
+                                data-apellidos='<%# HttpUtility.HtmlAttributeEncode(Eval("apellidos").ToString()) %>'
+                                data-idvendedor='<%# Eval("idVendedor") %>'>
+                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                            </a>
 
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </ItemTemplate>
-            </asp:Repeater>
-        </div>
+                </div>
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+</div>
 
 
     </div>

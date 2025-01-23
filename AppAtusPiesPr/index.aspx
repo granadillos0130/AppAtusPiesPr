@@ -32,7 +32,7 @@
         </div>
     </center>
 
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="https://cdn.sanity.io/images/pu5wtzfc/production/9554b0a644e5ee45676ce176b13235a77a184ce6-2000x1251.gif" class="d-block w-100" alt="...">
@@ -54,22 +54,23 @@
         </button>
     </div>
 
-    <style>
-        /* Define un tamaño fijo para el carrusel */
-        #carouselExampleControls {
-            height: 500px; /* Altura fija del carrusel */
-            border-top: none; /* Elimina el borde superior */
-            overflow: hidden; /* Oculta cualquier contenido desbordante */
-        }
+<style>
+    /* Define un tamaño fijo para el carrusel */
+    #carouselExampleControls {
+        height: 500px; /* Altura fija del carrusel */
+        border-top: none; /* Elimina el borde superior */
+        overflow: hidden; /* Oculta cualquier contenido desbordante */
+    }
 
-        /* Asegura que las imágenes se ajusten completamente al carrusel */
-        .carousel-inner img {
-            width: 100%; /* Ajusta el ancho de la imagen al carrusel */
-            height: 100%; /* Ajusta la altura de la imagen al carrusel */
-            object-fit: contain; /* La imagen se ajusta dentro del espacio sin recortarse */
-            object-position: center; /* Centra la imagen en el carrusel */
-        }
-    </style>
+    /* Asegura que las imágenes se ajusten completamente al carrusel */
+    .carousel-inner img {
+        width: 100%; /* Ajusta el ancho de la imagen al carrusel */
+        height: 100%; /* Ajusta la altura de la imagen al carrusel */
+        object-fit: contain; /* La imagen se ajusta dentro del espacio sin recortarse */
+        object-position: center; /* Centra la imagen en el carrusel */
+    }
+</style>
+
 
     <br />
     <div class="container">
