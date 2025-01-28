@@ -1787,9 +1787,11 @@
     <Compile Include="Datos\ClAdminD.cs" />
     <Compile Include="Datos\ClClienteD.cs" />
     <Compile Include="Datos\ClConexion.cs" />
+    <Compile Include="Datos\ClPedidosD.cs" />
     <Compile Include="Datos\ClProductoD.cs" />
     <Compile Include="Datos\ClUsuarioD.cs" />
     <Compile Include="Datos\ClVendedorD.cs" />
+    <Compile Include="Entidades\ClPedidosE.cs" />
     <Compile Include="Entidades\ClProductoE.cs" />
     <Compile Include="Entidades\ClRolE.cs" />
     <Compile Include="Entidades\ClUsuarioE.cs" />
@@ -1802,6 +1804,7 @@
     </Compile>
     <Compile Include="Logica\ClAdminL.cs" />
     <Compile Include="Logica\ClClienteL.cs" />
+    <Compile Include="Logica\ClPedidosL.cs" />
     <Compile Include="Logica\ClProductoL.cs" />
     <Compile Include="Logica\ClUsuarioL.cs" />
     <Compile Include="Logica\ClVendedorL.cs" />
