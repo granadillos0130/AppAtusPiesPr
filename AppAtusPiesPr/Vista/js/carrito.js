@@ -368,6 +368,102 @@ document.addEventListener('DOMContentLoaded', () => {
         mostrarCarrito();
     };
 
+    function obtenerIdCliente() {
+        return new Promise((resolve, reject) => {
+            fetch('carritoCompras.aspx/ObtenerIdCliente', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.startsWith("Error")) {
+                        reject(data);
+                    } else {
+                        resolve(data); // Retorna el IdCliente
+                    }
+                })
+                .catch(error => reject(error));
+        });
+    }
+
+    function realizarCompra() {
+        obtenerIdCliente()
+            .then(idCliente => {
+                const pedido = {
+                    IdCliente: idCliente, // Ahora tienes el ID real del cliente
+                    FechaPedido: new Date().toISOString(),
+                    Estado: "Pendiente",
+                    TotalPedido: calcularTotalPedido(),
+                    IdVendedor: 2, // ID del vendedor, si aplica
+                };
+
+                const detalles = obtenerDetallesPedido();
+
+                if (!pedido.IdCliente || !pedido.TotalPedido || detalles.length === 0) {
+                    alert("Por favor, completa los campos del pedido.");
+                    return;
+                }
+
+                const datos = { pedido, detalles };
+
+                fetch('carritoCompras.aspx/GuardarPedido', {
+                    method: 'POST',
+                    body: JSON.stringify(datos),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.includes("Pedido guardado exitosamente")) {
+                            alert("Compra realizada con éxito!");
+                        } else {
+                            alert("Hubo un problema al realizar la compra. Intenta nuevamente.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error al realizar la compra:', error);
+                        alert("Hubo un error al procesar tu compra. Intenta nuevamente.");
+                    });
+            })
+            .catch(error => {
+                console.error('Error al obtener el IdCliente:', error);
+                alert("Error al obtener tu información. Por favor, inicia sesión.");
+            });
+    }
+
+
+    // Función para calcular el total del pedido (solo un ejemplo)
+    function calcularTotalPedido() {
+        // Lógica para calcular el total (sumar precios de productos y cantidades)
+        let total = 0;
+        const productos = obtenerDetallesPedido(); // Obtén los detalles del carrito
+        productos.forEach(item => {
+            total += item.Precio * item.Cantidad;
+        });
+        return total;
+    }
+
+    // Función para obtener los detalles del carrito (deberás adaptarla a tu implementación)
+    function obtenerDetallesPedido() {
+        const carrito = [
+            {
+                IdProducto: 1,
+                Cantidad: 2,
+                Precio: 50.00,
+                Direccion: "Calle Ficticia 123",
+                Ciudad: "Ciudad Ejemplo",
+                DireccionPrincipal: true
+            },
+            // Aquí agregarías más productos del carrito
+        ];
+
+        return carrito;
+    }
+
+
     function agregarProductoAlCarrito(producto) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
