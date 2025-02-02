@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="index.aspx" />
     <Content Include="Vista\ActualizarProducto.aspx" />
+    <Content Include="Vista\AdministrarProveedores.aspx" />
     <Content Include="Vista\AgregarCategorias.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\carritoCompras.aspx" />
@@ -1793,6 +1794,7 @@
     <Compile Include="Datos\ClVendedorD.cs" />
     <Compile Include="Entidades\ClPedidosE.cs" />
     <Compile Include="Entidades\ClProductoE.cs" />
+    <Compile Include="Entidades\ClProveedorE.cs" />
     <Compile Include="Entidades\ClRolE.cs" />
     <Compile Include="Entidades\ClUsuarioE.cs" />
     <Compile Include="index.aspx.cs">
@@ -1815,6 +1817,13 @@
     </Compile>
     <Compile Include="Vista\ActualizarProducto.aspx.designer.cs">
       <DependentUpon>ActualizarProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\AdministrarProveedores.aspx.cs">
+      <DependentUpon>AdministrarProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\AdministrarProveedores.aspx.designer.cs">
+      <DependentUpon>AdministrarProveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\AgregarCategorias.aspx.cs">
       <DependentUpon>AgregarCategorias.aspx</DependentUpon>

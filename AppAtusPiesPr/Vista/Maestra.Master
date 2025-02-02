@@ -227,6 +227,10 @@
                 <i class="fas fa-edit"></i> 
                 Actualizar Producto
             </a>
+               <a class="nav-link" href="AdministrarProveedores.aspx" id="AdministrarProveedores" runat="server">
+     <i class="fas fa-wrench"></i> 
+    Administrar Proveedores
+ </a>
         </div>
 
         <!-- Content Wrapper -->

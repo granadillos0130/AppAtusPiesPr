@@ -42,6 +42,7 @@ namespace AppAtusPiesPr.Vista
                     menuProductosPorCategoria.Visible = false;
                     menuEstadoPedido.Visible = false;
                     menuActualizarProducto.Visible = false;
+                    AdministrarProveedores.Visible = false;
 
 
                 }
@@ -53,8 +54,9 @@ namespace AppAtusPiesPr.Vista
                     menuListarVendedores.Visible = false;
                     Estadisticas.Visible = false;
                     EstadisticasCategoria.Visible = false;
-                  
-                   
+                    AdministrarProveedores.Visible = true;
+
+
 
 
 

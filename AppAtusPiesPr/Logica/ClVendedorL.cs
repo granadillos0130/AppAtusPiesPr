@@ -33,5 +33,31 @@ namespace AppAtusPiesPr.Logica
 
 
 
+
+        public int RegistrarProveedor(ClProveedorE proveedor, int idVendedor, out string mensaje)
+        {
+            
+            ClVendedorD proveedorD = new ClVendedorD();
+            return proveedorD.RegistrarProveedor(proveedor, idVendedor, out mensaje);
+        }
+
+        public List<ClProveedorE> ListarProveedores(int idVendedor, string estado = null)
+        {
+            ClVendedorD proveedorD = new ClVendedorD();
+            return proveedorD.ListarProveedoresPorVendedor(idVendedor, estado);
+        }
+
+        public bool ActualizarProveedor (ClProveedorE proveedor , out string mensaje)
+        {
+            ClVendedorD proveedorD = new ClVendedorD ();
+            return proveedorD.ActualizarProveedor(proveedor, out mensaje);
+        }
+        public bool EliminarProveedor(int idProveedor, out string mensaje)
+        {
+            ClVendedorD proveedorD = new ClVendedorD();
+            return proveedorD.EliminarProveedor(idProveedor, out mensaje);
+        }
+
+
     }
 }
