@@ -59,7 +59,7 @@
 
                         </div>
                         <div class="cardButtons">
-                            <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                            <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
                             <a class="save-button"
                                 data-id='<%# Eval("idProdctoEmpresa") %>'
                                 data-nombre='<%# HttpUtility.HtmlAttributeEncode(Eval("nombreProducto").ToString()) %>'
@@ -94,5 +94,6 @@
 </div>
 
     </div>
+    <script src="js/main.js"></script>
 </asp:Content>
 
