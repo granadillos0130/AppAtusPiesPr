@@ -29,8 +29,7 @@
 
         <br />
         <center>
-            <h2>
-                ¿Quienes Somos?
+            <h2>¿Quienes Somos?
             </h2>
 
             <p style="margin-top: 10px;">
@@ -43,10 +42,9 @@ Este espacio refleja nuestra dedicación y compromiso con el aprendizaje continu
 Gracias por visitarnos y ser parte de este emocionante viaje. ¡Esperamos que encuentres inspiración en nuestro trabajo!
             </p>
 
-                </center>
+        </center>
 
         <img src="recursos/logo sena.png" class="img-thumbnail" alt="50%" style="margin-top: 10px;">
-
     </div>
 
     <!-- Pie de página -->

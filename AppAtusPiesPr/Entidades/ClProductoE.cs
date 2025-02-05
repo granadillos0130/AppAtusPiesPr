@@ -90,6 +90,8 @@ namespace AppAtusPiesPr.Entidades
         public int idCliente { get; set; }  // Relación con la tabla Usuarios
         public string comentario { get; set; }   // Texto del comentario
         public DateTime FechaComentario { get; set; } // Fecha del comentario
+        public string nombres { get; set; }
+        public string apellidos { get; set; }
     }
 
 }

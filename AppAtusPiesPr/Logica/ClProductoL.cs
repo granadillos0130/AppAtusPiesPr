@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace AppAtusPiesPr.Logica
 {
@@ -102,6 +103,13 @@ namespace AppAtusPiesPr.Logica
 
             ClProductoD objProdD = new ClProductoD();
             ClComentarioE objData = objProdD.mtdGuardarComentario(objDataCom);
+            return objData;
+        }
+
+        public List<ClComentarioE> mtdListarComentarios(int idProducto)
+        {
+            ClProductoD objDatos = new ClProductoD();
+            List<ClComentarioE> objData = objDatos.mtdListarComentario(idProducto);
             return objData;
         }
 
