@@ -20,6 +20,7 @@ namespace AppAtusPiesPr.Vista
             if (!IsPostBack)
             {
                 cargarCategorias();
+                cargarComentarios();
 
 
                 string productoId = Request.QueryString["id"];
@@ -27,7 +28,9 @@ namespace AppAtusPiesPr.Vista
                 if (!string.IsNullOrEmpty(productoId) && int.TryParse(productoId, out int idProducto))
                 {
                     cargarProducto(idProducto);  // Cargar el producto
+
                 }
+
 
             }
         }
@@ -171,10 +174,17 @@ namespace AppAtusPiesPr.Vista
                 // Si el comentario se guardó correctamente
                 if (comentarioGuardado != null)
                 {
-                    // Mostrar un mensaje de éxito con SweetAlert
+                    txtComentario.Text = string.Empty;
+
+                    
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
                         "Swal.fire({ icon: 'success', title: '¡Comentario enviado!', text: 'Gracias por tu opinión.', showConfirmButton: false, timer: 1500, timerProgressBar: true, position: 'bottom-end', toast: true, background: '#4CAF50', color: '#fff', iconColor: '#fff' });", true);
-                }
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "recargarPagina",
+                "setTimeout(function() { window.location.href = window.location.href; }, 1500);", true);
+                
+
+            }
                 else
                 {
                     // Si no se guardó correctamente, mostrar un mensaje de error
@@ -190,5 +200,24 @@ namespace AppAtusPiesPr.Vista
 
             LimpiarCampos();
         }
+
+        private void cargarComentarios()
+        {
+            string idProducto = Request.QueryString["id"];
+
+            if (!string.IsNullOrEmpty(idProducto) && int.TryParse(idProducto, out int idProduct))
+            {
+                ClProductoL objL = new ClProductoL();
+                Repeater3.DataSource = objL.mtdListarComentarios(idProduct);
+                Repeater3.DataBind();
+            } else
+            {
+                // Si no se guardó correctamente, mostrar un mensaje de error
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    "Swal.fire({ icon: 'error', title: '¡Error!', text: 'Hubo un problema al listar los comentarios. Intenta nuevamente.', showConfirmButton: false, timer: 2000, timerProgressBar: true, position: 'bottom-end', toast: true, background: '#ff6b6b', color: '#fff', iconColor: '#fff' });", true);
+            }
+        }
+
+
     }
 }

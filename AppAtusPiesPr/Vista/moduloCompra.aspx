@@ -93,7 +93,7 @@
                 <h3>Comentarios</h3>
                 <div class="mb-3">
                     <asp:Label ID="lblComentario" for="comentarioInput" class="form-label" runat="server" Text="¿Qué opinas sobre este producto? Escribe tu comentario"></asp:Label>
-                    <asp:TextBox ID="txtComentario" class="form-control" style="resize: none;" Rows="3" runat="server" placeholder="Deja tu opinión aquí..."></asp:TextBox>
+                    <asp:TextBox ID="txtComentario" class="form-control" Style="resize: none;" Rows="3" runat="server" placeholder="Deja tu opinión aquí..."></asp:TextBox>
                 </div>
                 <asp:Button ID="enviarComentario" runat="server" class="btn btn-dark" Text="Enviar comentario" OnClick="enviarComentario_Click" />
 
@@ -105,25 +105,25 @@
     </div>
 
     <style>
-    /* Animación de despliegue de la modal desde el botón */
-    .modal.fade .modal-dialog {
-        transform: scale(0);
-        opacity: 0;
-        transition: transform 0.1s ease-out, opacity 0.1s ease-out; /* Aceleramos la apertura */
-    }
+        /* Animación de despliegue de la modal desde el botón */
+        .modal.fade .modal-dialog {
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out; /* Aceleramos la apertura */
+        }
 
-    .modal.fade.show .modal-dialog {
-        transform: scale(1);
-        opacity: 1;
-    }
+        .modal.fade.show .modal-dialog {
+            transform: scale(1);
+            opacity: 1;
+        }
 
-    /* Animación de cierre de la modal */
-    .modal.fade .modal-dialog {
-        opacity: 0;
-        transform: scale(0);
-        transition: transform 0.3s ease-in, opacity 0.3s ease-in; /* Aceleramos el cierre */
-    }
-</style>
+        /* Animación de cierre de la modal */
+        .modal.fade .modal-dialog {
+            opacity: 0;
+            transform: scale(0);
+            transition: transform 0.3s ease-in, opacity 0.3s ease-in; /* Aceleramos el cierre */
+        }
+    </style>
 
 
 
@@ -139,33 +139,19 @@
                 <div class="modal-body">
                     <!-- Todas las reseñas -->
                     <div class="comentarios-list">
-                        <!-- Reseña 1 -->
-                        <div class="comentario">
-                            <strong>Juan Pérez</strong>
-                            <p>Excelente producto, muy recomendado.</p>
-                        </div>
 
-                        <!-- Reseña 2 -->
-                        <div class="comentario">
-                            <strong>Ana García</strong>
-                            <p>El precio es muy competitivo, ¡me encanta!</p>
-                        </div>
-
-                        <!-- Reseña 3 -->
-                        <div class="comentario">
-                            <strong>Laura Martínez</strong>
-                            <p>Muy buena calidad, definitivamente volveré a comprar.</p>
-                        </div>
-
-                        <!-- Agrega más reseñas aquí -->
-                        <div class="comentario">
-                            <strong>Carlos Ruiz</strong>
-                            <p>Muy satisfecho con la compra, todo perfecto.</p>
-                        </div>
-                        <div class="comentario">
-                            <strong>Patricia Gómez</strong>
-                            <p>El producto llegó a tiempo y es tal como lo esperaba.</p>
-                        </div>
+                        <asp:Repeater ID="Repeater3" runat="server">
+                            <ItemTemplate>
+                                <div class="comentario">
+                                    <p> 
+                                    <strong><%# Eval("nombres") %>
+                                    <%# Eval("apellidos") %></strong> <%# Eval ("fechaComentario")%>
+                                    <p><%#Eval("comentario") %></p></p>
+                                    <hr>
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">

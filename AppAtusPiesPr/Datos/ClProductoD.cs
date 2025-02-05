@@ -82,7 +82,8 @@ namespace AppAtusPiesPr.Datos
         }
         public DataTable buscarProductos(string busqueda)
         {
-            try {
+            try
+            {
                 ClConexion oCnx = new ClConexion();
 
                 using (SqlConnection connection = oCnx.MtdAbrirConexion())
@@ -468,12 +469,53 @@ namespace AppAtusPiesPr.Datos
                     cmd.ExecuteNonQuery();
                 }
                 conex.MtdCerrarConexion();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error al registrar el comentario: {ex.Message}");
             }
             return objData;
 
+        }
+
+        public List<ClComentarioE> mtdListarComentario(int idProducto)
+        {
+            ClConexion oConex = new ClConexion();
+            List<ClComentarioE> oComentario = new List<ClComentarioE>();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spListarComentariosProductos", oConex.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    foreach (DataRow fila in dataTable.Rows)
+                    {
+                        oComentario.Add(new ClComentarioE
+                        {
+                            FechaComentario = Convert.ToDateTime(fila["fechaComentario"]),
+                            nombres = fila["nombres"].ToString(),
+                            apellidos = fila["apellidos"].ToString(),
+                            comentario = fila["comentario"].ToString(), // Se corrigió este campo
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                oConex.MtdCerrarConexion(); // Asegurar el cierre de conexión en el finally
+            }
+
+            return oComentario;
         }
 
     }
