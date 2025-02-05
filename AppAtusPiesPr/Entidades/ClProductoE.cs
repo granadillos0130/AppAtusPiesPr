@@ -95,4 +95,13 @@ namespace AppAtusPiesPr.Entidades
         public int TotalProductos {  get; set; }
     }
 
+    public class ClComentarioE
+    {
+        public int idComentario { get; set; }
+        public int idProducto { get; set; } // Relación con la tabla Productos
+        public int idCliente { get; set; }  // Relación con la tabla Usuarios
+        public string comentario { get; set; }   // Texto del comentario
+        public DateTime FechaComentario { get; set; } // Fecha del comentario
+    }
+
 }

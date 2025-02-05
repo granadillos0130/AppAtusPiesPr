@@ -8,12 +8,12 @@
     <link href="css/carrito.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 
-    
-    <!-- Incluye SweetAlert2 CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
-<!-- Incluye SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Incluye SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- Incluye SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </asp:Content>
 
@@ -92,50 +92,41 @@
             <div class="comentarios mt-4">
                 <h3>Comentarios</h3>
                 <div class="mb-3">
-                    <label for="comentarioInput" class="form-label">¿Qué opinas sobre este producto? Escribe tu comentario</label>
-                    <textarea class="form-control" id="comentarioInput" rows="3" placeholder="Deja tu opinión aquí..."></textarea>
+                    <asp:Label ID="lblComentario" for="comentarioInput" class="form-label" runat="server" Text="¿Qué opinas sobre este producto? Escribe tu comentario"></asp:Label>
+                    <asp:TextBox ID="txtComentario" class="form-control" style="resize: none;" Rows="3" runat="server" placeholder="Deja tu opinión aquí..."></asp:TextBox>
                 </div>
-                <button type="submit" class="btn btn-dark">Enviar comentario</button>
+                <asp:Button ID="enviarComentario" runat="server" class="btn btn-dark" Text="Enviar comentario" OnClick="enviarComentario_Click" />
 
-
-                <!-- Lista de reseñas (solo 3 visibles) -->
-                <div class="comentarios-list mt-3">
-                    <!-- Reseña 1 -->
-                    <div class="comentario">
-                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#reseña1" aria-expanded="false" aria-controls="reseña1">
-                            Juan Pérez
-                        </button>
-                        <div id="reseña1" class="collapse">
-                            <p>Excelente producto, muy recomendado.</p>
-                        </div>
-                    </div>
-
-                    <!-- Reseña 2 -->
-                    <div class="comentario">
-                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#reseña2" aria-expanded="false" aria-controls="reseña2">
-                            Ana García
-                        </button>
-                        <div id="reseña2" class="collapse">
-                            <p>El precio es muy competitivo, ¡me encanta!</p>
-                        </div>
-                    </div>
-
-                    <!-- Reseña 3 -->
-                    <div class="comentario">
-                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#reseña3" aria-expanded="false" aria-controls="reseña3">
-                            Laura Martínez
-                        </button>
-                        <div id="reseña3" class="collapse">
-                            <p>Muy buena calidad, definitivamente volveré a comprar.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Botón "Ver más" para abrir el modal -->
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalReseñas">Ver más reseñas</button>
             </div>
+
+            <!-- Botón "Ver más" para abrir el modal -->
+            <button type="button" style="margin-top: 10px;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalReseñas">Ver reseñas</button>
         </div>
     </div>
+
+    <style>
+    /* Animación de despliegue de la modal desde el botón */
+    .modal.fade .modal-dialog {
+        transform: scale(0);
+        opacity: 0;
+        transition: transform 0.1s ease-out, opacity 0.1s ease-out; /* Aceleramos la apertura */
+    }
+
+    .modal.fade.show .modal-dialog {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    /* Animación de cierre de la modal */
+    .modal.fade .modal-dialog {
+        opacity: 0;
+        transform: scale(0);
+        transition: transform 0.3s ease-in, opacity 0.3s ease-in; /* Aceleramos el cierre */
+    }
+</style>
+
+
+
 
     <!-- Modal para ver todas las reseñas -->
     <div class="modal fade" id="modalReseñas" tabindex="-1" aria-labelledby="modalReseñasLabel" aria-hidden="true">
@@ -187,9 +178,12 @@
     <hr>
     <br>
     <center>
-        <p>Más Productos de: 
-        <strong><asp:Label ID="nombreV" runat="server"></asp:Label><strong> </strong>
-        <asp:Label ID="apellidoV" runat="server"></asp:Label></strong></p>
+        <p>
+            Más Productos de: 
+        <strong>
+            <asp:Label ID="nombreV" runat="server"></asp:Label><strong> </strong>
+            <asp:Label ID="apellidoV" runat="server"></asp:Label></strong>
+        </p>
     </center>
     <br />
 
@@ -217,7 +211,7 @@
                                     data-nombre='<%# HttpUtility.HtmlAttributeEncode(Eval("nombreProducto").ToString()) %>'
                                     data-imagen='<%# ResolveUrl(Eval("imagen").ToString()) %>'
                                     data-precio='<%# Eval("precio") %>'
-                                    data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("NombreVendedor").ToString()) %>'
+                                    data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("nombres").ToString()) %>'
                                     data-apellidos='<%# HttpUtility.HtmlAttributeEncode(Eval("apellidos").ToString()) %>'
                                     data-idvendedor='<%# Eval("idVendedor") %>'>
                                     <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
