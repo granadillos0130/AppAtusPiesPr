@@ -3,6 +3,7 @@ using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -124,6 +125,70 @@ namespace AppAtusPiesPr.Vista
         protected void btnAgregarCarrito_Click(object sender, EventArgs e)
         {
 
+
+        }
+
+        private void LimpiarCampos()
+        {
+            txtComentario.Text = "";
+        }
+
+        protected void enviarComentario_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Verificar el idProducto
+                string idProducto = Request.QueryString["id"];
+                int idProduct;
+                if (!int.TryParse(idProducto, out idProduct))
+                {
+                    lblMensaje.InnerText = "El ID del producto no es válido.";
+                    return; // Detener la ejecución si el ID del producto no es válido
+                }
+
+                // Verificar el idUsuario
+                string usuario = Session["idUsuario"]?.ToString();
+                int idUsuario;
+                if (!int.TryParse(usuario, out idUsuario))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                "Swal.fire({ icon: 'error', title: '¡Debes estar logueado!', text: 'Inicia sesión para poder comentar.', toast: true, position: 'bottom-end', background: '#ff6b6b', color: '#fff', timer: 2000, timerProgressBar: true });", true);
+                    return;
+                }
+
+                // Crear el objeto comentario
+                ClComentarioE comentario = new ClComentarioE
+                {
+                    comentario = txtComentario.Text,
+                    idProducto = idProduct,  // Asignar el id del producto
+                    idCliente = idUsuario
+                };
+
+                // Guardar el comentario
+                ClProductoL oL = new ClProductoL();
+                ClComentarioE comentarioGuardado = oL.MtdGuardarComentario(comentario);
+
+                // Si el comentario se guardó correctamente
+                if (comentarioGuardado != null)
+                {
+                    // Mostrar un mensaje de éxito con SweetAlert
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        "Swal.fire({ icon: 'success', title: '¡Comentario enviado!', text: 'Gracias por tu opinión.', showConfirmButton: false, timer: 1500, timerProgressBar: true, position: 'bottom-end', toast: true, background: '#4CAF50', color: '#fff', iconColor: '#fff' });", true);
+                }
+                else
+                {
+                    // Si no se guardó correctamente, mostrar un mensaje de error
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        "Swal.fire({ icon: 'error', title: '¡Error!', text: 'Hubo un problema al enviar el comentario. Intenta nuevamente.', showConfirmButton: false, timer: 2000, timerProgressBar: true, position: 'bottom-end', toast: true, background: '#ff6b6b', color: '#fff', iconColor: '#fff' });", true);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.InnerText = "Ocurrió un error: " + ex.Message;
+            }
+
+            LimpiarCampos();
         }
     }
 }

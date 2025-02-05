@@ -94,5 +94,16 @@ namespace AppAtusPiesPr.Logica
             return productoD.MtdListarProductosPorCategoria(categoria);
 
         }
+
+        public ClComentarioE MtdGuardarComentario(ClComentarioE objDataCom)
+        {
+
+            objDataCom.FechaComentario = DateTime.Now;
+
+            ClProductoD objProdD = new ClProductoD();
+            ClComentarioE objData = objProdD.mtdGuardarComentario(objDataCom);
+            return objData;
+        }
+
     }
 }

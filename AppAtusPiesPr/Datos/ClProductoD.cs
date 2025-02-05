@@ -45,7 +45,7 @@ namespace AppAtusPiesPr.Datos
 
                 cmd.ExecuteNonQuery();
                 objConexion.MtdCerrarConexion();
-                
+
             }
             catch (Exception e)
             {
@@ -61,7 +61,7 @@ namespace AppAtusPiesPr.Datos
         {
             try {
                 ClConexion oCnx = new ClConexion();
-                
+
                 using (SqlConnection connection = oCnx.MtdAbrirConexion())
                 {
                     using (SqlCommand cmd = new SqlCommand("spBarraBusquedaProductos", connection))
@@ -144,7 +144,7 @@ namespace AppAtusPiesPr.Datos
 
             return tblDatos;
         }
-        
+
         public ClProductoEmpresaE MtdInfoProducto(int idProdctoEmpresa)
         {
             ClProductoEmpresaE prodInfo = null;
@@ -257,7 +257,7 @@ namespace AppAtusPiesPr.Datos
                 {
                     oProducto.Add(new ClProductoEmpresaE
                     {
-                     
+
                         nombreProducto = reader["nombreProducto"].ToString()
                     });
                 }
@@ -266,7 +266,7 @@ namespace AppAtusPiesPr.Datos
             }
             catch (Exception ex)
             {
-             
+
                 Console.WriteLine($"Error: {ex.Message}");
             }
             return oProducto;
@@ -424,5 +424,34 @@ namespace AppAtusPiesPr.Datos
             conexion.MtdCerrarConexion();
             return productos;
         }
+
+        public ClComentarioE mtdGuardarComentario(ClComentarioE objData)
+        {
+            try
+            {
+
+                ClConexion conex = new ClConexion();
+                SqlConnection oConex = conex.MtdAbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand("spRegistrarComentario", oConex))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@idProducto", Convert.ToInt32(objData.idProducto));
+                    cmd.Parameters.AddWithValue("@idCliente", Convert.ToInt32(objData.idCliente));
+                    cmd.Parameters.AddWithValue("@comentario", objData.comentario);
+                    cmd.Parameters.AddWithValue("@fechaComentario", objData.FechaComentario);
+
+                    cmd.ExecuteNonQuery();
+                }
+                conex.MtdCerrarConexion();
+            } catch (Exception ex)
+            {
+                Console.WriteLine($"Error al registrar el comentario: {ex.Message}");
+            }
+            return objData;
+
+        }
+
     }
 }
