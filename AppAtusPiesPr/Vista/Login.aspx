@@ -16,14 +16,12 @@
             align-items: center;
             font-family: 'Arial', sans-serif;
             background: #e8e8e8;
-            font-family: Arial, sans-serif; /* Define la fuente base para toda la página */
         }
 
         .main-container {
             display: flex;
             flex-direction: row;
             background: #1a1a1a;
-            border-radius: 10px;
             border-radius: 10px;
             box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
             overflow: hidden;
@@ -65,7 +63,7 @@
             flex-direction: column;
             justify-content: center;
             background: white;
-            color: #ffffff;
+            color: black;
         }
 
         .form-container h2 {
@@ -222,39 +220,63 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    </script>
 </head>
 <body>
     <form id="form1" runat="server" novalidate>
+        <asp:ScriptManager runat="server" /> <!-- Necesario para AJAX -->
+        
         <div class="main-container">
             <div class="login-image">
                 <div class="gif-container">
                     <img src="https://i.gifer.com/4KDr.gif" alt="Login animation"/>
                 </div>
             </div>
+
             <div class="form-container">
                 <h2>Iniciar Sesión</h2>
+
                 <div class="form-group">
                     <asp:Label ID="lblEmail" runat="server" Text="Documento:" CssClass="control-label"></asp:Label>
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingresa tu Documento" required></asp:TextBox>
                 </div>
+
                 <div class="form-group">
                     <asp:Label ID="lblContrasena" runat="server" Text="Contraseña:" CssClass="control-label"></asp:Label>
                     <asp:TextBox ID="txtContrasena" runat="server" TextMode="Password" CssClass="form-control" placeholder="Ingresa tu contraseña" required></asp:TextBox>
                 </div>
+
                 <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="btn btn-primary" OnClick="btnIngresar_Click" />
+
+                <!-- Panel para manejar PostBacks correctamente -->
+                <asp:UpdatePanel ID="updPanel" runat="server">
+                    <ContentTemplate>
+                        <!-- Botones ocultos para el Postback -->
+                        <asp:Button ID="btnEnviarSolicitud" runat="server" Style="display:none;" OnClick="btnEnviarSolicitud_Click" />
+                        <asp:Button ID="btnVolver" runat="server" Style="display:none;" OnClick="btnVolver_Click" />
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:PostBackTrigger ControlID="btnEnviarSolicitud" />
+                        <asp:PostBackTrigger ControlID="btnVolver" />
+                    </Triggers>
+                </asp:UpdatePanel>
+
                 <asp:Label ID="lblMensaje" runat="server" ForeColor="Red" CssClass="text-danger"></asp:Label>
+
                 <div class="link">
                     <a href="#" data-toggle="modal" data-target="#registerModal">¿No tienes una cuenta? Regístrate aquí</a>
                 </div>
                 <div class="register-vendor">
                     <a href="#" data-toggle="modal" data-target="#registerVendedorModal">¿Eres vendedor? Regístrate aquí</a>
                 </div>
-                            <div class="link">
-    <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">¿Olvidaste tu contraseña?</a>
-</div>
+                <div class="link">
+                    <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">¿Olvidaste tu contraseña?</a>
+                </div>
             </div>
         </div>
+   
+
+   
+
 
         
 
