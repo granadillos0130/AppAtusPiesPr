@@ -395,6 +395,33 @@ namespace AppAtusPiesPr.Datos
 
             return ListaEstadisticaCategoria;
         }
+
+
+
+        public bool MtdReactivacionVendedor(int documento)
+        {
+            ClConexion oConexion = new ClConexion();
+
+            using (SqlConnection con = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpSoliReactivarVendedor", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@documento", documento); // Asegurar que el parámetro es correcto
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    // Depuración: Mostrar cuántas filas fueron afectadas
+                    System.Diagnostics.Debug.WriteLine($"Filas afectadas: {filasAfectadas}");
+
+                    return filasAfectadas > 0;
+                }
+            }
+        }
+
+
+
+
     }
 }
 

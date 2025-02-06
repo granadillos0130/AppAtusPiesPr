@@ -1,3 +1,4 @@
+using AppAtusPiesPr.Datos;
 using AppAtusPiesPr.Entidades;
 using AppAtusPiesPr.Logica;
 using System;
@@ -15,21 +16,180 @@ namespace AppAtusPiesPr.Vista
         private ClClienteL clientoLo = new ClClienteL();
         private ClVendedorL vendedorLo = new ClVendedorL();
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // No es necesario manejar postbacks aquí
         }
-        private void MostrarAlerta(string icon, string title, string text)
+
+        protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            string script = $@"Swal.fire({{
-    icon: '{icon}',
-    title: '{title}',
-    text: '{text}',
-    confirmButtonColor: '#3085d6'
-}});";
+            if (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtContrasena.Text))
+            {
+                MostrarAlerta("warning", "Campos vacíos", "Por favor, complete todos los campos.");
+                return;
+            }
+
+            ClUsuarioE obUsuarioEn = new ClUsuarioE
+            {
+                Documento = txtEmail.Text,
+                Password = txtContrasena.Text
+            };
+
+            try
+            {
+                ClUsuarioE oUser = clientoLo.MtdIngreso(obUsuarioEn);
+
+                if (oUser != null)
+                {
+                    if (oUser.Roles.Count > 1)
+                    {
+                        ViewState["Roles"] = oUser.Roles;
+                        ViewState["Usuario"] = oUser;
+
+                        ddlRoles.DataSource = oUser.Roles.Select(r => r.RoleName).ToList();
+                        ddlRoles.DataBind();
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#myModal').modal('show');", true);
+                    }
+                    else if (oUser.Roles.Count == 1)
+                    {
+                        var role = oUser.Roles[0];
+                        Session["email"] = oUser.Documento;
+                        Session["usuario"] = $"{oUser.Nombres} {oUser.Apellidos}";
+                        Session["rol"] = role.RoleName;
+
+                        // Guardar el ID según el rol
+                        if (role.RoleName.Contains("Vendedor"))
+                        {
+                            Session["idUsuario"] = role.IdVendedor;  // ID del vendedor
+                            ViewState["IdUsuario"] = role.IdVendedor; // Guardar el ID en ViewState también
+                            System.Diagnostics.Debug.WriteLine($"ID Vendedor guardado: {role.IdVendedor}");
+                        }
+                        else if (role.RoleName.Contains("Admin"))
+                        {
+                            Session["idUsuario"] = role.IdAdmin;  // ID del admin
+                        }
+                        else if (role.RoleName.Contains("Cliente"))
+                        {
+                            Session["idUsuario"] = role.IdCliente;  // ID del cliente
+                        }
+
+                        RedirigirSegunRol(role.RoleName);
+                    }
+                }
+                else
+                {
+                    MostrarAlerta("error", "Error de autenticación", "Credenciales incorrectas.");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Mensaje de excepción: " + ex.Message);
+
+                if (ex.Message == "Su Cuenta esta Desactivada,¿Desea enviar una solicitud para activarla nuevamente?")
+                {
+                    ViewState["IdUsuario"] = obUsuarioEn.Documento;  // Guardar el documento del usuario en el ViewState
+                    MostrarAlerta("error", "Error", ex.Message, true);  // Mostrar alerta con un botón para enviar solicitud
+                }
+                else
+                {
+                    MostrarAlerta("error", "Error", ex.Message);
+                }
+            }
+        }
+
+
+
+      protected void EnviarSolicitud()
+{
+    // Obtener el ID del vendedor desde ViewState
+    if (ViewState["IdUsuario"] == null || !int.TryParse(ViewState["IdUsuario"].ToString(), out int idVendedor))
+    {
+        MostrarAlerta("error", "Error", "No se pudo obtener la información del vendedor.");
+        return;
+    }
+
+    // Verificar que el ID obtenido sea el correcto
+    System.Diagnostics.Debug.WriteLine($"ID Vendedor recuperado desde ViewState: {idVendedor}");
+
+    try
+    {
+        ClAdminL adminLogic = new ClAdminL();
+        bool exito = adminLogic.MtdSolicitudReactivacion(idVendedor);  // Enviar la solicitud de reactivación
+
+        if (exito)
+        {
+            MostrarAlerta("success", "Solicitud enviada", "Tu solicitud ha sido enviada con éxito.");
+        }
+        else
+        {
+            MostrarAlerta("error", "Error en la solicitud", "Ocurrió un error al procesar la solicitud.");
+        }
+    }
+    catch (Exception ex)
+    {
+        MostrarAlerta("error", "Error", ex.Message);
+    }
+}
+
+
+
+
+        protected void btnEnviarSolicitud_Click(object sender, EventArgs e)
+        {
+            EnviarSolicitud();
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Volver();
+        }
+
+        protected void Volver()
+        {
+            // Lógica para volver (si es necesario)
+        }
+
+        private void MostrarAlerta(string icon, string title, string text, bool mostrarBotonExtra = false)
+        {
+            string script;
+            if (mostrarBotonExtra)
+            {
+                script = $@"Swal.fire({{
+                icon: '{icon}',
+                title: '{title}',
+                text: '{text}',
+                showCancelButton: true,
+                confirmButtonText: 'Enviar Solicitud',
+                cancelButtonText: 'Volver',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33'
+            }}).then((result) => {{
+                if (result.isConfirmed) {{
+                    document.getElementById('{btnEnviarSolicitud.ClientID}').click();
+                }} else if (result.dismiss === Swal.DismissReason.cancel) {{
+                    document.getElementById('{btnVolver.ClientID}').click();
+                }}
+            }});";
+            }
+            else
+            {
+                script = $@"Swal.fire({{
+                icon: '{icon}',
+                title: '{title}',
+                text: '{text}',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#3085d6'
+            }});";
+            }
             ScriptManager.RegisterStartupScript(this, GetType(), title.Replace(" ", ""), script, true);
         }
+
+
+
+
+
+
 
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
@@ -141,57 +301,6 @@ namespace AppAtusPiesPr.Vista
         }
 
 
-        protected void btnIngresar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(txtContrasena.Text))
-            {
-                MostrarAlerta("warning", "Campos vacíos", "Por favor, complete todos los campos.");
-                return;
-            }
-
-            ClUsuarioE obUsuarioEn = new ClUsuarioE
-            {
-                Documento = txtEmail.Text,
-                Password = txtContrasena.Text
-            };
-
-            try
-            {
-                ClUsuarioE oUser = clientoLo.MtdIngreso(obUsuarioEn);
-
-                if (oUser != null)
-                {
-                    if (oUser.Roles.Count > 1)
-                    {
-                        ViewState["Roles"] = oUser.Roles;
-                        ViewState["Usuario"] = oUser;
-
-                        ddlRoles.DataSource = oUser.Roles.Select(r => r.RoleName).ToList();
-                        ddlRoles.DataBind();
-
-                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#myModal').modal('show');", true);
-                    }
-                    else if (oUser.Roles.Count == 1)
-                    {
-                        var role = oUser.Roles[0];
-                        Session["email"] = oUser.Documento;
-                        Session["usuario"] = $"{oUser.Nombres} {oUser.Apellidos}";
-                        Session["rol"] = role.RoleName;
-                        Session["idUsuario"] = role.IdUsuario;
-
-                        RedirigirSegunRol(role.RoleName);
-                    }
-                }
-                else
-                {
-                    MostrarAlerta("error", "Error de autenticación", "Credenciales incorrectas.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MostrarAlerta("error", "Error", ex.Message);
-            }
-        }
 
 
         protected void btnSeleccionarRol_Click(object sender, EventArgs e)
@@ -234,7 +343,7 @@ namespace AppAtusPiesPr.Vista
 
                 default:
                     lblMensaje.Text = "Rol no reconocido.";
-                    MostrarAlerta("error","Rol no encontrado","El rol seleccionado no existe.");
+                    MostrarAlerta("error", "Rol no encontrado", "El rol seleccionado no existe.");
                     break;
             }
         }
@@ -311,7 +420,7 @@ namespace AppAtusPiesPr.Vista
 
         private void ResaltarCamposVacios(List<string> camposVacios)
         {
-            
+
             txtDocumentoVend.CssClass = "form-control";
             txtNombreVend.CssClass = "form-control";
             txtApellidoVend.CssClass = "form-control";
@@ -320,7 +429,7 @@ namespace AppAtusPiesPr.Vista
             txtTelefonoVend.CssClass = "form-control";
             txtDireccionVend.CssClass = "form-control";
 
-          
+
             foreach (var campo in camposVacios)
             {
                 switch (campo)
@@ -367,7 +476,7 @@ namespace AppAtusPiesPr.Vista
 
         private string GenerarTemporalPassword()
         {
-            const int length = 10; 
+            const int length = 10;
             const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*?";
 
             Random random = new Random();
@@ -384,10 +493,10 @@ namespace AppAtusPiesPr.Vista
 
 
 
-        
+
         private void EnviarTemporalPasswordEmail(string email, string temporaryPassword)
         {
-           
+
             string body = $@"
 <!DOCTYPE html>
 <html lang='en'>
@@ -486,7 +595,7 @@ namespace AppAtusPiesPr.Vista
 </body>
 </html>";
 
-           
+
             MailMessage message = new MailMessage("pratuspies@gmail.com", email)
             {
                 Subject = "Contraseña Temporal",
@@ -494,24 +603,24 @@ namespace AppAtusPiesPr.Vista
                 IsBodyHtml = true
             };
 
-           
+
             SmtpClient client = new SmtpClient("smtp.gmail.com")
             {
-                Port = 587, 
+                Port = 587,
                 Credentials = new System.Net.NetworkCredential("pratuspies@gmail.com", "zlre rota ykjk qkbq"), // Credenciales del servidor de correo
-                EnableSsl = true 
+                EnableSsl = true
             };
 
             try
             {
-                
+
                 client.Send(message);
             }
             catch (Exception ex)
             {
-               
 
-                MostrarAlerta("Error", "Error al enviar el correo.","Ocurrió un error al enviar el correo. Por favor, intenta nuevamente.");
+
+                MostrarAlerta("Error", "Error al enviar el correo.", "Ocurrió un error al enviar el correo. Por favor, intenta nuevamente.");
             }
         }
 
@@ -547,7 +656,6 @@ namespace AppAtusPiesPr.Vista
 
         }
 
-      
-
+        
     }
 }
