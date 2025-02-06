@@ -8,6 +8,13 @@
     <script src="Vista/js/main.js"></script>
     <link rel="shortcut icon" href="vista/recursos/ATP.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+
+    <!-- Incluye SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<!-- Incluye SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
@@ -32,7 +39,7 @@
         </div>
     </center>
 
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="https://cdn.sanity.io/images/pu5wtzfc/production/9554b0a644e5ee45676ce176b13235a77a184ce6-2000x1251.gif" class="d-block w-100" alt="...">
@@ -54,22 +61,23 @@
         </button>
     </div>
 
-    <style>
-        /* Define un tamaño fijo para el carrusel */
-        #carouselExampleControls {
-            height: 500px; /* Altura fija del carrusel */
-            border-top: none; /* Elimina el borde superior */
-            overflow: hidden; /* Oculta cualquier contenido desbordante */
-        }
+<style>
+    /* Define un tamaño fijo para el carrusel */
+    #carouselExampleControls {
+        height: 500px; /* Altura fija del carrusel */
+        border-top: none; /* Elimina el borde superior */
+        overflow: hidden; /* Oculta cualquier contenido desbordante */
+    }
 
-        /* Asegura que las imágenes se ajusten completamente al carrusel */
-        .carousel-inner img {
-            width: 100%; /* Ajusta el ancho de la imagen al carrusel */
-            height: 100%; /* Ajusta la altura de la imagen al carrusel */
-            object-fit: contain; /* La imagen se ajusta dentro del espacio sin recortarse */
-            object-position: center; /* Centra la imagen en el carrusel */
-        }
-    </style>
+    /* Asegura que las imágenes se ajusten completamente al carrusel */
+    .carousel-inner img {
+        width: 100%; /* Ajusta el ancho de la imagen al carrusel */
+        height: 100%; /* Ajusta la altura de la imagen al carrusel */
+        object-fit: contain; /* La imagen se ajusta dentro del espacio sin recortarse */
+        object-position: center; /* Centra la imagen en el carrusel */
+    }
+</style>
+
 
     <br />
     <div class="container">
@@ -130,6 +138,7 @@
         <br />
     </div>
     <script src="Vista/js/carrito.js"></script>
+    <script src="Vista/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 </asp:Content>

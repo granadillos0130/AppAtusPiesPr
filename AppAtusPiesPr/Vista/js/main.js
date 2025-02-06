@@ -1,15 +1,13 @@
-﻿const botonTema = document.getElementById("cambiarTema");
+﻿// Función para aplicar la animación antes de redirigir
+function animateBeforeRedirect(event) {
+    event.preventDefault(); // Evita que el enlace se ejecute inmediatamente
+    document.body.classList.add('page-exit'); // Aplica la animación
+    setTimeout(() => {
+        window.location.href = event.target.href; // Redirige después de la animación
+    }, 500); // Duración de la animación
+}
 
-botonTema.addEventListener("click", () => {
-  const html = document.documentElement;
-  const temaActual = html.getAttribute("data-tema") || "claro";
-  const nuevoTema = temaActual === "claro" ? "oscuro" : "claro";
-
-  html.setAttribute("data-tema", nuevoTema);
-  localStorage.setItem("tema", nuevoTema); // Guarda la preferencia
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const temaGuardado = localStorage.getItem("tema") || "claro";
-    document.documentElement.setAttribute("data-tema", temaGuardado);
+// Asigna el evento a todos los botones "Ver más..." y enlaces del vendedor
+document.querySelectorAll('.buy-button, .cardseller').forEach(link => {
+    link.addEventListener('click', animateBeforeRedirect);
 });

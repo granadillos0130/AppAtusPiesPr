@@ -60,10 +60,9 @@ namespace AppAtusPiesPr.Vista
                 nombreCliente.Text = oCliente.Nombres;
                 apellidoCliente.Text = oCliente.Apellidos;
                 emailCliente.Text = oCliente.Email;
-                passCliente.Text = oCliente.Password;
+                txtPass.Text = oCliente.Password;
                 telCliente.Text = oCliente.Telefono;
                 direcCliente.Text = oCliente.Direccion;
-                estadoCliente.Text = oCliente.estado;
             }
 
         }
