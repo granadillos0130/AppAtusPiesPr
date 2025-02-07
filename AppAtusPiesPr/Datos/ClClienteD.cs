@@ -293,12 +293,24 @@ namespace AppAtusPiesPr.Datos
                     Direction = ParameterDirection.Output
                 };
                 comando.Parameters.Add(mensajeVParameter);
+
+                SqlParameter mensaje1Parameter = new SqlParameter("@mensaje1", SqlDbType.VarChar, 255)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                comando.Parameters.Add(mensaje1Parameter);
+
                 // Ejecutar el procedimiento almacenado
                 comando.ExecuteNonQuery();
 
                 // Procesar los resultados
                 string roles = rolesParameter.Value.ToString();
                 string mensaje = mensajeParameter.Value.ToString();
+                string mensaje1 = mensaje1Parameter.Value.ToString();
+
+                // Imprimir valores para depuración
+                System.Diagnostics.Debug.WriteLine("Mensaje: " + mensaje);
+                System.Diagnostics.Debug.WriteLine("Mensaje1: " + mensaje1);
 
                 if (string.IsNullOrEmpty(mensaje))
                 {
@@ -323,6 +335,11 @@ namespace AppAtusPiesPr.Datos
                 else
                 {
                     // Lanzar una excepción si hay un mensaje de error
+                    if (mensaje == mensaje1)
+                    {
+                        throw new Exception(mensaje1);
+                    }
+
                     throw new Exception(mensaje);
                 }
             }
@@ -336,6 +353,9 @@ namespace AppAtusPiesPr.Datos
 
             return obDatosUsuario;
         }
+
+
+
         public bool IsEmailExist(string email)
         {
             bool emailExist = false;
