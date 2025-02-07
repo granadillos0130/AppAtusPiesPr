@@ -104,6 +104,7 @@ namespace AppAtusPiesPr.Entidades
         public DateTime FechaComentario { get; set; } // Fecha del comentario
         public string nombres { get; set; }
         public string apellidos { get; set; }
+        public int valoracion { get; set; }
     }
 
 }

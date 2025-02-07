@@ -158,14 +158,30 @@ namespace AppAtusPiesPr.Vista
                 "Swal.fire({ icon: 'error', title: '¡Debes estar logueado!', text: 'Inicia sesión para poder comentar.', toast: true, position: 'bottom-end', background: '#ff6b6b', color: '#fff', timer: 2000, timerProgressBar: true });", true);
                     return;
                 }
+                int valoracion = 0;
+
+                string valoracionStr = Request.Form[hdnValoracion.UniqueID]; // Obtener desde Request.Form
+                System.Diagnostics.Debug.WriteLine("Valoración desde Request.Form: " + valoracionStr); // Verificar en consola
+                int valr = Convert.ToInt32(valoracionStr);
 
                 // Crear el objeto comentario
                 ClComentarioE comentario = new ClComentarioE
                 {
                     comentario = txtComentario.Text,
                     idProducto = idProduct,  // Asignar el id del producto
-                    idCliente = idUsuario
+                    idCliente = idUsuario,
+                    valoracion = valr  // Asegurar que la valoración se está enviando
                 };
+
+
+
+                if (!int.TryParse(valoracionStr, out valoracion) || valoracion < 1 || valoracion > 5)
+
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        "Swal.fire({ icon: 'warning', title: '¡Atención!', text: 'Por favor, selecciona una valoración.', toast: true, position: 'bottom-end', background: '#ffc107', color: '#000', timer: 2000, timerProgressBar: true });", true);
+                    return;
+                }
 
                 // Guardar el comentario
                 ClProductoL oL = new ClProductoL();

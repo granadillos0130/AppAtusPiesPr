@@ -595,3 +595,33 @@ label {
 .page-exit {
     animation: fadeOut 0.5s ease-in-out forwards;
 }
+
+<style >
+.rating-container {
+    margin-top: 10px;
+}
+
+.hearts-rating {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.heart-icon {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+    .heart-icon:hover,
+    .heart-icon.active {
+        color: #ff4757;
+    }
+
+.comment-box {
+    margin-top: 10px;
+}
+
+</style >

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI.WebControls;
 
@@ -119,6 +120,13 @@ namespace AppAtusPiesPr.Logica
             ClProductoD objDatos = new ClProductoD();
             List<ClComentarioE> objData = objDatos.mtdListarComentario(idProducto);
             return objData;
+        }
+
+
+        public async Task<(decimal Promedio, int Total)> ObtenerValoracionPromedio(int productoId)
+        {
+            ClProductoD objD = new ClProductoD();
+            return await objD.ObtenerValoracionPromedio(productoId);
         }
 
     }

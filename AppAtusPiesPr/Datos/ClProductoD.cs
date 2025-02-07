@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace AppAtusPiesPr.Datos
@@ -465,6 +466,7 @@ namespace AppAtusPiesPr.Datos
                     cmd.Parameters.AddWithValue("@idCliente", Convert.ToInt32(objData.idCliente));
                     cmd.Parameters.AddWithValue("@comentario", objData.comentario);
                     cmd.Parameters.AddWithValue("@fechaComentario", objData.FechaComentario);
+                    cmd.Parameters.AddWithValue("@valoracion", Convert.ToInt32(objData.valoracion));
 
                     cmd.ExecuteNonQuery();
                 }
@@ -518,5 +520,39 @@ namespace AppAtusPiesPr.Datos
             return oComentario;
         }
 
+        public async Task<(decimal Promedio, int Total)> ObtenerValoracionPromedio(int productoId)
+        {
+            ClConexion oConex = new ClConexion();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_ObtenerValoracionPromedio", oConex.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idProducto", productoId);
+
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            return (
+                                Promedio: reader.GetDecimal(2),
+                                Total: reader.GetInt32(3)
+                            );
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                oConex.MtdCerrarConexion(); // Asegurar el cierre de conexión en el finally
+            }
+
+            return (0, 0);
+        }
     }
+
 }

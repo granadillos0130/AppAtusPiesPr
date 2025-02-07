@@ -11,3 +11,38 @@ function animateBeforeRedirect(event) {
 document.querySelectorAll('.buy-button, .cardseller').forEach(link => {
     link.addEventListener('click', animateBeforeRedirect);
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const hearts = document.querySelectorAll(".heart-icon");
+    const hdnValoracion = document.querySelector("[id$='hdnValoracion']"); // Buscar por sufijo
+
+    if (!hdnValoracion) {
+        console.error("No se encontró el HiddenField de valoración.");
+        return;
+    }
+
+    hearts.forEach(heart => {
+        heart.addEventListener("click", function () {
+            const value = this.getAttribute("data-value");
+            hdnValoracion.value = value;  // Asignar el valor
+
+            console.log("Valoración seleccionada:", value); // Verificar en consola
+            console.log("Nuevo valor en HiddenField:", hdnValoracion.value); // Confirmar actualización
+
+
+            // Cambiar la apariencia de los corazones
+            hearts.forEach((h, index) => {
+                if (index < value) {
+                    h.classList.add("active", "fas");
+                    h.classList.remove("far");
+                } else {
+                    h.classList.remove("active", "fas");
+                    h.classList.add("far");
+                }
+            });
+        });
+    });
+});
+
+
+
