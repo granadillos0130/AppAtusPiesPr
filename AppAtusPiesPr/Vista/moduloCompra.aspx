@@ -8,7 +8,7 @@
     <link href="css/carrito.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Incluye SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
@@ -93,7 +93,20 @@
                 <h3>Comentarios</h3>
                 <div class="mb-3">
                     <asp:Label ID="lblComentario" for="comentarioInput" class="form-label" runat="server" Text="¿Qué opinas sobre este producto? Escribe tu comentario"></asp:Label>
-                    <asp:TextBox ID="txtComentario" class="form-control" Style="resize: none;" Rows="3" runat="server" placeholder="Deja tu opinión aquí..."></asp:TextBox>
+                    <asp:TextBox ID="txtComentario" class="form-control" Style="resize: none;" Rows="3" TextMode="MultiLine" runat="server" placeholder="Deja tu opinión aquí..."></asp:TextBox>
+
+
+                    <div class="rating-container" style="margin-top: 10px;">
+                        <div class="hearts-rating">
+                            <asp:HiddenField ID="hdnValoracion"  runat="server" Value="0" />
+                            <i class="far fa-heart heart-icon" data-value="1"></i>
+                            <i class="far fa-heart heart-icon" data-value="2"></i>
+                            <i class="far fa-heart heart-icon" data-value="3"></i>
+                            <i class="far fa-heart heart-icon" data-value="4"></i>
+                            <i class="far fa-heart heart-icon" data-value="5"></i>
+                        </div>
+                    </div>
+
                 </div>
                 <asp:Button ID="enviarComentario" runat="server" class="btn btn-dark" Text="Enviar comentario" OnClick="enviarComentario_Click" />
 
@@ -143,15 +156,16 @@
                         <asp:Repeater ID="Repeater3" runat="server">
                             <ItemTemplate>
                                 <div class="comentario">
-                                    <p> 
-                                    <strong><%# Eval("nombres") %>
-                                    <%# Eval("apellidos") %></strong> <%# Eval ("fechaComentario")%>
-                                    <p><%#Eval("comentario") %></p></p>
+                                    <p>
+                                        <strong><%# Eval("nombres") %>
+                                            <%# Eval("apellidos") %></strong> <%# Eval ("fechaComentario")%>
+                                        <p><%#Eval("comentario") %></p>
+                                    </p>
                                     <hr>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>
-                        
+
                     </div>
                 </div>
                 <div class="modal-footer">
