@@ -197,7 +197,7 @@ namespace AppAtusPiesPr.Datos
                                 descripcionProducto = reader["descripcionProducto"].ToString(),
                                 referencia = reader["referencia"].ToString(),
                                 imagen = reader["imagen"].ToString(),
-                                descuento = Convert.ToInt32(reader["descuento"]),
+                                descuento = reader["descuento"] != DBNull.Value ? Convert.ToInt32(reader["descuento"]) : (int?)null,
                                 nombres = reader["nombres"].ToString(),
                                 apellidoVendedor = reader["apellidos"].ToString(),
                                 nombreMarca = reader["nombreMarca"].ToString(),
