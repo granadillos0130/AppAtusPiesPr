@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,6 +42,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -62,20 +64,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="index.aspx" />
     <Content Include="Vista\ActualizarProducto.aspx" />
+    <Content Include="Vista\AdministrarProveedores.aspx" />
     <Content Include="Vista\AgregarCategorias.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\carritoCompras.aspx" />
+    <Content Include="Vista\css\carrito.css" />
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
     <Content Include="Vista\css\sb-admin-2.min.css" />
     <Content Include="Vista\EditarPerfilVendeyAdmin.aspx" />
+    <Content Include="Vista\EstadisticaCategoria.aspx" />
     <Content Include="Vista\EstadisticaVendedor.aspx" />
     <Content Include="Vista\EstadoPedido.aspx" />
     <Content Include="Vista\imagenes\AdidasNegras.jpeg" />
@@ -95,6 +95,7 @@
     <Content Include="Vista\js\demo\chart-bar-demo.js" />
     <Content Include="Vista\js\demo\chart-pie-demo.js" />
     <Content Include="Vista\js\demo\datatables-demo.js" />
+    <Content Include="Vista\js\main.js" />
     <Content Include="Vista\js\sb-admin-2.js" />
     <Content Include="Vista\js\sb-admin-2.min.js" />
     <Content Include="Vista\ListarUsuario.aspx" />
@@ -1787,10 +1788,13 @@
     <Compile Include="Datos\ClAdminD.cs" />
     <Compile Include="Datos\ClClienteD.cs" />
     <Compile Include="Datos\ClConexion.cs" />
+    <Compile Include="Datos\ClPedidosD.cs" />
     <Compile Include="Datos\ClProductoD.cs" />
     <Compile Include="Datos\ClUsuarioD.cs" />
     <Compile Include="Datos\ClVendedorD.cs" />
+    <Compile Include="Entidades\ClPedidosE.cs" />
     <Compile Include="Entidades\ClProductoE.cs" />
+    <Compile Include="Entidades\ClProveedorE.cs" />
     <Compile Include="Entidades\ClRolE.cs" />
     <Compile Include="Entidades\ClUsuarioE.cs" />
     <Compile Include="index.aspx.cs">
@@ -1802,6 +1806,7 @@
     </Compile>
     <Compile Include="Logica\ClAdminL.cs" />
     <Compile Include="Logica\ClClienteL.cs" />
+    <Compile Include="Logica\ClPedidosL.cs" />
     <Compile Include="Logica\ClProductoL.cs" />
     <Compile Include="Logica\ClUsuarioL.cs" />
     <Compile Include="Logica\ClVendedorL.cs" />
@@ -1812,6 +1817,13 @@
     </Compile>
     <Compile Include="Vista\ActualizarProducto.aspx.designer.cs">
       <DependentUpon>ActualizarProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\AdministrarProveedores.aspx.cs">
+      <DependentUpon>AdministrarProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\AdministrarProveedores.aspx.designer.cs">
+      <DependentUpon>AdministrarProveedores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\AgregarCategorias.aspx.cs">
       <DependentUpon>AgregarCategorias.aspx</DependentUpon>
@@ -1840,6 +1852,13 @@
     </Compile>
     <Compile Include="Vista\EditarPerfilVendeyAdmin.aspx.designer.cs">
       <DependentUpon>EditarPerfilVendeyAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EstadisticaCategoria.aspx.cs">
+      <DependentUpon>EstadisticaCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\EstadisticaCategoria.aspx.designer.cs">
+      <DependentUpon>EstadisticaCategoria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\EstadisticaVendedor.aspx.cs">
       <DependentUpon>EstadisticaVendedor.aspx</DependentUpon>
@@ -1962,7 +1981,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <Content Include="Vista\scss\navs\_global.scss" />
     <Content Include="Vista\scss\navs\_sidebar.scss" />
     <Content Include="Vista\scss\navs\_topbar.scss" />
@@ -2137,6 +2155,7 @@
     <Content Include="Vista\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Vista\Maestra.Master" />
     <Content Include="Vista\IndexMaestra.Master" />
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2170,11 +2189,12 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

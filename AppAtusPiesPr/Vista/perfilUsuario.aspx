@@ -9,60 +9,32 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
 
     <style>
-        /* Estilos para la modal */
-.modalActualizar #myModal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    max-width: 500px;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
+        .profile-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
 
-/* Estilos para los campos de texto */
-.textField {
-    display: block;
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-}
+        .profile-image {
+            max-width: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
-.textField:focus {
-    border-color: #007bff;
-    background-color: #fff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
+        .profile-info {
+            padding-left: 30px;
+        }
 
-/* Botón cerrar */
-button[onclick*="myModal"] {
-    background-color: #dc3545;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
+        .modal-content {
+            border-radius: 15px;
+        }
 
-button[onclick*="myModal"]:hover {
-    background-color: #c82333;
-}
-
-
+        .form-control {
+            margin-bottom: 15px;
+        }
     </style>
 
 </asp:Content>
@@ -86,87 +58,157 @@ button[onclick*="myModal"]:hover {
         </div>
 
     </center>
-
-    <hr />
     <br />
-
-    <center>
-        <h2>Tu Perfil</h2>
-        <br>
-    </center>
 
     <div class="alert alert-danger" role="alert" runat="server" visible="false" id="lblMensaje"></div>
     <!-- Foto del Vendedor -->
-    <div class="producto-detalle">
-        <div class="producto-imagen">
-            <asp:Image alt="Imagen 1" ID="ImgVendedor" runat="server" />
-        </div>
+    <div class="container profile-container">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <asp:Image ID="ImgVendedor" runat="server" CssClass="profile-image" alt="Imagen de Perfil" />
+            </div>
+            <div class="col-md-8 profile-info">
+                <h2 class="mb-4">Tu Perfil</h2>
 
-        <!-- Información del Cliente -->
-
-        <div class="producto-info">
-            <ul>
-                <li><strong>Documento:</strong>
-                    <asp:Label ID="documentoCliente" runat="server"></asp:Label></li>
-                <li><strong>Nombres:</strong>
-                    <asp:Label ID="nombreCliente" runat="server"></asp:Label>
-                    <asp:Label ID="apellidoCliente" runat="server"></asp:Label></li>
-                <li><strong>Email:</strong>
-                    <asp:Label ID="emailCliente" runat="server"></asp:Label></li>
-                <li><strong>Password:</strong>
-                    <asp:Label ID="passCliente" runat="server"></asp:Label></li>
-                <li><strong>Telefono:</strong>
-                    <asp:Label ID="telCliente" runat="server"></asp:Label></li>
-
-                <li><strong>Direccion: </strong>
-                    <asp:Label ID="direcCliente" runat="server"></asp:Label></li>
-                <li><strong>Estado: </strong>
-                    <asp:Label ID="estadoCliente" runat="server"></asp:Label></li>
-
-
-            </ul>
-
-            <div class="modalActualizar">
-
-                <div style="position: relative;">
-                    <!-- Botón para abrir el modal -->
-                    <button type="button" class="buy-button" onclick="document.getElementById('myModal').style.display = 'block'">
-                        Editar Información
-                    </button>
-
-                    <div id="myModal" style="display: none; border-radius: 5px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; background-color: white; border: 1px solid #ccc; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 1000;">
-                        <h5>Edita tus Datos Personales</h5>
-                        <br>
-                        <asp:TextBox CssClass="textField" ID="txtDocumento" runat="server" placeholder="Documento: "></asp:TextBox>
-
-                        <asp:TextBox CssClass="textField" ID="txtNombres" runat="server" placeholder="Nombres: "></asp:TextBox>
-
-                        <asp:TextBox CssClass="textField" ID="txtApellidos" runat="server" placeholder="Apellidos: "></asp:TextBox>
-
-                        <asp:TextBox CssClass="textField" ID="txtEmail" runat="server" placeholder="Email: "></asp:TextBox>
-
-                        <asp:TextBox CssClass="textField" ID="txtPass" type="password" runat="server" placeholder="Contraseña: "></asp:TextBox>
-
-                        <asp:TextBox CssClass="textField" ID="txtTelefono" runat="server" placeholder="Telefono: "></asp:TextBox>
-
-                        <asp:TextBox CssClass="textField" ID="txtDireccion" runat="server" placeholder="Dirección: "></asp:TextBox>
-
-                        <button type="button" style="background-color: #dc3545; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: all 0.3s ease; display: inline-block; text-align: center; margin-right: 10px;" onclick="document.getElementById('myModal').style.display = 'none'">
-                            Cerrar
-                        </button>
-                        <asp:Button ID="btnGuardar" CssClass="btn-guardar" runat="server" Text="Guardar" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: all 0.3s ease; display: inline-block; text-align: center;" OnClick="btnGuardar_Click" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>Documento:</strong>
+                        <asp:Label ID="documentoCliente" runat="server"></asp:Label>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Nombres:</strong>
+                        <asp:Label ID="nombreCliente" runat="server"></asp:Label>
+                        <asp:Label ID="apellidoCliente" runat="server"></asp:Label>
                     </div>
                 </div>
 
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <strong>Email:</strong>
+                        <asp:Label ID="emailCliente" runat="server"></asp:Label>
+                    </div>
+                    <div class="col-md-6">
+                        <strong>Teléfono:</strong>
+                        <asp:Label ID="telCliente" runat="server"></asp:Label>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <strong>Dirección:</strong>
+                        <asp:Label ID="direcCliente" runat="server"></asp:Label>
+                    </div>
+                </div>
             </div>
-
-
         </div>
-
-
-
-
     </div>
+    <center>
+<div class="profile-update-container">
+                            <h2 class="mb-4">Actualizar Informacion</h2>
+
+    <div class="profile-update-form">
+        <div class="form-group">
+            <label class="form-label">Documento</label>
+            <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control" placeholder="Número de documento" />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Email</label>
+            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Correo electrónico" />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Nombres</label>
+            <asp:TextBox ID="txtNombres" runat="server" CssClass="form-control" placeholder="Nombres" />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Apellidos</label>
+            <asp:TextBox ID="txtApellidos" runat="server" CssClass="form-control" placeholder="Apellidos" />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Teléfono</label>
+            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Número de teléfono" />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Dirección</label>
+            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" placeholder="Dirección" />
+        </div>
+        <div class="form-group" style="grid-column: span 2;">
+            <label class="form-label">Contraseña</label>
+            <asp:TextBox ID="txtPass" runat="server" TextMode="Password" CssClass="form-control" placeholder="Contraseña" />
+        </div>
+        <asp:Button ID="btnGuardar" runat="server" Text="Guardar Cambios" CssClass="btn-save" OnClick="btnGuardar_Click" />
+    </div>
+</div>
+    </center>
+<style>
+    .profile-update-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .profile-update-form {
+        width: 60%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        background-color: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1.5px solid #e0e0e0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+    }
+
+    .form-label {
+        margin-bottom: 8px;
+        color: #000000;
+        font-weight: 600;
+    }
+
+    .btn-save {
+        grid-column: span 2;
+        justify-self: end;
+        background-color: #000000;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 25px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-save:hover {
+        background-color: #4a4a4a;
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .profile-update-form {
+            grid-template-columns: 1fr;
+        }
+
+        .btn-save {
+            grid-column: span 1;
+        }
+    }
+</style>
+
     <hr>
     <br />
 

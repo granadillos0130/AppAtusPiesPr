@@ -22,6 +22,7 @@ body {
     background-size: cover; /* Hace que la imagen se ajuste al tamaño del botón */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-color: #ffffff;
+    margin-left: 10px;
     border: none; /* Elimina el borde del botón */
     padding: 0; /* Elimina el padding para que el ícono quede centrado */
     cursor: pointer;
@@ -47,8 +48,6 @@ body {
         text-decoration: underline; /* Subrayado opcional al pasar el cursor */
     }
 
-
-
 .header-menu {
     text-align: left;
     justify-content: space-between;
@@ -63,14 +62,18 @@ body {
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
     margin: 0 auto; /* Asegura el centrado en el contenedor */
-    padding: 10px 0; /* Espaciado vertical opcional */
     font-family: inherit; /* Asegura que hereden la fuente del contenedor */
     background-color: #f7f7f7;
+    padding: 10px 0; /* Ajusta el espacio interno */
+    border-bottom: 1px solid #999; /* Borde inferior gris delgado */
+    width: 100%; /* Asegura que el borde ocupe todo el ancho */
 }
 
 .menuFiltros {
     list-style: none;
     display: flex; /* Activa la distribución horizontal */
+    justify-content: center; /* Centra el contenido */
+    align-items: center; /* Centra verticalmente */
     gap: 20px; /* Espaciado entre los elementos */
     margin: 0; /* Elimina márgenes predeterminados */
     padding: 0; /* Elimina relleno predeterminado */
@@ -83,7 +86,10 @@ body {
         font-size: 12px;
         font-weight: 500;
         font-family: inherit; /* Asegura que hereden la fuente del contenedor */
+        text-align: center; /* Centra el texto dentro del enlace */
     }
+
+
 
 
 .navbar {
@@ -92,7 +98,6 @@ body {
     justify-content: space-between;
     width: 100%;
     max-width: 1200px;
-    padding: 10px;
     margin: 0 auto;
     font-family: inherit; /* Asegura que hereden la fuente del contenedor */
 }
@@ -111,6 +116,13 @@ body {
         font-weight: 500;
         font-family: inherit; /* Asegura que hereden la fuente del contenedor */
     }
+
+/* Borde inferior de la página */
+header {
+    width: 100%; /* Asegura que el borde ocupe todo el ancho */
+    border-bottom: 1px solid #999; /* Borde más delgado y de color gris */
+}
+
 
 .logo {
     font-size: 24px;
@@ -433,7 +445,7 @@ body {
 /* Btn desplegable de compra */
 label {
     font-size: 16px;
-    margin-bottom: tpx;
+    margin-bottom: 5px;
     color: #333;
 }
 
@@ -524,7 +536,6 @@ label {
 .devoluciones {
     font-size: 14px;
     font-weight: bold;
-    margin-top: 20px;
     color: #333;
 }
 
@@ -545,18 +556,17 @@ label {
 .btn-agregar-carrito {
     display: inline-block;
     width: 100%; /* O ajusta según el diseño */
-    max-width: 300px; /* Limita el ancho máximo */
-    padding: 12px 20px;
+    max-width: 200px; /* Limita el ancho máximo */
+    padding: 10px 15px;
     background-color: black;
     color: #cccccc;
     font-size: 16px;
     text-align: center;
     text-transform: uppercase;
     border: none;
-    border-radius: 2px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 15px; /* Espaciado con el contenido superior */
 }
 
     .btn-agregar-carrito:hover {
@@ -570,3 +580,18 @@ label {
     margin-top: 10px; /* Espaciado con el contenido superior */
 }
 
+/* Animación de salida */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Clase para aplicar la animación */
+.page-exit {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}

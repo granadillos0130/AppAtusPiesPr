@@ -132,6 +132,15 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.HtmlControls.HtmlAnchor Estadisticas;
 
         /// <summary>
+        /// Control EstadisticasCategoria.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor EstadisticasCategoria;
+
+        /// <summary>
         /// Control menuEstadoPedido.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace AppAtusPiesPr.Vista
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor menuActualizarProducto;
+
+        /// <summary>
+        /// Control AdministrarProveedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor AdministrarProveedores;
 
         /// <summary>
         /// Control body.

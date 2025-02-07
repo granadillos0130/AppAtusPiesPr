@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net.Mail;
+using System.Runtime.Remoting;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -63,6 +64,13 @@ namespace AppAtusPiesPr.Logica
             return Categoria.MtdListarCategoria();
         }
 
+        public List<ClCategoriaE> MtdEstadisticaCategoria(string Orden)
+        {
+            ClAdminD Categoria = new ClAdminD();
+            return Categoria.MtdEstadistcaCategoria( Orden);
+
+        }
+
         public bool MtdRegistrarCategoria(ClCategoriaE oDatos)
         {
             ClAdminD registrar = new ClAdminD();
@@ -118,6 +126,18 @@ namespace AppAtusPiesPr.Logica
 
             return exito;
         }
+
+        public bool MtdSolicitudReactivacion(int documento)
+        {
+            ClAdminD AceptarSoli = new ClAdminD();
+            bool exito = AceptarSoli.MtdReactivacionVendedor(documento);
+
+            return exito;
+        }
+
+
+
+
         public bool MtDenegarSolicitud(int idVendedor, string email,string nombreVendedor,string apellidoVendedor)
         {
             ClAdminD DenegarSoli = new ClAdminD();

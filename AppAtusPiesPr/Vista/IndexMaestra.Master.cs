@@ -62,18 +62,40 @@ namespace AppAtusPiesPr.Vista
 
         protected void txtBusqueda_TextChanged(object sender, EventArgs e)
         {
-            string busqueda = txtBusqueda.Text.Trim();
+            // Identifica el control que dispara el evento
+            string controlId = (sender as Control)?.ID;
+
+            if (controlId == "txtBusqueda")
+            {
+                string busqueda = txtBusqueda.Text.Trim();
+                if (!string.IsNullOrEmpty(busqueda))
+                {
+                    string rutaBusqueda = ResolveUrl("~/Vista/moduloBusqueda.aspx");
+                    Response.Redirect($"{rutaBusqueda}?busqueda={Server.UrlEncode(busqueda)}");
+                }
+            }
+            else if (controlId == "txtBusqueda2")
+            {
+                string busqueda2 = txtBusqueda2.Text.Trim();
+                if (!string.IsNullOrEmpty(busqueda2))
+                {
+                    string rutaBusqueda2 = ResolveUrl("~/Vista/moduloBusqueda.aspx");
+                    Response.Redirect($"{rutaBusqueda2}?busqueda={Server.UrlEncode(busqueda2)}");
+                }
+            }
+        }
+
+        protected void txtBusqueda2_TextChanged(object sender, EventArgs e)
+        {
             string busqueda2 = txtBusqueda2.Text.Trim();
 
             string moduloActual = Session["ModuloActual"] as string;
 
-            if (!string.IsNullOrEmpty(busqueda))
+            if (!string.IsNullOrEmpty(busqueda2))
             {
-                string rutaBusqueda = ResolveUrl("~/Vista/moduloBusqueda.aspx");
-                Response.Redirect($"{rutaBusqueda}?busqueda={Server.UrlEncode(busqueda)}");
 
                 string rutaBusqueda2 = ResolveUrl("~/Vista/moduloBusqueda.aspx");
-                Response.Redirect($"{rutaBusqueda}?busqueda={Server.UrlEncode(busqueda2)}");
+                Response.Redirect($"{rutaBusqueda2}?busqueda={Server.UrlEncode(busqueda2)}");
 
             }
         }

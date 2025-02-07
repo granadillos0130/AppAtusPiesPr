@@ -7,10 +7,12 @@
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css' />
     <link rel="shortcut icon" href="recursos/ATP.png" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    
+    <link rel='stylesheet' type='text/css' media='screen' href='css/carrito.css' />
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
-        <center>
+    <center>
 
         <div class="navbarFiltros">
             <nav>
@@ -30,11 +32,29 @@
 
     </center>
 
-    <hr />
-    <!-- Botón para vaciar el carrito, ahora al principio de la página -->
-    <button id="vaciarCarritoButton" class="delete-carrito">Vaciar Carrito</button>
-    <br><br>
-    <div id="carritoContainer"></div>
-    <script src="js/carrito.js"></script>
 
+
+    <div class="container">
+        <!-- Botón para vaciar el carrito, ahora al principio de la página -->
+        <button id="vaciarCarritoButton" class="delete-carrito">Vaciar Carrito</button>
+        <br>
+        <br>
+        <div id="carritoContainer"></div>
+    </div>
+
+    <!-- Mensaje para inicio de sesión -->
+    <div id="mensajeInicioSesion" style="display: none; text-align: center; color: red; margin-top: 20px;">
+        Debes iniciar sesión para proceder con la compra.
+    </div>
+
+    <script src="js/carrito.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AcJ4hvEnBv9MHxg3EggwPHF7XO7mdTT_G3N0wmqj0vieh-UOmSYC02lUOH_gAVONfGFwLvuWiGmIK1LZ&currency=USD"></script>
+
+    <div class="pie-pagina">
+        <br />
+        <p>&copy; 2024 A TUS PIES. Todos los derechos reservados.</p>
+        <p>Diseñado con amor para brindar estilo y comodidad.</p>
+        <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
+        <br />
+    </div>
 </asp:Content>

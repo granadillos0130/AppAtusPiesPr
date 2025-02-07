@@ -276,7 +276,8 @@ namespace AppAtusPiesPr.Datos
             return existe;
         }
 
-        public bool MtdDenegarSolicitud(int idVendedor) {
+        public bool MtdDenegarSolicitud(int idVendedor)
+        {
 
             ClConexion oConexion = new ClConexion();
 
@@ -308,8 +309,6 @@ namespace AppAtusPiesPr.Datos
 
 
                     cmd.Parameters.AddWithValue("@documentoVendedor", string.IsNullOrWhiteSpace(documento) ? DBNull.Value : (object)documento);
-
-
                     cmd.Parameters.AddWithValue("@año", string.IsNullOrWhiteSpace(año) ? DBNull.Value : (object)Convert.ToInt32(año));
                     cmd.Parameters.AddWithValue("@mes", string.IsNullOrWhiteSpace(mes) ? DBNull.Value : (object)Convert.ToInt32(mes));
 
@@ -356,26 +355,74 @@ namespace AppAtusPiesPr.Datos
                 {
                     while (reader.Read())
                     {
-                        
+
                         ClCategoriaE Categoria = new ClCategoriaE()
                         {
                             idCategoria = reader.GetInt32(reader.GetOrdinal("idCategoria")),
                             descripcion = reader.GetString(reader.GetOrdinal("descripcion")),
                         };
 
-                        
+
                         ListaCategoria.Add(Categoria);
                     }
                 }
             }
-
-          
             return ListaCategoria;
         }
 
+        public List<ClCategoriaE> MtdEstadistcaCategoria(string Orden)
+        {
+            List<ClCategoriaE> ListaEstadisticaCategoria = new List<ClCategoriaE>();
+            ClConexion oConexion = new ClConexion();
+            using (SqlCommand cmd = new SqlCommand("SpEstadisticaCategoria", oConexion.MtdAbrirConexion()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Orden", Orden);
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ClCategoriaE oCategoria = new ClCategoriaE
+                        {
+                            descripcion = reader.GetString(reader.GetOrdinal("Categoria")),
+                            TotalProductos = reader.GetInt32(reader.GetOrdinal("TotalProductos"))
+                        };
+                        ListaEstadisticaCategoria.Add(oCategoria);
+                    }
+                    
+                }
+            }
+
+            return ListaEstadisticaCategoria;
+        }
+
+
+
+        public bool MtdReactivacionVendedor(int documento)
+        {
+            ClConexion oConexion = new ClConexion();
+
+            using (SqlConnection con = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpSoliReactivarVendedor", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@documento", documento); // Asegurar que el parámetro es correcto
+
+                    int filasAfectadas = cmd.ExecuteNonQuery();
+
+                    // Depuración: Mostrar cuántas filas fueron afectadas
+                    System.Diagnostics.Debug.WriteLine($"Filas afectadas: {filasAfectadas}");
+
+                    return filasAfectadas > 0;
+                }
+            }
+        }
+
+
+
 
     }
-
 }
 
     
