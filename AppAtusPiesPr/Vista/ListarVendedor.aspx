@@ -4,15 +4,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        /* Estilo para la tabla */
-        .table th {
-            background-color: #007bff;
-            color: white;
-        }
-        .table-striped tbody tr:nth-child(odd) {
-            background-color: #f2f2f2;
-        }
-    </style>
+    /* Estilo para la tabla */
+    .table th {
+        background-color: #007bff;
+        color: white;
+    }
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+    /* Cambiar el color del texto de las celdas a negro */
+    .table-striped tbody td {
+        color: black;
+    }
+</style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
