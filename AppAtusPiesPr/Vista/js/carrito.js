@@ -1,6 +1,4 @@
-﻿
-
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     function mostrarCarrito() {
         const carritoContainer = document.getElementById('carritoContainer');
         if (!carritoContainer) {
@@ -195,25 +193,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function realizarCompra() {
+    function realizarPedido() {
         obtenerIdCliente()
             .then(idCliente => {
-                const pedido = {
-                    IdCliente: idCliente, // Ahora tienes el ID real del cliente
-                    FechaPedido: new Date().toISOString(),
-                    Estado: "Pendiente",
-                    TotalPedido: calcularTotalPedido(),
-                    IdVendedor: 2, // ID del vendedor, si aplica
-                };
+                const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+                const vendedores = [...new Set(carrito.map(producto => producto.idVendedor))];
+
+                // Asumir que un pedido puede tener productos de varios vendedores
+                const pedidos = vendedores.map(idVendedor => {
+                    const productosPorVendedor = carrito.filter(producto => producto.idVendedor === idVendedor);
+                    const totalVendedor = productosPorVendedor.reduce((acc, producto) => acc + (parseFloat(producto.precio) || 0) * (producto.cantidad || 1), 0);
+                    return {
+                        IdCliente: idCliente,
+                        FechaPedido: new Date().toISOString(),
+                        Estado: "Pendiente",
+                        TotalPedido: totalVendedor,
+                        IdVendedor: idVendedor,
+                    };
+                });
 
                 const detalles = obtenerDetallesPedido();
 
-                if (!pedido.IdCliente || !pedido.TotalPedido || detalles.length === 0) {
+                if (!idCliente || detalles.length === 0) {
                     alert("Por favor, completa los campos del pedido.");
                     return;
                 }
 
-                const datos = { pedido, detalles };
+                const datos = { pedidos, detalles };
 
                 fetch('carritoCompras.aspx/GuardarPedido', {
                     method: 'POST',
@@ -241,88 +247,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+    // Función para obtener los detalles del pedido
+    function obtenerDetallesPedido() {
+        return [
+            {
+                carrera: document.getElementById('carrera').value,
+                ciudad: document.getElementById('ciudad').value,
+                direccionPrincipal: document.getElementById('direccionPrincipal').value
+            }
+        ];
+    }
 
     // Función para calcular el total del pedido (solo un ejemplo)
     function calcularTotalPedido() {
         // Lógica para calcular el total (sumar precios de productos y cantidades)
         let total = 0;
-        const productos = obtenerDetallesPedido(); // Obtén los detalles del carrito
-        productos.forEach(item => {
-            total += item.Precio * item.Cantidad;
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        carrito.forEach(producto => {
+            total += (parseFloat(producto.precio) || 0) * (producto.cantidad || 1);
         });
         return total;
     }
 
-    // Función para obtener los detalles del carrito (deberás adaptarla a tu implementación)
-    function obtenerDetallesPedido() {
-        const carrito = [
-            {
-                IdProducto: 1,
-                Cantidad: 2,
-                Precio: 50.00,
-                Direccion: "Calle Ficticia 123",
-                Ciudad: "Ciudad Ejemplo",
-                DireccionPrincipal: true
-            },
-            // Aquí agregarías más productos del carrito
-        ];
-
-        return carrito;
-    }
-
-
-    function agregarProductoAlCarrito(producto) {
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-        // Verifica si el producto ya existe en el carrito
-        const productoExistente = carrito.find(p => p.id === producto.id);
-        if (productoExistente) {
-            productoExistente.cantidad += 1; // Incrementa la cantidad si ya existe
-        } else {
-            carrito.push(producto); // Agrega un nuevo producto
-        }
-
-        // Guarda el carrito actualizado en localStorage
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-
-        // Opcional: muestra un mensaje de éxito
-        Swal.fire({
-            icon: 'success', // Ícono de éxito
-            title: '¡Producto agregado!', // Título del alert
-            showConfirmButton: false, // Oculta el botón de confirmación
-            timer: 1500, // Cierra automáticamente después de 1.5 segundos
-            timerProgressBar: true, // Muestra una barra de progreso
-            position: 'bottom-end', // Posición del alert (esquina inferior derecha)
-            toast: true, // Muestra el alert como un toast
-            background: '#4CAF50', // Color de fondo
-            color: '#fff', // Color del texto
-            iconColor: '#fff', // Color del ícono
-        });
-    }
-
-    // Captura el evento de clic en los botones "Guardar"
-    document.querySelectorAll('.save-button').forEach(button => {
-        button.addEventListener('click', (event) => {
-            event.preventDefault();
-
-            // Extrae los datos del producto desde los atributos del botón
-            const producto = {
-                id: button.getAttribute('data-id'),
-                nombreProducto: button.getAttribute('data-nombre'),
-                imagen: button.getAttribute('data-imagen'),
-                precio: parseFloat(button.getAttribute('data-precio')),
-                idVendedor: button.getAttribute('data-idvendedor'),
-                NombreVendedor: button.getAttribute('data-vendedor'),
-                apellidos: button.getAttribute('data-apellidos'),
-                cantidad: 1 // Cantidad inicial
-            };
-
-            // Llama a la función para agregar el producto al carrito
-            agregarProductoAlCarrito(producto);
-        });
-    });
-
-
-    // Inicializar carrito
+    // Mostrar el carrito al cargar
     mostrarCarrito();
 });

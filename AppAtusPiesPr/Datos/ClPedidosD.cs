@@ -12,20 +12,18 @@ namespace AppAtusPiesPr.Datos
 
         public int InsertarPedido(ClPedidosE pedido, List<DetallePedido> detalles)
         {
-
             ClConexion oConex = new ClConexion();
-            using (SqlConnection con = oConex.MtdAbrirConexion())
+            using (SqlConnection con = oConex.MtdAbrirConexion()) // Ya devuelve una conexión abierta
             {
-                con.Open();
                 SqlTransaction transaccion = con.BeginTransaction();
 
                 try
                 {
                     // Insertar el pedido
                     string queryPedido = @"
-                    INSERT INTO Pedido (estado, fechaPedido, idCliente, idVendedor, totalPedido)
-                    VALUES (@estado, @fechaPedido, @idCliente, @idVendedor, @totalPedido);
-                    SELECT SCOPE_IDENTITY();";
+            INSERT INTO Pedido (estado, fechaPedido, idCliente, idVendedor, totalPedido)
+            VALUES (@estado, @fechaPedido, @idCliente, @idVendedor, @totalPedido);
+            SELECT SCOPE_IDENTITY();";
 
                     SqlCommand cmdPedido = new SqlCommand(queryPedido, con, transaccion);
                     cmdPedido.Parameters.AddWithValue("@estado", pedido.Estado);
@@ -38,8 +36,8 @@ namespace AppAtusPiesPr.Datos
 
                     // Insertar detalles del pedido
                     string queryDetalle = @"
-                    INSERT INTO DetallesPedido (idPedido, direccion, ciudad, direccionPrincipal)
-                    VALUES (@idPedido, @direccion, @ciudad, @direccionPrincipal)";
+            INSERT INTO DetallesPedido (idPedido, direccion, ciudad, direccionPrincipal)
+            VALUES (@idPedido, @direccion, @ciudad, @direccionPrincipal)";
 
                     foreach (var detalle in pedido.Detalles)
                     {
@@ -50,6 +48,7 @@ namespace AppAtusPiesPr.Datos
                         cmdDetalle.Parameters.AddWithValue("@direccionPrincipal", detalle.DireccionPrincipal);
                         cmdDetalle.ExecuteNonQuery();
                     }
+
                     // Confirmar transacción
                     transaccion.Commit();
                     return idPedido;
@@ -59,7 +58,8 @@ namespace AppAtusPiesPr.Datos
                     transaccion.Rollback();
                     throw;
                 }
-            }
+            } // Aquí se cerrará automáticamente la conexión
         }
+
     }
 }
