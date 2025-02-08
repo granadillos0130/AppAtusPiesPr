@@ -56,6 +56,18 @@
                 <li><strong>Vendedor:</strong>
                     <asp:Label ID="nombreVendedor" runat="server"></asp:Label><strong> </strong>
                     <asp:Label ID="apellidoVendedor" runat="server"></asp:Label></li>
+                <li>
+
+                    <div class="rating">
+                        <span class="heart" data-value="1">&#10084;</span>
+                        <span class="heart" data-value="2">&#10084;</span>
+                        <span class="heart" data-value="3">&#10084;</span>
+                        <span class="heart" data-value="4">&#10084;</span>
+                        <span class="heart" data-value="5">&#10084;</span>
+                        <asp:Label ID="lblPromedio" ClientIDMode="Static" runat="server" EnableViewState="false"></asp:Label>
+                    </div>
+                 </li>
+
                 <li><strong>Stock:</strong>
                     <asp:Label ID="stockProducto" runat="server"></asp:Label></li>
                 <li><strong>Num. Referencia:</strong>

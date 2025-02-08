@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
@@ -497,39 +498,35 @@ namespace AppAtusPiesPr.Datos
             return oComentario;
         }
 
-        public async Task<(decimal Promedio, int Total)> ObtenerValoracionPromedio(int productoId)
+        public decimal ObtenerPromedioValoracion(int idProducto)
         {
+            decimal promedio = 0;
+
             ClConexion oConex = new ClConexion();
+
             try
             {
-                using (SqlCommand cmd = new SqlCommand("sp_ObtenerValoracionPromedio", oConex.MtdAbrirConexion()))
+
+                using (SqlCommand cmd = new SqlCommand("spPromedioValoracion", oConex.MtdAbrirConexion()))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@idProducto", productoId);
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
 
-                    using (var reader = await cmd.ExecuteReaderAsync())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (await reader.ReadAsync())
+                        if (reader.Read())
                         {
-                            return (
-                                Promedio: reader.GetDecimal(2),
-                                Total: reader.GetInt32(3)
-                            );
+                            promedio = reader.GetDecimal(reader.GetOrdinal("PromedioValoracion"));
                         }
                     }
                 }
-            }
-            catch (Exception ex)
+
+            } catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                oConex.MtdCerrarConexion(); // Asegurar el cierre de conexión en el finally
-            }
 
-            return (0, 0);
-        }
+            }
+            return promedio;
+        } 
     }
-
-}
+ }
