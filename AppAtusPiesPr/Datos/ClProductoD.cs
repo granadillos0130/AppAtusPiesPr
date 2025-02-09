@@ -481,7 +481,8 @@ namespace AppAtusPiesPr.Datos
                             FechaComentario = Convert.ToDateTime(fila["fechaComentario"]),
                             nombres = fila["nombres"].ToString(),
                             apellidos = fila["apellidos"].ToString(),
-                            comentario = fila["comentario"].ToString(), // Se corrigió este campo
+                            comentario = fila["comentario"].ToString(),
+                            valoracion = fila["valoracion"] != DBNull.Value ? Convert.ToInt32(fila["valoracion"]) : (int?)null
                         });
                     }
                 }

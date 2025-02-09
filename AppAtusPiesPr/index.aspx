@@ -104,7 +104,12 @@
                                     <%# Eval("NombreVendedor") %>
                                     <%# Eval("apellidos") %><br>
                                 </a>
-                                     <div class="cardprice">
+                                <div class="rating">
+                                    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
+                                    
+                                    
+                                </div>
+                                <div class="cardprice">
                                     <p>$<%# Eval("precio") %></p>
                                 </div>
                                 <div class="cardButtons">
