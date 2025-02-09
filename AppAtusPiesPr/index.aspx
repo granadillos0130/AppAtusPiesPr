@@ -104,9 +104,8 @@
                                     <%# Eval("NombreVendedor") %>
                                     <%# Eval("apellidos") %><br>
                                 </a>
-                                <div class="cardprice">
+                                     <div class="cardprice">
                                     <p>$<%# Eval("precio") %></p>
-
                                 </div>
                                 <div class="cardButtons">
                                     <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>

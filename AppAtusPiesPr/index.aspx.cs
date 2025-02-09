@@ -28,13 +28,11 @@ namespace AppAtusPiesPr
                 }
                 else
                 {
-
                     cargarProductos();
                 }
             }
 
         }
-
         private void cargarProductos()
         {
             ClProductoL objProductoL = new ClProductoL();
