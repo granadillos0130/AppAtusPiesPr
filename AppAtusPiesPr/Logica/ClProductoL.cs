@@ -123,10 +123,10 @@ namespace AppAtusPiesPr.Logica
         }
 
 
-        public async Task<(decimal Promedio, int Total)> ObtenerValoracionPromedio(int productoId)
+        public decimal ObtenerValoracionPromedio(int idProducto)
         {
             ClProductoD objD = new ClProductoD();
-            return await objD.ObtenerValoracionPromedio(productoId);
+            return objD.ObtenerPromedioValoracion(idProducto);
         }
 
     }

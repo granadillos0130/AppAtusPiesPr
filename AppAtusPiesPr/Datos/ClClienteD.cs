@@ -432,6 +432,34 @@ namespace AppAtusPiesPr.Datos
             return isValid;
         }
 
+        public bool mtdCancelarCuenta(int idCliente)
+        {
+
+            ClConexion conex = new ClConexion();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spCancelarCuenta", conex.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("idCliente", idCliente);
+
+                    int filaAfectadas = cmd.ExecuteNonQuery();
+                    return filaAfectadas > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar el error según tu implementación
+                Console.WriteLine($"Error al cancelar cuenta: {ex.Message}");
+                return false;
+            }
+            finally
+            {
+                conex.MtdAbrirConexion().Close();
+            }
+        }
+
         public void UpdatePassword(string resetCode, string newPassword)
         {
             SqlConnection con = null;
