@@ -6,7 +6,12 @@
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css' />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    
+    <!-- Incluye SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
+    <!-- Incluye SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="shortcut icon" href="recursos/ATP.png" />
 
 </asp:Content>
@@ -40,7 +45,7 @@
             </center>
 
             <br>
-            <!-- Contenedor para las tarjetas -->
+<!-- Contenedor para las tarjetas -->
 <div id="cardsContainer" class="cards-container">
 
     <asp:Repeater ID="Repeater1" runat="server">
@@ -51,13 +56,13 @@
                 <h4 class="card-title"></h4>
                 <div class="card-info">
                     <div class="card-details">
-                        <a class="cardseller" href='<%# "vista/perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
+                        <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
                             <%# Eval("nombres") %>
                             <%# Eval("apellidos") %><br>
                         </a>
+                        
                         <div class="cardprice">
                             <p>$<%# Eval("precio") %></p>
-
                         </div>
                         <div class="cardButtons">
                             <a class="buy-button" href='moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
@@ -96,5 +101,8 @@
 
     </div>
     <script src="js/main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+    <link href="css/carrito.css" rel="stylesheet" />
 </asp:Content>
 

@@ -36,6 +36,21 @@ namespace AppAtusPiesPr.Vista
             Repeater2.DataSource = oLogica.MtdListarCategorias();
             Repeater2.DataBind();
         }
+        private void busquedas(string busqueda)
+        {
+            ClProductoL oDatos = new ClProductoL();
 
+            DataTable dtProductos = oDatos.mtdBuscarProducto(busqueda);
+            if (dtProductos.Rows.Count > 0)
+            {
+                Repeater1.DataSource = dtProductos;
+                Repeater1.DataBind();
+            }
+            else
+            {
+                Repeater1.DataSource = null;
+                Repeater1.DataBind();
+            }
+        }
     }
 }
