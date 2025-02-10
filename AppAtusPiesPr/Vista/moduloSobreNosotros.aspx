@@ -340,7 +340,7 @@
                 </div>
                 <div class="card-content">
                     <h3 class="member-name">Luis Salamanca </h3>
-                    <div class="member-role">Desarrolladora Backend</div>
+                    <div class="member-role">Desarrollador Backend</div>
                     <p class="member-description">
                         Experta en desarrollo de APIs y bases de datos. Enfocada en crear soluciones escalables y eficientes.
                     </p>
