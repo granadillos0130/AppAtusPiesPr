@@ -142,7 +142,7 @@
             </div>
         </div>
 
-                    <h2 class="mb-4">Tus Productos</h2>
+        <h2 class="mb-4">Tus Productos</h2>
 
         <div id="cardsContainer" class="cards-container">
             <asp:Repeater ID="Repeater1" runat="server">
@@ -155,9 +155,9 @@
                         <h4 class="card-title"></h4>
                         <div class="card-info">
                             <div class="card-details">
-                                
+
                                 <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
-                                    
+
 
                                     <%# Eval("nombres") %>
                                     <%# Eval("apellidos") %><br>
@@ -176,24 +176,24 @@
 
 
     </center>
-                <p class="txt">¿No estás satisfecho con nuestro servicio?</p>
+    <p class="txt">¿No estás satisfecho con nuestro servicio?</p>
 
-        <asp:Button ID="btnCancelarCuenta" runat="server" Text="Cancelar Cuenta" 
-    CssClass="btn btn-danger btn-derecha" OnClick="btnCancelarCuenta_Click"
-    OnClientClick="return confirm('¿Está seguro que desea cancelar su cuenta? Esta acción no se puede deshacer.');" />
+    <asp:Button ID="btnCancelarCuenta" runat="server" Text="Cancelar Cuenta"
+        CssClass="btn btn-danger btn-derecha" OnClick="btnCancelarCuenta_Click"
+        OnClientClick="return confirm('¿Está seguro que desea cancelar su cuenta? Esta acción no se puede deshacer.');" />
 
     <style>
-
         .txt {
             right: 20px;
             margin-top: 30px; /* Ajusta según sea necesario */
             margin-left: 75px;
         }
+
         .btn-derecha {
-    right: 10px;
-    margin-top: 10px; /* Ajusta según sea necesario */
-    margin-left: 75px;
-}
+            right: 10px;
+            margin-top: 10px; /* Ajusta según sea necesario */
+            margin-left: 75px;
+        }
 
 
         .profile-update-container {
