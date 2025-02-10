@@ -49,5 +49,14 @@ namespace AppAtusPiesPr.Logica
         {
             clienteDa.UpdatePassword(resetCode, newPassword);
         }
+
+        public bool mtdCancelarCuenta(int idCliente)
+        {
+            ClClienteD objPedidosD = new ClClienteD();
+            bool tblDatos = objPedidosD.mtdCancelarCuenta(idCliente);
+            return tblDatos;
+
+        }
+
     }
 }

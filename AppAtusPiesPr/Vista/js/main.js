@@ -178,3 +178,4 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay.classList.remove("activo"); // Oculta el overlay
     });
 });
+

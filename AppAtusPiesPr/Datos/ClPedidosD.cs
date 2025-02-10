@@ -1,6 +1,7 @@
 ﻿using AppAtusPiesPr.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,46 @@ namespace AppAtusPiesPr.Datos
     public class ClPedidosD
     {
 
+        public List<PedidoCliente> mtdListarPedidosCliente(int idCliente)
+        {
+            List<PedidoCliente> listaPedidos = new List<PedidoCliente>();
+
+            ClConexion conexion = new ClConexion();
+                using (SqlCommand cmd = new SqlCommand("spPedidosCliente", conexion.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idCliente", idCliente);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows) // Verifica si hay filas devueltas
+                        {
+                            while (reader.Read())
+                            {
+                                PedidoCliente pedido = new PedidoCliente
+                                {
+                                    imagen = reader.IsDBNull(reader.GetOrdinal("imagen")) ? string.Empty : reader["imagen"].ToString(),
+                                    Estado = reader.IsDBNull(reader.GetOrdinal("estado")) ? string.Empty : reader["estado"].ToString(),
+                                    NombreProducto = reader.IsDBNull(reader.GetOrdinal("nombreProducto")) ? string.Empty : reader["nombreProducto"].ToString(),
+                                    precio = reader.IsDBNull(reader.GetOrdinal("precio")) ? 0 : Convert.ToDecimal(reader["precio"]),
+                                    nombres = reader.IsDBNull(reader.GetOrdinal("nombres")) ? string.Empty : reader["nombres"].ToString(),
+                                    apellidos = reader.IsDBNull(reader.GetOrdinal("apellidos")) ? string.Empty : reader["apellidos"].ToString(),
+                                    idVendedor = Convert.ToInt32(reader["idVendedor"])
+                                };
+
+                                listaPedidos.Add(pedido);
+                            }
+                        }
+                        else
+                        {
+                            // No hay datos, puedes registrar un mensaje o manejarlo según sea necesario
+                            Console.WriteLine("No se encontraron datos para el idCliente proporcionado.");
+                        }
+                }
+                }
+
+            return listaPedidos;
+        }
         public int InsertarPedido(ClPedidosE pedido, List<DetallePedido> detalles)
         {
 
@@ -61,5 +102,7 @@ namespace AppAtusPiesPr.Datos
                 }
             }
         }
+
+
     }
 }
