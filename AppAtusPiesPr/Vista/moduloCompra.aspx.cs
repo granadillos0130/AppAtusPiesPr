@@ -1,10 +1,12 @@
-﻿using AppAtusPiesPr.Entidades;
+﻿using AppAtusPiesPr.Datos;
+using AppAtusPiesPr.Entidades;
 using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -19,25 +21,34 @@ namespace AppAtusPiesPr.Vista
         {
             if (!IsPostBack)
             {
+
                 cargarCategorias();
                 cargarComentarios();
-
+                
 
                 string productoId = Request.QueryString["id"];
-
+                
                 if (!string.IsNullOrEmpty(productoId) && int.TryParse(productoId, out int idProducto))
                 {
-                    cargarProducto(idProducto);  // Cargar el producto
+                    cargarProducto(idProducto);
+                    cargarValoracion(idProducto);
 
                 }
-
-
             }
+        }
+
+        private void cargarValoracion(int idProducto)
+        {
+            decimal promedioValoracion = oLogica.ObtenerValoracionPromedio(idProducto);
+
+            lblPromedio.Text = promedioValoracion.ToString("F1");
+            lblPromedio.Attributes["data-promedio"] = promedioValoracion.ToString("F1");
         }
 
         private void cargarProducto(int idProducto)
         {
             ClProductoEmpresaE oProductoE = oLogica.MtdInfoProductos(idProducto);
+
             int idVendedor = 0;
             if (oProductoE != null)
             {
@@ -55,6 +66,8 @@ namespace AppAtusPiesPr.Vista
                 PrecioProducto.Text = oProductoE.precioVenta.ToString();
                 marcaProducto.Text = oProductoE.nombreMarca;
                 productoDescripcion.Text = oProductoE.descripcionProducto;
+
+                ClProductoL logica = new ClProductoL();
 
                 idVendedor = oProductoE.idVendedor;
                 Console.WriteLine($"ID Vendedor: {idVendedor}");
@@ -116,7 +129,6 @@ namespace AppAtusPiesPr.Vista
                 lblMensaje.InnerText = "Error al mostrar la información: " + ex.Message;
             }
         }
-
 
         private void cargarCategorias()
         {
@@ -234,6 +246,46 @@ namespace AppAtusPiesPr.Vista
             }
         }
 
+        private string GenerarCorazonesHTML(decimal promedio)
+        {
+            // Asegúrate de que el promedio no exceda 5
+            promedio = Math.Min(5, promedio);
+
+            // Calcula los corazones llenos (parte entera del promedio)
+            int corazonesLlenos = (int)Math.Floor(promedio);
+
+            // Calcula si necesitamos un medio corazón
+            decimal parteDecimal = promedio - corazonesLlenos;
+            bool medioCorazon = parteDecimal >= 0.5m;
+
+            StringBuilder html = new StringBuilder();
+            html.Append("<div class='hearts-rating2'>");
+
+            // Corazones llenos
+            for (int i = 0; i < corazonesLlenos; i++)
+            {
+                html.Append("<span class='heart-icon2' style='color: #ff0000;'>&#10084;</span>");
+            }
+
+            // Medio corazón si es necesario
+            if (medioCorazon)
+            {
+                html.Append("<span class='heart-icon2' style='color: #ff0000; opacity: 0.5;'>&#10084;</span>");
+            }
+
+            // Corazones vacíos
+            int corazonesVacios = 5 - corazonesLlenos - (medioCorazon ? 1 : 0);
+            for (int i = 0; i < corazonesVacios; i++)
+            {
+                html.Append("<span class='heart-icon2' style='color: #ccc;'>&#10084;</span>");
+            }
+
+            // Agregar el promedio numérico
+            html.Append($"<span class='promedio-texto'>({promedio:F1})</span>");
+            html.Append("</div>");
+
+            return html.ToString();
+        }
 
     }
 }
