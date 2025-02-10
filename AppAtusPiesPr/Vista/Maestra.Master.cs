@@ -43,6 +43,7 @@ namespace AppAtusPiesPr.Vista
                     menuEstadoPedido.Visible = false;
                     menuActualizarProducto.Visible = false;
                     AdministrarProveedores.Visible = false;
+                   
 
 
                 }

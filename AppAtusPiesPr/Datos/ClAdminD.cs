@@ -275,7 +275,6 @@ namespace AppAtusPiesPr.Datos
 
             return existe;
         }
-
         public bool MtdDenegarSolicitud(int idVendedor)
         {
 
@@ -294,7 +293,6 @@ namespace AppAtusPiesPr.Datos
             }
 
         }
-
 
         public List<ClEstadisticaVendedorE> MtdBuscarEstadisticasPorVendedor(string documento, string año, string mes)
         {
