@@ -191,4 +191,7 @@
         <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
         <br />
     </div>
+
+    <script src="js/carrito.js"></script>
+
 </asp:Content>
