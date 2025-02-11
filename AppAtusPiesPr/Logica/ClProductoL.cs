@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,6 +14,8 @@ namespace AppAtusPiesPr.Logica
 {
     public class ClProductoL
     {
+        private const int PAGE_SIZE = 12;
+
         public ClProductoEmpresaE MtdRegistroProd(ClProductoEmpresaE objDatosProdu)
         {
             ClProductoD objProdD = new ClProductoD();  
@@ -38,6 +41,20 @@ namespace AppAtusPiesPr.Logica
         {
             ClProductoD objProductoD = new ClProductoD();
             DataTable tblDatos = objProductoD.MtdListarProductos();
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMejorCalificados()
+        {
+            ClProductoD objProductoD = new ClProductoD();
+            DataTable tblDatos = objProductoD.MtdListarProductosMejorCalificados();
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMasRecientes()
+        {
+            ClProductoD objProductoD = new ClProductoD();
+            DataTable tblDatos = objProductoD.MtdListarProductosMasRecientes();
             return tblDatos;
         }
 

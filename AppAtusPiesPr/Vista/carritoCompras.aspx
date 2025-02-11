@@ -7,14 +7,19 @@
     <link rel="shortcut icon" href="recursos/ATP.png" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel='stylesheet' type='text/css' media='screen' href='css/carrito.css' />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        .order-button {
+            position: relative;
+            float: right;
+            margin-top: 15px;
+            margin-right: 10%;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
     <center>
-
         <div class="navbarFiltros">
             <nav>
                 <ul class="menuFiltros">
@@ -30,7 +35,6 @@
                 </ul>
             </nav>
         </div>
-
     </center>
 
     <div class="container">
@@ -43,166 +47,196 @@
         <div id="carritoContainer"></div>
 
         <!-- Botón para abrir la modal de realizar el pedido -->
-        <button onclick="mostrarModal()">Hacer Pedido</button>
+        <button class="btn btn-success hacer-pedido" data-bs-toggle="modal" data-bs-target="#modalPedido">
+            Hacer Pedido
+        </button>
     </div>
 
-   <!-- Modal para completar el pedido -->
-<div id="modalPedido" style="display:none;">
-    <h2>Realizar Pedido</h2>
-    <!-- Aquí no utilizamos un formulario, solo los campos -->
-    <label for="carrera">Carrera:</label>
-    <input type="text" id="carrera" name="carrera" required><br><br>
+    <!-- Modal Bootstrap para completar el pedido -->
+    <div class="modal fade" id="modalPedido" tabindex="-1" aria-labelledby="modalPedidoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalPedidoLabel">Realizar Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="carrera" class="form-label">Carrera:</label>
+                        <input type="text" class="form-control" id="carrera" name="carrera" required>
+                    </div>
 
-    <label for="ciudad">Ciudad:</label>
-    <select id="ciudad" name="ciudad" required>
-        <option value="Tunja">Tunja</option>
-        <option value="Sogamoso">Sogamoso</option>
-        <option value="Duitama">Duitama</option>
-    </select><br><br>
+                    <div class="mb-3">
+                        <label for="ciudad" class="form-label">Ciudad:</label>
+                        <select class="form-select" id="ciudad" name="ciudad" required>
+                            <option value="Tunja">Tunja</option>
+                            <option value="Sogamoso">Sogamoso</option>
+                            <option value="Duitama">Duitama</option>
+                        </select>
+                    </div>
 
-    <label for="direccionPrincipal">Dirección Principal:</label>
-    <select id="direccionPrincipal" name="direccionPrincipal" required>
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
-    </select><br><br>
-
-    <button type="button" onclick="realizarPedido()">Hacer Pedido</button>
-    <button type="button" onclick="ocultarModal()">Cancelar</button>
-</div>
-
-<script>
-    // Obtener idCliente desde la sesión
-    var idCliente = '<%= Session["idUsuario"] %>';
-    console.log("ID Cliente desde la sesión:", idCliente);
-
-    if (!idCliente || idCliente === "null" || idCliente === "undefined") {
-        console.error("No se pudo obtener el idCliente.");
-        alert("No se pudo obtener el idCliente. Asegúrate de haber iniciado sesión.");
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        console.log("Mostrando modal de pedido...");
-        document.getElementById("modalPedido").style.display = "block";
-    });
-
-    // Función para ocultar el modal
-    function ocultarModal() {
-        console.log("Ocultando modal de pedido...");
-        document.getElementById("modalPedido").style.display = "none";
-    }
-
-    // Función para obtener la dirección del formulario
-    function obtenerDireccion() {
-        const direccion = document.getElementById("carrera").value;
-        console.log("Dirección obtenida desde el formulario:", direccion);
-        return direccion;
-    }
-
-    // Función para obtener la ciudad del formulario
-    function obtenerCiudad() {
-        const ciudad = document.getElementById("ciudad").value;
-        console.log("Ciudad obtenida desde el formulario:", ciudad);
-        return ciudad;
-    }
-
-    // Función para obtener si la dirección es principal desde el formulario
-    function obtenerDireccionPrincipal() {
-        const direccionPrincipal = document.getElementById("direccionPrincipal").value;
-        return direccionPrincipal === "Sí"; // Convertimos "Sí" a true y cualquier otro valor a false
-    }
-
-
-    function realizarPedido() {
-        console.log("Intentando realizar pedido...");
-
-        if (!idCliente || idCliente === "null" || idCliente === "undefined") {
-            console.error("No se pudo obtener el idCliente.");
-            alert("No se pudo obtener el idCliente. Asegúrate de haber iniciado sesión.");
-            return;
-        }
-
-        // Obtener el carrito y los vendedores únicos
-        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-        console.log("Carrito recuperado:", carrito);
-
-        if (carrito.length === 0) {
-            console.warn("El carrito está vacío. No se puede procesar el pedido.");
-            alert("Tu carrito está vacío. Agrega productos antes de hacer el pedido.");
-            return;
-        }
-
-        const vendedores = [...new Set(carrito.map(producto => producto.idVendedor))];
-        console.log("Vendedores únicos en el carrito:", vendedores);
-
-        // Crear los pedidos por cada vendedor
-        vendedores.forEach(idVendedor => {
-            console.log(`Procesando pedido para el vendedor: ${idVendedor}`);
-
-            const productosPorVendedor = carrito.filter(producto => producto.idVendedor === idVendedor);
-            console.log("Productos del vendedor:", productosPorVendedor);
-
-            const totalVendedor = productosPorVendedor.reduce((acc, producto) => {
-                const subtotal = (parseFloat(producto.precio) || 0) * (producto.cantidad || 1);
-                console.log(`Subtotal calculado para producto ${producto.idProducto}:`, subtotal);
-                return acc + subtotal;
-            }, 0);
-            console.log(`Total calculado para vendedor ${idVendedor}:`, totalVendedor);
-
-            const pedido = {
-                IdCliente: idCliente,
-                FechaPedido: new Date().toISOString(),
-                Estado: "Pendiente",
-                TotalPedido: totalVendedor,
-                IdVendedor: idVendedor,
-                Detalles: productosPorVendedor.map(producto => ({
-                    IdProducto: producto.idProducto,
-                    Cantidad: producto.cantidad,
-                    Precio: producto.precio,
-                    Direccion: obtenerDireccion(),
-                    Ciudad: obtenerCiudad(),
-                    DireccionPrincipal: obtenerDireccionPrincipal()
-                }))
-            };
-
-            // Mostrar el pedido en la consola para depuración
-            console.log("Pedido enviado:", JSON.stringify(pedido));
-
-            // Enviar el pedido al backend
-            fetch("carritoCompras.aspx/GuardarPedido", {
-                method: "POST",
-                body: JSON.stringify({ pedido }),
-                headers: { "Content-Type": "application/json" }
-            })
-                .then(response => {
-                    console.log("Respuesta recibida del servidor, esperando JSON...");
-                    return response.json();
-                })
-                .then(data => {
-                    console.log("Respuesta procesada del servidor:", data);
-                    if (data.success) {
-                        alert("Compra realizada con éxito!");
-                        console.log("Pedido guardado correctamente con ID:", data.message);
-                    } else {
-                        console.error("Error al guardar el pedido:", data.message);
-                        alert("Hubo un problema al realizar la compra: " + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error en la petición fetch:", error);
-                    alert("Hubo un error al procesar tu compra. Intenta nuevamente.");
-                });
-        });
-    }
-</script>
+                    <div class="mb-3">
+                        <label for="direccionPrincipal" class="form-label">Dirección Principal:</label>
+                        <select class="form-select" id="direccionPrincipal" name="direccionPrincipal" required>
+                            <option value="Sí">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" onclick="realizarPedido()">Hacer Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Mensaje para inicio de sesión -->
-    <div id="mensajeInicioSesion" style="display: none; text-align: center; color: red; margin-top: 20px;">
+    <div id="mensajeInicioSesion" style="display: none;" class="alert alert-danger text-center mt-3">
         Debes iniciar sesión para proceder con la compra.
     </div>
 
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/carrito.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AcJ4hvEnBv9MHxg3EggwPHF7XO7mdTT_G3N0wmqj0vieh-UOmSYC02lUOH_gAVONfGFwLvuWiGmIK1LZ&currency=USD"></script>
+    
+    <script>
+        // Obtener idCliente desde la sesión
+        var idCliente = '<%= Session["idUsuario"] %>';
+        console.log("ID Cliente desde la sesión:", idCliente);
 
+        if (!idCliente || idCliente === "null" || idCliente === "undefined") {
+            console.error("No se pudo obtener el idCliente.");
+        }
+
+        // Función para obtener la dirección del formulario
+        function obtenerDireccion() {
+            const direccion = document.getElementById("carrera").value;
+            console.log("Dirección obtenida desde el formulario:", direccion);
+            return direccion;
+        }
+
+        // Función para obtener la ciudad del formulario
+        function obtenerCiudad() {
+            const ciudad = document.getElementById("ciudad").value;
+            console.log("Ciudad obtenida desde el formulario:", ciudad);
+            return ciudad;
+        }
+
+        // Función para obtener si la dirección es principal desde el formulario
+        function obtenerDireccionPrincipal() {
+            const direccionPrincipal = document.getElementById("direccionPrincipal").value;
+            return direccionPrincipal === "Sí";
+        }
+
+        function realizarPedido() {
+            console.log("Intentando realizar pedido...");
+
+            if (!idCliente || idCliente === "null" || idCliente === "undefined") {
+                console.error("No se pudo obtener el idCliente.");
+                alert("No se pudo obtener el idCliente. Asegúrate de haber iniciado sesión.");
+                return;
+            }
+
+            const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            console.log("Carrito recuperado:", carrito);
+
+            if (carrito.length === 0) {
+                console.warn("El carrito está vacío. No se puede procesar el pedido.");
+                alert("Tu carrito está vacío. Agrega productos antes de hacer el pedido.");
+                return;
+            }
+
+            const vendedores = [...new Set(carrito.map(producto => producto.idVendedor))];
+            console.log("Vendedores únicos en el carrito:", vendedores);
+
+            vendedores.forEach(idVendedor => {
+                console.log(`Procesando pedido para el vendedor: ${idVendedor}`);
+
+                const productosPorVendedor = carrito.filter(producto => producto.idVendedor === idVendedor);
+                console.log("Productos del vendedor:", productosPorVendedor);
+
+                const totalVendedor = productosPorVendedor.reduce((acc, producto) => {
+                    const subtotal = (parseFloat(producto.precio) || 0) * (producto.cantidad || 1);
+                    console.log(`Subtotal calculado para producto ${producto.idProducto}:`, subtotal);
+                    return acc + subtotal;
+                }, 0);
+                console.log(`Total calculado para vendedor ${idVendedor}:`, totalVendedor);
+
+                const pedido = {
+                    IdCliente: idCliente,
+                    FechaPedido: new Date().toISOString(),
+                    Estado: "Pendiente",
+                    TotalPedido: totalVendedor,
+                    IdVendedor: idVendedor,
+                    Detalles: productosPorVendedor.map(producto => ({
+                        IdProducto: producto.idProducto,
+                        Cantidad: producto.cantidad,
+                        Precio: producto.precio,
+                        Direccion: obtenerDireccion(),
+                        Ciudad: obtenerCiudad(),
+                        DireccionPrincipal: obtenerDireccionPrincipal()
+                    }))
+                };
+
+                console.log("Pedido enviado:", JSON.stringify(pedido));
+
+                fetch("carritoCompras.aspx/GuardarPedido", {
+                    method: "POST",
+                    body: JSON.stringify({ pedido }),
+                    headers: { "Content-Type": "application/json" }
+                })
+                    .then(response => {
+                        console.log("Respuesta recibida del servidor, esperando JSON...");
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Respuesta procesada del servidor:", data);
+                        if (data.success) {
+                            alert("Compra realizada con éxito!");
+                            // Cerrar el modal después de una compra exitosa
+                            const modal = bootstrap.Modal.getInstance(document.getElementById('modalPedido'));
+                            modal.hide();
+                            console.log("Pedido guardado correctamente con ID:", data.message);
+                        } else {
+                            console.error("Error al guardar el pedido:", data.message);
+                            alert("Hubo un problema al realizar la compra: " + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error en la petición fetch:", error);
+                        alert("Hubo un error al procesar tu compra. Intenta nuevamente.");
+                    });
+            });
+        }
+    </script>
+    <style>
+        .login-message {
+            color: red;
+        }
+
+        .hacer-pedido {
+            display: block;
+            margin-left: auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #198754 !important;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 2%;
+            margin-top: 15px;
+        }
+
+            .hacer-pedido:hover {
+                background-color: #146c43 !important;
+            }
+    </style>
     <div class="pie-pagina">
         <br />
         <p>&copy; 2024 A TUS PIES. Todos los derechos reservados.</p>

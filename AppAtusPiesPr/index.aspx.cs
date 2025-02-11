@@ -13,6 +13,8 @@ namespace AppAtusPiesPr
     public partial class Index2 : System.Web.UI.Page
     {
         ClProductoL oDatos = new ClProductoL();
+        private const int PAGE_SIZE = 12;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -32,6 +34,8 @@ namespace AppAtusPiesPr
                 else
                 {
                     cargarProductos();
+                    cargarProductosMejorValorados();
+                    cargarProductosMasRecientes();
                 }
             }
 
@@ -42,6 +46,26 @@ namespace AppAtusPiesPr
             DataTable dt = objProductoL.MtdListarProductos();
             Repeater1.DataSource = dt;
             Repeater1.DataBind();
+
+
+        }
+
+        private void cargarProductosMejorValorados()
+        {
+            ClProductoL objProductoL = new ClProductoL();
+            DataTable dt = objProductoL.MtdListarProductosMejorCalificados();
+            Repeater3.DataSource = dt;
+            Repeater3.DataBind();
+
+        }
+
+        private void cargarProductosMasRecientes()
+        {
+            ClProductoL objProductoL = new ClProductoL();
+            DataTable dt = objProductoL.MtdListarProductosMasRecientes();
+            Repeater4.DataSource = dt;
+            Repeater4.DataBind();
+
         }
 
         private void cargarCategorias()
