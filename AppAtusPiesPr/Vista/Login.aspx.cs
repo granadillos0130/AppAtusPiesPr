@@ -268,6 +268,7 @@ namespace AppAtusPiesPr.Vista
                 {
                     // Si el mensaje contiene un error, mostrarlo
                     MostrarAlerta("error", "¡Ups! Algo salió mal", mensaje);
+                    LimpiarCampos();
                 }
             }
             else
