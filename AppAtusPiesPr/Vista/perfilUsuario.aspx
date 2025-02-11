@@ -61,7 +61,24 @@
         </div>
 
     </center>
-    <br />
+    <center>
+    <div class="navbarFiltros">
+        <nav>
+
+            <ul class="menuFiltros">
+                <asp:Repeater ID="RepeaterMarca" runat="server">
+                    <itemtemplate>
+                        <li>
+                            <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idMarca") %>'>
+                                <%# Eval("nombreMarca") %>
+                            </a>
+                        </li>
+                    </itemtemplate>
+                </asp:Repeater>
+            </ul>
+        </nav>
+    </div>
+</center>
 
     <div class="alert alert-danger" role="alert" runat="server" visible="false" id="lblMensaje"></div>
     <!-- Foto del Vendedor -->

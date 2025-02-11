@@ -26,13 +26,32 @@
 
                 <ul class="menuFiltros">
                     <asp:Repeater ID="Repeater2" runat="server">
-                        <ItemTemplate>
+                        <itemtemplate>
                             <li>
                                 <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                     <%# Eval("descripcion") %>
                                 </a>
                             </li>
-                        </ItemTemplate>
+                        </itemtemplate>
+                    </asp:Repeater>
+                </ul>
+            </nav>
+        </div>
+    </center>
+
+    <center>
+        <div class="navbarFiltros">
+            <nav>
+
+                <ul class="menuFiltros">
+                    <asp:Repeater ID="RepeaterMarca" runat="server">
+                        <itemtemplate>
+                            <li>
+                                <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idMarca") %>'>
+                                    <%# Eval("nombreMarca") %>
+                                </a>
+                            </li>
+                        </itemtemplate>
                     </asp:Repeater>
                 </ul>
             </nav>
@@ -96,7 +115,7 @@
         <div id="cardsContainer" class="cards-container">
 
             <asp:Repeater ID="Repeater3" runat="server">
-                <ItemTemplate>
+                <itemtemplate>
                     <div class="card">
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
@@ -132,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                </ItemTemplate>
+                </itemtemplate>
             </asp:Repeater>
         </div>
 
@@ -145,7 +164,7 @@
         <div id="cardsContainer" class="cards-container">
 
             <asp:Repeater ID="Repeater1" runat="server">
-                <ItemTemplate>
+                <itemtemplate>
                     <div class="card">
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
@@ -181,20 +200,21 @@
                             </div>
                         </div>
                     </div>
-                </ItemTemplate>
+                </itemtemplate>
             </asp:Repeater>
         </div>
         <hr style="20px">
 
         <hr style="20px">
-        <p>Productos más recientes<hr>
+        <p>
+            Productos más recientes<hr>
         </p>
 
         <!-- Contenedor para las tarjetas -->
         <div id="cardsContainer" class="cards-container">
 
             <asp:Repeater ID="Repeater4" runat="server">
-                <ItemTemplate>
+                <itemtemplate>
                     <div class="card">
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
@@ -230,7 +250,7 @@
                             </div>
                         </div>
                     </div>
-                </ItemTemplate>
+                </itemtemplate>
             </asp:Repeater>
         </div>
 

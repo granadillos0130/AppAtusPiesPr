@@ -39,7 +39,26 @@
             </nav>
         </div>
     </center>
-    <br />
+
+    <center>
+        <div class="navbarFiltros">
+            <nav>
+
+                <ul class="menuFiltros">
+                    <asp:Repeater ID="RepeaterMarca" runat="server">
+                        <ItemTemplate>
+                            <li>
+                                <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idMarca") %>'>
+                                    <%# Eval("nombreMarca") %>
+                                </a>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+            </nav>
+        </div>
+    </center>
+
 
     <div class="alert alert-danger" role="alert" runat="server" visible="false" id="lblMensaje"></div>
     <!-- Imagen del producto -->
@@ -217,6 +236,11 @@
                             <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
                                 <%# Eval("nombres") %>
                                 <%# Eval("apellidos") %><br>
+                                <div class="rating">
+                                    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
+
+
+                                </div>
                             </a>
                             <div class="cardprice">
                                 <p>$<%# Eval("precio") %></p>

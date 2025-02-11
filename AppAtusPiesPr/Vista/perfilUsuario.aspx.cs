@@ -26,6 +26,7 @@ namespace AppAtusPiesPr.Vista
                 }
                 
                 cargarCategorias();
+                cargarMarcas();
             }
         }
         protected void Page_Init(object sender, EventArgs e)
@@ -163,5 +164,13 @@ namespace AppAtusPiesPr.Vista
           
         }
         }
+
+        private void cargarMarcas()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            RepeaterMarca.DataSource = oLogica.MtdListarMarcas();
+            RepeaterMarca.DataBind();
+        }
+
     }
 }

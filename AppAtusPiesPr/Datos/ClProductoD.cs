@@ -296,6 +296,31 @@ namespace AppAtusPiesPr.Datos
             return oCategoria;
         }
 
+        public List<ClMarcasE> MtdListarMarcas()
+        {
+            List<ClMarcasE> oMarca = new List<ClMarcasE>();
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("spListarMarcas", conexion.MtdAbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                oMarca.Add(new ClMarcasE
+                {
+                    idMarca = Convert.ToInt32(reader["idMarca"]),
+                    nombreMarca = reader["nombreMarca"].ToString(),
+                    descripcion = reader["descripcion"].ToString()
+
+                });
+            }
+            conexion.MtdCerrarConexion();
+
+
+            return oMarca;
+        }
+
         //Metodo para listar productos
 
         public List<ClProductoEmpresaE> MtdListarProducto(int? idVendedor = null)

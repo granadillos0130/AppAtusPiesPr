@@ -18,8 +18,15 @@ namespace AppAtusPiesPr.Vista
                 int idCategoria = Convert.ToInt32(Request.QueryString["id"]); // Obtener idCategoria desde la URL
                 cargarProductos(idCategoria);
                 cargarCategorias();
-
+                cargarMarcas();
             }
+        }
+
+        private void cargarMarcas()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            RepeaterMarca.DataSource = oLogica.MtdListarMarcas();
+            RepeaterMarca.DataBind();
         }
 
         private void cargarProductos(int idCategoria)

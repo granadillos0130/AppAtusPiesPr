@@ -130,8 +130,8 @@ body {
     align-items: center; /* Centra verticalmente */
     margin: 0 auto; /* Asegura el centrado en el contenedor */
     font-family: inherit; /* Asegura que hereden la fuente del contenedor */
-    background-color: #f7f7f7;
-    padding: 10px 0; /* Ajusta el espacio interno */
+    background-color: #f8f7f7;
+    padding: 3px 0; /* Ajusta el espacio interno */
     border-bottom: 1px solid #999; /* Borde inferior gris delgado */
     width: 100%; /* Asegura que el borde ocupe todo el ancho */
 }

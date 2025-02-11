@@ -20,6 +20,7 @@ namespace AppAtusPiesPr.Vista
             {
 
                 cargarCategorias();
+                cargarMarcas();
 
             }
             if (Session["idUsuario"] != null)
@@ -91,6 +92,13 @@ namespace AppAtusPiesPr.Vista
             {
                 return new { success = false, message = "Error al guardar el pedido: " + ex.Message };
             }
+        }
+
+        private void cargarMarcas()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            RepeaterMarca.DataSource = oLogica.MtdListarMarcas();
+            RepeaterMarca.DataBind();
         }
 
 
