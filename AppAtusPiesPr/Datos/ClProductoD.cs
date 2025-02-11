@@ -454,6 +454,25 @@ namespace AppAtusPiesPr.Datos
             return dtProductos;
         }
 
+        // Método para listar productos por marca
+        public DataTable MtdListarProductosPorMarca(int idMarca)
+        {
+            ClConexion conexion = new ClConexion();
+            DataTable dtProductos = new DataTable();
+
+            using (SqlConnection connection = conexion.MtdAbrirConexion())
+            {
+                SqlCommand cmd = new SqlCommand("spListarProductosConMarcas", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idMarca", idMarca);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtProductos);
+            }
+            conexion.MtdCerrarConexion();
+            return dtProductos;
+        }
+
         // Método para listar productos por categoría
         public DataTable MtdListarProductosVendedor(int idVendedor)
         {

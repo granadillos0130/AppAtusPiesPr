@@ -116,6 +116,12 @@ namespace AppAtusPiesPr.Logica
         {
             return productoD.MtdListarProductosPorCategoria(idCategoria);
         }
+
+        public DataTable MtdListarPorMarca(int idMarca)
+        {
+            return productoD.MtdListarProductosPorMarca(idMarca);
+        }
+
         public DataTable MtdListarPorVendedor(int idVendedor)
         {
             return productoD.MtdListarProductosVendedor(idVendedor);

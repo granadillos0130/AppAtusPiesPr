@@ -104,6 +104,7 @@
     <Content Include="Vista\moduloBusqueda.aspx" />
     <Content Include="Vista\moduloCatalogoFiltrado.aspx" />
     <Content Include="Vista\moduloCompra.aspx" />
+    <Content Include="Vista\moduloMarcaFiltrada.aspx" />
     <Content Include="Vista\moduloSobreNosotros.aspx" />
     <Content Include="Vista\perfilInfoVendedor.aspx" />
     <Content Include="Vista\perfilUsuario.aspx" />
@@ -1929,6 +1930,13 @@
     </Compile>
     <Compile Include="Vista\moduloCompra.aspx.designer.cs">
       <DependentUpon>moduloCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\moduloMarcaFiltrada.aspx.cs">
+      <DependentUpon>moduloMarcaFiltrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\moduloMarcaFiltrada.aspx.designer.cs">
+      <DependentUpon>moduloMarcaFiltrada.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\moduloSobreNosotros.aspx.cs">
       <DependentUpon>moduloSobreNosotros.aspx</DependentUpon>

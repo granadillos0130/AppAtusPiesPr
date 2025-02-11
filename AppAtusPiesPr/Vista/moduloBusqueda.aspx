@@ -40,9 +40,9 @@
                 <asp:Repeater ID="RepeaterMarca" runat="server">
                     <itemtemplate>
                         <li>
-                            <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idMarca") %>'>
-                                <%# Eval("nombreMarca") %>
-                            </a>
+                                <a href='<%# "vista/moduloMarcaFiltrada.aspx?id=" + Eval("idMarca") %>'>
+                                    <%# Eval("nombreMarca") %>
+                                </a>
                         </li>
                     </itemtemplate>
                 </asp:Repeater>
