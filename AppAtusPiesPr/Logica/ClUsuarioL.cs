@@ -21,5 +21,10 @@ namespace AppAtusPiesPr.Logica
         {
             return usuarioDa.ValidarContrasena(idUsuario, contrasenaActual, esVendedor);
         }
+        public ClUsuarioE datosVendedor(int idUsuario)
+        {
+            ClUsuarioD usuarioV = new ClUsuarioD();
+            return usuarioV.DatosVendedor(idUsuario);
+        }
     }
 }

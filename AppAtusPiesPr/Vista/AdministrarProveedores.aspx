@@ -175,6 +175,7 @@
                                     <td><%# Eval("Nombres") %></td>
                                     <td><%# Eval("Email") %></td>
                                     <td><%# Eval("Telefono") %></td>
+                                    <td><%# Eval("Contactar") %></td>
                                     <td>
                                        
                                         <button type="button" class="btn btn-primary btn-sm"
@@ -189,6 +190,18 @@
    
                                         </button>
                                     </td>
+                                    <td>
+<button type="button" class="btn btn-info btn-sm mr-2" 
+    onclick="EnviarCorreoGmail('<%# Eval("Email") %>', '<%= ObtenerCorreoVendedor() %>')">
+    <i class="fas fa-envelope"></i> Correo
+</button>
+
+<button type="button" class="btn btn-success btn-sm" 
+    onclick="EnviarWhatsApp('<%# Eval("Telefono") %>')">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+</button>
+
+</td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
@@ -286,6 +299,63 @@
     </div>
 
     <script>
+        
+
+
+        function EnviarWhatsApp(telefonoProveedor) {
+            if (!telefonoProveedor) {
+                Swal.fire('Error', 'No se encontró el número del proveedor.', 'error');
+                return;
+            }
+
+            // Formatear el número para asegurarse de que cumple con el formato internacional
+            telefonoProveedor = telefonoProveedor.trim().replace(/\D/g, ''); // Elimina espacios y caracteres no numéricos
+
+            // Verificar que el número tenga al menos 10 dígitos
+            if (telefonoProveedor.length < 10) {
+                Swal.fire('Error', 'El número de teléfono no es válido. Asegúrate de incluir el código del país.', 'error');
+                return;
+            }
+
+            // Mensaje a enviar
+            var mensaje = "Hola, me gustaría recibir más información sobre tus productos.";
+
+            // Generar la URL de WhatsApp
+            var whatsappURL = https://wa.me/${telefonoProveedor}?text=${encodeURIComponent(mensaje)};
+
+            // Abrir WhatsApp en una nueva ventana
+            var whatsappWindow = window.open(whatsappURL, '_blank');
+
+            // Verificar si la ventana de WhatsApp se cierra
+            var checkIfSent = setInterval(function () {
+                if (whatsappWindow.closed) {
+                    clearInterval(checkIfSent);
+
+                    // Redirigir automáticamente a la página original
+                    window.location.href = window.location.pathname; // Redirige a la misma página
+                }
+            }, 1000);
+        }
+        function EnviarCorreoGmail(emailProveedor, emailVendedor) {
+            if (!emailProveedor) {
+                Swal.fire('Error', 'No se encontró el correo del proveedor.', 'error');
+                return;
+            }
+
+            if (!emailVendedor) {
+                Swal.fire('Error', 'No se encontró el correo del vendedor.', 'error');
+                return;
+            }
+
+            var asunto = "Consulta sobre productos";
+            var cuerpo = "Hola, estoy interesado en conocer más sobre tus productos. ¿Podrías brindarme más información?";
+
+            // URL de Gmail con los datos precargados
+            var url = https://mail.google.com/mail/?view=cm&fs=1&to=${emailProveedor}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)};
+
+                // Abrir Gmail en una nueva ventana
+                window.open(url, '_blank');
+        }
         function EliminarProveedor(idProveedor) {
             Swal.fire({
                 title: '¿Estás seguro?',

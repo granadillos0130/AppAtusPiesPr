@@ -234,6 +234,28 @@ namespace AppAtusPiesPr.Vista
 
             return resultado ? mensaje : $"Error al eliminar el proveedor: {mensaje}";
         }
+        protected string ObtenerCorreoVendedor()
+        {
+            int idUsuario = Convert.ToInt32(Session["idUsuario"]);
+            ClUsuarioE vendedor = new ClUsuarioD().DatosVendedor(idUsuario); // Usa el método correcto
 
+            if (vendedor != null && !string.IsNullOrEmpty(vendedor.Email))
+            {
+                return vendedor.Email; // Devuelve el correo del vendedor
+            }
+            return "";
+        }
+
+        protected string ObtenerTelefonoVendedor()
+        {
+            int idUsuario = Convert.ToInt32(Session["idUsuario"]);
+            ClUsuarioE vendedor = new ClUsuarioD().DatosVendedor(idUsuario); // Usa el método correcto
+
+            if (vendedor != null && !string.IsNullOrEmpty(vendedor.Telefono))
+            {
+                return vendedor.Telefono; // Retorna el teléfono del vendedor
+            }
+            return "";
+        }
     }
 }
