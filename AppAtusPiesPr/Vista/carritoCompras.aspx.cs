@@ -22,6 +22,14 @@ namespace AppAtusPiesPr.Vista
                 cargarCategorias();
 
             }
+            if (Session["idUsuario"] != null)
+            {
+                Response.Write("<script>console.log('idUsuario en sesión: " + Session["idUsuario"] + "');</script>");
+            }
+            else
+            {
+                Response.Write("<script>console.log('idUsuario en sesión es NULL');</script>");
+            }
         }
 
         private void cargarCategorias()
@@ -46,53 +54,42 @@ namespace AppAtusPiesPr.Vista
             }
         }
 
-        [WebMethod]
-        public static string GuardarPedido(ClPedidosE pedido, List<DetallePedido> detalles)
+        [WebMethod(EnableSession = true)]
+
+        public static object GuardarPedido(ClPedidosE pedido)
         {
             try
             {
-                if (pedido == null || detalles == null || detalles.Count == 0)
-                    throw new ArgumentException("Los datos del pedido o los detalles son inválidos.");
+                if (pedido == null || pedido.Detalles == null || pedido.Detalles.Count == 0)
+                {
+                    return new { success = false, message = "El pedido o los detalles están vacíos." };
+                }
 
-                // Recuperar el usuario desde la sesión
+                // Recuperar usuario de la sesión
                 var usuario = HttpContext.Current.Session["usuario"] as ClUsuarioE;
 
-                if (usuario == null)
-                    throw new UnauthorizedAccessException("No se ha iniciado sesión.");
+                // Si el pedido tiene un IdCliente válido, úsalo. Si no, intenta obtenerlo desde la sesión.
+                pedido.IdCliente = pedido.IdCliente > 0 ? pedido.IdCliente : (usuario?.IdUsuario ?? 0);
 
-                pedido.IdCliente = usuario.IdUsuario;
+                if (pedido.IdCliente == 0)
+                {
+                    return new { success = false, message = "No se ha iniciado sesión o el ID de usuario es inválido." };
+                }
+
                 pedido.FechaPedido = DateTime.Now;
-                pedido.Estado = "Pendiente"; // Estado inicial del pedido
+                pedido.Estado = "Pendiente";
 
+                // Guardar el pedido en la base de datos
                 ClPedidosL logicaPedido = new ClPedidosL();
-                int idPedido = logicaPedido.MtdGuardarPedido(pedido, detalles);
+                int idPedido = logicaPedido.MtdGuardarPedido(pedido, pedido.Detalles);
 
                 return idPedido > 0
-                    ? "Pedido guardado exitosamente con ID: " + idPedido
-                    : "No se pudo guardar el pedido. Intenta nuevamente.";
+                    ? new { success = true, message = "Pedido guardado exitosamente con ID: " + idPedido }
+                    : new { success = false, message = "No se pudo guardar el pedido." };
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("Error en GuardarPedido: " + ex.Message);
-                return "Error al guardar el pedido: " + ex.Message;
-            }
-        }
-
-        [WebMethod]
-        public static string ObtenerIdCliente()
-        {
-            try
-            {
-                var usuario = HttpContext.Current.Session["usuario"] as ClUsuarioE;
-
-                if (usuario == null)
-                    throw new UnauthorizedAccessException("No se ha iniciado sesión.");
-
-                return usuario.IdUsuario.ToString(); // Enviar el IdCliente como string
-            }
-            catch (Exception ex)
-            {
-                return "Error: " + ex.Message;
+                return new { success = false, message = "Error al guardar el pedido: " + ex.Message };
             }
         }
 

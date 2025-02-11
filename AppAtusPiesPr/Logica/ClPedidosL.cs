@@ -2,6 +2,7 @@
 using AppAtusPiesPr.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -26,6 +27,14 @@ namespace AppAtusPiesPr.Logica
             // Llama al método de la capa de datos para guardar el pedido
             return _pedidoDatos.InsertarPedido(pedido, detalles);
         }
+
+        public List<PedidoCliente> mtdPedidosCliente(int idCliente)
+        {
+            ClPedidosD objPedidoD = new ClPedidosD();
+            List<PedidoCliente> tblDatos = objPedidoD.mtdListarPedidosCliente(idCliente);
+            return tblDatos;
+        }
+
 
     }
 }

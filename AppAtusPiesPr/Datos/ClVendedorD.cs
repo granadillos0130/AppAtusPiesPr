@@ -180,6 +180,7 @@ namespace AppAtusPiesPr.Datos
             return productos;
         }
 
+
         // metodos para proveedores
 
         public ClProveedorE ObtenerProveedorPorId(int idProveedor)
@@ -332,6 +333,7 @@ namespace AppAtusPiesPr.Datos
 
                        
                         int rowsAffected = cmd.ExecuteNonQuery();
+
 
                         if (rowsAffected > 0)
                         {

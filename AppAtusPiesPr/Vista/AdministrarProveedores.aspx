@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="AdministrarProveedores.aspx.cs" Inherits="AppAtusPiesPr.Vista.AdministrarProveedores" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="AdministrarProveedores.aspx.cs" Inherits="AppAtusPiesPr.Vista.AdministrarProveedores" %>
 
 
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="server">

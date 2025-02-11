@@ -35,7 +35,7 @@
                 <!-- Dropdown de Año -->
                 <div class="col-md-2">
                     <label for="ddlAño" class="form-label">Año</label>
-                    <asp:DropDownList ID="ddlAño" runat="server" CssClass="form-select">
+                    <asp:DropDownList ID="ddlAño" runat="server" CssClass="form-control" class="form-label">
                         <asp:ListItem Text="Seleccione un Año" Value="" />
                         <asp:ListItem Text="2024" Value="2024" />
                         <asp:ListItem Text="2023" Value="2023" />
@@ -46,7 +46,7 @@
                 <!-- Dropdown de Mes -->
                 <div class="col-md-2">
                     <label for="ddlMes" class="form-label">Mes</label>
-                    <asp:DropDownList ID="ddlMes" runat="server" CssClass="form-select">
+                    <asp:DropDownList ID="ddlMes" runat="server"  CssClass="form-control" class="form-label">
                         <asp:ListItem Text="Seleccione un Mes" Value="" />
                         <asp:ListItem Text="Enero" Value="1" />
                         <asp:ListItem Text="Febrero" Value="2" />

@@ -4,6 +4,73 @@
     box-sizing: border-box;
 }
 
+/* Contenedor de la imagen */
+.producto-imagen {
+    position: relative;
+    width: 400px; /* Tamaño inicial del contenedor */
+    height: 400px; /* Tamaño inicial del contenedor */
+    overflow: hidden; /* Oculta el exceso de la imagen */
+}
+
+/* Estilo de la imagen */
+.imagen-zoom {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Transición suave */
+    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+}
+
+    /* Estado ampliado de la imagen */
+    .imagen-zoom.zoom-activo {
+        position: fixed; /* Fija la imagen en la pantalla */
+        top: 5%; /* Ajusta la posición vertical (100% - 90% = 10%, dividido entre 2 para centrar) */
+        left: 5%; /* Ajusta la posición horizontal (100% - 90% = 10%, dividido entre 2 para centrar) */
+        width: 90vw; /* Ocupa el 90% del ancho de la pantalla */
+        height: 90vh; /* Ocupa el 90% del alto de la pantalla */
+        object-fit: contain; /* Mantiene la proporción de la imagen */
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        transform: scale(1); /* Escala la imagen */
+        opacity: 1; /* Asegura que la imagen sea visible */
+        cursor: zoom-out; /* Cambia el cursor al salir */
+    }
+
+/* Overlay oscuro */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    z-index: 999; /* Debajo de la imagen */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Evita que el overlay interfiera con los clics */
+}
+
+    .overlay.activo {
+        opacity: 1; /* Muestra el overlay */
+        pointer-events: auto; /* Permite interacción con el botón */
+    }
+
+/* Estilo del botón de cerrar */
+#cerrar-zoom {
+    position: fixed;
+    top: 20px; /* Distancia desde la parte superior */
+    right: 20px; /* Distancia desde la derecha */
+    background: none; /* Sin fondo */
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1001; /* Asegura que esté por encima de la imagen y el overlay */
+    color: #fff; /* Color del icono */
+    font-size: 24px; /* Tamaño del icono */
+}
+
+    #cerrar-zoom:hover {
+        color: #cc0000; /* Cambia el color al pasar el cursor */
+    }
+
 body {
     font-family: Arial, sans-serif; /* Define la fuente base para toda la página */
     background-color: white;
@@ -580,3 +647,67 @@ label {
     margin-top: 10px; /* Espaciado con el contenido superior */
 }
 
+/* Animación de salida */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Clase para aplicar la animación */
+.page-exit {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+.rating-container {
+    margin-top: 10px;
+}
+
+.hearts-rating {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.heart-icon {
+    font-size: 18px;
+    color: #000;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+    .heart-icon:hover,
+    .heart-icon.active {
+        color: #ff4757;
+    }
+
+.comment-box {
+    margin-top: 10px;
+}
+
+.hearts-rating2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.heart-icon2 {
+    font-size: 20px;
+    line-height: 1;
+    display: inline-block;
+}
+
+    .heart-icon2[style*="opacity: 0.5"] {
+        position: relative;
+    }
+
+.promedio-texto {
+    margin-left: 8px;
+    font-size: 14px;
+    color: #666;
+}

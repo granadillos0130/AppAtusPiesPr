@@ -4,13 +4,18 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace AppAtusPiesPr.Logica
 {
     public class ClProductoL
     {
+        private const int PAGE_SIZE = 12;
+
         public ClProductoEmpresaE MtdRegistroProd(ClProductoEmpresaE objDatosProdu)
         {
             ClProductoD objProdD = new ClProductoD();  
@@ -36,6 +41,20 @@ namespace AppAtusPiesPr.Logica
         {
             ClProductoD objProductoD = new ClProductoD();
             DataTable tblDatos = objProductoD.MtdListarProductos();
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMejorCalificados()
+        {
+            ClProductoD objProductoD = new ClProductoD();
+            DataTable tblDatos = objProductoD.MtdListarProductosMejorCalificados();
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMasRecientes()
+        {
+            ClProductoD objProductoD = new ClProductoD();
+            DataTable tblDatos = objProductoD.MtdListarProductosMasRecientes();
             return tblDatos;
         }
 
@@ -102,5 +121,30 @@ namespace AppAtusPiesPr.Logica
             return productoD.MtdListarProductosPorCategoria(categoria);
 
         }
+
+        public ClComentarioE MtdGuardarComentario(ClComentarioE objDataCom)
+        {
+
+            objDataCom.FechaComentario = DateTime.Now;
+
+            ClProductoD objProdD = new ClProductoD();
+            ClComentarioE objData = objProdD.mtdGuardarComentario(objDataCom);
+            return objData;
+        }
+
+        public List<ClComentarioE> mtdListarComentarios(int idProducto)
+        {
+            ClProductoD objDatos = new ClProductoD();
+            List<ClComentarioE> objData = objDatos.mtdListarComentario(idProducto);
+            return objData;
+        }
+
+
+        public decimal ObtenerValoracionPromedio(int idProducto)
+        {
+            ClProductoD objD = new ClProductoD();
+            return objD.ObtenerPromedioValoracion(idProducto);
+        }
+
     }
 }

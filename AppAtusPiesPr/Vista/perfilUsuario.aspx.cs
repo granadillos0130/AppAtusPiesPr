@@ -2,6 +2,7 @@
 using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -21,6 +22,7 @@ namespace AppAtusPiesPr.Vista
                 {
                     int idCliente = Convert.ToInt32(Session["idUsuario"]);  // Obtener el idCliente desde la sesión
                     cargarDatosCliente(idCliente);
+                    cargarProductos(idCliente);
                 }
                 
                 cargarCategorias();
@@ -33,7 +35,13 @@ namespace AppAtusPiesPr.Vista
             Response.Cache.SetNoStore();
         }
 
-
+        private void cargarProductos(int idCliente)
+        {
+            ClPedidosL objPedidoL = new ClPedidosL();
+            List<PedidoCliente> dt = objPedidoL.mtdPedidosCliente(idCliente);
+            Repeater1.DataSource = dt;
+            Repeater1.DataBind();
+        }
         private void limpiarCampos()
         {
             txtDocumento.Text = "";
@@ -60,10 +68,9 @@ namespace AppAtusPiesPr.Vista
                 nombreCliente.Text = oCliente.Nombres;
                 apellidoCliente.Text = oCliente.Apellidos;
                 emailCliente.Text = oCliente.Email;
-                passCliente.Text = oCliente.Password;
+                txtPass.Text = oCliente.Password;
                 telCliente.Text = oCliente.Telefono;
                 direcCliente.Text = oCliente.Direccion;
-                estadoCliente.Text = oCliente.estado;
             }
 
         }
@@ -125,5 +132,36 @@ namespace AppAtusPiesPr.Vista
                 $"Swal.fire('Error', '{mensaje}', 'error');", true);
         }
 
+        protected void btnCancelarCuenta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idCliente = Convert.ToInt32(Session["idCliente"]); // O como obtengas el ID del cliente
+                ClClienteL clienteL = new ClClienteL();
+
+                if (clienteL.mtdCancelarCuenta(idCliente))
+                {
+                    // Limpia la sesión
+                    Session.Clear();
+                    Session.Abandon();
+
+                    // Redirige al inicio o página de confirmación
+                    Response.Redirect("~/Vista/index.aspx", false);
+                }
+                else
+                {
+                    // Maneja el error
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    "Swal.fire({ icon: 'error', title: '¡Error!', text: 'Hubo un problema al cancelar tu cuenta. Intenta nuevamente.', showConfirmButton: false, timer: 2000, timerProgressBar: true, position: 'bottom-end', toast: true, background: '#ff6b6b', color: '#fff', iconColor: '#fff' });", true);
+            }
+            }
+            catch (Exception ex)
+            {
+                // Maneja el error según tu implementación
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                    "Swal.fire({ icon: 'error', title: '¡Error!', text: 'Hubo un problema al enviar tu solicitud. Intenta nuevamente.', showConfirmButton: false, timer: 2000, timerProgressBar: true, position: 'bottom-end', toast: true, background: '#ff6b6b', color: '#fff', iconColor: '#fff' });", true);
+          
+        }
+        }
     }
 }

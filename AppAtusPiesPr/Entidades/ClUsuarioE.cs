@@ -19,6 +19,7 @@ namespace AppAtusPiesPr.Entidades
         public string Direccion { get; set; }
         public string Descripcion { get; set; }
         public string Rol { get; set; }
+        public string Mensaje { get; set; }
         public int numProducto { get; set; }
         public string estado { get; set; }
         public List<ClRolE> Roles { get; set; }

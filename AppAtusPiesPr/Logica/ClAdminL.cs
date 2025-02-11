@@ -126,7 +126,19 @@ namespace AppAtusPiesPr.Logica
 
             return exito;
         }
-        public bool MtDenegarSolicitud(int idVendedor, string email,string nombreVendedor,string apellidoVendedor)
+
+        public bool MtdSolicitudReactivacion(int documento)
+        {
+            ClAdminD AceptarSoli = new ClAdminD();
+            bool exito = AceptarSoli.MtdReactivacionVendedor(documento);
+
+            return exito;
+        }
+
+
+
+
+        public bool MtDenegarSolicitud(int idVendedor, string email, string nombreVendedor, string apellidoVendedor)
         {
             ClAdminD DenegarSoli = new ClAdminD();
             bool exito = DenegarSoli.MtdDenegarSolicitud(idVendedor);
@@ -135,7 +147,7 @@ namespace AppAtusPiesPr.Logica
             {
                 try
                 {
-                    EnviarCorreoRechazado(email,nombreVendedor,apellidoVendedor);
+                    EnviarCorreoRechazado(email, nombreVendedor, apellidoVendedor);
                 }
                 catch (Exception ex)
                 {
@@ -145,6 +157,7 @@ namespace AppAtusPiesPr.Logica
 
             return exito;
         }
+
 
         public bool MtdInactivarVendedor(int idVendedor, string email,string nombreVendedor,string apellidoVendedor)
         {

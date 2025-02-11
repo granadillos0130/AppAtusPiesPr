@@ -28,4 +28,15 @@ namespace AppAtusPiesPr.Entidades
         public bool DireccionPrincipal { get; set; }
     }
 
+    public class PedidoCliente
+    {
+        public string imagen { get; set; }
+        public string Estado { get; set; }
+        public string NombreProducto { get; set; }
+        public decimal precio { get; set; }
+        public string nombres { get; set; }
+        public string apellidos { get; set; }
+        public int idVendedor { get; set; }
+    }
+
 }

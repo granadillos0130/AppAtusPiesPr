@@ -100,7 +100,7 @@ namespace AppAtusPiesPr.Vista
 
                 // Llamar a la lógica para denegar la solicitud
                 ClAdminL logicaSolicitud = new ClAdminL();
-                bool exito = logicaSolicitud.MtDenegarSolicitud(vendedorId, email, nombreVendedor, apellidoVendedor);
+                bool exito = logicaSolicitud.MtDenegarSolicitud(vendedorId, email, nombreVendedor,apellidoVendedor);
 
                 // Verificar si la operación fue exitosa
                 if (exito)

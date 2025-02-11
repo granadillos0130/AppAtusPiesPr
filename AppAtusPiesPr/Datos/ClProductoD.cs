@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace AppAtusPiesPr.Datos
@@ -45,7 +48,7 @@ namespace AppAtusPiesPr.Datos
 
                 cmd.ExecuteNonQuery();
                 objConexion.MtdCerrarConexion();
-                
+
             }
             catch (Exception e)
             {
@@ -82,9 +85,10 @@ namespace AppAtusPiesPr.Datos
         }
         public DataTable buscarProductos(string busqueda)
         {
-            try {
+            try
+            {
                 ClConexion oCnx = new ClConexion();
-                
+
                 using (SqlConnection connection = oCnx.MtdAbrirConexion())
                 {
                     using (SqlCommand cmd = new SqlCommand("spBarraBusquedaProductos", connection))
@@ -158,6 +162,7 @@ namespace AppAtusPiesPr.Datos
             ClConexion conexion = new ClConexion();
             SqlCommand cmd = new SqlCommand("Sp_ListarProductos", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
+
             cmd.ExecuteNonQuery();
             conexion.MtdCerrarConexion();
 
@@ -167,7 +172,38 @@ namespace AppAtusPiesPr.Datos
 
             return tblDatos;
         }
-        
+
+        public DataTable MtdListarProductosMejorCalificados()
+        {
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("Sp_ListarProductosMejorValorados", conexion.MtdAbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            conexion.MtdCerrarConexion();
+
+            SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+            DataTable tblDatos = new DataTable();
+            adaptador.Fill(tblDatos);
+
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMasRecientes()
+        {
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("Sp_ListarProductosRecientes", conexion.MtdAbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            conexion.MtdCerrarConexion();
+
+            SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+            DataTable tblDatos = new DataTable();
+            adaptador.Fill(tblDatos);
+
+            return tblDatos;
+        }
+
         public ClProductoEmpresaE MtdInfoProducto(int idProdctoEmpresa)
         {
             ClProductoEmpresaE prodInfo = null;
@@ -197,7 +233,7 @@ namespace AppAtusPiesPr.Datos
                                 descripcionProducto = reader["descripcionProducto"].ToString(),
                                 referencia = reader["referencia"].ToString(),
                                 imagen = reader["imagen"].ToString(),
-                                descuento = Convert.ToInt32(reader["descuento"]),
+                                descuento = reader["descuento"] != DBNull.Value ? Convert.ToInt32(reader["descuento"]) : (int?)null,
                                 nombres = reader["nombres"].ToString(),
                                 apellidoVendedor = reader["apellidos"].ToString(),
                                 nombreMarca = reader["nombreMarca"].ToString(),
@@ -280,7 +316,7 @@ namespace AppAtusPiesPr.Datos
                 {
                     oProducto.Add(new ClProductoEmpresaE
                     {
-                     
+
                         nombreProducto = reader["nombreProducto"].ToString()
                     });
                 }
@@ -289,7 +325,7 @@ namespace AppAtusPiesPr.Datos
             }
             catch (Exception ex)
             {
-             
+
                 Console.WriteLine($"Error: {ex.Message}");
             }
             return oProducto;
@@ -447,5 +483,107 @@ namespace AppAtusPiesPr.Datos
             conexion.MtdCerrarConexion();
             return productos;
         }
+
+        public ClComentarioE mtdGuardarComentario(ClComentarioE objData)
+        {
+            try
+            {
+
+                ClConexion conex = new ClConexion();
+                SqlConnection oConex = conex.MtdAbrirConexion();
+
+                using (SqlCommand cmd = new SqlCommand("spRegistrarComentario", oConex))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@idProducto", Convert.ToInt32(objData.idProducto));
+                    cmd.Parameters.AddWithValue("@idCliente", Convert.ToInt32(objData.idCliente));
+                    cmd.Parameters.AddWithValue("@comentario", objData.comentario);
+                    cmd.Parameters.AddWithValue("@fechaComentario", objData.FechaComentario);
+                    cmd.Parameters.AddWithValue("@valoracion", Convert.ToInt32(objData.valoracion));
+
+                    cmd.ExecuteNonQuery();
+                }
+                conex.MtdCerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al registrar el comentario: {ex.Message}");
+            }
+            return objData;
+
+        }
+
+        public List<ClComentarioE> mtdListarComentario(int idProducto)
+        {
+            ClConexion oConex = new ClConexion();
+            List<ClComentarioE> oComentario = new List<ClComentarioE>();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spListarComentariosProductos", oConex.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    foreach (DataRow fila in dataTable.Rows)
+                    {
+                        oComentario.Add(new ClComentarioE
+                        {
+                            FechaComentario = Convert.ToDateTime(fila["fechaComentario"]),
+                            nombres = fila["nombres"].ToString(),
+                            apellidos = fila["apellidos"].ToString(),
+                            comentario = fila["comentario"].ToString(),
+                            valoracion = fila["valoracion"] != DBNull.Value ? Convert.ToInt32(fila["valoracion"]) : (int?)null
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                oConex.MtdCerrarConexion(); // Asegurar el cierre de conexión en el finally
+            }
+
+            return oComentario;
+        }
+
+        public decimal ObtenerPromedioValoracion(int idProducto)
+        {
+            decimal promedio = 0;
+
+            ClConexion oConex = new ClConexion();
+
+            try
+            {
+
+                using (SqlCommand cmd = new SqlCommand("spPromedioValoracion", oConex.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            promedio = reader.GetDecimal(reader.GetOrdinal("PromedioValoracion"));
+                        }
+                    }
+                }
+
+            } catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+
+            }
+            return promedio;
+        } 
     }
-}
+ }

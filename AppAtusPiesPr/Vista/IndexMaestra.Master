@@ -35,7 +35,6 @@
                             <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                         </a>
                         <a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">LOGIN</a>
-                        <a href="#" class="bookmark"><i class="fas fa-bookmark"></i></a>
                     </div>
                 </div>
             </header>
@@ -58,6 +57,7 @@
                             placeholder="Buscar productos..." />
                         <i class="fas fa-search"></i>
                     </div>
+
                     <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
                         <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                     </a>
@@ -73,6 +73,11 @@
         <asp:ContentPlaceHolder ID="body" runat="server">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
         </asp:ContentPlaceHolder>
+
+        
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2024/12/04/03/20241204035742-QVX7PO4S.js"></script>
+    
     </form>
 </body>
 </html>
