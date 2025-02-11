@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
@@ -156,11 +157,47 @@ namespace AppAtusPiesPr.Datos
 
         }
 
-        public DataTable MtdListarProductos()
+        public DataTable MtdListarProductos(int pageSize = 12, int pageNumber = 1)
         {
             ClConexion conexion = new ClConexion();
             SqlCommand cmd = new SqlCommand("Sp_ListarProductos", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@PageSize", pageSize);
+            cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
+            cmd.ExecuteNonQuery();
+            conexion.MtdCerrarConexion();
+
+            SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+            DataTable tblDatos = new DataTable();
+            adaptador.Fill(tblDatos);
+
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMejorCalificados(int pageSize = 12, int pageNumber = 1)
+        {
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("Sp_ListarProductosMejorValorados", conexion.MtdAbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@PageSize", pageSize);
+            cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
+            cmd.ExecuteNonQuery();
+            conexion.MtdCerrarConexion();
+
+            SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+            DataTable tblDatos = new DataTable();
+            adaptador.Fill(tblDatos);
+
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMasRecientes(int pageSize = 12, int pageNumber = 1)
+        {
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("Sp_ListarProductosRecientes", conexion.MtdAbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@PageSize", pageSize);
+            cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
             cmd.ExecuteNonQuery();
             conexion.MtdCerrarConexion();
 

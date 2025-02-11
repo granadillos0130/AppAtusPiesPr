@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,6 +14,8 @@ namespace AppAtusPiesPr.Logica
 {
     public class ClProductoL
     {
+        private const int PAGE_SIZE = 12;
+
         public ClProductoEmpresaE MtdRegistroProd(ClProductoEmpresaE objDatosProdu)
         {
             ClProductoD objProdD = new ClProductoD();  
@@ -34,10 +37,24 @@ namespace AppAtusPiesPr.Logica
             DataTable tblDatos = oDatos.buscarProductos(busqueda);
             return tblDatos;
         }
-        public DataTable MtdListarProductos()
+        public DataTable MtdListarProductos(int numeroPagina = 1)
         {
             ClProductoD objProductoD = new ClProductoD();
-            DataTable tblDatos = objProductoD.MtdListarProductos();
+            DataTable tblDatos = objProductoD.MtdListarProductos(PAGE_SIZE, numeroPagina);
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMejorCalificados(int numeroPagina = 1)
+        {
+            ClProductoD objProductoD = new ClProductoD();
+            DataTable tblDatos = objProductoD.MtdListarProductosMejorCalificados(PAGE_SIZE, numeroPagina);
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMasRecientes(int numeroPagina = 1)
+        {
+            ClProductoD objProductoD = new ClProductoD();
+            DataTable tblDatos = objProductoD.MtdListarProductosMasRecientes(PAGE_SIZE, numeroPagina);
             return tblDatos;
         }
 
