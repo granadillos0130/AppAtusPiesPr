@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.UI;
 using AppAtusPiesPr.Entidades;
 using AppAtusPiesPr.Logica;
 
@@ -58,7 +59,7 @@ namespace AppAtusPiesPr.Vista
 
             if (!usuarioLo.ValidarContrasena((int)Session["idUsuario"], contrasenaActual, esVendedor))
             {
-                lblMensaje.Text = "La contraseña actual es incorrecta.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "ContrasenaIncorrecta", "Swal.fire('Error', 'La contraseña actual es incorrecta.', 'error');", true);
                 return;
             }
 
@@ -84,12 +85,11 @@ namespace AppAtusPiesPr.Vista
 
             if (exito)
             {
-                lblMensaje.ForeColor = System.Drawing.Color.Green;
-                lblMensaje.Text = "Perfil actualizado correctamente.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "PerfilActualizado", "Swal.fire('Éxito', 'Perfil actualizado correctamente.', 'success');", true);
             }
             else
             {
-                lblMensaje.Text = "Error al actualizar el perfil.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "ErrorActualizacion", "Swal.fire('Error', 'Error al actualizar el perfil.', 'error');", true);
             }
         }
     }

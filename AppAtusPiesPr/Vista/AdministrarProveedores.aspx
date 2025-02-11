@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="AdministrarProveedores.aspx.cs" Inherits="AppAtusPiesPr.Vista.AdministrarProveedores" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="AdministrarProveedores.aspx.cs" Inherits="AppAtusPiesPr.Vista.AdministrarProveedores" %>
 
 
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="server">
@@ -18,12 +18,12 @@
     border: 1px solid #ddd;
 }
 
-/* Primera letra en mayúscula */
+
 .table thead th::first-letter {
     text-transform: uppercase;
 }
 
-/* Bordes visibles y separaciones en la tabla */
+
 .table {
     border-collapse: separate;
     border-spacing: 0;
@@ -33,7 +33,7 @@
     border: 1px solid #ddd;
 }
 
-/* Estilo para el botón azul */
+
 .btn-success {
     background-color: #007bff !important;
     border-color: #007bff !important;
@@ -45,7 +45,6 @@
     border-color: #0056b3 !important;
 }
 
-/* Modal header con fondo azul sólido */
 .modal-header {
     background-color: #007bff !important;
     color: white;
@@ -53,7 +52,7 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
-}
+
 </style>
 </asp:Content>
 
@@ -78,8 +77,10 @@
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Teléfono</th>
+                                
                                 <th class="text-center">Editar</th>
                                 <th class="text-center">Eliminar</th>
+                                <th>Contactar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,6 +101,18 @@
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </td>
+                                        <td>
+<button type="button" class="btn btn-info btn-sm mr-2" 
+    onclick="EnviarCorreoGmail('<%# Eval("Email") %>', '<%= ObtenerCorreoVendedor() %>')">
+    <i class="fas fa-envelope"></i> Correo
+</button>
+
+<button type="button" class="btn btn-success btn-sm" 
+    onclick="EnviarWhatsApp('<%# Eval("Telefono") %>')">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+</button>
+
+</td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -139,11 +152,27 @@
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingrese el email"></asp:TextBox>
                         <asp:Label ID="lblEmailError" runat="server" CssClass="text-danger"></asp:Label>
                     </div>
-                    <div class="form-group">
-                        <label for="txtTelefono">Teléfono</label>
-                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingrese el teléfono"></asp:TextBox>
-                        <asp:Label ID="lblTelefonoError" runat="server" CssClass="text-danger"></asp:Label>
-                    </div>
+      <div class="form-group">
+    <label for="ddlPais">País</label>
+    <asp:DropDownList ID="ddlPais" runat="server" CssClass="form-control">
+        <asp:ListItem Value="57">Colombia (+57)</asp:ListItem>
+        <asp:ListItem Value="1">Estados Unidos (+1)</asp:ListItem>
+        <asp:ListItem Value="52">México (+52)</asp:ListItem>
+        <asp:ListItem Value="54">Argentina (+54)</asp:ListItem>
+        <asp:ListItem Value="55">Brasil (+55)</asp:ListItem>
+        <asp:ListItem Value="56">Chile (+56)</asp:ListItem>
+        <asp:ListItem Value="51">Perú (+51)</asp:ListItem>
+        <asp:ListItem Value="34">España (+34)</asp:ListItem>
+        <asp:ListItem Value="44">Reino Unido (+44)</asp:ListItem>
+        <asp:ListItem Value="33">Francia (+33)</asp:ListItem>
+    </asp:DropDownList>
+</div>
+
+<div class="form-group">
+    <label for="txtTelefono">Teléfono</label>
+    <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingrese el teléfono"></asp:TextBox>
+    <asp:Label ID="lblTelefonoError" runat="server" CssClass="text-danger"></asp:Label>
+</div>
                 </div>
 
                 <div class="modal-footer" style="background-color: #f8f9fc;">
@@ -219,14 +248,99 @@
 
 
                             __doPostBack('<%= UpdatePanel1.ClientID %>', '');
-                        },
-                        error: function () {
-                            Swal.fire('Error', 'No se pudo eliminar el proveedor.', 'error');
-                        }
-                    });
-                }
-            });
+                 },
+                 error: function () {
+                     Swal.fire('Error', 'No se pudo eliminar el proveedor.', 'error');
+                 }
+             });
+         }
+     });
         }
+
+        $(document).ready(function () {
+            $("#<%= ddlPais.ClientID %>").change(function () {
+              var codigoPais = $(this).val();
+              var telefono = $("#<%= txtTelefono.ClientID %>").val().replace(/\D/g, ''); 
+
+        $("#<%= txtTelefono.ClientID %>").val("+" + codigoPais + " " + telefono);
+    });
+
+    $("#<%= txtTelefono.ClientID %>").on("input", function () {
+        var valor = $(this).val();
+        
+       
+        if (!/^\+\d+\s\d+$/.test(valor)) {
+            $(this).addClass("is-invalid").removeClass("is-valid");
+            $("#<%= lblTelefonoError.ClientID %>").text("El teléfono debe contener solo números después del código del país.");
+        } else {
+            $(this).removeClass("is-invalid").addClass("is-valid");
+            $("#<%= lblTelefonoError.ClientID %>").text("");
+        }
+    });
+      });
+
+
+        function EnviarWhatsApp(telefonoProveedor) {
+            if (!telefonoProveedor) {
+                Swal.fire('Error', 'No se encontró el número del proveedor.', 'error');
+                return;
+            }
+
+            
+            telefonoProveedor = telefonoProveedor.trim().replace(/\D/g, ''); 
+
+           
+            if (telefonoProveedor.length < 10) {
+                Swal.fire('Error', 'El número de teléfono no es válido. Asegúrate de incluir el código del país.', 'error');
+                return;
+            }
+
+            
+            var mensaje = "Hola, me gustaría recibir más información sobre tus productos.";
+
+          
+            var whatsappURL = `https://wa.me/${telefonoProveedor}?text=${encodeURIComponent(mensaje)}`;
+
+            var whatsappWindow = window.open(whatsappURL, '_blank');
+
+            
+            var checkIfSent = setInterval(function () {
+                if (whatsappWindow.closed) {
+                    clearInterval(checkIfSent);
+
+                    
+                    window.location.href = window.location.pathname; 
+                }
+            }, 1000);
+        }
+
+
+
+
+
+        function EnviarCorreoGmail(emailProveedor, emailVendedor) {
+            if (!emailProveedor) {
+                Swal.fire('Error', 'No se encontró el correo del proveedor.', 'error');
+                return;
+            }
+
+            if (!emailVendedor) {
+                Swal.fire('Error', 'No se encontró el correo del vendedor.', 'error');
+                return;
+            }
+
+            var asunto = "Consulta sobre productos";
+            var cuerpo = "Hola, estoy interesado en conocer más sobre tus productos. ¿Podrías brindarme más información?";
+
+            
+            var url = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailProveedor}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+           
+            window.open(url, '_blank');
+        }
+
+      
+       
 
         $(document).ready(function () {
 
@@ -234,12 +348,12 @@
                 if ($(this).val().trim() === "") {
                     $(this).addClass("is-invalid").removeClass("is-valid");
                     $("#<%= lblDocumentoError.ClientID %>").text("Por favor, ingresa el documento.");
-               } else if (!/^\d+$/.test($(this).val())) {
-                   $(this).addClass("is-invalid").removeClass("is-valid");
-                   $("#<%= lblDocumentoError.ClientID %>").text("El documento debe contener solo números.");
-               } else {
-                   $(this).removeClass("is-invalid").addClass("is-valid");
-                   $("#<%= lblDocumentoError.ClientID %>").text("");
+                } else if (!/^\d+$/.test($(this).val())) {
+                    $(this).addClass("is-invalid").removeClass("is-valid");
+                    $("#<%= lblDocumentoError.ClientID %>").text("El documento debe contener solo números.");
+                } else {
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+                    $("#<%= lblDocumentoError.ClientID %>").text("");
                 }
             });
 
@@ -248,39 +362,28 @@
                 if ($(this).val().trim() === "") {
                     $(this).addClass("is-invalid").removeClass("is-valid");
                     $("#<%= lblNombresError.ClientID %>").text("Por favor, ingresa el nombre.");
-               } else {
-                   $(this).removeClass("is-invalid").addClass("is-valid");
-                   $("#<%= lblNombresError.ClientID %>").text("");
-               }
-           });
+                } else {
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+                    $("#<%= lblNombresError.ClientID %>").text("");
+                }
+            });
 
 
             $("#<%= txtEmail.ClientID %>").on("input", function () {
                 if ($(this).val().trim() === "") {
                     $(this).addClass("is-invalid").removeClass("is-valid");
                     $("#<%= lblEmailError.ClientID %>").text("Por favor, ingresa el email.");
-        } else if (!$(this).val().includes("@")) {
-            $(this).addClass("is-invalid").removeClass("is-valid");
-            $("#<%= lblEmailError.ClientID %>").text("El correo debe contener el carácter '@'.");
-        } else {
-            $(this).removeClass("is-invalid").addClass("is-valid");
-            $("#<%= lblEmailError.ClientID %>").text("");
+                } else if (!$(this).val().includes("@")) {
+                    $(this).addClass("is-invalid").removeClass("is-valid");
+                    $("#<%= lblEmailError.ClientID %>").text("El correo debe contener el carácter '@'.");
+                } else {
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+                    $("#<%= lblEmailError.ClientID %>").text("");
         }
     });
 
     
-    $("#<%= txtTelefono.ClientID %>").on("input", function () {
-        if ($(this).val().trim() === "") {
-            $(this).addClass("is-invalid").removeClass("is-valid");
-            $("#<%= lblTelefonoError.ClientID %>").text("Por favor, ingresa el teléfono.");
-        } else if (!/^\d+$/.test($(this).val())) { 
-            $(this).addClass("is-invalid").removeClass("is-valid");
-            $("#<%= lblTelefonoError.ClientID %>").text("El teléfono debe contener solo números.");
-        } else {
-            $(this).removeClass("is-invalid").addClass("is-valid");
-            $("#<%= lblTelefonoError.ClientID %>").text("");
-        }
-    });
+   
        });
 
 
