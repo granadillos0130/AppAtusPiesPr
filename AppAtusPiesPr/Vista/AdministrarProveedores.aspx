@@ -7,200 +7,122 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <style>
-        .modal-header {
-            padding: 15px;
-            color: #fff;
-        }
-
-        .modal-content {
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .btn-primary {
-            background-color: #4e73df;
-            border-color: #4e73df;
-        }
-
-        .btn-secondary {
-            background-color: #f6c23e;
-            border-color: #f6c23e;
-        }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+   .table thead th {
+    background-color: #f5f5f5;
+    color: #333;
+    font-weight: bold;
+    text-align: left;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
 
 
+.table thead th::first-letter {
+    text-transform: uppercase;
+}
 
 
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
 
-        
-        .table {
-            border: none;
-            border-collapse: collapse;
-            width: 100%;
-            background-color: #ffffff;
-            margin: 0 auto;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-            .table thead th {
-                background-color: #333333; 
-                color: #ffffff;
-                font-weight: bold;
-                text-align: left;
-                padding: 15px;
-                border-bottom: 2px solid #e7e7e7;
-                text-transform: uppercase;
-            }
-
-            .table tbody tr {
-                border-bottom: 1px solid #e7e7e7;
-                transition: all 0.3s ease;
-            }
-
-                .table tbody tr:hover {
-                    background-color: #f9f9f9; 
-                }
-
-            .table tbody td {
-                padding: 15px;
-                color: #555555;
-                font-size: 14px;
-                text-align: left;
-            }
-
-        
-        .btn {
-            border-radius: 5px;
-            padding: 8px 16px;
-            font-size: 14px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-       
-        .btn-success {
-            background-color: #5cb85c;
-            color: #ffffff;
-            border: none;
-        }
-
-            .btn-success:hover {
-                background-color: #4cae4c;
-                transform: scale(1.05); 
-            }
-
-        
-        .btn-primary {
-            background-color: #007bff;
-            color: #ffffff;
-            border: none;
-        }
-
-            .btn-primary:hover {
-                background-color: #0056b3;
-                transform: scale(1.05);
-            }
-
-      
-        .btn-secondary {
-            background-color: #6c757d;
-            color: #ffffff;
-            border: none;
-        }
-
-            .btn-secondary:hover {
-                background-color: #5a6268;
-                transform: scale(1.05);
-            }
+.table, .table th, .table td {
+    border: 1px solid #ddd;
+}
 
 
+.btn-success {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    color: white;
+}
 
-        .form-control.is-invalid {
-            border-color: #dc3545 !important;
-            background-color: #f8d7da !important;
-        }
+.btn-success:hover {
+    background-color: #0056b3 !important;
+    border-color: #0056b3 !important;
+}
 
-        .form-control.is-valid {
-            border-color: #28a745 !important;
-            background-color: #d4edda !important;
-        }
+.modal-header {
+    background-color: #007bff !important;
+    color: white;
+    padding: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
 
-        .text-danger {
-            font-size: 0.9rem;
-            color: #dc3545;
-        }
-    </style>
+</style>
 </asp:Content>
 
 
 <asp:Content ID="body" ContentPlaceHolderID="body" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <div class="container mt-5">
-        <h2 class="text-center font-weight-bold mb-4" style="color: #333333;">Administrar Proveedores</h2>
-
-        
-        <div class="text-right mb-3">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalRegistrarProveedor">
-                Registrar Proveedor
-       
-            </button>
-        </div>
-
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Documento</th>
-                            <th>Nombre</th>
-                            <th>Email</th>
-                            <th>Teléfono</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <asp:Repeater ID="rptProveedores" runat="server">
-                            <ItemTemplate>
-                                <tr>
-                                    <td><%# Eval("Documento") %></td>
-                                    <td><%# Eval("Nombres") %></td>
-                                    <td><%# Eval("Email") %></td>
-                                    <td><%# Eval("Telefono") %></td>
-                                    <td>
-                                       
-                                        <button type="button" class="btn btn-primary btn-sm"
-                                            onclick="AbrirModalEditar('<%# Eval("idProveedor") %>')">
-                                            Editar
-                                   
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="EliminarProveedor('<%# Eval("idProveedor") %>')">
-                                            Eliminar
-   
-                                        </button>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </tbody>
-                </table>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+<div class="container mt-5">
+    <h2 class="text-center mb-4" style="color: #333333;">Administrar Proveedores</h2>
+    <div style="margin-bottom: 20px;">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistrarProveedor">
+            Registrar Proveedor
+        </button>
     </div>
+    <div class="d-flex">
+        <div class="flex-grow-1 mr-3">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Documento</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                
+                                <th class="text-center">Editar</th>
+                                <th class="text-center">Eliminar</th>
+                                <th>Contactar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <asp:Repeater ID="rptProveedores" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><%# Eval("Documento") %></td>
+                                        <td><%# Eval("Nombres") %></td>
+                                        <td><%# Eval("Email") %></td>
+                                        <td><%# Eval("Telefono") %></td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-primary btn-sm" onclick="AbrirModalEditar('<%# Eval("idProveedor") %>')">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="EliminarProveedor('<%# Eval("idProveedor") %>')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+<button type="button" class="btn btn-info btn-sm mr-2" 
+    onclick="EnviarCorreoGmail('<%# Eval("Email") %>', '<%= ObtenerCorreoVendedor() %>')">
+    <i class="fas fa-envelope"></i> Correo
+</button>
 
+<button type="button" class="btn btn-success btn-sm" 
+    onclick="EnviarWhatsApp('<%# Eval("Telefono") %>')">
+    <i class="fab fa-whatsapp"></i> WhatsApp
+</button>
 
-
-
+</td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </tbody>
+                    </table>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+    </div>
+</div>
     <!-- Modal para Registrar Proveedor -->
     <div class="modal fade" id="modalRegistrarProveedor" tabindex="-1" role="dialog" aria-labelledby="modalRegistrarProveedorLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -230,11 +152,27 @@
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Ingrese el email"></asp:TextBox>
                         <asp:Label ID="lblEmailError" runat="server" CssClass="text-danger"></asp:Label>
                     </div>
-                    <div class="form-group">
-                        <label for="txtTelefono">Teléfono</label>
-                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingrese el teléfono"></asp:TextBox>
-                        <asp:Label ID="lblTelefonoError" runat="server" CssClass="text-danger"></asp:Label>
-                    </div>
+      <div class="form-group">
+    <label for="ddlPais">País</label>
+    <asp:DropDownList ID="ddlPais" runat="server" CssClass="form-control">
+        <asp:ListItem Value="57">Colombia (+57)</asp:ListItem>
+        <asp:ListItem Value="1">Estados Unidos (+1)</asp:ListItem>
+        <asp:ListItem Value="52">México (+52)</asp:ListItem>
+        <asp:ListItem Value="54">Argentina (+54)</asp:ListItem>
+        <asp:ListItem Value="55">Brasil (+55)</asp:ListItem>
+        <asp:ListItem Value="56">Chile (+56)</asp:ListItem>
+        <asp:ListItem Value="51">Perú (+51)</asp:ListItem>
+        <asp:ListItem Value="34">España (+34)</asp:ListItem>
+        <asp:ListItem Value="44">Reino Unido (+44)</asp:ListItem>
+        <asp:ListItem Value="33">Francia (+33)</asp:ListItem>
+    </asp:DropDownList>
+</div>
+
+<div class="form-group">
+    <label for="txtTelefono">Teléfono</label>
+    <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Ingrese el teléfono"></asp:TextBox>
+    <asp:Label ID="lblTelefonoError" runat="server" CssClass="text-danger"></asp:Label>
+</div>
                 </div>
 
                 <div class="modal-footer" style="background-color: #f8f9fc;">
@@ -249,7 +187,7 @@
     <div class="modal fade" id="modalEditarProveedor" tabindex="-1" role="dialog" aria-labelledby="modalEditarProveedorLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
-                <div class="modal-header" style="background: linear-gradient(90deg, #4e73df, #1cc88a); color: white;">
+                <div class="modal-header" style="background: linear-gradient(90deg, #4e73df, #1cc88a; color: white;">
                     <h5 class="modal-title" id="modalEditarProveedorLabel" style="font-weight: bold;">Editar Proveedor</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -310,14 +248,99 @@
 
 
                             __doPostBack('<%= UpdatePanel1.ClientID %>', '');
-                        },
-                        error: function () {
-                            Swal.fire('Error', 'No se pudo eliminar el proveedor.', 'error');
-                        }
-                    });
-                }
-            });
+                 },
+                 error: function () {
+                     Swal.fire('Error', 'No se pudo eliminar el proveedor.', 'error');
+                 }
+             });
+         }
+     });
         }
+
+        $(document).ready(function () {
+            $("#<%= ddlPais.ClientID %>").change(function () {
+              var codigoPais = $(this).val();
+              var telefono = $("#<%= txtTelefono.ClientID %>").val().replace(/\D/g, ''); 
+
+        $("#<%= txtTelefono.ClientID %>").val("+" + codigoPais + " " + telefono);
+    });
+
+    $("#<%= txtTelefono.ClientID %>").on("input", function () {
+        var valor = $(this).val();
+        
+       
+        if (!/^\+\d+\s\d+$/.test(valor)) {
+            $(this).addClass("is-invalid").removeClass("is-valid");
+            $("#<%= lblTelefonoError.ClientID %>").text("El teléfono debe contener solo números después del código del país.");
+        } else {
+            $(this).removeClass("is-invalid").addClass("is-valid");
+            $("#<%= lblTelefonoError.ClientID %>").text("");
+        }
+    });
+      });
+
+
+        function EnviarWhatsApp(telefonoProveedor) {
+            if (!telefonoProveedor) {
+                Swal.fire('Error', 'No se encontró el número del proveedor.', 'error');
+                return;
+            }
+
+            
+            telefonoProveedor = telefonoProveedor.trim().replace(/\D/g, ''); 
+
+           
+            if (telefonoProveedor.length < 10) {
+                Swal.fire('Error', 'El número de teléfono no es válido. Asegúrate de incluir el código del país.', 'error');
+                return;
+            }
+
+            
+            var mensaje = "Hola, me gustaría recibir más información sobre tus productos.";
+
+          
+            var whatsappURL = `https://wa.me/${telefonoProveedor}?text=${encodeURIComponent(mensaje)}`;
+
+            var whatsappWindow = window.open(whatsappURL, '_blank');
+
+            
+            var checkIfSent = setInterval(function () {
+                if (whatsappWindow.closed) {
+                    clearInterval(checkIfSent);
+
+                    
+                    window.location.href = window.location.pathname; 
+                }
+            }, 1000);
+        }
+
+
+
+
+
+        function EnviarCorreoGmail(emailProveedor, emailVendedor) {
+            if (!emailProveedor) {
+                Swal.fire('Error', 'No se encontró el correo del proveedor.', 'error');
+                return;
+            }
+
+            if (!emailVendedor) {
+                Swal.fire('Error', 'No se encontró el correo del vendedor.', 'error');
+                return;
+            }
+
+            var asunto = "Consulta sobre productos";
+            var cuerpo = "Hola, estoy interesado en conocer más sobre tus productos. ¿Podrías brindarme más información?";
+
+            
+            var url = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailProveedor}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+           
+            window.open(url, '_blank');
+        }
+
+      
+       
 
         $(document).ready(function () {
 
@@ -325,12 +348,12 @@
                 if ($(this).val().trim() === "") {
                     $(this).addClass("is-invalid").removeClass("is-valid");
                     $("#<%= lblDocumentoError.ClientID %>").text("Por favor, ingresa el documento.");
-               } else if (!/^\d+$/.test($(this).val())) {
-                   $(this).addClass("is-invalid").removeClass("is-valid");
-                   $("#<%= lblDocumentoError.ClientID %>").text("El documento debe contener solo números.");
-               } else {
-                   $(this).removeClass("is-invalid").addClass("is-valid");
-                   $("#<%= lblDocumentoError.ClientID %>").text("");
+                } else if (!/^\d+$/.test($(this).val())) {
+                    $(this).addClass("is-invalid").removeClass("is-valid");
+                    $("#<%= lblDocumentoError.ClientID %>").text("El documento debe contener solo números.");
+                } else {
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+                    $("#<%= lblDocumentoError.ClientID %>").text("");
                 }
             });
 
@@ -339,39 +362,28 @@
                 if ($(this).val().trim() === "") {
                     $(this).addClass("is-invalid").removeClass("is-valid");
                     $("#<%= lblNombresError.ClientID %>").text("Por favor, ingresa el nombre.");
-               } else {
-                   $(this).removeClass("is-invalid").addClass("is-valid");
-                   $("#<%= lblNombresError.ClientID %>").text("");
-               }
-           });
+                } else {
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+                    $("#<%= lblNombresError.ClientID %>").text("");
+                }
+            });
 
 
             $("#<%= txtEmail.ClientID %>").on("input", function () {
                 if ($(this).val().trim() === "") {
                     $(this).addClass("is-invalid").removeClass("is-valid");
                     $("#<%= lblEmailError.ClientID %>").text("Por favor, ingresa el email.");
-        } else if (!$(this).val().includes("@")) {
-            $(this).addClass("is-invalid").removeClass("is-valid");
-            $("#<%= lblEmailError.ClientID %>").text("El correo debe contener el carácter '@'.");
-        } else {
-            $(this).removeClass("is-invalid").addClass("is-valid");
-            $("#<%= lblEmailError.ClientID %>").text("");
+                } else if (!$(this).val().includes("@")) {
+                    $(this).addClass("is-invalid").removeClass("is-valid");
+                    $("#<%= lblEmailError.ClientID %>").text("El correo debe contener el carácter '@'.");
+                } else {
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+                    $("#<%= lblEmailError.ClientID %>").text("");
         }
     });
 
     
-    $("#<%= txtTelefono.ClientID %>").on("input", function () {
-        if ($(this).val().trim() === "") {
-            $(this).addClass("is-invalid").removeClass("is-valid");
-            $("#<%= lblTelefonoError.ClientID %>").text("Por favor, ingresa el teléfono.");
-        } else if (!/^\d+$/.test($(this).val())) { 
-            $(this).addClass("is-invalid").removeClass("is-valid");
-            $("#<%= lblTelefonoError.ClientID %>").text("El teléfono debe contener solo números.");
-        } else {
-            $(this).removeClass("is-invalid").addClass("is-valid");
-            $("#<%= lblTelefonoError.ClientID %>").text("");
-        }
-    });
+   
        });
 
 
