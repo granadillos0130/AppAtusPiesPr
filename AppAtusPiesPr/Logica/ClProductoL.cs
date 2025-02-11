@@ -70,7 +70,14 @@ namespace AppAtusPiesPr.Logica
             List<ClCategoriaE> tblDatos = objCategoria.MtdListarCategorias();
             return tblDatos;
         }
-       
+
+        public List<ClMarcasE> MtdListarMarcas()
+        {
+            ClProductoD objMarca = new ClProductoD();
+            List<ClMarcasE> tblDatos = objMarca.MtdListarMarcas();
+            return tblDatos;
+        }
+
         //Metodo para listar Producto
 
         public List<ClProductoEmpresaE> MtdListarProduc(int? idVendedor=null)
@@ -109,6 +116,12 @@ namespace AppAtusPiesPr.Logica
         {
             return productoD.MtdListarProductosPorCategoria(idCategoria);
         }
+
+        public DataTable MtdListarPorMarca(int idMarca)
+        {
+            return productoD.MtdListarProductosPorMarca(idMarca);
+        }
+
         public DataTable MtdListarPorVendedor(int idVendedor)
         {
             return productoD.MtdListarProductosVendedor(idVendedor);

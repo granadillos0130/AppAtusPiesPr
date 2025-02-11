@@ -24,7 +24,7 @@ namespace AppAtusPiesPr.Vista
 
                 cargarCategorias();
                 cargarComentarios();
-                
+                cargarMarcas();
 
                 string productoId = Request.QueryString["id"];
                 
@@ -37,6 +37,12 @@ namespace AppAtusPiesPr.Vista
             }
         }
 
+        private void cargarMarcas()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            RepeaterMarca.DataSource = oLogica.MtdListarMarcas();
+            RepeaterMarca.DataBind();
+        }
         private void cargarValoracion(int idProducto)
         {
             decimal promedioValoracion = oLogica.ObtenerValoracionPromedio(idProducto);

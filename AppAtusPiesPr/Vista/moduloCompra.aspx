@@ -39,7 +39,26 @@
             </nav>
         </div>
     </center>
-    <br />
+
+    <center>
+        <div class="navbarFiltros">
+            <nav>
+
+                <ul class="menuFiltros">
+                    <asp:Repeater ID="RepeaterMarca" runat="server">
+                        <ItemTemplate>
+                            <li>
+                                <a href='<%# "moduloMarcaFiltrada.aspx?id=" + Eval("idMarca") %>'>
+                                    <%# Eval("nombreMarca") %>
+                                </a>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+            </nav>
+        </div>
+    </center>
+
 
     <div class="alert alert-danger" role="alert" runat="server" visible="false" id="lblMensaje"></div>
     <!-- Imagen del producto -->
@@ -215,8 +234,13 @@
                     <div class="card-info">
                         <div class="card-details">
                             <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
-                                <%# Eval("nombres") %>
+                                <%# Eval("NombreVendedor") %>
                                 <%# Eval("apellidos") %><br>
+                                <div class="rating">
+                                    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
+
+
+                                </div>
                             </a>
                             <div class="cardprice">
                                 <p>$<%# Eval("precio") %></p>
@@ -229,7 +253,7 @@
                                     data-nombre='<%# HttpUtility.HtmlAttributeEncode(Eval("nombreProducto").ToString()) %>'
                                     data-imagen='<%# ResolveUrl(Eval("imagen").ToString()) %>'
                                     data-precio='<%# Eval("precio") %>'
-                                    data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("nombres").ToString()) %>'
+                                    data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("NombreVendedor").ToString()) %>'
                                     data-apellidos='<%# HttpUtility.HtmlAttributeEncode(Eval("apellidos").ToString()) %>'
                                     data-idvendedor='<%# Eval("idVendedor") %>'>
                                     <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />

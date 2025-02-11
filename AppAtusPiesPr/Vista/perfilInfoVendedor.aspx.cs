@@ -19,6 +19,7 @@ namespace AppAtusPiesPr.Vista
             if (!IsPostBack)
             {
                 cargarCategorias();
+                cargarMarcas();
 
                 int idVendedor = Convert.ToInt32(Request.QueryString["id"]); // Obtener idCategoria desde la URL
 
@@ -57,6 +58,12 @@ namespace AppAtusPiesPr.Vista
             {
                 lblMensaje.InnerText = "No se encontró la información del Producto.";
             }
+        }
+        private void cargarMarcas()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            RepeaterMarca.DataSource = oLogica.MtdListarMarcas();
+            RepeaterMarca.DataBind();
         }
     }
 }

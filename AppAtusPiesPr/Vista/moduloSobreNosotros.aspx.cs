@@ -1,7 +1,6 @@
 ﻿using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AppAtusPiesPr.Vista
 {
-    public partial class moduloBusqueda : System.Web.UI.Page
+    public partial class moduloSobreNosotros : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,18 +16,8 @@ namespace AppAtusPiesPr.Vista
             {
                 cargarCategorias();
                 cargarMarcas();
-
-                string busqueda = Request.QueryString["busqueda"];
-                if (!string.IsNullOrEmpty(busqueda))
-                {
-                    busquedas(busqueda);
-                }
-                else
-                {
-                }
             }
         }
-
         private void cargarCategorias()
         {
             ClProductoL oLogica = new ClProductoL();
@@ -36,26 +25,12 @@ namespace AppAtusPiesPr.Vista
             Repeater2.DataBind();
         }
 
-        private void busquedas(string busqueda)
-        {
-            ClProductoL oLogica = new ClProductoL();
-            DataTable dtProductos = oLogica.mtdBuscarProducto(busqueda);
-            if (dtProductos.Rows.Count > 0)
-            {
-                Repeater1.DataSource = dtProductos;
-                Repeater1.DataBind();
-            }
-            else
-            {
-                Repeater1.DataSource = null;
-                Repeater1.DataBind();
-            }
-        }
         private void cargarMarcas()
         {
             ClProductoL oLogica = new ClProductoL();
             RepeaterMarca.DataSource = oLogica.MtdListarMarcas();
             RepeaterMarca.DataBind();
         }
+
     }
 }
