@@ -272,3 +272,54 @@
     // Mostrar el carrito al cargar
     mostrarCarrito();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Agregar listener a todos los botones de guardar
+    const saveButtons = document.querySelectorAll('.save-button');
+
+    saveButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Obtener datos del producto desde los atributos data
+            const producto = {
+                id: button.dataset.id,
+                nombreProducto: button.dataset.nombre,
+                imagen: button.dataset.imagen,
+                precio: button.dataset.precio,
+                NombreVendedor: button.dataset.vendedor,
+                apellidos: button.dataset.apellidos,
+                idVendedor: button.dataset.idvendedor,
+                cantidad: 1
+            };
+
+            // Obtener el carrito actual del localStorage
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+            // Verificar si el producto ya existe en el carrito
+            const productoExistente = carrito.find(item => item.id === producto.id);
+
+            if (productoExistente) {
+                // Si el producto ya existe, mostrar mensaje
+                Swal.fire({
+                    title: '¡Producto ya en carrito!',
+                    text: 'Este producto ya está en tu carrito de compras',
+                    icon: 'info',
+                    confirmButtonText: 'Entendido'
+                });
+            } else {
+                // Si no existe, agregar al carrito
+                carrito.push(producto);
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+
+                // Mostrar mensaje de éxito
+                Swal.fire({
+                    title: '¡Producto agregado!',
+                    text: 'El producto se agregó correctamente a tu carrito',
+                    icon: 'success',
+                    confirmButtonText: 'Continuar'
+                });
+            }
+        });
+    });
+});
