@@ -11,7 +11,7 @@ namespace AppAtusPiesPr.Vista
 {
 
 
-    public partial class moduloSobreNosotros
+    public partial class ModuloSobreNosotros
     {
 
         /// <summary>
