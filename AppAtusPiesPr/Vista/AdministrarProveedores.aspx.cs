@@ -1,4 +1,5 @@
-﻿using AppAtusPiesPr.Datos;
+﻿
+using AppAtusPiesPr.Datos;
 
 using AppAtusPiesPr.Entidades;
 
@@ -21,15 +22,79 @@ namespace AppAtusPiesPr.Vista
 
 {
 
-public partial class AdministrarProveedores : System.Web.UI.Page
-
-{
-
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class AdministrarProveedores : System.Web.UI.Page
 
     {
 
-        if (!IsPostBack || ScriptManager.GetCurrent(this).IsInAsyncPostBack)
+        protected void Page_Load(object sender, EventArgs e)
+
+        {
+
+            if (!IsPostBack || ScriptManager.GetCurrent(this).IsInAsyncPostBack)
+
+            {
+
+                CargarProveedores();
+
+            }
+
+        }
+
+
+
+
+
+        protected void AbrirModalEditar(int idProveedor)
+
+        {
+
+
+
+            ClProveedorE proveedor = new ClVendedorD().ObtenerProveedorPorId(idProveedor);
+
+            if (proveedor != null)
+
+            {
+
+                hfIdProveedor.Value = proveedor.idProveedor.ToString();
+
+                txtDocumentoEditar.Text = proveedor.Documento;
+
+                txtNombresEditar.Text = proveedor.Nombres;
+
+                txtEmailEditar.Text = proveedor.Email;
+
+                txtTelefonoEditar.Text = proveedor.Telefono;
+
+
+
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "$('#modalEditarProveedor').modal('show');", true);
+
+            }
+
+            else
+
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "Error", "Swal.fire('Error', 'No se pudo cargar la información del proveedor.', 'error');", true);
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
 
         {
 
@@ -37,95 +102,31 @@ public partial class AdministrarProveedores : System.Web.UI.Page
 
         }
 
-    }
 
 
-
-
-
-    protected void AbrirModalEditar(int idProveedor)
-
-    {
-
-
-
-        ClProveedorE proveedor = new ClVendedorD().ObtenerProveedorPorId(idProveedor);
-
-        if (proveedor != null)
+        private void CargarProveedores()
 
         {
 
-            hfIdProveedor.Value = proveedor.idProveedor.ToString();
+            int idVendedor = Convert.ToInt32(Session["idUsuario"]);
 
-            txtDocumentoEditar.Text = proveedor.Documento;
-
-            txtNombresEditar.Text = proveedor.Nombres;
-
-            txtEmailEditar.Text = proveedor.Email;
-
-            txtTelefonoEditar.Text = proveedor.Telefono;
+            string estado = "activo";
 
 
 
 
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "AbrirModal", "$('#modalEditarProveedor').modal('show');", true);
+            List<ClProveedorE> proveedores = new ClVendedorD().ListarProveedoresPorVendedor(idVendedor, estado);
 
-        }
 
-        else
 
-        {
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "Error", "Swal.fire('Error', 'No se pudo cargar la información del proveedor.', 'error');", true);
+
+            rptProveedores.DataSource = proveedores;
+
+            rptProveedores.DataBind();
 
         }
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-    protected void ddlEstado_SelectedIndexChanged(object sender, EventArgs e)
-
-    {
-
-        CargarProveedores();
-
-    }
-
-
-
-    private void CargarProveedores()
-
-    {
-
-        int idVendedor = Convert.ToInt32(Session["idUsuario"]);
-
-        string estado = "activo";
-
-
-
-
-
-        List<ClProveedorE> proveedores = new ClVendedorD().ListarProveedoresPorVendedor(idVendedor, estado);
-
-
-
-
-
-        rptProveedores.DataSource = proveedores;
-
-        rptProveedores.DataBind();
-
-    }
 
         protected void btnGuardarProveedor_Click(object sender, EventArgs e)
         {
@@ -139,11 +140,11 @@ public partial class AdministrarProveedores : System.Web.UI.Page
             }
             else
             {
-               
+
                 string codigoPais = ddlPais.SelectedValue;
                 string telefono = txtTelefono.Text.Trim();
 
-                
+
                 string telefonoSoloNumeros = telefono.Replace("+", "").Replace(codigoPais, "").Trim();
 
                 if (!telefonoSoloNumeros.All(char.IsDigit))
@@ -158,7 +159,7 @@ public partial class AdministrarProveedores : System.Web.UI.Page
                     txtTelefono.CssClass = "form-control is-valid";
                 }
 
-               
+
                 if (!telefono.StartsWith("+"))
                 {
                     telefono = "+" + codigoPais + " " + telefonoSoloNumeros;
@@ -173,7 +174,7 @@ public partial class AdministrarProveedores : System.Web.UI.Page
                 return;
             }
 
-            
+
             ClProveedorE proveedor = new ClProveedorE
             {
                 Documento = txtDocumento.Text.Trim(),
@@ -200,215 +201,215 @@ public partial class AdministrarProveedores : System.Web.UI.Page
 
         protected void btnActualizarProveedor_Click(object sender, EventArgs e)
 
-    {
-
-
-
-        int idProveedor;
-
-        if (!int.TryParse(hfIdProveedor.Value, out idProveedor) || idProveedor <= 0)
-
         {
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "Error", "Swal.fire('Error', 'El ID del proveedor no es válido.', 'error');", true);
-
-            return;
-
-        }
 
 
+            int idProveedor;
 
-
-
-        ClProveedorE proveedor = new ClProveedorE
-
-        {
-
-            idProveedor = idProveedor,
-
-            Documento = txtDocumentoEditar.Text.Trim(),
-
-            Nombres = txtNombresEditar.Text.Trim(),
-
-            Email = txtEmailEditar.Text.Trim(),
-
-            Telefono = txtTelefonoEditar.Text.Trim(),
-
-            estado = "activo"
-
-        };
-
-
-
-        string mensaje;
-
-
-
-        try
-
-        {
-
-            bool resultado = new ClVendedorD().ActualizarProveedor(proveedor, out mensaje);
-
-
-
-            if (resultado)
+            if (!int.TryParse(hfIdProveedor.Value, out idProveedor) || idProveedor <= 0)
 
             {
 
+                ScriptManager.RegisterStartupScript(this, GetType(), "Error", "Swal.fire('Error', 'El ID del proveedor no es válido.', 'error');", true);
 
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "Exito", "Swal.fire('Éxito', 'Proveedor actualizado correctamente.', 'success');", true);
-
-                CargarProveedores();
-
-            }
-
-            else
-
-            {
-
-
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"Swal.fire('Error', '{mensaje}', 'error');", true);
-
-            }
-
-        }
-
-        catch (Exception ex)
-
-        {
-
-
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"Swal.fire('Error', 'Hubo un problema al actualizar el proveedor: {ex.Message}', 'error');", true);
-
-        }
-
-    }
-
-
-
-
-
-
-
-    [System.Web.Services.WebMethod]
-
-    public static ClProveedorE CargarProveedor(int idProveedor)
-
-    {
-
-        try
-
-        {
-
-            ClVendedorD proveedorD = new ClVendedorD();
-
-            ClProveedorE proveedor = proveedorD.ObtenerProveedorPorId(idProveedor);
-
-
-
-            if (proveedor == null)
-
-            {
-
-                throw new Exception("Proveedor no encontrado.");
+                return;
 
             }
 
 
 
-            return proveedor;
+
+
+            ClProveedorE proveedor = new ClProveedorE
+
+            {
+
+                idProveedor = idProveedor,
+
+                Documento = txtDocumentoEditar.Text.Trim(),
+
+                Nombres = txtNombresEditar.Text.Trim(),
+
+                Email = txtEmailEditar.Text.Trim(),
+
+                Telefono = txtTelefonoEditar.Text.Trim(),
+
+                estado = "activo"
+
+            };
+
+
+
+            string mensaje;
+
+
+
+            try
+
+            {
+
+                bool resultado = new ClVendedorD().ActualizarProveedor(proveedor, out mensaje);
+
+
+
+                if (resultado)
+
+                {
+
+
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Exito", "Swal.fire('Éxito', 'Proveedor actualizado correctamente.', 'success');", true);
+
+                    CargarProveedores();
+
+                }
+
+                else
+
+                {
+
+
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"Swal.fire('Error', '{mensaje}', 'error');", true);
+
+                }
+
+            }
+
+            catch (Exception ex)
+
+            {
+
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "Error", $"Swal.fire('Error', 'Hubo un problema al actualizar el proveedor: {ex.Message}', 'error');", true);
+
+            }
 
         }
 
-        catch (Exception ex)
+
+
+
+
+
+
+        [System.Web.Services.WebMethod]
+
+        public static ClProveedorE CargarProveedor(int idProveedor)
 
         {
 
-            throw new Exception("Error al cargar el proveedor: " + ex.Message);
+            try
+
+            {
+
+                ClVendedorD proveedorD = new ClVendedorD();
+
+                ClProveedorE proveedor = proveedorD.ObtenerProveedorPorId(idProveedor);
+
+
+
+                if (proveedor == null)
+
+                {
+
+                    throw new Exception("Proveedor no encontrado.");
+
+                }
+
+
+
+                return proveedor;
+
+            }
+
+            catch (Exception ex)
+
+            {
+
+                throw new Exception("Error al cargar el proveedor: " + ex.Message);
+
+            }
 
         }
 
-    }
 
 
+        [System.Web.Services.WebMethod]
 
-    [System.Web.Services.WebMethod]
-
-    public static string EliminarProveedor(int idProveedor)
-
-    {
-
-        string mensaje;
-
-        ClVendedorL proveedorL = new ClVendedorL();
-
-
-
-        bool resultado = proveedorL.EliminarProveedor(idProveedor, out mensaje);
-
-
-
-        return resultado ? mensaje : $"Error al eliminar el proveedor: {mensaje}";
-
-    }
-
-
-
-    protected string ObtenerCorreoVendedor()
-
-    {
-
-        int idUsuario = Convert.ToInt32(Session["idUsuario"]);
-
-        ClUsuarioE vendedor = new ClUsuarioD().DatosVendedor(idUsuario);
-
-
-
-        if (vendedor != null && !string.IsNullOrEmpty(vendedor.Email))
+        public static string EliminarProveedor(int idProveedor)
 
         {
 
-            return vendedor.Email; 
+            string mensaje;
+
+            ClVendedorL proveedorL = new ClVendedorL();
+
+
+
+            bool resultado = proveedorL.EliminarProveedor(idProveedor, out mensaje);
+
+
+
+            return resultado ? mensaje : $"Error al eliminar el proveedor: {mensaje}";
 
         }
 
-        return "";
-
-    }
 
 
-
-    protected string ObtenerTelefonoVendedor()
-
-    {
-
-        int idUsuario = Convert.ToInt32(Session["idUsuario"]);
-
-        ClUsuarioE vendedor = new ClUsuarioD().DatosVendedor(idUsuario); 
-
-
-
-        if (vendedor != null && !string.IsNullOrEmpty(vendedor.Telefono))
+        protected string ObtenerCorreoVendedor()
 
         {
 
-            return vendedor.Telefono; 
+            int idUsuario = Convert.ToInt32(Session["idUsuario"]);
+
+            ClUsuarioE vendedor = new ClUsuarioD().DatosVendedor(idUsuario);
+
+
+
+            if (vendedor != null && !string.IsNullOrEmpty(vendedor.Email))
+
+            {
+
+                return vendedor.Email;
+
+            }
+
+            return "";
 
         }
 
-        return "";
 
-    }
+
+        protected string ObtenerTelefonoVendedor()
+
+        {
+
+            int idUsuario = Convert.ToInt32(Session["idUsuario"]);
+
+            ClUsuarioE vendedor = new ClUsuarioD().DatosVendedor(idUsuario);
+
+
+
+            if (vendedor != null && !string.IsNullOrEmpty(vendedor.Telefono))
+
+            {
+
+                return vendedor.Telefono;
+
+            }
+
+            return "";
+
+        }
         protected void ddlPais_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string codigoPais = ddlPais.SelectedValue; 
+            string codigoPais = ddlPais.SelectedValue;
             string telefonoActual = txtTelefono.Text.Trim();
 
-            if (!telefonoActual.StartsWith("+")) 
+            if (!telefonoActual.StartsWith("+"))
             {
                 txtTelefono.Text = $"+{codigoPais} {telefonoActual}";
             }
@@ -418,3 +419,4 @@ public partial class AdministrarProveedores : System.Web.UI.Page
     }
 
 }
+

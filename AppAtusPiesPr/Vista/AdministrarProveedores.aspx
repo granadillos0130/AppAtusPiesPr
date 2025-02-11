@@ -1,8 +1,10 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="AdministrarProveedores.aspx.cs" Inherits="AppAtusPiesPr.Vista.AdministrarProveedores" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="AdministrarProveedores.aspx.cs" Inherits="AppAtusPiesPr.Vista.AdministrarProveedores"  ResponseEncoding="UTF-8"%>
 
 
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="server">
+   
     <title>Administrar Proveedores</title>
+     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -76,7 +78,7 @@
                                 <th>Documento</th>
                                 <th>Nombre</th>
                                 <th>Email</th>
-                                <th>Teléfono</th>
+                                <th>Telefono</th>
                                 
                                 <th class="text-center">Editar</th>
                                 <th class="text-center">Eliminar</th>
@@ -187,7 +189,7 @@
     <div class="modal fade" id="modalEditarProveedor" tabindex="-1" role="dialog" aria-labelledby="modalEditarProveedorLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
-                <div class="modal-header" style="background: linear-gradient(90deg, #4e73df, #1cc88a; color: white;">
+                <div class="modal-header" style="background: linear-gradient(90deg, #4e73df, #1cc88a); color: white;">
                     <h5 class="modal-title" id="modalEditarProveedorLabel" style="font-weight: bold;">Editar Proveedor</h5>
                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
