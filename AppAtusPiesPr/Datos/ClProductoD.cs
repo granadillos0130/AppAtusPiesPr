@@ -157,13 +157,12 @@ namespace AppAtusPiesPr.Datos
 
         }
 
-        public DataTable MtdListarProductos(int pageSize = 12, int pageNumber = 1)
+        public DataTable MtdListarProductos()
         {
             ClConexion conexion = new ClConexion();
             SqlCommand cmd = new SqlCommand("Sp_ListarProductos", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@PageSize", pageSize);
-            cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
+
             cmd.ExecuteNonQuery();
             conexion.MtdCerrarConexion();
 
@@ -174,13 +173,12 @@ namespace AppAtusPiesPr.Datos
             return tblDatos;
         }
 
-        public DataTable MtdListarProductosMejorCalificados(int pageSize = 12, int pageNumber = 1)
+        public DataTable MtdListarProductosMejorCalificados()
         {
             ClConexion conexion = new ClConexion();
             SqlCommand cmd = new SqlCommand("Sp_ListarProductosMejorValorados", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@PageSize", pageSize);
-            cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
+
             cmd.ExecuteNonQuery();
             conexion.MtdCerrarConexion();
 
@@ -191,13 +189,11 @@ namespace AppAtusPiesPr.Datos
             return tblDatos;
         }
 
-        public DataTable MtdListarProductosMasRecientes(int pageSize = 12, int pageNumber = 1)
+        public DataTable MtdListarProductosMasRecientes()
         {
             ClConexion conexion = new ClConexion();
             SqlCommand cmd = new SqlCommand("Sp_ListarProductosRecientes", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@PageSize", pageSize);
-            cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
             cmd.ExecuteNonQuery();
             conexion.MtdCerrarConexion();
 

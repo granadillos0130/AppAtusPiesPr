@@ -7,6 +7,8 @@
     <link rel="shortcut icon" href="recursos/ATP.png" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+
+
     <center>
 
         <div class="navbarFiltros">
@@ -29,12 +31,56 @@
 
     <br />
 
+    <style>
+        .producto-detalle {
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .producto-imagen {
+            max-width: 200px;
+            margin-right: 30px;
+        }
+
+            .producto-imagen img {
+                border-radius: 10px;
+                object-fit: cover;
+            }
+
+        .producto-info {
+            flex: 1;
+        }
+
+            .producto-info h1 {
+                margin-bottom: 20px;
+            }
+
+            .producto-info ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .producto-info ul li {
+                    margin-bottom: 15px;
+                }
+
+                    .producto-info ul li strong {
+                        display: inline-block;
+                        width: 150px;
+                    }
+    </style>
+
     <center>
         <h2>Perfil del Vendedor</h2>
         <br>
     </center>
 
     <div class="alert alert-danger" role="alert" runat="server" visible="false" id="lblMensaje"></div>
+
     <!-- Foto del Vendedor -->
     <div class="producto-detalle">
         <div class="producto-imagen">
@@ -42,24 +88,30 @@
         </div>
 
         <!-- Información del Vendedor -->
-
         <div class="producto-info">
             <h1>
-                <asp:Label ID="lblTituloProducto" runat="server"></asp:Label></h1>
+                <asp:Label ID="lblTituloProducto" runat="server"></asp:Label>
+            </h1>
             <ul>
-                <li><strong>Nombres:</strong>
+                <li>
+                    <strong>Nombres:</strong>
                     <asp:Label ID="nombreVendedor" runat="server"></asp:Label>
-                    <asp:Label ID="apellidoVendedor" runat="server"></asp:Label></li>
-
-                <li><strong>Telefono:</strong>
-                    <asp:Label ID="telVendedor" runat="server"></asp:Label></li>
-                <li><strong>Descripcion:</strong>
-                    <asp:Label ID="descVendedor" runat="server"></asp:Label></li>
-                <li><strong>Total Productos:</strong>
-                    <asp:Label ID="totalProductos" runat="server"></asp:Label></li>
+                    <asp:Label ID="apellidoVendedor" runat="server"></asp:Label>
+                </li>
+                <li>
+                    <strong>Telefono:</strong>
+                    <asp:Label ID="telVendedor" runat="server"></asp:Label>
+                </li>
+                <li>
+                    <strong>Descripcion:</strong>
+                    <asp:Label ID="descVendedor" runat="server"></asp:Label>
+                </li>
+                <li>
+                    <strong>Total Productos:</strong>
+                    <asp:Label ID="totalProductos" runat="server"></asp:Label>
+                </li>
             </ul>
         </div>
-
     </div>
     <hr>
     <br />

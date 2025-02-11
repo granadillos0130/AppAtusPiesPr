@@ -37,24 +37,24 @@ namespace AppAtusPiesPr.Logica
             DataTable tblDatos = oDatos.buscarProductos(busqueda);
             return tblDatos;
         }
-        public DataTable MtdListarProductos(int numeroPagina = 1)
+        public DataTable MtdListarProductos()
         {
             ClProductoD objProductoD = new ClProductoD();
-            DataTable tblDatos = objProductoD.MtdListarProductos(PAGE_SIZE, numeroPagina);
+            DataTable tblDatos = objProductoD.MtdListarProductos();
             return tblDatos;
         }
 
-        public DataTable MtdListarProductosMejorCalificados(int numeroPagina = 1)
+        public DataTable MtdListarProductosMejorCalificados()
         {
             ClProductoD objProductoD = new ClProductoD();
-            DataTable tblDatos = objProductoD.MtdListarProductosMejorCalificados(PAGE_SIZE, numeroPagina);
+            DataTable tblDatos = objProductoD.MtdListarProductosMejorCalificados();
             return tblDatos;
         }
 
-        public DataTable MtdListarProductosMasRecientes(int numeroPagina = 1)
+        public DataTable MtdListarProductosMasRecientes()
         {
             ClProductoD objProductoD = new ClProductoD();
-            DataTable tblDatos = objProductoD.MtdListarProductosMasRecientes(PAGE_SIZE, numeroPagina);
+            DataTable tblDatos = objProductoD.MtdListarProductosMasRecientes();
             return tblDatos;
         }
 
