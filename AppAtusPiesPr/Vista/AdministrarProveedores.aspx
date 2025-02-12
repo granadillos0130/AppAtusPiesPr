@@ -157,6 +157,7 @@
       <div class="form-group">
     <label for="ddlPais">País</label>
     <asp:DropDownList ID="ddlPais" runat="server" CssClass="form-control">
+        <asp:ListItem Value=""></asp:ListItem>
         <asp:ListItem Value="57">Colombia (+57)</asp:ListItem>
         <asp:ListItem Value="1">Estados Unidos (+1)</asp:ListItem>
         <asp:ListItem Value="52">México (+52)</asp:ListItem>

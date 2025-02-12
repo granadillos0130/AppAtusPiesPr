@@ -423,6 +423,53 @@ namespace AppAtusPiesPr.Datos
                 return false;
             }
         }
+        public List<ClProveedorE> ListarProveedorVendedor(int idVendedor)
+        {
+            List<ClProveedorE> listaProveedores = new List<ClProveedorE>();
+            ClConexion oConexion = new ClConexion();
+
+            using (SqlConnection con = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpProveedorVendedor", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idVendedor", idVendedor);
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            ClProveedorE proveedor = new ClProveedorE
+                            {
+                                idProveedor = Convert.ToInt32(dr["IdProveedor"]),
+                                Nombre = dr["Nombre"].ToString()
+                            };
+                            listaProveedores.Add(proveedor);
+                        }
+                    }
+                }
+            }
+            return listaProveedores;
+        }
+        public bool RegistrarCompra(string numeroFactura, decimal totalCompra, int idProveedor, int idVendedor, DateTime fechaCompra)
+        {
+            ClConexion oConexion = new ClConexion();
+            using (SqlConnection con = oConexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpGuardarCompra", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@numeroFactura", numeroFactura);
+                    cmd.Parameters.AddWithValue("@totalCompra", totalCompra);
+                    cmd.Parameters.AddWithValue("@idProveedor", idProveedor);
+                    cmd.Parameters.AddWithValue("@idVendedor", idVendedor);
+                    cmd.Parameters.AddWithValue("@fechaCompra", fechaCompra);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+        }
 
     }
 }

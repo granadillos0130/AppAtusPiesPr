@@ -70,6 +70,7 @@
     <Content Include="Vista\AgregarCategorias.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\carritoCompras.aspx" />
+    <Content Include="Vista\ComprasAProveedor.aspx" />
     <Content Include="Vista\css\carrito.css" />
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
@@ -106,7 +107,6 @@
     <Content Include="Vista\moduloCatalogoFiltrado.aspx" />
     <Content Include="Vista\moduloCompra.aspx" />
     <Content Include="Vista\moduloMarcaFiltrada.aspx" />
-    <Content Include="Vista\moduloSobreNosotros.aspx" />
     <Content Include="Vista\perfilInfoVendedor.aspx" />
     <Content Include="Vista\perfilUsuario.aspx" />
     <Content Include="Vista\Peticiones.aspx" />
@@ -1848,6 +1848,13 @@
     <Compile Include="Vista\carritoCompras.aspx.designer.cs">
       <DependentUpon>carritoCompras.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\ComprasAProveedor.aspx.cs">
+      <DependentUpon>ComprasAProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ComprasAProveedor.aspx.designer.cs">
+      <DependentUpon>ComprasAProveedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\EditarPerfilVendeyAdmin.aspx.cs">
       <DependentUpon>EditarPerfilVendeyAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1932,12 +1939,12 @@
     <Compile Include="Vista\moduloCompra.aspx.designer.cs">
       <DependentUpon>moduloCompra.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\moduloSobreNosotros.aspx.cs">
-      <DependentUpon>moduloSobreNosotros.aspx</DependentUpon>
+    <Compile Include="Vista\moduloMarcaFiltrada.aspx.cs">
+      <DependentUpon>moduloMarcaFiltrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\ModuloSobreNosotros.aspx.designer.cs">
-      <DependentUpon>ModuloSobreNosotros.aspx</DependentUpon>
+    <Compile Include="Vista\moduloMarcaFiltrada.aspx.designer.cs">
+      <DependentUpon>moduloMarcaFiltrada.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\perfilInfoVendedor.aspx.cs">
       <DependentUpon>perfilInfoVendedor.aspx</DependentUpon>
