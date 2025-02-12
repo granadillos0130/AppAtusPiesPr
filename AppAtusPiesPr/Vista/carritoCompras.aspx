@@ -8,13 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel='stylesheet' type='text/css' media='screen' href='css/carrito.css' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-        <!-- Incluye SweetAlert2 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-    <!-- Incluye SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AcJ4hvEnBv9MHxg3EggwPHF7XO7mdTT_G3N0wmqj0vieh-UOmSYC02lUOH_gAVONfGFwLvuWiGmIK1LZ&currency=USD" data-sdk-integration-source="button-factory"></script>
-
 
     <style>
         .order-button {
@@ -45,23 +39,23 @@
         </div>
     </center>
     <center>
-    <div class="navbarFiltros">
-        <nav>
+        <div class="navbarFiltros">
+            <nav>
 
-            <ul class="menuFiltros">
-                <asp:Repeater ID="RepeaterMarca" runat="server">
-                    <itemtemplate>
-                        <li>
+                <ul class="menuFiltros">
+                    <asp:Repeater ID="RepeaterMarca" runat="server">
+                        <ItemTemplate>
+                            <li>
                                 <a href='<%# "moduloMarcaFiltrada.aspx?id=" + Eval("idMarca") %>'>
                                     <%# Eval("nombreMarca") %>
                                 </a>
-                        </li>
-                    </itemtemplate>
-                </asp:Repeater>
-            </ul>
-        </nav>
-    </div>
-</center>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+            </nav>
+        </div>
+    </center>
 
     <div class="container">
         <!-- Botón para vaciar el carrito -->
@@ -128,8 +122,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/carrito.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AcJ4hvEnBv9MHxg3EggwPHF7XO7mdTT_G3N0wmqj0vieh-UOmSYC02lUOH_gAVONfGFwLvuWiGmIK1LZ&currency=USD"></script>
-    
+
     <script>
+        let pedidosGuardados = [];
+let montosPedidos = [];
+let vendedoresPedidos = [];
+
         // Obtener idCliente desde la sesión
         var idCliente = '<%= Session["idUsuario"] %>';
         console.log("ID Cliente desde la sesión:", idCliente);
@@ -210,32 +208,50 @@
 
                 console.log("Pedido enviado:", JSON.stringify(pedido));
 
-                fetch("carritoCompras.aspx/GuardarPedido", {
-                    method: "POST",
-                    body: JSON.stringify({ pedido }),
-                    headers: { "Content-Type": "application/json" }
-                })
-                    .then(response => {
-                        console.log("Respuesta recibida del servidor, esperando JSON...");
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log("Respuesta procesada del servidor:", data);
-                        if (data.success) {
-                            alert("Compra realizada con éxito!");
-                            // Cerrar el modal después de una compra exitosa
-                            const modal = bootstrap.Modal.getInstance(document.getElementById('modalPedido'));
-                            modal.hide();
-                            console.log("Pedido guardado correctamente con ID:", data.message);
-                        } else {
-                            console.error("Error al guardar el pedido:", data.message);
-                            alert("Hubo un problema al realizar la compra: " + data.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error en la petición fetch:", error);
-                        alert("Hubo un error al procesar tu compra. Intenta nuevamente.");
-                    });
+               fetch("carritoCompras.aspx/GuardarPedido", {
+    method: "POST",
+    body: JSON.stringify({ pedido }),
+    headers: { "Content-Type": "application/json" }
+})
+.then(response => response.json())
+.then(data => {
+    console.log("🔎 Respuesta completa del servidor:", data);
+
+    if (data.d && data.d.success) {
+        console.log("✅ Pedido guardado con ID:", data.d.message);
+
+        const idPedido = data.d.message.match(/\d+/)[0]; // Extraer el ID del pedido
+        console.log("📦 ID del pedido extraído:", idPedido);
+
+        // Obtener el monto y el ID del vendedor del pedido actual
+        const monto = pedido.TotalPedido;
+        const idVendedor = pedido.IdVendedor;
+
+        // Guardar en las variables globales
+        pedidosGuardados.push(idPedido);
+        montosPedidos.push(monto);
+        vendedoresPedidos.push(idVendedor);
+
+        console.log("📋 Lista de pedidos actualizada:", pedidosGuardados);
+        console.log("💲 Lista de montos actualizada:", montosPedidos);
+        console.log("👨‍💼 Lista de vendedores actualizada:", vendedoresPedidos);
+
+        alert("Compra realizada con éxito!");
+
+        // Cerrar la modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalPedido'));
+        modal.hide();
+    } else {
+        console.error("❌ Error en la respuesta del servidor:", data.d ? data.d.message : "Respuesta inesperada.");
+        alert("Hubo un problema al realizar la compra: " + (data.d ? data.d.message : "Respuesta inesperada."));
+    }
+})
+.catch(error => {
+    console.error("⚠ Error en la petición fetch:", error);
+    alert("Hubo un error al procesar tu compra. Intenta nuevamente.");
+});
+
+
             });
         }
     </script>

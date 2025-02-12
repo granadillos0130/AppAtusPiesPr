@@ -92,9 +92,14 @@
         renderizarBotonPayPal(totalCarrito);
     }
 
-    function renderizarBotonPayPal(totalCarrito, idsPedidos, idsVendedores, montos) {
-        console.log("🔹 Iniciando renderización del botón de PayPal...");
-        console.log("💰 Total del carrito:", totalCarrito);
+    const idsPedidos = JSON.parse(localStorage.getItem("idsPedidos")) || [];
+    const idsVendedores = JSON.parse(localStorage.getItem("idsVendedores")) || [];
+    const montos = JSON.parse(localStorage.getItem("montos")) || [];
+
+    function renderizarBotonPayPal(totalCarrito) {
+        console.log("📋 Pedidos guardados:", pedidosGuardados);
+        console.log("💲 Montos guardados:", montosPedidos);
+        console.log("👨‍💼 Vendedores guardados:", vendedoresPedidos);
 
         fetch('carritoCompras.aspx/VerificarSesion', {
             method: 'POST',
@@ -112,7 +117,7 @@
                         createOrder: (data, actions) => {
                             console.log("🛒 Creando orden de PayPal con monto:", totalCarrito);
                             return actions.order.create({
-                                purchase_units: [{ amount: { value: totalCarrito.toFixed(2) } }],
+                                purchase_units: [{ amount: { value: totalCarrito.toFixed(2) } }]
                             });
                         },
                         onApprove: (data, actions) => {
@@ -121,44 +126,38 @@
                                 console.log("💳 Transacción completada:", details);
                                 alert(`Transacción completada por ${details.payer.name.given_name}`);
 
-                                // 🔹 Enviar datos de transacción al servidor
+                                console.log("📤 Enviando datos al servidor:", { pedidosGuardados, vendedoresPedidos, montosPedidos });
+
                                 fetch('carritoCompras.aspx/GuardarTransaccion', {
                                     method: 'POST',
                                     headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({ idPedidos: idsPedidos, idsVendedores: idsVendedores, montos: montos })
+                                    body: JSON.stringify({ idPedidos: pedidosGuardados, idsVendedores: vendedoresPedidos, montos: montosPedidos })
                                 })
                                     .then(response => response.json())
                                     .then(data => {
-                                        if (data.d.success) {
+                                        if (data.d && data.d.success) {
                                             alert("✅ Pago registrado con éxito.");
-                                            localStorage.removeItem('carrito');
+                                            pedidosGuardados = [];
+                                            montosPedidos = [];
+                                            vendedoresPedidos = [];
                                             mostrarCarrito();
                                         } else {
-                                            alert("❌ Error al guardar la transacción: " + data.d.message);
+                                            alert("❌ Error al guardar la transacción.");
                                         }
                                     })
-                                    .catch(error => {
-                                        console.error("⚠ Error al enviar la transacción:", error);
-                                        alert("❌ Hubo un error al registrar el pago.");
-                                    });
+                                    .catch(error => alert("❌ Hubo un error al registrar el pago."));
                             });
                         },
-                        onError: (err) => {
-                            console.error("⚠ Error en PayPal:", err);
-                            alert("❌ Hubo un error al procesar tu pago.");
-                        },
+                        onError: (err) => alert("❌ Hubo un error al procesar tu pago.")
                     }).render('#paypal-button-container');
                 } else {
                     document.getElementById('mensajeInicioSesion').style.display = 'block';
                     document.getElementById('paypal-button-container').style.display = 'none';
-                    console.warn("⚠ No hay sesión activa.");
                 }
             })
-            .catch(error => {
-                console.error("⚠ Error al verificar la sesión:", error);
-                alert("❌ Hubo un error al verificar tu sesión. Intenta nuevamente.");
-            });
+            .catch(error => alert("❌ Hubo un error al verificar tu sesión."));
     }
+
 
 
     // Función para actualizar la cantidad
