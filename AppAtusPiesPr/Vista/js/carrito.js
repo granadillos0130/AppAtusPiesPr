@@ -258,6 +258,33 @@
         ];
     }
 
+    // Funcionalidad del botón vaciar carrito
+    const vaciarCarritoButton = document.getElementById('vaciarCarritoButton');
+    if (vaciarCarritoButton) {
+        vaciarCarritoButton.addEventListener('click', () => {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Se eliminarán todos los productos del carrito",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, vaciar carrito',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem('carrito');
+                    mostrarCarrito();
+                    Swal.fire(
+                        '¡Carrito vaciado!',
+                        'Tu carrito ha sido vaciado correctamente',
+                        'success'
+                    );
+                }
+            });
+        });
+    }
+
     // Función para calcular el total del pedido (solo un ejemplo)
     function calcularTotalPedido() {
         // Lógica para calcular el total (sumar precios de productos y cantidades)
