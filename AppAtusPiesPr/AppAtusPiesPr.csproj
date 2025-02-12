@@ -70,6 +70,7 @@
     <Content Include="Vista\AgregarCategorias.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\carritoCompras.aspx" />
+    <Content Include="Vista\ComprasAProveedor.aspx" />
     <Content Include="Vista\css\carrito.css" />
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
@@ -1846,6 +1847,13 @@
     </Compile>
     <Compile Include="Vista\carritoCompras.aspx.designer.cs">
       <DependentUpon>carritoCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ComprasAProveedor.aspx.cs">
+      <DependentUpon>ComprasAProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ComprasAProveedor.aspx.designer.cs">
+      <DependentUpon>ComprasAProveedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\EditarPerfilVendeyAdmin.aspx.cs">
       <DependentUpon>EditarPerfilVendeyAdmin.aspx</DependentUpon>
