@@ -6,23 +6,28 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace AppAtusPiesPr.Datos
 {
     public class ClVendedorD
     {
-        public int MtdRegistrarVendedor(ClUsuarioE vendedor, out string mensaje)
+        ClConexion objConexion = new ClConexion();
+
+
+
+        public int MtdRegistrarVendedor(ClUsuarioE vendedor, HttpPostedFile foto, out string mensaje)
         {
             int idVendedor = 0;
             mensaje = string.Empty;  // Inicializar el mensaje vacío
 
             try
             {
-                ClConexion objConexion = new ClConexion();
+               
 
                 using (SqlConnection con = objConexion.MtdAbrirConexion())
                 {
-                    using (SqlCommand cmd = new SqlCommand("spRegistrarVendedor", con))
+                    using (SqlCommand cmd = new SqlCommand("SpRegistrarVendedor", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
@@ -33,6 +38,7 @@ namespace AppAtusPiesPr.Datos
                         cmd.Parameters.AddWithValue("@password", vendedor.Password);
                         cmd.Parameters.AddWithValue("@telefono", vendedor.Telefono);
                         cmd.Parameters.AddWithValue("@direccion", vendedor.Direccion);
+                        cmd.Parameters.AddWithValue("@Foto", DBNull.Value); // Inicialmente setear la foto como NULL
 
                         // Parámetro de salida para capturar el mensaje
                         SqlParameter mensajeParam = new SqlParameter("@mensaje", SqlDbType.VarChar, 200)
@@ -46,6 +52,23 @@ namespace AppAtusPiesPr.Datos
 
                         // Capturar el mensaje de salida
                         mensaje = mensajeParam.Value.ToString();
+
+
+                        if (idVendedor > 0)
+                        {
+                            // Validación exitosa, proceder a guardar la foto
+                            string fotoNombre = $"{vendedor.Nombres}-{vendedor.Documento}{Path.GetExtension(foto.FileName)}";
+                            string rutaFoto = Path.Combine(HttpContext.Current.Server.MapPath("~/Vista/imagenes/fotoPerfil"), fotoNombre);
+
+                            // Guardar la foto en la ruta especificada
+                            foto.SaveAs(rutaFoto);
+
+                            // Actualizar la foto en la base de datos
+                            SqlCommand cmdFoto = new SqlCommand("UPDATE Vendedor SET Foto = @foto WHERE IdVendedor = @idVendedor", con);
+                            cmdFoto.Parameters.AddWithValue("@foto", fotoNombre);
+                            cmdFoto.Parameters.AddWithValue("@idVendedor", idVendedor);
+                            cmdFoto.ExecuteNonQuery();
+                        }
                     }
                 }
             }
@@ -53,8 +76,16 @@ namespace AppAtusPiesPr.Datos
             {
                 throw new Exception("Error al registrar vendedor: " + ex.Message);
             }
+
             return idVendedor;
+        
+
+
+
+
         }
+
+
 
         // Método para listar los productos mas vendidos  según el vendedor que inicie sesión
         public List<ClProductoEmpresaE> MtdObtenerProductosMasVendidosPorVendedor(int idVendedor, DateTime fechaInicio, DateTime fechaFin)
