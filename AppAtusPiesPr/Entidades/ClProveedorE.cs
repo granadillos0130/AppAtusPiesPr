@@ -11,5 +11,7 @@ namespace AppAtusPiesPr.Entidades
         public int idProveedor { get; set; }
         public int idVendedor { get; set; }
 
+        public string Nombre {  get; set; } 
+
     }
 }
