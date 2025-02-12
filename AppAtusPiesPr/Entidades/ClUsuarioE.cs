@@ -12,6 +12,8 @@ namespace AppAtusPiesPr.Entidades
         public string Documento { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
+        public string foto { get; set; }
+
 
         public string Email { get; set; }
         public string Password { get; set; }
