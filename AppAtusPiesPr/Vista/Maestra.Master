@@ -190,7 +190,7 @@
                 <i class="fas fa-plus-circle"></i>
                 Registrar Producto
             </a>
-            <a class="nav-link" href="ProveedorCompra.aspx" id="compraProveedor" runat="server">
+            <a class="nav-link" href="ComprasAProveedor.aspx" id="compraProveedor" runat="server">
                 <i class="fas fa-plus-circle"></i>
                 Registrar Compra Vendedor
             </a>
