@@ -365,3 +365,4 @@ FodyWeavers.xsd
 /AppAtusPiesPr/Vista/ListarVendedor.aspx.cs
 *.cs
 /AppAtusPiesPr/Logica/ClVendedorL.cs
+/AppAtusPiesPr/Datos/ClConexion.cs
