@@ -8,11 +8,16 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel='stylesheet' type='text/css' media='screen' href='css/carrito.css' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<<<<<<< HEAD
         <!-- Incluye SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <!-- Incluye SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+=======
+    <script src="https://www.paypal.com/sdk/js?client-id=AcJ4hvEnBv9MHxg3EggwPHF7XO7mdTT_G3N0wmqj0vieh-UOmSYC02lUOH_gAVONfGFwLvuWiGmIK1LZ&currency=USD" data-sdk-integration-source="button-factory"></script>
+
+>>>>>>> pAYPAL
     <style>
         .order-button {
             position: relative;

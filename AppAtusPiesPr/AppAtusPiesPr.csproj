@@ -1792,6 +1792,7 @@
     <Compile Include="Datos\ClConexion.cs" />
     <Compile Include="Datos\ClPedidosD.cs" />
     <Compile Include="Datos\ClProductoD.cs" />
+    <Compile Include="Datos\ClTransaccionD.cs" />
     <Compile Include="Datos\ClUsuarioD.cs" />
     <Compile Include="Datos\ClVendedorD.cs" />
     <Compile Include="Entidades\ClPedidosE.cs" />
@@ -1810,6 +1811,7 @@
     <Compile Include="Logica\ClClienteL.cs" />
     <Compile Include="Logica\ClPedidosL.cs" />
     <Compile Include="Logica\ClProductoL.cs" />
+    <Compile Include="Logica\ClTransaccionL.cs" />
     <Compile Include="Logica\ClUsuarioL.cs" />
     <Compile Include="Logica\ClVendedorL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

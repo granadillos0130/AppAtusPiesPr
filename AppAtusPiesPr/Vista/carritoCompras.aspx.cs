@@ -101,6 +101,16 @@ namespace AppAtusPiesPr.Vista
             RepeaterMarca.DataBind();
         }
 
+        [WebMethod]
+        public static object GuardarTransaccion(List<int> idPedidos, List<int> idsVendedores, List<decimal> montos)
+        {
+            ClTransaccionL transaccionL = new ClTransaccionL();
+            string resultado = transaccionL.ProcesarTransaccion(idPedidos, idsVendedores, montos);
+
+            return new { success = resultado == "OK", message = resultado };
+        }
+
+
 
     }
 
