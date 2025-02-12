@@ -11,9 +11,8 @@ namespace AppAtusPiesPr.Datos
             try
             {
                 ClConexion oConex = new ClConexion();
-                using (SqlConnection con = oConex.MtdAbrirConexion())
+                using (SqlConnection con = oConex.MtdAbrirConexion()) // La conexión ya está abierta
                 {
-                    con.Open();
                     SqlTransaction transaccion = con.BeginTransaction();
 
                     try
@@ -21,8 +20,8 @@ namespace AppAtusPiesPr.Datos
                         for (int i = 0; i < idPedidos.Count; i++)
                         {
                             string query = @"
-                            INSERT INTO Transaccion (idPedido, idMetodoPago, monto, fechaTransaccion, estado, idVendedor)
-                            VALUES (@idPedido, 1, @monto, GETDATE(), 'Completado', @idVendedor)";
+                    INSERT INTO Transaccion (idPedido, idMetodoPago, monto, fechaTransaccion, estado, idVendedor)
+                    VALUES (@idPedido, 7, @monto, GETDATE(), 'completada', @idVendedor)";
 
                             using (SqlCommand cmd = new SqlCommand(query, con, transaccion))
                             {
@@ -48,5 +47,6 @@ namespace AppAtusPiesPr.Datos
                 return "Error de conexión: " + ex.Message;
             }
         }
+
     }
 }
