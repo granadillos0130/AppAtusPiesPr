@@ -1816,8 +1816,6 @@
     <Compile Include="Logica\ClUsuarioL.cs" />
     <Compile Include="Logica\ClVendedorL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="Vista\ActualizarProducto.aspx.cs">
       <DependentUpon>ActualizarProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1832,7 +1830,6 @@
     <Compile Include="Vista\ActuProducto.aspx.designer.cs">
       <DependentUpon>ActuProducto.aspx</DependentUpon>
     </Compile>
->>>>>>> Luis
     <Compile Include="Vista\AdministrarProveedores.aspx.cs">
       <DependentUpon>AdministrarProveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
