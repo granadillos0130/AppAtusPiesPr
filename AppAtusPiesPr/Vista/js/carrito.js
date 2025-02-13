@@ -137,7 +137,7 @@
                                     text: `Transacción completada por ${details.payer.name.given_name}`,
                                     icon: 'success',
                                     confirmButtonText: 'Continuar',
-                                });                                localStorage.removeItem('carrito');
+                                }); localStorage.removeItem('carrito');
                                 mostrarCarrito();
                             });
                         },
