@@ -161,6 +161,7 @@ header {
     position: relative;
     width: 100%;
     max-width: 300px;
+    margin-left: auto; /* Mueve el contenedor a la derecha */
 }
 
     .search-bar input {
@@ -244,6 +245,7 @@ header {
     object-fit: cover;
     margin-bottom: 10px;
     transition: opacity 0.3s ease;
+    border-radius: 5px;
 }
 
 .card-info {
@@ -323,7 +325,7 @@ header {
 }
 
 .card-details {
-    margin-top: 5px;
+    margin-top: 3px;
     font-size: clamp(14px, 2vw, 16px);
     color: var(--secondary-color);
 }
@@ -664,3 +666,10 @@ header {
         opacity: 1; /* Asegura que la imagen sea visible */
         cursor: zoom-out; /* Cambia el cursor al salir */
     }
+
+.cardseller {
+    color: #555;
+    font-size: 16px;
+    margin: 5px 0;
+    text-decoration: none; /* Elimina el subrayado */
+}

@@ -147,7 +147,6 @@
                     <div class="card">
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
-                        <h4 class="card-title"></h4>
                         <div class="card-info">
                             <div class="card-details">
                                 <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
