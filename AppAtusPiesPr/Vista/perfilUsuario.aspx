@@ -169,7 +169,6 @@
 
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
                         <%# Eval("estado") %>
-                        <h4 class="card-title"></h4>
                         <div class="card-info">
                             <div class="card-details">
 

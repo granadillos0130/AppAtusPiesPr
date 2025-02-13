@@ -30,11 +30,13 @@
                                 placeholder="Buscar productos..." />
                             <i class="fas fa-search"></i>
                         </div>
+                        <div class="menubtns">
 
-                        <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
-                            <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                        </a>
-                        <a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">LOGIN</a>
+                            <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                            </a>
+                            <a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">LOGIN</a>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -44,28 +46,29 @@
         <div id="menuConSesion" runat="server" visible="false">
             <header>
                 <div class="navbar">
-                    <nav>
-                        <ul class="menu">
-                            <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
+                    <ul class="menu">
+                        <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
 
-                        </ul>
-                    </nav>
+                    </ul>
                     <a href="../index.aspx" class="logo">A TUS PIES</a>
-                    <div class="search-bar">
-                        <asp:TextBox ID="txtBusqueda2" runat="server" CssClass="search-input"
-                            AutoPostBack="True" OnTextChanged="txtBusqueda2_TextChanged"
-                            placeholder="Buscar productos..." />
-                        <i class="fas fa-search"></i>
+                    <div class="right-section">
+
+                        <div class="search-bar">
+                            <asp:TextBox ID="txtBusqueda2" runat="server" CssClass="search-input"
+                                AutoPostBack="True" OnTextChanged="txtBusqueda2_TextChanged"
+                                placeholder="Buscar productos..." />
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="menubtns">
+                            <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                            </a>
+
+                            <asp:HyperLink class="btnCerrarSesion" ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
+
+                            <asp:Button ID="btnCerrarSesion" runat="server" Class="btnCerrarSesionIcono" OnClick="btnCerrarSesion_Click" Text="" />
+                        </div>
                     </div>
-
-                    <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
-                        <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                    </a>
-
-                    <asp:HyperLink class="btnCerrarSesion" ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
-
-                    <asp:Button ID="btnCerrarSesion" runat="server" Class="btnCerrarSesionIcono" OnClick="btnCerrarSesion_Click" Text="" />
-
                 </div>
             </header>
         </div>
@@ -74,10 +77,10 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
         </asp:ContentPlaceHolder>
 
-        
-    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2024/12/04/03/20241204035742-QVX7PO4S.js"></script>
-    
+
+        <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+        <script src="https://files.bpcontent.cloud/2024/12/04/03/20241204035742-QVX7PO4S.js"></script>
+
     </form>
 </body>
 </html>

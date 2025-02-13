@@ -230,18 +230,18 @@
                 <div class="card">
                     <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                     <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
-                    <h4 class="card-title"></h4>
                     <div class="card-info">
                         <div class="card-details">
                             <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
                                 <%# Eval("NombreVendedor") %>
                                 <%# Eval("apellidos") %><br>
-                                <div class="rating">
-                                    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
-
-
-                                </div>
+                                
                             </a>
+                            <div class="rating">
+    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
+
+
+</div>
                             <div class="cardprice">
                                 <p>$<%# Eval("precio") %></p>
 
