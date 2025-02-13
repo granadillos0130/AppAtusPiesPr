@@ -666,5 +666,37 @@ namespace AppAtusPiesPr.Datos
             }
 
         }
+
+        public List<ClCategoriaE> mtdListarCategoriaActu()
+        {
+            List<ClCategoriaE> listCategoria = new List<ClCategoriaE>();
+            ClConexion oConex = new ClConexion();
+
+            using (SqlConnection con = oConex.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SplistarCategoriasActu", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            ClCategoriaE pro = new ClCategoriaE
+                            {
+                                idCategoria = Convert.ToInt32(reader["idCategoria"]),
+                                descripcion = reader["descripcion"].ToString()
+                            };
+
+                            listCategoria.Add(pro);
+
+                        }
+                    }
+
+                }
+                return listCategoria;
+            }
+        }
     }
 }

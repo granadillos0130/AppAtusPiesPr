@@ -54,7 +54,11 @@ namespace AppAtusPiesPr.Entidades
         public int? cantidadStock { get; set; } //puede aceptar valores nulos
         public int? precioVenta { get; set; }
         public string descripcionProducto { get; set; }
+
+        public string descripcion { get; set; }
         public string referencia { get; set; }
+
+
         public string imagen { get; set; }
         public string ImagenUrl
         {

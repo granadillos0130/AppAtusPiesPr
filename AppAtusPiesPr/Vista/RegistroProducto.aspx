@@ -1,12 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="RegistroProducto.aspx.cs" Inherits="AppAtusPiesPr.Vista.RegistroProducto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="css/FormRegistro.css" rel="stylesheet" />
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+    
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -25,7 +27,6 @@
                             </div>
                         </div>
 
-                    
                         <div class="mb-3">
                             <label for="txtStock" class="form-label">Cantidad Stock</label>
                             <div class="input-group">
@@ -42,7 +43,6 @@
                             </div>
                         </div>
 
-                  
                         <div class="mb-3">
                             <label for="txtDescripcionProduc" class="form-label">Descripción del Producto</label>
                             <div class="input-group">
@@ -51,7 +51,6 @@
                             </div>
                         </div>
 
-                    
                         <div class="mb-3">
                             <label for="txtReferencia" class="form-label">Referencia</label>
                             <div class="input-group">
@@ -60,20 +59,14 @@
                             </div>
                         </div>
 
-                        
                         <div class="mb-3">
-                            <label for="txtCategoria" class="form-label">Categoría</label>
-                            <asp:DropDownList ID="txtCategoria" runat="server" CssClass="form-control" class="form-label">
-                                <asp:ListItem Value="">Seleccione un Tipo de calzado</asp:ListItem>
-                                <asp:ListItem Value="deportivo">Calzado deportivo</asp:ListItem>
-                                <asp:ListItem Value="casual">Calzado casual</asp:ListItem>
-                                <asp:ListItem Value="tecnico">Calzado técnico</asp:ListItem>
-                                <asp:ListItem Value="correr">Calzado para correr</asp:ListItem>
-                                <asp:ListItem Value="crossfit">Calzado para crossfit</asp:ListItem>
-                            </asp:DropDownList>
+                            <label for="ddlCategoria" class="form-label">Categoría</label>
+                            <div class="input-group">
+                                <span class="input-group-text">👞</span>
+                                <asp:DropDownList ID="ddlCategoria" runat="server" CssClass="form-control"></asp:DropDownList>
+                            </div>
                         </div>
 
-                    
                         <div class="mb-3">
                             <label for="txtDescuento" class="form-label">Descuento</label>
                             <div class="input-group">
@@ -82,11 +75,10 @@
                             </div>
                         </div>
 
-                       
                         <div class="mb-3">
                             <label for="txtMarca" class="form-label">Marca</label>
-                            <asp:DropDownList ID="txtMarca" runat="server" CssClass="form-control" class="form-label">
-                                <asp:ListItem Value="0">Seleccione una Marca</asp:ListItem>
+                            <asp:DropDownList ID="txtMarca" runat="server" CssClass="form-control">
+                                <asp:ListItem Value="">Seleccione una Marca</asp:ListItem>
                                 <asp:ListItem Value="Nike">Nike</asp:ListItem>
                                 <asp:ListItem Value="Adidas">Adidas</asp:ListItem>
                                 <asp:ListItem Value="Reebok">Reebok</asp:ListItem>
@@ -100,13 +92,11 @@
                             </asp:DropDownList>
                         </div>
 
-                        
                         <div class="mb-3">
                             <label for="inRuta" class="form-label">Añade una Imagen</label><br />
                             <asp:FileUpload ID="inRuta" runat="server" />
                         </div>
 
-                        
                         <div class="d-grid">
                             <asp:Button ID="btnRegistrar" runat="server" Text="Registrar" CssClass="btn btn-primary btn-block" OnClick="btnRegistrar_Click" />
                         </div>
