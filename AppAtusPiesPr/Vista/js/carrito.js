@@ -124,7 +124,12 @@
                             console.log("✔ Pago aprobado, capturando transacción...");
                             return actions.order.capture().then(details => {
                                 console.log("💳 Transacción completada:", details);
-                                alert(`Transacción completada por ${details.payer.name.given_name}`);
+                                Swal.fire({
+                                title: 'Transacción completada',
+                                text: `Transacción completada por ${details.payer.name.given_name}`,
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            });
 
                                 console.log("📤 Enviando datos al servidor:", { pedidosGuardados, vendedoresPedidos, montosPedidos });
 
@@ -136,26 +141,56 @@
                                     .then(response => response.json())
                                     .then(data => {
                                         if (data.d && data.d.success) {
-                                            alert("✅ Pago registrado con éxito.");
+                                            Swal.fire({
+                                                title: 'Pago registrado',
+                                                text: '✅ Pago registrado con éxito.',
+                                                icon: 'success',
+                                                confirmButtonText: 'Aceptar'
+                                            });
                                             pedidosGuardados = [];
                                             montosPedidos = [];
                                             vendedoresPedidos = [];
                                             mostrarCarrito();
                                         } else {
-                                            alert("❌ Error al guardar la transacción.");
+                                            Swal.fire({
+                                                title: 'Error',
+                                                text: '❌ Error al guardar la transacción.',
+                                                icon: 'error',
+                                                confirmButtonText: 'Aceptar'
+                                            });
                                         }
                                     })
-                                    .catch(error => alert("❌ Hubo un error al registrar el pago."));
+                                    .catch(error => {
+                                        Swal.fire({
+                                            title: 'Error',
+                                            text: '❌ Hubo un error al registrar el pago.',
+                                            icon: 'error',
+                                            confirmButtonText: 'Aceptar'
+                                        });
+                                    });
                             });
                         },
-                        onError: (err) => alert("❌ Hubo un error al procesar tu pago.")
+                        onError: (err) => {
+                            Swal.fire({
+                                title: 'Error',
+                                text: '❌ Hubo un error al procesar tu pago.',
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
                     }).render('#paypal-button-container');
                 } else {
                     document.getElementById('mensajeInicioSesion').style.display = 'block';
                     document.getElementById('paypal-button-container').style.display = 'none';
                 }
             })
-            .catch(error => alert("❌ Hubo un error al verificar tu sesión."));
+            .catch(error => {
+                Swal.fire({
+                    title: 'Error',
+                    text: '❌ Hubo un error al verificar tu sesión.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            });
     }
 
 
