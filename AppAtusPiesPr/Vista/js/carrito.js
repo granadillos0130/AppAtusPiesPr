@@ -125,49 +125,12 @@
                             return actions.order.capture().then(details => {
                                 console.log("💳 Transacción completada:", details);
                                 Swal.fire({
-                                title: 'Transacción completada',
-                                text: `Transacción completada por ${details.payer.name.given_name}`,
-                                icon: 'success',
-                                confirmButtonText: 'Aceptar'
-                            });
-
-                                console.log("📤 Enviando datos al servidor:", { pedidosGuardados, vendedoresPedidos, montosPedidos });
-
-                                fetch('carritoCompras.aspx/GuardarTransaccion', {
-                                    method: 'POST',
-                                    headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({ idPedidos: pedidosGuardados, idsVendedores: vendedoresPedidos, montos: montosPedidos })
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        if (data.d && data.d.success) {
-                                            Swal.fire({
-                                                title: 'Pago registrado',
-                                                text: '✅ Pago registrado con éxito.',
-                                                icon: 'success',
-                                                confirmButtonText: 'Aceptar'
-                                            });
-                                            pedidosGuardados = [];
-                                            montosPedidos = [];
-                                            vendedoresPedidos = [];
-                                            mostrarCarrito();
-                                        } else {
-                                            Swal.fire({
-                                                title: 'Error',
-                                                text: '❌ Error al guardar la transacción.',
-                                                icon: 'error',
-                                                confirmButtonText: 'Aceptar'
-                                            });
-                                        }
-                                    })
-                                    .catch(error => {
-                                        Swal.fire({
-                                            title: 'Error',
-                                            text: '❌ Hubo un error al registrar el pago.',
-                                            icon: 'error',
-                                            confirmButtonText: 'Aceptar'
-                                        });
-                                    });
+                                    title: '¡Pedido agregado!',
+                                    text: `Transacción completada por ${details.payer.name.given_name}`,
+                                    icon: 'success',
+                                    confirmButtonText: 'Continuar',
+                                }); localStorage.removeItem('carrito');
+                                mostrarCarrito();
                             });
                         },
                         onError: (err) => {
