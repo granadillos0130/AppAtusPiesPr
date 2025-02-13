@@ -236,12 +236,13 @@
                             <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
                                 <%# Eval("NombreVendedor") %>
                                 <%# Eval("apellidos") %><br>
-                                <div class="rating">
-                                    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
-
-
-                                </div>
+                                
                             </a>
+                            <div class="rating">
+    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
+
+
+</div>
                             <div class="cardprice">
                                 <p>$<%# Eval("precio") %></p>
 
