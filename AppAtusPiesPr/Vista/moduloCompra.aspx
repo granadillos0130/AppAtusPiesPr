@@ -220,7 +220,7 @@
                     <div class="card-info">
                         <div class="card-details">
                             <a class="cardseller" href='<%# "perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
-                                <%# Eval("NombreVendedor") %>
+                                <%# Eval("Nombres") %>
                                 <%# Eval("apellidos") %><br>
                                 
                             </a>
@@ -240,7 +240,7 @@
                                     data-nombre='<%# HttpUtility.HtmlAttributeEncode(Eval("nombreProducto").ToString()) %>'
                                     data-imagen='<%# ResolveUrl(Eval("imagen").ToString()) %>'
                                     data-precio='<%# Eval("precio") %>'
-                                    data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("NombreVendedor").ToString()) %>'
+                                    data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("Nombres").ToString()) %>'
                                     data-apellidos='<%# HttpUtility.HtmlAttributeEncode(Eval("apellidos").ToString()) %>'
                                     data-idvendedor='<%# Eval("idVendedor") %>'>
                                     <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
