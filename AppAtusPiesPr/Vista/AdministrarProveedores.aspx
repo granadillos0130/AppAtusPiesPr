@@ -103,16 +103,14 @@
                                             </button>
                                         </td>
                                         <td>
-<button type="button" class="btn btn-info btn-sm mr-2" 
+ <button type="button" class="btn btn-secondary btn-sm mr-2" 
     onclick="EnviarCorreoGmail('<%# Eval("Email") %>', '<%= ObtenerCorreoVendedor() %>')">
     <i class="fas fa-envelope"></i> Correo
 </button>
-
 <button type="button" class="btn btn-success btn-sm" 
     onclick="EnviarWhatsApp('<%# Eval("Telefono") %>')">
     <i class="fab fa-whatsapp"></i> WhatsApp
 </button>
-
 </td>
                                     </tr>
                                 </ItemTemplate>
