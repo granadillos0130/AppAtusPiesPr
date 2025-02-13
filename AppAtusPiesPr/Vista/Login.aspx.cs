@@ -3,6 +3,7 @@ using AppAtusPiesPr.Entidades;
 using AppAtusPiesPr.Logica;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
@@ -361,6 +362,10 @@ namespace AppAtusPiesPr.Vista
             if (string.IsNullOrWhiteSpace(txtDireccionVend.Text))
                 camposVacios.Add("Dirección");
 
+            // Validar si la foto está vacía
+            if (!fuFoto.HasFile)
+                camposVacios.Add("Foto");
+
             // Si hay campos vacíos, mostrar alerta
             if (camposVacios.Any())
             {
@@ -381,17 +386,25 @@ namespace AppAtusPiesPr.Vista
                 Email = txtCorreoVend.Text,
                 Password = txtContrasenaVend.Text,
                 Telefono = txtTelefonoVend.Text,
-                Direccion = txtDireccionVend.Text,
+                Direccion = txtDireccionVend.Text
             };
 
+            // Guardar la foto en la carpeta especificada
+           
             // Mensaje de salida
             string mensaje;
 
             // Intentar registrar al vendedor
-            int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor, out mensaje);
+            int idVendedor = vendedorLo.RegistrarVendedor(nuevoVendedor, fuFoto.PostedFile, out mensaje);
 
             if (idVendedor > 0)
             {
+                string fotoNombre = $"{nuevoVendedor.Nombres}-{nuevoVendedor.Documento}{Path.GetExtension(fuFoto.FileName)}";
+                string rutaFoto = Path.Combine(Server.MapPath("~/Vista/imagenes/fotoPerfil"), fotoNombre);
+                fuFoto.SaveAs(rutaFoto);
+
+                nuevoVendedor.foto = fotoNombre;
+
                 // Si el ID es mayor que 0, significa que se registró correctamente
                 MostrarAlerta("success", "Registro exitoso", "El vendedor fue registrado correctamente. Su cuenta está en proceso de activación.");
 
@@ -407,6 +420,7 @@ namespace AppAtusPiesPr.Vista
                 MostrarAlerta("error", "Error", mensaje);
             }
         }
+
 
 
 

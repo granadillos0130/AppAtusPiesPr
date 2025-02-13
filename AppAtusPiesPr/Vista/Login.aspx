@@ -451,6 +451,10 @@
     </div>
     <span id="errorDireccion" class="text-danger"></span> <!-- Mensaje de error aquí -->
 </div>
+                <div class="form-group">
+            <label for="fuFoto">Foto:</label>
+            <asp:FileUpload ID="fuFoto" runat="server" CssClass="form-control" />
+        </div>
 
             </div>
             <div class="modal-footer">
