@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="index.aspx" />
     <Content Include="Vista\ActualizarProducto.aspx" />
+    <Content Include="Vista\ActuProducto.aspx" />
     <Content Include="Vista\AdministrarProveedores.aspx" />
     <Content Include="Vista\AgregarCategorias.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
@@ -1821,6 +1822,13 @@
     </Compile>
     <Compile Include="Vista\ActualizarProducto.aspx.designer.cs">
       <DependentUpon>ActualizarProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ActuProducto.aspx.cs">
+      <DependentUpon>ActuProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ActuProducto.aspx.designer.cs">
+      <DependentUpon>ActuProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\AdministrarProveedores.aspx.cs">
       <DependentUpon>AdministrarProveedores.aspx</DependentUpon>
