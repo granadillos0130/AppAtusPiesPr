@@ -153,7 +153,7 @@ namespace AppAtusPiesPr.Datos
                             oUsuario = new ClUsuarioE
                             {
                                 IdUsuario = Convert.ToInt32(reader["idVendedor"]),
-                                Nombres = reader["NombreVendedor"].ToString(),
+                                Nombres = reader["nombres"].ToString(),
                                 Apellidos = reader["apellidos"].ToString(),
                                 Telefono = reader["telefono"].ToString(),
                                 Descripcion = reader["descripcion"].ToString(),
