@@ -26,6 +26,7 @@ namespace AppAtusPiesPr.Vista
             if (Session["idUsuario"] != null)
             {
                 Response.Write("<script>console.log('idUsuario en sesión: " + Session["idUsuario"] + "');</script>");
+
             }
             else
             {

@@ -8,6 +8,11 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel='stylesheet' type='text/css' media='screen' href='css/carrito.css' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <!-- Incluye SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Incluye SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AXy1H95uxd5X2CWmEyZntFr2U3Jbu4LNRuizXbae7MSlnwF5LTqGaHTHE8LqTsJUGpBqGcgkwHmwbSOw&currency=USD" data-sdk-integration-source="button-factory"></script>
 
     <style>
@@ -59,7 +64,12 @@
 
     <div class="container">
         <!-- Botón para vaciar el carrito -->
-        <button id="vaciarCarritoButton" class="delete-carrito">Vaciar Carrito</button>
+<button id="vaciarCarritoButton" class="delete-carrito">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+        <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
+    </svg>
+</button>
+        
         <br>
         <br>
 
@@ -67,9 +77,13 @@
         <div id="carritoContainer"></div>
 
         <!-- Botón para abrir la modal de realizar el pedido -->
-        <button class="btn btn-success hacer-pedido" data-bs-toggle="modal" data-bs-target="#modalPedido">
+
+        <% if (Session["idUsuario"] != null)
+            { %>
+        <button class="btn btn-success hacer-pedido" data-bs-toggle="modal" data-bs-target="#modalPedido"> <i class="fas fa-shopping-cart"></i>
             Hacer Pedido
         </button>
+        <% } %>
     </div>
 
     <!-- Modal Bootstrap para completar el pedido -->
@@ -208,6 +222,36 @@ let vendedoresPedidos = [];
 
                 console.log("Pedido enviado:", JSON.stringify(pedido));
 
+                fetch("carritoCompras.aspx/GuardarPedido", {
+                    method: "POST",
+                    body: JSON.stringify({ pedido }),
+                    headers: { "Content-Type": "application/json" }
+                })
+                    .then(response => {
+                        console.log("Respuesta recibida del servidor, esperando JSON...");
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log("Respuesta procesada del servidor:", data);
+                        if (data.success) {
+                            alert("Compra realizada con éxito!");
+                            // Cerrar el modal después de una compra exitosa
+                            const modal = bootstrap.Modal.getInstance(document.getElementById('modalPedido'));
+                            modal.hide();
+                            console.log("Pedido guardado correctamente con ID:", data.message);
+                        } else {
+                            Swal.fire({
+                                title: '¡Pedido agregado!',
+                                text: 'Completa el pedido con la transacción',
+                                icon: 'success',
+                                confirmButtonText: 'Continuar'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error en la petición fetch:", error);
+                        alert("Hubo un error al procesar tu compra. Intenta nuevamente.");
+                    });
                fetch("carritoCompras.aspx/GuardarPedido", {
     method: "POST",
     body: JSON.stringify({ pedido }),

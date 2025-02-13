@@ -120,11 +120,11 @@ body {
     }
 
 /* Navbar Principal */
-.navbar {
+..navbar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center; /* Centra los elementos horizontalmente */
     width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
@@ -137,6 +137,11 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: clamp(10px, 2vw, 20px);
+    padding: 5px 0; /* Ajusta el padding para hacer el menú más delgado */
+
+    justify-content: center; /* Centra los elementos del menú */
+    margin: 0; /* Elimina el margen predeterminado */
+    padding: 0; /* Elimina el padding predeterminado */
 }
 
     .menu li a {
@@ -144,6 +149,8 @@ body {
         color: var(--primary-color);
         text-transform: uppercase;
         font-weight: 500;
+        padding: 5px 0; /* Ajusta el padding para hacer los elementos más delgados */
+        padding: 5px 0; /* Ajusta el padding para hacer el header más delgado */
     }
 
 header {
@@ -166,6 +173,7 @@ header {
     flex-wrap: wrap;
     align-items: center;
     gap: 15px;
+    justify-content: center; /* Centra los elementos de la sección derecha */
 }
 
 .login {
@@ -176,12 +184,13 @@ header {
     margin-left: auto; /* Empuja los botones hacia la derecha */
 }
 
-/* Barra de búsqueda */
 .search-bar {
     position: relative;
-    width: 100%;
-    max-width: 300px;
-    margin-left: auto; /* Mueve el contenedor a la derecha */
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    align-items: center; /* Centra verticalmente */
+    padding: 8px 15px; /* Ajusta el padding para los botones */
+    margin-left: auto; /* Mueve los botones a la derecha */
 }
 
     .search-bar input {

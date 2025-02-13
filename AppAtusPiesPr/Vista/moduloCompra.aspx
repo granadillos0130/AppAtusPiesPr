@@ -106,19 +106,6 @@
             </ul>
             <p class="devoluciones">Devoluciones y envíos gratuitos</p>
 
-            <!-- Botón para agregar al carrito -->
-            <a class="save-button"
-                data-id='<%# Eval("idProdctoEmpresa") %>'
-                data-nombre='<%# HttpUtility.HtmlAttributeEncode(Eval("nombreProducto").ToString()) %>'
-                data-imagen='<%# ResolveUrl(Eval("imagen").ToString()) %>'
-                data-precio='<%# Eval("precio") %>'
-                data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("NombreVendedor").ToString()) %>'
-                data-apellidos='<%# HttpUtility.HtmlAttributeEncode(Eval("apellidos").ToString()) %>'
-                data-idvendedor='<%# Eval("idVendedor") %>'>
-                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-            </a>
-
-
         </div>
         <div class="col-md-4">
             <!-- Sección de comentarios -->
