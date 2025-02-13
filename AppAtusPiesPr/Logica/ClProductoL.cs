@@ -159,5 +159,12 @@ namespace AppAtusPiesPr.Logica
             return objD.ObtenerPromedioValoracion(idProducto);
         }
 
+        public List <ClProductoE>MtdListarProductoDDL(int idVendedor)
+        {
+            ClProductoD objProducto = new ClProductoD();
+            List<ClProductoE> objDatas = objProducto.mtdListarVendedordll(idVendedor);
+            return objDatas;
+        }
+
     }
 }

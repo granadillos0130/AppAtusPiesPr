@@ -9,6 +9,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.WebSockets;
 
 namespace AppAtusPiesPr.Datos
 {
@@ -622,12 +623,48 @@ namespace AppAtusPiesPr.Datos
                     }
                 }
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
 
             }
             return promedio;
-        } 
+        }
+
+        public List<ClProductoE> mtdListarVendedordll(int idVendedor)
+        {
+            List<ClProductoE> listaProducto = new List<ClProductoE>();
+            ClConexion oConex = new ClConexion();
+
+            using (SqlConnection con = oConex.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SpVendedorProductoddl", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idVendedor", idVendedor);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            ClProductoE producto = new ClProductoE
+                            {
+                                idProducto = Convert.ToInt32(reader["idProdctoEmpresa"]),
+                                Nombre = reader["nombreProducto"].ToString()
+                            };
+
+                            listaProducto.Add(producto);
+
+                        }
+                    }
+
+                }
+
+                return listaProducto;
+            }
+
+        }
     }
- }
+}
