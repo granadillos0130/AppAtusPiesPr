@@ -190,14 +190,15 @@
                 <i class="fas fa-plus-circle"></i>
                 Registrar Producto
             </a>
-            <a class="nav-link" href="ComprasAProveedor.aspx" id="compraProveedor" runat="server">
-                <i class="fas fa-plus-circle"></i>
-                Registrar Compra Vendedor
-            </a>
+           
             <a class="nav-link" href="ProductosMasVendidos.aspx" id="menuMasVendidos" runat="server">
                 <i class="fas fa-chart-line"></i>
                 Mas vendidos
             </a>
+             <a class="nav-link" href="ComprasAProveedor.aspx" id="compraProveedor" runat="server">
+     <i class="fas fa-plus-circle"></i>
+     Registrar Compra Vendedor
+ </a>
             <a class="nav-link" href="ProductoRegistradoCategoria.aspx" id="menuProductosPorCategoria" runat="server">
                 <i class="fas fa-boxes"></i>
                 Productos por Categoria
@@ -210,19 +211,18 @@
                 <i class="fas fa-users"></i>
                 Listar Vendedores
             </a>
-             
             <a class="nav-link" href="AgregarCategorias.aspx" id="menuCategoria" runat="server">
-                <i class="fas fa-user-friends"></i>
-                Agregar Categoria
-            </a>
-            <a class="nav-link" href="EstadisticaVendedor.aspx" id="Estadisticas" runat="server">
-                <i class="fas fa-user-friends"></i>
-                Estadisticas Vendedores
-            </a>
-            <a class="nav-link" href="EstadisticaCategoria.aspx" id="EstadisticasCategoria" runat="server">
-                <i class="fas fa-user-friends"></i>
-                Estadisticas Categoria
-            </a>
+    <i class="fas fa-tags"></i>
+    Agregar Categoria
+</a>
+<a class="nav-link" href="EstadisticaVendedor.aspx" id="Estadisticas" runat="server">
+    <i class="fas fa-chart-line"></i>
+    Estadisticas Vendedores
+</a>
+<a class="nav-link" href="EstadisticaCategoria.aspx" id="EstadisticasCategoria" runat="server">
+    <i class="fas fa-chart-pie"></i>
+    Estadisticas Categoria
+</a>
            <a class="nav-link" href="EstadoPedido.aspx" id="menuEstadoPedido" runat="server">
                 <i class="fas fa-truck"> </i>
                 Estado Pedido
