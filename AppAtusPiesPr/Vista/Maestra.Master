@@ -223,7 +223,7 @@
                 <i class="fas fa-truck"> </i>
                 Estado Pedido
             </a>
-            <a class="nav-link" href="ActualizarProducto.aspx" id="menuActualizarProducto" runat="server">
+            <a class="nav-link" href="Pruebaa.aspx" id="menuActualizarProducto" runat="server">
                 <i class="fas fa-edit"></i> 
                 Actualizar Producto
             </a>

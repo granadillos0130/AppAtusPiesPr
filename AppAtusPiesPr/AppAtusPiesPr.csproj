@@ -105,12 +105,12 @@
     <Content Include="Vista\moduloBusqueda.aspx" />
     <Content Include="Vista\moduloCatalogoFiltrado.aspx" />
     <Content Include="Vista\moduloCompra.aspx" />
-    <Content Include="Vista\ModuloSobreNosotros.aspx" />
     <Content Include="Vista\perfilInfoVendedor.aspx" />
     <Content Include="Vista\perfilUsuario.aspx" />
     <Content Include="Vista\Peticiones.aspx" />
     <Content Include="Vista\ProductoRegistradoCategoria.aspx" />
     <Content Include="Vista\ProductosMasVendidos.aspx" />
+    <Content Include="Vista\Pruebaa.aspx" />
     <Content Include="Vista\recursos\ATP.png" />
     <Content Include="Vista\recursos\logout.png" />
     <Content Include="Vista\RegistroProducto.aspx" />
@@ -1931,13 +1931,6 @@
     <Compile Include="Vista\moduloCompra.aspx.designer.cs">
       <DependentUpon>moduloCompra.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\ModuloSobreNosotros.aspx.cs">
-      <DependentUpon>ModuloSobreNosotros.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Vista\ModuloSobreNosotros.aspx.designer.cs">
-      <DependentUpon>ModuloSobreNosotros.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Vista\perfilInfoVendedor.aspx.cs">
       <DependentUpon>perfilInfoVendedor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1972,6 +1965,13 @@
     </Compile>
     <Compile Include="Vista\ProductosMasVendidos.aspx.designer.cs">
       <DependentUpon>ProductosMasVendidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Pruebaa.aspx.cs">
+      <DependentUpon>Pruebaa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Pruebaa.aspx.designer.cs">
+      <DependentUpon>Pruebaa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\RegistroProducto.aspx.cs">
       <DependentUpon>RegistroProducto.aspx</DependentUpon>
