@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.aspx" />
-    <Content Include="Vista\ActualizarProducto.aspx" />
     <Content Include="Vista\AdministrarProveedores.aspx" />
     <Content Include="Vista\AgregarCategorias.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
@@ -1792,6 +1791,7 @@
     <Compile Include="Datos\ClConexion.cs" />
     <Compile Include="Datos\ClPedidosD.cs" />
     <Compile Include="Datos\ClProductoD.cs" />
+    <Compile Include="Datos\ClTransaccionD.cs" />
     <Compile Include="Datos\ClUsuarioD.cs" />
     <Compile Include="Datos\ClVendedorD.cs" />
     <Compile Include="Entidades\ClPedidosE.cs" />
@@ -1810,16 +1810,10 @@
     <Compile Include="Logica\ClClienteL.cs" />
     <Compile Include="Logica\ClPedidosL.cs" />
     <Compile Include="Logica\ClProductoL.cs" />
+    <Compile Include="Logica\ClTransaccionL.cs" />
     <Compile Include="Logica\ClUsuarioL.cs" />
     <Compile Include="Logica\ClVendedorL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vista\ActualizarProducto.aspx.cs">
-      <DependentUpon>ActualizarProducto.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Vista\ActualizarProducto.aspx.designer.cs">
-      <DependentUpon>ActualizarProducto.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Vista\AdministrarProveedores.aspx.cs">
       <DependentUpon>AdministrarProveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2172,7 +2166,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Vista\imagenes\fotoPerfil\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
