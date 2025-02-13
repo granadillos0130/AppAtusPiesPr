@@ -46,27 +46,28 @@
         <div id="menuConSesion" runat="server" visible="false">
             <header>
                 <div class="navbar">
-                    <nav>
-                        <ul class="menu">
-                            <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
+                    <ul class="menu">
+                        <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
 
-                        </ul>
-                    </nav>
+                    </ul>
                     <a href="../index.aspx" class="logo">A TUS PIES</a>
-                    <div class="search-bar">
-                        <asp:TextBox ID="txtBusqueda2" runat="server" CssClass="search-input"
-                            AutoPostBack="True" OnTextChanged="txtBusqueda2_TextChanged"
-                            placeholder="Buscar productos..." />
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="menubtns">
-                        <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
-                            <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
-                        </a>
+                    <div class="right-section">
 
-                        <asp:HyperLink class="btnCerrarSesion" ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
+                        <div class="search-bar">
+                            <asp:TextBox ID="txtBusqueda2" runat="server" CssClass="search-input"
+                                AutoPostBack="True" OnTextChanged="txtBusqueda2_TextChanged"
+                                placeholder="Buscar productos..." />
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="menubtns">
+                            <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
+                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                            </a>
 
-                        <asp:Button ID="btnCerrarSesion" runat="server" Class="btnCerrarSesionIcono" OnClick="btnCerrarSesion_Click" Text="" />
+                            <asp:HyperLink class="btnCerrarSesion" ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
+
+                            <asp:Button ID="btnCerrarSesion" runat="server" Class="btnCerrarSesionIcono" OnClick="btnCerrarSesion_Click" Text="" />
+                        </div>
                     </div>
                 </div>
             </header>
