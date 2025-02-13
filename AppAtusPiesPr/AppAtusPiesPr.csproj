@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.aspx" />
+    <Content Include="Vista\ActuProducto.aspx" />
     <Content Include="Vista\AdministrarProveedores.aspx" />
     <Content Include="Vista\AgregarCategorias.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
@@ -1814,6 +1815,13 @@
     <Compile Include="Logica\ClUsuarioL.cs" />
     <Compile Include="Logica\ClVendedorL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\ActuProducto.aspx.cs">
+      <DependentUpon>ActuProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ActuProducto.aspx.designer.cs">
+      <DependentUpon>ActuProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\AdministrarProveedores.aspx.cs">
       <DependentUpon>AdministrarProveedores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
