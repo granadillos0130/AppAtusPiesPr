@@ -26,13 +26,13 @@
 
                 <ul class="menuFiltros">
                     <asp:Repeater ID="Repeater2" runat="server">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <li>
                                 <a href='<%# "vista/moduloCatalogoFiltrado.aspx?id=" + Eval("idCategoria") %>'>
                                     <%# Eval("descripcion") %>
                                 </a>
                             </li>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:Repeater>
                 </ul>
             </nav>
@@ -45,13 +45,13 @@
 
                 <ul class="menuFiltros">
                     <asp:Repeater ID="RepeaterMarca" runat="server">
-                        <itemtemplate>
+                        <ItemTemplate>
                             <li>
                                 <a href='<%# "vista/moduloMarcaFiltrada.aspx?id=" + Eval("idMarca") %>'>
                                     <%# Eval("nombreMarca") %>
                                 </a>
                             </li>
-                        </itemtemplate>
+                        </ItemTemplate>
                     </asp:Repeater>
                 </ul>
             </nav>
@@ -99,23 +99,24 @@
 
 
     <br />
-    <div class="container">
+    <div class="containerr">
 
         <center>
             <h4>Conoce Nuestros Productos</h4>
         </center>
         <br />
 
-        <p>
+        
+        <p style="padding-left: 10%;">
             <hr>
-            Productos mejor valorados<hr>
+            <div style="padding-left: 10%;" >Productos mejor valorados</div><hr>
         </p>
 
         <!-- Contenedor para las tarjetas -->
         <div id="cardsContainer" class="cards-container">
 
             <asp:Repeater ID="Repeater3" runat="server">
-                <itemtemplate>
+                <ItemTemplate>
                     <div class="card">
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
@@ -150,20 +151,19 @@
                             </div>
                         </div>
                     </div>
-                </itemtemplate>
+                </ItemTemplate>
             </asp:Repeater>
         </div>
 
         <p>
             <hr>
-            Productos más vendidos<hr>
-        </p>
-
+            <div style="padding-left: 10%;" >Productos más vendidos</div><hr>
+        <//p>
         <!-- Contenedor para las tarjetas -->
         <div id="cardsContainer" class="cards-container">
 
             <asp:Repeater ID="Repeater1" runat="server">
-                <itemtemplate>
+                <ItemTemplate>
                     <div class="card">
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
@@ -199,13 +199,14 @@
                             </div>
                         </div>
                     </div>
-                </itemtemplate>
+                </ItemTemplate>
             </asp:Repeater>
         </div>
         <hr style="20px">
 
         <hr style="20px">
-        <p>
+
+        <p style="padding-left: 10%;">
             Productos más recientes<hr>
         </p>
 
@@ -213,7 +214,7 @@
         <div id="cardsContainer" class="cards-container">
 
             <asp:Repeater ID="Repeater4" runat="server">
-                <itemtemplate>
+                <ItemTemplate>
                     <div class="card">
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
@@ -249,7 +250,7 @@
                             </div>
                         </div>
                     </div>
-                </itemtemplate>
+                </ItemTemplate>
             </asp:Repeater>
         </div>
 

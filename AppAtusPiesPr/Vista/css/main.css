@@ -5,8 +5,16 @@
     box-sizing: border-box;
 }
 
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
 :root {
-    --max-width: 1200px;
+    --max-width: 100%;
     --padding-container: 20px;
     --primary-color: #000;
     --secondary-color: #999;
@@ -17,6 +25,11 @@ body {
     font-family: Arial, sans-serif;
     background-color: white;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header y Logo */
@@ -24,6 +37,13 @@ body {
     text-align: center;
     font-size: clamp(20px, 4vw, 24px);
     font-weight: bold;
+}
+
+.containerr {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 /* Botón de cerrar sesión */
@@ -201,6 +221,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.textoIndex{
+    margin-left: 20px;
 }
 
     .carousel-item img {
