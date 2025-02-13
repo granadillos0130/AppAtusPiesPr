@@ -121,16 +121,23 @@
 
 #vaciarCarritoButton {
     margin: 20px;
-    padding: 10px 20px;
-    background: #ff4444;
-    color: white;
-    border: none;
+    padding: 0; /* Elimina el padding para controlar el tamaño manualmente */
+    width: 50px; /* Ancho del botón */
+    height: 50px; /* Alto del botón (igual que el ancho para que sea cuadrado) */
+    background: #ffffff;
+    color: #ff0000;
+    border: 2px solid #ff0000; /* Borde rojo para mejor contraste */
     border-radius: 4px;
     cursor: pointer;
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
 }
 
     #vaciarCarritoButton:hover {
-        background: #cc0000;
+        background: #ff0000; /* Fondo rojo al pasar el mouse */
+        color: #ffffff; /* Texto blanco al pasar el mouse */
     }
 
 .carrito-vacio {

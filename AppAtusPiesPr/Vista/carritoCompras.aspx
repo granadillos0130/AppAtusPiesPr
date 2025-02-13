@@ -8,9 +8,9 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel='stylesheet' type='text/css' media='screen' href='css/carrito.css' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-        <!-- Incluye SweetAlert2 CSS -->
+    <!-- Incluye SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Incluye SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
@@ -42,27 +42,32 @@
         </div>
     </center>
     <center>
-    <div class="navbarFiltros">
-        <nav>
+        <div class="navbarFiltros">
+            <nav>
 
-            <ul class="menuFiltros">
-                <asp:Repeater ID="RepeaterMarca" runat="server">
-                    <itemtemplate>
-                        <li>
+                <ul class="menuFiltros">
+                    <asp:Repeater ID="RepeaterMarca" runat="server">
+                        <ItemTemplate>
+                            <li>
                                 <a href='<%# "moduloMarcaFiltrada.aspx?id=" + Eval("idMarca") %>'>
                                     <%# Eval("nombreMarca") %>
                                 </a>
-                        </li>
-                    </itemtemplate>
-                </asp:Repeater>
-            </ul>
-        </nav>
-    </div>
-</center>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+            </nav>
+        </div>
+    </center>
 
     <div class="container">
         <!-- Botón para vaciar el carrito -->
-        <button id="vaciarCarritoButton" class="delete-carrito">Vaciar Carrito</button>
+<button id="vaciarCarritoButton" class="delete-carrito">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+        <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/>
+    </svg>
+</button>
+        
         <br>
         <br>
 
@@ -70,9 +75,13 @@
         <div id="carritoContainer"></div>
 
         <!-- Botón para abrir la modal de realizar el pedido -->
-        <button class="btn btn-success hacer-pedido" data-bs-toggle="modal" data-bs-target="#modalPedido">
+
+        <% if (Session["idUsuario"] != null)
+            { %>
+        <button class="btn btn-success hacer-pedido" data-bs-toggle="modal" data-bs-target="#modalPedido"> <i class="fas fa-shopping-cart"></i>
             Hacer Pedido
         </button>
+        <% } %>
     </div>
 
     <!-- Modal Bootstrap para completar el pedido -->
@@ -125,7 +134,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/carrito.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AcJ4hvEnBv9MHxg3EggwPHF7XO7mdTT_G3N0wmqj0vieh-UOmSYC02lUOH_gAVONfGFwLvuWiGmIK1LZ&currency=USD"></script>
-    
+
     <script>
         // Obtener idCliente desde la sesión
         var idCliente = '<%= Session["idUsuario"] %>';
@@ -225,8 +234,12 @@
                             modal.hide();
                             console.log("Pedido guardado correctamente con ID:", data.message);
                         } else {
-                            console.error("Error al guardar el pedido:", data.message);
-                            alert("Hubo un problema al realizar la compra: " + data.message);
+                            Swal.fire({
+                                title: '¡Pedido agregado!',
+                                text: 'Completa el pedido con la transacción',
+                                icon: 'success',
+                                confirmButtonText: 'Continuar'
+                            });
                         }
                     })
                     .catch(error => {

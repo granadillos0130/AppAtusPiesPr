@@ -132,8 +132,12 @@
                         },
                         onApprove: (data, actions) => {
                             return actions.order.capture().then(details => {
-                                alert(`Transacción completada por ${details.payer.name.given_name}`);
-                                localStorage.removeItem('carrito');
+                                Swal.fire({
+                                    title: '¡Pedido agregado!',
+                                    text: `Transacción completada por ${details.payer.name.given_name}`,
+                                    icon: 'success',
+                                    confirmButtonText: 'Continuar',
+                                });                                localStorage.removeItem('carrito');
                                 mostrarCarrito();
                             });
                         },

@@ -35,7 +35,8 @@
                             <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
                                 <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                             </a>
-                            <a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">LOGIN</a>
+                            <a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">
+                                Inicia Sesión</a>
                         </div>
                     </div>
                 </div>
@@ -64,7 +65,7 @@
                                 <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                             </a>
 
-                            <asp:HyperLink class="btnCerrarSesion" ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
+                            <asp:HyperLink class="btnCerrarSesion" Text=""  ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
 
                             <asp:Button ID="btnCerrarSesion" runat="server" Class="btnCerrarSesionIcono" OnClick="btnCerrarSesion_Click" Text="" />
                         </div>
