@@ -527,6 +527,72 @@ header {
     }
 }
 
+/* Ajustes para pantallas grandes (min-width: 1600px) */
+@media (min-width: 1600px) {
+    :root {
+        --max-width: 1600px; /* Aumenta el ancho máximo del contenedor */
+        --padding-container: 40px; /* Aumenta el padding para pantallas grandes */
+    }
+
+    body {
+        font-size: 1.2rem; /* Aumenta el tamaño de la fuente base */
+    }
+
+    .header-logo {
+        font-size: clamp(24px, 5vw, 32px); /* Aumenta el tamaño del logo */
+    }
+
+    .navbar {
+        padding: 20px var(--padding-container); /* Aumenta el padding del navbar */
+    }
+
+    .menu li a {
+        font-size: clamp(14px, 2.5vw, 18px); /* Aumenta el tamaño de los enlaces del menú */
+    }
+
+    .search-bar {
+        max-width: 400px; /* Aumenta el ancho de la barra de búsqueda */
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Aumenta el tamaño mínimo de las cards */
+        gap: 30px; /* Aumenta el espacio entre las cards */
+    }
+
+    .card {
+        max-width: 350px; /* Aumenta el ancho máximo de las cards */
+    }
+
+    .card-title {
+        font-size: clamp(16px, 2.5vw, 20px); /* Aumenta el tamaño del título de la card */
+    }
+
+    .card-details {
+        font-size: clamp(16px, 2.5vw, 18px); /* Aumenta el tamaño de los detalles de la card */
+    }
+
+    .buy-button, .delete-carrito {
+        font-size: clamp(14px, 2.5vw, 18px); /* Aumenta el tamaño de los botones */
+    }
+
+    .producto-detalle {
+        gap: 50px; /* Aumenta el espacio entre la imagen y la información del producto */
+    }
+
+    .producto-info h1 {
+        font-size: clamp(24px, 5vw, 32px); /* Aumenta el tamaño del título del producto */
+    }
+
+    .producto-info ul {
+        font-size: clamp(14px, 2.5vw, 18px); /* Aumenta el tamaño de la lista de detalles del producto */
+    }
+
+    .imagen-zoom.zoom-activo {
+        width: 80vw; /* Aumenta el tamaño de la imagen en el zoom */
+        height: 80vh;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
         justify-content: center;
@@ -675,3 +741,4 @@ header {
     margin: 5px 0;
     text-decoration: none; /* Elimina el subrayado */
 }
+
