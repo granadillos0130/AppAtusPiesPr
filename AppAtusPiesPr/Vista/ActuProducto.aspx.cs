@@ -10,11 +10,12 @@ using System.Web.UI.WebControls;
 
 namespace AppAtusPiesPr.Vista
 {
+   
     public partial class ActuProducto : System.Web.UI.Page
     {
-       
-        
-            ClProductoL productosLogica = new ClProductoL();
+        ClProductoL productosCategoria = new ClProductoL();
+
+        ClProductoL productosLogica = new ClProductoL();
             protected void Page_Load(object sender, EventArgs e)
             {
                 if (!IsPostBack)
@@ -24,10 +25,34 @@ namespace AppAtusPiesPr.Vista
                         int idVendedor = Convert.ToInt32(Session["idUsuario"]);
                         CargarProductos(idVendedor);
                     }
+
+                CargarCategorias();
                 }
+
             }
 
-            private void CargarProductos(int idVendedor)
+
+        private void CargarCategorias()
+        {
+            List<ClCategoriaE> listaProductos = productosCategoria.MtdlistarCategoriasActua();
+
+            if (listaProductos.Count > 0)
+            {
+                ddlCategoria.DataSource = listaProductos;
+                ddlCategoria.DataTextField = "descripcion";
+                ddlCategoria.DataValueField = "idcategoria";
+                ddlCategoria.DataBind();
+            }
+            else
+            {
+                ddlCategoria.Items.Clear();
+                ddlCategoria.Items.Add(new ListItem("No hay categorias disponibles", "0"));
+            }
+
+            ddlCategoria.Items.Insert(0, new ListItem("Seleccione una categoria", "0"));
+        }
+
+        private void CargarProductos(int idVendedor)
             {
                 List<ClProductoE> listaProductos = productosLogica.MtdListarProductoDDL(idVendedor);
 
@@ -72,7 +97,7 @@ namespace AppAtusPiesPr.Vista
                         Estado = string.IsNullOrWhiteSpace(txtEstado.Text) ? null : txtEstado.Text,
                         descuento = string.IsNullOrWhiteSpace(txtDescuento.Text) ? (int?)null : int.Parse(txtDescuento.Text),
                         referencia = string.IsNullOrWhiteSpace(txtReferencia.Text) ? null : txtReferencia.Text,
-                        descripcionCategoria = string.IsNullOrWhiteSpace(txtCategoria.Text) ? null : txtCategoria.Text,
+                        descripcionCategoria = string.IsNullOrWhiteSpace(ddlCategoria.Text) ? null : ddlCategoria.Text,
                         nombreMarca = string.IsNullOrWhiteSpace(txtMarca.Text) ? null : txtMarca.Text,
                         imagen = rutaImagen
                     };
@@ -83,7 +108,11 @@ namespace AppAtusPiesPr.Vista
                     if (objDatos != null)
                     {
                         MostrarMensajeExito("Producto actualizado correctamente");
-                        LimpiarFormulario();
+
+                    // Recargar la lista de productos después de la actualización
+                    int idVendedor = Convert.ToInt32(Session["idUsuario"]);
+                    CargarProductos(idVendedor);
+                    LimpiarFormulario();
                     }
                     else
                     {
@@ -141,8 +170,8 @@ namespace AppAtusPiesPr.Vista
                 txtEstado.SelectedValue = "disponible";
                 txtDescuento.Text = "";
                 txtReferencia.Text = "";
-                txtCategoria.SelectedValue = "";
-                txtMarca.SelectedValue = "";
+            ddlCategoria.SelectedIndex = 0;
+            txtMarca.SelectedValue = "";
             }
 
             private void MostrarMensajeExito(string mensaje)
