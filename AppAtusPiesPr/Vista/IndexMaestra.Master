@@ -18,7 +18,7 @@
             <header>
                 <div class="navbar">
                     <ul class="menu">
-                        <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
+                        <li><a href="<%= ResolveUrl("~/vista/Nosotros.aspx") %>">Sobre Nosotros</a></li>
                         <!-- Otros elementos del menú -->
                     </ul>
 
