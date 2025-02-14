@@ -107,6 +107,7 @@
     <Content Include="Vista\moduloCatalogoFiltrado.aspx" />
     <Content Include="Vista\moduloCompra.aspx" />
     <Content Include="Vista\moduloMarcaFiltrada.aspx" />
+    <Content Include="Vista\Nosotros.aspx" />
     <Content Include="Vista\perfilInfoVendedor.aspx" />
     <Content Include="Vista\perfilUsuario.aspx" />
     <Content Include="Vista\Peticiones.aspx" />
@@ -1947,6 +1948,13 @@
     </Compile>
     <Compile Include="Vista\moduloMarcaFiltrada.aspx.designer.cs">
       <DependentUpon>moduloMarcaFiltrada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Nosotros.aspx.cs">
+      <DependentUpon>Nosotros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Nosotros.aspx.designer.cs">
+      <DependentUpon>Nosotros.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\perfilInfoVendedor.aspx.cs">
       <DependentUpon>perfilInfoVendedor.aspx</DependentUpon>
