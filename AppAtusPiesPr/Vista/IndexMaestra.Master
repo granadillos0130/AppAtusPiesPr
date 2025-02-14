@@ -46,7 +46,7 @@
                 <div class="navbar">
                     <nav>
                         <ul class="menu">
-                            <li><a href="<%= ResolveUrl("~/vista/moduloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
+                            <li><a href="<%= ResolveUrl("~/vista/modeloSobreNosotros.aspx") %>">Sobre Nosotros</a></li>
 
                         </ul>
                     </nav>

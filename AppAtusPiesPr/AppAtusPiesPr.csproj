@@ -113,6 +113,7 @@
     <Content Include="Vista\recursos\ATP.png" />
     <Content Include="Vista\recursos\logout.png" />
     <Content Include="Vista\RegistroProducto.aspx" />
+    <Content Include="Vista\moduloSobreNosotros.aspx" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Vista\vendor\bootstrap\js\bootstrap.js" />
@@ -1971,6 +1972,13 @@
     </Compile>
     <Compile Include="Vista\RegistroProducto.aspx.designer.cs">
       <DependentUpon>RegistroProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\moduloSobreNosotros.aspx.cs">
+      <DependentUpon>moduloSobreNosotros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\moduloSobreNosotros.aspx.designer.cs">
+      <DependentUpon>moduloSobreNosotros.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
