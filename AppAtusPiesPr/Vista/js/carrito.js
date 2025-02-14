@@ -92,38 +92,46 @@
         renderizarBotonPayPal(totalCarrito);
     }
 
-    const idsPedidos = JSON.parse(localStorage.getItem("idsPedidos")) || [];
-    const idsVendedores = JSON.parse(localStorage.getItem("idsVendedores")) || [];
-    const montos = JSON.parse(localStorage.getItem("montos")) || [];
-
+    // Función para renderizar el botón de PayPal
     function renderizarBotonPayPal(totalCarrito) {
-        console.log("📋 Pedidos guardados:", pedidosGuardados);
-        console.log("💲 Montos guardados:", montosPedidos);
-        console.log("👨‍💼 Vendedores guardados:", vendedoresPedidos);
-
         fetch('carritoCompras.aspx/VerificarSesion', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({})
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
         })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error en la validación de sesión: ${response.statusText}`);
+                }
+                return response.json();
+            })
             .then(data => {
+                const mensajeInicioSesion = document.getElementById('mensajeInicioSesion');
+                const contenedorPayPal = document.getElementById('paypal-button-container');
+
                 if (data.d) {
-                    document.getElementById('mensajeInicioSesion').style.display = 'none';
-                    document.getElementById('paypal-button-container').style.display = 'block';
+                    // Hay sesión activa
+                    mensajeInicioSesion.style.display = 'none';
+                    contenedorPayPal.style.display = 'block';
 
                     paypal.Buttons({
-                        style: { shape: 'rect', layout: 'vertical', color: 'gold', label: 'paypal' },
+                        style: {
+                            shape: 'rect',
+                            layout: 'vertical',
+                            color: 'gold',
+                            label: 'paypal',
+                        },
                         createOrder: (data, actions) => {
-                            console.log("🛒 Creando orden de PayPal con monto:", totalCarrito);
                             return actions.order.create({
-                                purchase_units: [{ amount: { value: totalCarrito.toFixed(2) } }]
+                                purchase_units: [{
+                                    amount: { value: totalCarrito.toFixed(2) },
+                                }],
                             });
                         },
                         onApprove: (data, actions) => {
-                            console.log("✔ Pago aprobado, capturando transacción...");
                             return actions.order.capture().then(details => {
-                                console.log("💳 Transacción completada:", details);
                                 Swal.fire({
                                     title: '¡Pedido agregado!',
                                     text: `Transacción completada por ${details.payer.name.given_name}`,
@@ -134,29 +142,21 @@
                             });
                         },
                         onError: (err) => {
-                            Swal.fire({
-                                title: 'Error',
-                                text: '❌ Hubo un error al procesar tu pago.',
-                                icon: 'error',
-                                confirmButtonText: 'Aceptar'
-                            });
+                            console.error('Error en PayPal:', err);
+                            alert('Hubo un error al procesar tu pago.');
+                        },
                     }).render('#paypal-button-container');
                 } else {
-                    document.getElementById('mensajeInicioSesion').style.display = 'block';
-                    document.getElementById('paypal-button-container').style.display = 'none';
+                    // No hay sesión activa
+                    mensajeInicioSesion.style.display = 'block';
+                    contenedorPayPal.style.display = 'none';
                 }
             })
             .catch(error => {
-                Swal.fire({
-                    title: 'Error',
-                    text: '❌ Hubo un error al verificar tu sesión.',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
+                console.error('Error al verificar la sesión:', error);
+                alert('Hubo un error al verificar tu sesión. Intenta nuevamente.');
             });
     }
-
-
 
     // Función para actualizar la cantidad
     window.actualizarCantidad = function (idProducto, cambio) {
