@@ -15,6 +15,7 @@ namespace AppAtusPiesPr.Vista
             if (!IsPostBack)
             {
                 cargarCategorias();
+                cargarMarcas();
                 
             }
         }
@@ -23,6 +24,12 @@ namespace AppAtusPiesPr.Vista
             ClProductoL oLogica = new ClProductoL();
             Repeater2.DataSource = oLogica.MtdListarCategorias();
             Repeater2.DataBind();
+        }
+        private void cargarMarcas()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            repeaterMarca.DataSource = oLogica.MtdListarMarcas();
+            repeaterMarca.DataBind();
         }
     }
     

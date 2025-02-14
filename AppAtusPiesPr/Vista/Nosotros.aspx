@@ -327,7 +327,7 @@ a:hover {
                 <asp:Repeater ID="repeaterMarca" runat="server">
                                         <itemtemplate>
                         <li>
-                            <a href='<%# "vista/moduloMarcaFiltrada.aspx?id=" + Eval("idMarca") %>'>
+                            <a href='<%# "moduloMarcaFiltrada.aspx?id=" + Eval("idMarca") %>'>
                                 <%# Eval("nombreMarca") %>
                             </a>
                         </li>
@@ -405,7 +405,7 @@ a:hover {
                      Experta en desarrollo de APIs y bases de datos. Enfocada en crear soluciones escalables y eficientes.
                  </p>
                  <div class="social-links">
-                     <a href="#" class="social-link">
+                     <a href="https://github.com/papuluiszzz" class="social-link">
                          <i class="fab fa-github"></i>
                      </a>
                      <a href="#" class="social-link">
@@ -426,12 +426,10 @@ a:hover {
                      Creativo y detallista en el diseño de experiencias de usuario. Especialista en interacción y usabilidad.
                  </p>
                  <div class="social-links">
-                     <a href="#" class="social-link">
+                     <a href="https://github.com/wilmarpere" class="social-link">
                          <i class="fab fa-github"></i>
                      </a>
-                     <a href="#" class="social-link">
-                         <i class="fab fa-linkedin"></i>
-                     </a>
+                    
                  </div>
              </div>
          </div>
@@ -447,33 +445,28 @@ a:hover {
                      Encargada de asegurar la calidad del software. Experta en pruebas automatizadas y control de calidad.
                  </p>
                  <div class="social-links">
-                     <a href="#" class="social-link">
+                     <a href="https://github.com/Brayam96" class="social-link">
                          <i class="fab fa-github"></i>
                      </a>
-                     <a href="#" class="social-link">
-                         <i class="fab fa-linkedin"></i>
-                     </a>
+                 
                  </div>
              </div>
          </div>
 
          <div class="team-card">
              <div class="card-image">
-                 <img src="/Vista/imagenes/Captura de pantalla 2025-02-09 214745.png" alt="Captura 1">
+                 <img src="/Vista/imagenes/Captura de pantalla 2025-02-09 214344.png" alt="Captura 1">
              </div>
              <div class="card-content">
-                 <h3 class="member-name">Miguel Torres</h3>
+                 <h3 class="member-name">Santiago Granados</h3>
                  <div class="member-role">DevOps Engineer</div>
                  <p class="member-description">
                      Especialista en infraestructura y despliegue. Apasionado por la automatización y la mejora continua.
                  </p>
                  <div class="social-links">
-                     <a href="#" class="social-link">
+                     <a href="https://github.com/granadillos0130" class="social-link">
                          <i class="fab fa-github"></i>
-                     </a>
-                     <a href="#" class="social-link">
-                         <i class="fab fa-linkedin"></i>
-                     </a>
+                     
                  </div>
              </div>
          </div>
