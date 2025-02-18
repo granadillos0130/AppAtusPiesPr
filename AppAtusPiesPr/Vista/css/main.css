@@ -119,30 +119,32 @@ body {
         text-align: center;
     }
 
-/* Navbar Principal */
-..navbar {
+.navbar {
+    padding: 10px; /* Agrega 10px de padding en todos los lados */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center; /* Centra los elementos horizontalmente */
-    width: 100%;
+    justify-content: center;
+    width: calc(100% - 20px); /* Resta 10px de cada lado para mantener la separación */
     max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 10px var(--padding-container);
+    margin: 0 auto; /* Centra el navbar */
     gap: 15px;
+    padding-right:10px;
+    padding-left:10px;
 }
+
+
 
 .menu {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
     gap: clamp(10px, 2vw, 20px);
-    padding: 5px 0; /* Ajusta el padding para hacer el menú más delgado */
-
-    justify-content: center; /* Centra los elementos del menú */
-    margin: 0; /* Elimina el margen predeterminado */
-    padding: 0; /* Elimina el padding predeterminado */
+    padding: 5px 10px; /* Agrega 10px de padding en los lados */
+    justify-content: center;
+    margin: 0 10px; /* Agrega 10px de margen en los lados */
 }
+
 
     .menu li a {
         text-decoration: none;

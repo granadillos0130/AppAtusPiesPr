@@ -68,6 +68,7 @@
     <Content Include="Vista\ActuProducto.aspx" />
     <Content Include="Vista\AdministrarProveedores.aspx" />
     <Content Include="Vista\AgregarCategorias.aspx" />
+    <Content Include="Vista\agregarMarca.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\carritoCompras.aspx" />
     <Content Include="Vista\ComprasAProveedor.aspx" />
@@ -1855,6 +1856,13 @@
     </Compile>
     <Compile Include="Vista\AgregarCategorias.aspx.designer.cs">
       <DependentUpon>AgregarCategorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\agregarMarca.aspx.cs">
+      <DependentUpon>agregarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\agregarMarca.aspx.designer.cs">
+      <DependentUpon>agregarMarca.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\BlankPage.aspx.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>

@@ -39,6 +39,12 @@ namespace AppAtusPiesPr.Logica
             return ListaSolicitudes.MtdListarSolicitudes();
         }
 
+        public bool mtdAgregarMarca(ClMarcasE oDatos)
+        {
+            ClAdminD ListaSolicitudes = new ClAdminD();
+            return ListaSolicitudes.MtdAgregarMarca(oDatos);
+        }
+
         public List<ClUsuarioE> MtdFiltroVendedor(string docu, string estado)
         {
             ClAdminD FiltroVendedor = new ClAdminD();
@@ -50,6 +56,12 @@ namespace AppAtusPiesPr.Logica
         {
             ClAdminD Categoria = new ClAdminD();
             return Categoria.MtdValidacionCategoria(oDatos);
+        }
+
+        public bool MtdValidarMarca(ClMarcasE oDatos)
+        {
+            ClAdminD Categoria = new ClAdminD();
+            return Categoria.MtdValidacionMarca(oDatos);
         }
 
         public List<ClEstadisticaVendedorE> MtdEstadistica(string documento,string año,string mes)

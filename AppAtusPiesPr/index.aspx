@@ -202,7 +202,6 @@
                 </ItemTemplate>
             </asp:Repeater>
         </div>
-        <hr style="20px">
 
         <hr style="20px">
 

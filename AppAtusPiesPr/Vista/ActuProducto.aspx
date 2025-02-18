@@ -91,6 +91,7 @@
                                     <asp:ListItem Value="Saucony">Saucony</asp:ListItem>
                                     <asp:ListItem Value="Hoka">Hoka</asp:ListItem>
                                     <asp:ListItem Value="Mizuno">Mizuno</asp:ListItem>
+                                    <asp:ListItem Value="Balenciaga">Balenciaga</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="col-md-6">

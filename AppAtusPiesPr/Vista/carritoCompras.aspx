@@ -196,7 +196,7 @@ let vendedoresPedidos = [];
 
                 const productosPorVendedor = carrito.filter(producto => producto.idVendedor === idVendedor);
                 console.log("Productos del vendedor:", productosPorVendedor);
-
+                2
                 const totalVendedor = productosPorVendedor.reduce((acc, producto) => {
                     const subtotal = (parseFloat(producto.precio) || 0) * (producto.cantidad || 1);
                     console.log(`Subtotal calculado para producto ${producto.idProducto}:`, subtotal);
@@ -243,7 +243,7 @@ let vendedoresPedidos = [];
                             Swal.fire({
                                 title: '¡Pedido agregado!',
                                 text: 'Completa el pedido con la transacción',
-                                icon: 'success',
+                                i1con: 'success',
                                 confirmButtonText: 'Continuar'
                             });
                         }

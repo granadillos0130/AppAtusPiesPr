@@ -41,6 +41,22 @@ a:hover {
             position: relative;
         }
 
+        /* Footer */
+.pie-pagina {
+    margin-top: 2%;
+    text-align: center;
+    border-top: 1px solid var(--secondary-color);
+    background-color: #cfcfcf;
+    padding: 20px var(--padding-container);
+    width: 100%;
+}
+
+    .pie-pagina p {
+        margin-top: 1%;
+        text-align: center;
+        color: var(--primary-color);
+    }
+
         .about-header h2 {
             font-size: 3.5rem;
             color: var(--text-primary);
@@ -232,30 +248,6 @@ a:hover {
             transform: translateY(-3px);
         }
 
-        .pie-pagina {
-            background: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 4rem;
-        }
-
-        .pie-pagina p {
-            margin: 0.5rem 0;
-            font-size: 1.1rem;
-        }
-
-        .pie-pagina a {
-            color: white;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            transition: border-color 0.3s ease;
-        }
-
-        .pie-pagina a:hover {
-            border-color: white;
-        }
-
         @media (max-width: 968px) {
             .about-layout {
                 grid-template-columns: 1fr;
@@ -402,7 +394,7 @@ a:hover {
                  <h3 class="member-name">Luis Salamanca</h3>
                  <div class="member-role">Desarrollador Backend</div>
                  <p class="member-description">
-                     Experta en desarrollo de APIs y bases de datos. Enfocada en crear soluciones escalables y eficientes.
+                     Experto en desarrollo de APIs y bases de datos. Enfocado en crear soluciones escalables y eficientes.
                  </p>
                  <div class="social-links">
                      <a href="https://github.com/papuluiszzz" class="social-link">
@@ -442,7 +434,7 @@ a:hover {
                  <h3 class="member-name">Brayam Sisa</h3>
                  <div class="member-role">QA Engineer</div>
                  <p class="member-description">
-                     Encargada de asegurar la calidad del software. Experta en pruebas automatizadas y control de calidad.
+                     Encargado de asegurar la calidad del software. Experto en pruebas automatizadas y control de calidad.
                  </p>
                  <div class="social-links">
                      <a href="https://github.com/Brayam96" class="social-link">
@@ -473,9 +465,4 @@ a:hover {
      </div>
  </div>
 
- <div class="pie-pagina">
-     <p>&copy; 2024 A TUS PIES. Todos los derechos reservados.</p>
-     <p>Diseñado con amor para brindar estilo y comodidad.</p>
-     <p>Contáctanos: <a href="mailto:contacto@atuspies.com">contacto@atuspies.com</a></p>
- </div>
 </asp:Content>
