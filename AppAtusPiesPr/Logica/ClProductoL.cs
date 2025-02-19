@@ -173,5 +173,12 @@ namespace AppAtusPiesPr.Logica
             return objData;
         }
 
+        public List<ClProductoEmpresaE> mtdNotificaciones(int idCliente)
+        {
+            ClProductoD objproducto = new ClProductoD();
+            List<ClProductoEmpresaE> objData = objproducto.ObtenerNotificaciones(idCliente);
+            return objData;
+        } 
+
     }
 }

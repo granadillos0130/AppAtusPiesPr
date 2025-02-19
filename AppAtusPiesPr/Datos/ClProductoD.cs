@@ -698,5 +698,38 @@ namespace AppAtusPiesPr.Datos
                 return listCategoria;
             }
         }
+
+        public List<ClProductoEmpresaE> ObtenerNotificaciones(int idCliente)
+        {
+            List<ClProductoEmpresaE> lista = new List<ClProductoEmpresaE>();
+            ClConexion oConex = new ClConexion();
+
+            using (SqlConnection con = oConex.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("ObtenerNotificaciones", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idCliente", idCliente);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        lista.Add(new ClProductoEmpresaE
+                        {
+                            idProducto = Convert.ToInt32(dr["idProducto"]),
+                            nombreProducto = dr["nombreProducto"].ToString(),
+                            precioVenta = Convert.ToInt32(dr["precio"]),
+                            descripcionProducto = dr["descripcionProducto"].ToString(),
+                            Estado = dr["estado"].ToString(),
+                            imagen = dr["imagen"].ToString(),
+                            descuento = Convert.ToInt32(dr["descuento"]),
+                            nombreVendedor = dr["nombres"].ToString(),
+                            apellidoVendedor = dr["apellidos"].ToString()
+                        });
+                    }
+                }
+            }
+            return lista;
+
+        }
     }
 }

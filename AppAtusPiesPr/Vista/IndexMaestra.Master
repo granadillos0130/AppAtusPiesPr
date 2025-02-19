@@ -7,7 +7,7 @@
     <title>ATP </title>
     <link href="css/main.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 
 </head>
@@ -35,8 +35,7 @@
                             <a href="<%= ResolveUrl("carritoCompras.aspx") %>" class="save-button2">
                                 <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                             </a>
-                            <a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">
-                                Inicia Sesión</a>
+                            <a href="<%= ResolveUrl("~/vista/Login.aspx") %>" class="login">Inicia Sesión</a>
                         </div>
                     </div>
                 </div>
@@ -65,7 +64,20 @@
                                 <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
                             </a>
 
-                            <asp:HyperLink class="btnCerrarSesion" Text=""  ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
+                            <div class="notificaciones">
+                                <button id="btnNotificaciones" class="notificacion-icono" runat="server">
+    <i class="fas fa-bell"></i>
+    <span id="notificacionBadge" runat="server" class="notificacion-badge" style="display: none;">0</span>
+</button>
+
+                                <div id="panelNotificaciones" runat="server" class="notificacion-panel" style="display: none;">
+                                    <div id="listaNotificaciones" runat="server" class="notificacion-lista">
+                                        <p>Cargando notificaciones...</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <asp:HyperLink class="btnCerrarSesion" Text="" ID="nombreCliente" runat="server" NavigateUrl="perfilUsuario.aspx" />
 
                             <asp:Button ID="btnCerrarSesion" runat="server" Class="btnCerrarSesionIcono" OnClick="btnCerrarSesion_Click" Text="" />
                         </div>
@@ -81,6 +93,25 @@
 
         <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
         <script src="https://files.bpcontent.cloud/2024/12/04/03/20241204035742-QVX7PO4S.js"></script>
+        <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var btnNotificaciones = document.getElementById('<%= btnNotificaciones.ClientID %>');
+        var panelNotificaciones = document.getElementById('<%= panelNotificaciones.ClientID %>');
+
+        if (btnNotificaciones && panelNotificaciones) {
+            btnNotificaciones.addEventListener("click", function () {
+                panelNotificaciones.style.display = 
+                    panelNotificaciones.style.display === "block" ? "none" : "block";
+            });
+
+            document.addEventListener("click", function (event) {
+                if (!btnNotificaciones.contains(event.target) && !panelNotificaciones.contains(event.target)) {
+                    panelNotificaciones.style.display = "none";
+                }
+            });
+        }
+    });
+        </script>
 
     </form>
 </body>
