@@ -83,7 +83,7 @@ namespace AppAtusPiesPr.Vista
                 {
                     ddlTallas.DataSource = oProductoE.TallasDisponibles;
                     ddlTallas.DataTextField = "descripcionTalla";
-                    ddlTallas.DataTextField = "idTalla";
+                    
                     ddlTallas.DataBind();
                     ddlTallas.Items.Insert(0, new ListItem("Tallas Disponibles", "0"));
                 }
