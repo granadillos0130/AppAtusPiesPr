@@ -71,7 +71,8 @@ namespace AppAtusPiesPr.Datos
                         Email = (string)reader["Email"],
                         Telefono = reader["Telefono"] != DBNull.Value ? (string)reader["Telefono"] : null,
                         Direccion = reader["Direccion"] != DBNull.Value ? (string)reader["Direccion"] : null,
-                        Descripcion = reader["Descripcion"] != DBNull.Value ? (string)reader["Descripcion"] : null
+                        Descripcion = reader["Descripcion"] != DBNull.Value ? (string)reader["Descripcion"] : null,
+                        foto = reader["foto"] != DBNull.Value ? (string)reader["foto"] : null
                     };
                 }
             }
@@ -85,6 +86,7 @@ namespace AppAtusPiesPr.Datos
 
             return usuario;
         }
+
 
         public bool ActualizarAdmin(ClUsuarioE usuario)
         {
@@ -132,6 +134,7 @@ namespace AppAtusPiesPr.Datos
                 comando.Parameters.AddWithValue("@Direccion", usuario.Direccion);
                 comando.Parameters.AddWithValue("@Descripcion", usuario.Descripcion);
                 comando.Parameters.AddWithValue("@Password", usuario.Password);
+                comando.Parameters.AddWithValue("@foto", usuario.foto);
 
                 int rowsAffected = comando.ExecuteNonQuery();
                 return rowsAffected > 0;

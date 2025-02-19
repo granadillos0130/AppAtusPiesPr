@@ -91,8 +91,7 @@ namespace AppAtusPiesPr.Vista
         }
 
 
-
-      protected void EnviarSolicitud()
+        protected void EnviarSolicitud()
 {
     // Obtener el ID del vendedor desde ViewState
     if (ViewState["IdUsuario"] == null || !int.TryParse(ViewState["IdUsuario"].ToString(), out int idVendedor))
