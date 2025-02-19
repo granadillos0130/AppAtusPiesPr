@@ -465,6 +465,15 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.TextBox txtDireccionVend;
 
         /// <summary>
+        /// Control lblFoto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFoto;
+
+        /// <summary>
         /// Control fuFoto.
         /// </summary>
         /// <remarks>

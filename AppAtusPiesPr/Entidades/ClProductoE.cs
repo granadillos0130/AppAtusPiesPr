@@ -37,6 +37,7 @@ namespace AppAtusPiesPr.Entidades
         public string Marca { get; set; }
         public string Categoria { get; set; }
         public string NombreVendedor { get; set; }
+        public string apellidoVendedor { get; set; }
         public int? valoracion { get; set; }
 
 
@@ -51,6 +52,7 @@ namespace AppAtusPiesPr.Entidades
         public int idVendedor { get; set; }
         public int idProducto { get; set; }
         public string nombreProducto { get; set; }
+        public string nombreVendedor { get; set; }
         public int? cantidadStock { get; set; } //puede aceptar valores nulos
         public int? precioVenta { get; set; }
         public string descripcionProducto { get; set; }
