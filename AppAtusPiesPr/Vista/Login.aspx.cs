@@ -42,39 +42,30 @@ namespace AppAtusPiesPr.Vista
 
                 if (oUser != null)
                 {
+                    // Verificar si hay múltiples roles
                     if (oUser.Roles.Count > 1)
                     {
+                        // Guardar la lista de roles en el ViewState
                         ViewState["Roles"] = oUser.Roles;
                         ViewState["Usuario"] = oUser;
 
+                        // Configurar el DropDownList con los roles
                         ddlRoles.DataSource = oUser.Roles.Select(r => r.RoleName).ToList();
                         ddlRoles.DataBind();
 
-                        ScriptManager.RegisterStartupScript(this, GetType(), "ShowModal", "$('#myModal').modal('show');", true);
+                        // Mostrar el modal para seleccionar el rol
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "ShowModal", "$('#myModal').modal('show');", true);
                     }
                     else if (oUser.Roles.Count == 1)
                     {
+                        // Configurar variables de sesión
                         var role = oUser.Roles[0];
-                        Session["email"] = oUser.Documento;
-                        Session["usuario"] = $"{oUser.Nombres} {oUser.Apellidos}";
+                        Session["email"] = oUser.Documento; // Suponiendo que el email es igual al documento
+                        Session["usuario"] = oUser.Nombres + " " + oUser.Apellidos;
                         Session["rol"] = role.RoleName;
+                        Session["idUsuario"] = role.IdUsuario;
 
-                        // Guardar el ID según el rol
-                        if (role.RoleName.Contains("Vendedor"))
-                        {
-                            Session["idUsuario"] = role.IdVendedor;  // ID del vendedor
-                            ViewState["IdUsuario"] = role.IdVendedor; // Guardar el ID en ViewState también
-                            System.Diagnostics.Debug.WriteLine($"ID Vendedor guardado: {role.IdVendedor}");
-                        }
-                        else if (role.RoleName.Contains("Admin"))
-                        {
-                            Session["idUsuario"] = role.IdAdmin;  // ID del admin
-                        }
-                        else if (role.RoleName.Contains("Cliente"))
-                        {
-                            Session["idUsuario"] = role.IdCliente;  // ID del cliente
-                        }
-
+                        // Redirigir según el rol del usuario
                         RedirigirSegunRol(role.RoleName);
                     }
                 }
@@ -100,8 +91,7 @@ namespace AppAtusPiesPr.Vista
         }
 
 
-
-      protected void EnviarSolicitud()
+        protected void EnviarSolicitud()
 {
     // Obtener el ID del vendedor desde ViewState
     if (ViewState["IdUsuario"] == null || !int.TryParse(ViewState["IdUsuario"].ToString(), out int idVendedor))

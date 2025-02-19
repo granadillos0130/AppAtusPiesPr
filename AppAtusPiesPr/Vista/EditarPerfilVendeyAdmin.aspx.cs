@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using AppAtusPiesPr.Entidades;
 using AppAtusPiesPr.Logica;
 
@@ -12,23 +13,38 @@ namespace AppAtusPiesPr.Vista
         {
             if (!IsPostBack)
             {
-                CargarDatosUsuario();
+                {
+                    // Verifica el rol del usuario y oculta el div para los administradores
+                    bool esVendedor = Session["rol"].ToString() == "Vendedor";
+                    gpDescripcion.Visible = esVendedor;
+                    imgFotoPerfil.Visible = esVendedor;
+                    gpDireccion.Visible = esVendedor;
+                    gpTelefono.Visible = esVendedor;
+                    gpCambiarFoto.Visible= esVendedor;
 
+                    CargarDatosUsuario();
+
+                }
             }
         }
 
+
+
+
+
+
+
+
+
         private void CargarDatosUsuario()
         {
-            // Obtener el IdUsuario y el rol de la sesión
             int idUsuario = (int)Session["idUsuario"];
             bool esVendedor = Session["rol"].ToString() == "Vendedor";
 
-            // Obtener los datos del usuario
             ClUsuarioE usuario = usuarioLo.ObtenerUsuarioPorId(idUsuario, esVendedor);
 
             if (usuario != null)
             {
-                // Cargar los datos en los campos del formulario
                 txtNombres.Text = usuario.Nombres;
                 txtApellidos.Text = usuario.Apellidos;
                 txtEmail.Text = usuario.Email;
@@ -37,17 +53,21 @@ namespace AppAtusPiesPr.Vista
                     txtTelefono.Text = usuario.Telefono;
                     txtDireccion.Text = usuario.Direccion;
                     txtDescripcion.Text = usuario.Descripcion;
+                    imgFotoPerfil.ImageUrl = "/imagenes/fotoPerfil/" + usuario.foto;
                 }
                 else
                 {
                     txtTelefono.Visible = false;
                     txtDireccion.Visible = false;
                     txtDescripcion.Visible = false;
-                    
-                    
                 }
             }
+            else
+            {
+                lblMensaje.Text = "Error: No se han podido obtener los datos del usuario.";
+            }
         }
+
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
@@ -78,6 +98,35 @@ namespace AppAtusPiesPr.Vista
                 usuario.Telefono = txtTelefono.Text;
                 usuario.Direccion = txtDireccion.Text;
                 usuario.Descripcion = txtDescripcion.Text;
+
+                // Subir nueva foto si se seleccionó una
+                if (fileUploadFoto.HasFile)
+                {
+                    // Construir el nombre del archivo de la foto
+                    string nombreFoto = $"{usuario.Nombres}-{usuario.Documento}.png";
+                    string rutaCarpeta = Server.MapPath("~/imagenes/fotoPerfil/");
+                    string rutaFoto = Path.Combine(rutaCarpeta, nombreFoto);
+
+                    // Verificar que la carpeta exista, si no, crearla
+                    if (!Directory.Exists(rutaCarpeta))
+                    {
+                        Directory.CreateDirectory(rutaCarpeta);
+                    }
+
+                    // Borrar la foto existente si hay una con el mismo nombre
+                    if (System.IO.File.Exists(rutaFoto))
+                    {
+                        System.IO.File.Delete(rutaFoto);
+                    }
+
+                    // Guardar la nueva foto
+                    fileUploadFoto.SaveAs(rutaFoto);
+                    usuario.foto = nombreFoto;
+                }
+                else
+                {
+                    usuario.foto = imgFotoPerfil.ImageUrl.Replace("~/imagenes/fotoPerfil/", ""); // Mantener la ruta actual de la foto si no se seleccionó una nueva
+                }
             }
 
             bool exito = usuarioLo.ActualizarUsuario(usuario, esVendedor);
@@ -86,11 +135,17 @@ namespace AppAtusPiesPr.Vista
             {
                 lblMensaje.ForeColor = System.Drawing.Color.Green;
                 lblMensaje.Text = "Perfil actualizado correctamente.";
+
+                // Redirigir a la misma página para recargar
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
             else
             {
                 lblMensaje.Text = "Error al actualizar el perfil.";
             }
         }
+
+
+
     }
 }
