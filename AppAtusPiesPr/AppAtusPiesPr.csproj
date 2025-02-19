@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="agregarMarca.aspx" />
     <Content Include="index.aspx" />
     <Content Include="Vista\ActuProducto.aspx" />
     <Content Include="Vista\AdministrarProveedores.aspx" />
@@ -1808,6 +1809,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="agregarMarca.aspx.cs">
+      <DependentUpon>agregarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agregarMarca.aspx.designer.cs">
+      <DependentUpon>agregarMarca.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Datos\ClAdminD.cs" />
     <Compile Include="Datos\ClClienteD.cs" />
     <Compile Include="Datos\ClConexion.cs" />
