@@ -83,6 +83,8 @@ namespace AppAtusPiesPr.Entidades
     {
         public int idTalla { get; set; }
         public string descripcionTalla { get; set; }
+
+        public string Valor { get; set; }
     }
 
     public class ClproductoEmpresaTalla

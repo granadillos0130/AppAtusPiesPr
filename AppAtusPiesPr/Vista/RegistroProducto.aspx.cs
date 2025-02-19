@@ -62,7 +62,10 @@ namespace AppAtusPiesPr.Vista
                     string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ||
                     string.IsNullOrWhiteSpace(txtReferencia.Text) ||
                     string.IsNullOrWhiteSpace(ddlCategoria.Text) ||
+                   !chkTallas.Items.Cast<ListItem>().Any(item => item.Selected) ||
                     string.IsNullOrWhiteSpace(txtMarca.Text))
+
+
                 {
                     MostrarMensajeError("Todos los campos son requeridos");
                     return;
@@ -73,6 +76,20 @@ namespace AppAtusPiesPr.Vista
                 objProduE.referencia = txtReferencia.Text.Trim();
                 objProduE.descripcionCategoria = ddlCategoria.Text.Trim();
                 objProduE.nombreMarca = txtMarca.Text.Trim();
+
+                List<string> tallasSeleccionadas = new List<string>();
+                foreach (ListItem item in chkTallas.Items)
+                {
+                    if (item.Selected)
+                    {
+                        tallasSeleccionadas.Add(item.Value);
+                    }
+                }
+    
+                            // Convertir la lista de strings en una lista de objetos ClTallaE
+                  objProduE.TallasDisponibles = tallasSeleccionadas
+                 .Select(t => new ClTallaE { idTalla = int.Parse(t) })
+                 .ToList();
 
                 // Validación de stock
                 if (!int.TryParse(txtStock.Text, out int cantidad))
@@ -190,6 +207,10 @@ namespace AppAtusPiesPr.Vista
             txtStock.Text = "";
             txtPrecio.Text = "";
             txtDescuento.Text = "";
+            foreach (ListItem item in chkTallas.Items)
+            {
+                item.Selected = false;
+            }
         }
     }
 }

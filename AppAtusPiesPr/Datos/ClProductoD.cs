@@ -35,10 +35,12 @@ namespace AppAtusPiesPr.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                
                 cmd.Parameters.AddWithValue("@idVendedor", Convert.ToInt32(objdata.idVendedor));
                 cmd.Parameters.AddWithValue("@nombre", objdata.nombreProducto);
                 cmd.Parameters.AddWithValue("@cantidadStock", Convert.ToInt32(objdata.cantidadStock));
                 cmd.Parameters.AddWithValue("@precio", Convert.ToInt32(objdata.precioVenta));
+                cmd.Parameters.AddWithValue("@tallas", string.Join(",", objdata.TallasDisponibles.Select(t => t.idTalla)));
                 cmd.Parameters.AddWithValue("@descripcionProducto", objdata.descripcionProducto);
                 cmd.Parameters.AddWithValue("@referencia", objdata.referencia);
                 cmd.Parameters.AddWithValue("@imagen", objdata.imagen ?? (object)DBNull.Value);

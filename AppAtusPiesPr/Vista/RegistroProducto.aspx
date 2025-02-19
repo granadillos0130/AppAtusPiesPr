@@ -8,6 +8,56 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+
+    <style>
+   .tallas-container {
+    margin-top: 8px;
+}
+
+.tallas-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tallas-list tr {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tallas-list td {
+    margin: 0;
+    padding: 0;
+}
+
+.tallas-list label {
+    display: inline-block;
+    min-width: 45px;
+    padding: 8px;
+    background: white;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.tallas-list input[type="checkbox"] {
+    display: none;
+}
+
+.tallas-list input[type="checkbox"]:checked + label {
+    background-color: #e9ecef;
+    border-color: #6c757d;
+}
+
+.tallas-list label:hover {
+    background-color: #f8f9fa;
+}
+
+
+    </style>
     
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -50,7 +100,21 @@
                                 <asp:TextBox ID="txtDescripcionProduc" runat="server" CssClass="form-control" TextMode="MultiLine" />
                             </div>
                         </div>
-
+<div class="mb-3">
+    <label class="form-label">Tallas Disponibles</label>
+    <div
+        <asp:CheckBoxList ID="chkTallas" runat="server" CssClass="tallas-list" RepeatDirection="Horizontal" RepeatLayout="Flow">
+    <asp:ListItem Value="1">34</asp:ListItem>
+    <asp:ListItem Value="2">35</asp:ListItem>
+    <asp:ListItem Value="3">36</asp:ListItem>
+    <asp:ListItem Value="4">37</asp:ListItem>
+    <asp:ListItem Value="5">38</asp:ListItem>
+    <asp:ListItem Value="6">39</asp:ListItem>
+    <asp:ListItem Value="7">40</asp:ListItem>
+    <asp:ListItem Value="8">41</asp:ListItem>
+</asp:CheckBoxList>
+    </div>
+</div>
                         <div class="mb-3">
                             <label for="txtReferencia" class="form-label">Referencia</label>
                             <div class="input-group">
