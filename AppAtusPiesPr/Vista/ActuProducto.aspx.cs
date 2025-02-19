@@ -16,7 +16,10 @@ namespace AppAtusPiesPr.Vista
         ClProductoL productosCategoria = new ClProductoL();
 
         ClProductoL productosLogica = new ClProductoL();
-            protected void Page_Load(object sender, EventArgs e)
+
+        ClProductoL productosMarca = new ClProductoL();
+
+        protected void Page_Load(object sender, EventArgs e)
             {
                 if (!IsPostBack)
                 {
@@ -27,10 +30,30 @@ namespace AppAtusPiesPr.Vista
                     }
 
                 CargarCategorias();
+                CargarMarca();
                 }
 
             }
 
+        private void CargarMarca()
+        {
+            List<ClMarcasE> listaProductos = productosMarca.MtdlistarMarcaActua();
+
+            if (listaProductos.Count > 0)
+            {
+                ddlMarca.DataSource = listaProductos;
+                ddlMarca.DataTextField = "nombreMarca";
+                ddlMarca.DataValueField = "idMarca";
+                ddlMarca.DataBind();
+            }
+            else
+            {
+                ddlMarca.Items.Clear();
+                ddlMarca.Items.Add(new ListItem("No hay marcas disponibles", "0"));
+            }
+
+            ddlMarca.Items.Insert(0, new ListItem("Seleccione una marca", "0"));
+        }
 
         private void CargarCategorias()
         {
@@ -98,7 +121,7 @@ namespace AppAtusPiesPr.Vista
                         descuento = string.IsNullOrWhiteSpace(txtDescuento.Text) ? (int?)null : int.Parse(txtDescuento.Text),
                         referencia = string.IsNullOrWhiteSpace(txtReferencia.Text) ? null : txtReferencia.Text,
                         descripcionCategoria = string.IsNullOrWhiteSpace(ddlCategoria.Text) ? null : ddlCategoria.Text,
-                        nombreMarca = string.IsNullOrWhiteSpace(txtMarca.Text) ? null : txtMarca.Text,
+                        nombreMarca = string.IsNullOrWhiteSpace(ddlMarca.Text) ? null : ddlMarca.Text,
                         imagen = rutaImagen
                     };
 
@@ -171,7 +194,7 @@ namespace AppAtusPiesPr.Vista
                 txtDescuento.Text = "";
                 txtReferencia.Text = "";
             ddlCategoria.SelectedIndex = 0;
-            txtMarca.SelectedValue = "";
+            ddlMarca.SelectedValue = "";
             }
 
             private void MostrarMensajeExito(string mensaje)
