@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="EditarPerfilVendeyAdmin.aspx.cs" Inherits="AppAtusPiesPr.Vista.EditarPerfilVendeyAdmin" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Vista/Maestra.Master" AutoEventWireup="true" CodeBehind="EditarPerfilVendeyAdmin.aspx.cs" Inherits="AppAtusPiesPr.Vista.EditarPerfilVendeyAdmin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>

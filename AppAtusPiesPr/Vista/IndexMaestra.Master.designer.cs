@@ -69,6 +69,24 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.TextBox txtBusqueda2;
 
         /// <summary>
+        /// Control btnNotificaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnNotificaciones;
+
+        /// <summary>
+        /// Control panelNotificaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelNotificaciones;
+
+        /// <summary>
         /// Control nombreCliente.
         /// </summary>
         /// <remarks>

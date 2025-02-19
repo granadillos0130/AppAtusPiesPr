@@ -37,6 +37,8 @@ namespace AppAtusPiesPr.Entidades
         public string Marca { get; set; }
         public string Categoria { get; set; }
         public string NombreVendedor { get; set; }
+        public string apellidoVendedor { get; set; }
+        public int? valoracion { get; set; }
 
 
     }
@@ -50,10 +52,15 @@ namespace AppAtusPiesPr.Entidades
         public int idVendedor { get; set; }
         public int idProducto { get; set; }
         public string nombreProducto { get; set; }
+        public string nombreVendedor { get; set; }
         public int? cantidadStock { get; set; } //puede aceptar valores nulos
         public int? precioVenta { get; set; }
         public string descripcionProducto { get; set; }
+
+        public string descripcion { get; set; }
         public string referencia { get; set; }
+
+
         public string imagen { get; set; }
         public string ImagenUrl
         {
@@ -78,6 +85,8 @@ namespace AppAtusPiesPr.Entidades
     {
         public int idTalla { get; set; }
         public string descripcionTalla { get; set; }
+
+        public string Valor { get; set; }
     }
 
     public class ClproductoEmpresaTalla
@@ -104,7 +113,14 @@ namespace AppAtusPiesPr.Entidades
         public DateTime FechaComentario { get; set; } // Fecha del comentario
         public string nombres { get; set; }
         public string apellidos { get; set; }
-        public int valoracion { get; set; }
+        public int? valoracion { get; set; }
+    }
+
+    public class ClMarcasE
+    {
+        public int idMarca { get; set; }
+        public string nombreMarca { get; set; }
+        public string descripcion { get; set; }
     }
 
 }

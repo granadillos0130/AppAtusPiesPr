@@ -3,10 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.WebSockets;
 
 namespace AppAtusPiesPr.Datos
 {
@@ -32,10 +35,12 @@ namespace AppAtusPiesPr.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                
                 cmd.Parameters.AddWithValue("@idVendedor", Convert.ToInt32(objdata.idVendedor));
                 cmd.Parameters.AddWithValue("@nombre", objdata.nombreProducto);
                 cmd.Parameters.AddWithValue("@cantidadStock", Convert.ToInt32(objdata.cantidadStock));
                 cmd.Parameters.AddWithValue("@precio", Convert.ToInt32(objdata.precioVenta));
+              cmd.Parameters.AddWithValue("@tallas", string.Join(",", objdata.TallasDisponibles.Select(t => t.idTalla)));
                 cmd.Parameters.AddWithValue("@descripcionProducto", objdata.descripcionProducto);
                 cmd.Parameters.AddWithValue("@referencia", objdata.referencia);
                 cmd.Parameters.AddWithValue("@imagen", objdata.imagen ?? (object)DBNull.Value);
@@ -160,6 +165,38 @@ namespace AppAtusPiesPr.Datos
             ClConexion conexion = new ClConexion();
             SqlCommand cmd = new SqlCommand("Sp_ListarProductos", conexion.MtdAbrirConexion());
             cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            conexion.MtdCerrarConexion();
+
+            SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+            DataTable tblDatos = new DataTable();
+            adaptador.Fill(tblDatos);
+
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMejorCalificados()
+        {
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("Sp_ListarProductosMejorValorados", conexion.MtdAbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            conexion.MtdCerrarConexion();
+
+            SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+            DataTable tblDatos = new DataTable();
+            adaptador.Fill(tblDatos);
+
+            return tblDatos;
+        }
+
+        public DataTable MtdListarProductosMasRecientes()
+        {
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("Sp_ListarProductosRecientes", conexion.MtdAbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
             conexion.MtdCerrarConexion();
 
@@ -260,6 +297,31 @@ namespace AppAtusPiesPr.Datos
 
 
             return oCategoria;
+        }
+
+        public List<ClMarcasE> MtdListarMarcas()
+        {
+            List<ClMarcasE> oMarca = new List<ClMarcasE>();
+            ClConexion conexion = new ClConexion();
+            SqlCommand cmd = new SqlCommand("spListarMarcas", conexion.MtdAbrirConexion());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                oMarca.Add(new ClMarcasE
+                {
+                    idMarca = Convert.ToInt32(reader["idMarca"]),
+                    nombreMarca = reader["nombreMarca"].ToString(),
+                    descripcion = reader["descripcion"].ToString()
+
+                });
+            }
+            conexion.MtdCerrarConexion();
+
+
+            return oMarca;
         }
 
         //Metodo para listar productos
@@ -395,6 +457,25 @@ namespace AppAtusPiesPr.Datos
             return dtProductos;
         }
 
+        // Método para listar productos por marca
+        public DataTable MtdListarProductosPorMarca(int idMarca)
+        {
+            ClConexion conexion = new ClConexion();
+            DataTable dtProductos = new DataTable();
+
+            using (SqlConnection connection = conexion.MtdAbrirConexion())
+            {
+                SqlCommand cmd = new SqlCommand("spListarProductosConMarcas", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idMarca", idMarca);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dtProductos);
+            }
+            conexion.MtdCerrarConexion();
+            return dtProductos;
+        }
+
         // Método para listar productos por categoría
         public DataTable MtdListarProductosVendedor(int idVendedor)
         {
@@ -503,7 +584,8 @@ namespace AppAtusPiesPr.Datos
                             FechaComentario = Convert.ToDateTime(fila["fechaComentario"]),
                             nombres = fila["nombres"].ToString(),
                             apellidos = fila["apellidos"].ToString(),
-                            comentario = fila["comentario"].ToString(), // Se corrigió este campo
+                            comentario = fila["comentario"].ToString(),
+                            valoracion = fila["valoracion"] != DBNull.Value ? Convert.ToInt32(fila["valoracion"]) : (int?)null
                         });
                     }
                 }
@@ -520,39 +602,171 @@ namespace AppAtusPiesPr.Datos
             return oComentario;
         }
 
-        public async Task<(decimal Promedio, int Total)> ObtenerValoracionPromedio(int productoId)
+        public decimal ObtenerPromedioValoracion(int idProducto)
         {
+            decimal promedio = 0;
+
             ClConexion oConex = new ClConexion();
+
             try
             {
-                using (SqlCommand cmd = new SqlCommand("sp_ObtenerValoracionPromedio", oConex.MtdAbrirConexion()))
+
+                using (SqlCommand cmd = new SqlCommand("spPromedioValoracion", oConex.MtdAbrirConexion()))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@idProducto", productoId);
+                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
 
-                    using (var reader = await cmd.ExecuteReaderAsync())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (await reader.ReadAsync())
+                        if (reader.Read())
                         {
-                            return (
-                                Promedio: reader.GetDecimal(2),
-                                Total: reader.GetInt32(3)
-                            );
+                            promedio = reader.GetDecimal(reader.GetOrdinal("PromedioValoracion"));
                         }
                     }
                 }
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
+
             }
-            finally
+            return promedio;
+        }
+
+        public List<ClProductoE> mtdListarVendedordll(int idVendedor)
+        {
+            List<ClProductoE> listaProducto = new List<ClProductoE>();
+            ClConexion oConex = new ClConexion();
+
+            using (SqlConnection con = oConex.MtdAbrirConexion())
             {
-                oConex.MtdCerrarConexion(); // Asegurar el cierre de conexión en el finally
+                using (SqlCommand cmd = new SqlCommand("SpVendedorProductoddl", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idVendedor", idVendedor);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            ClProductoE producto = new ClProductoE
+                            {
+                                idProducto = Convert.ToInt32(reader["idProdctoEmpresa"]),
+                                Nombre = reader["nombreProducto"].ToString()
+                            };
+
+                            listaProducto.Add(producto);
+
+                        }
+                    }
+
+                }
+
+                return listaProducto;
             }
 
-            return (0, 0);
+        }
+
+        public List<ClCategoriaE> mtdListarCategoriaActu()
+        {
+            List<ClCategoriaE> listCategoria = new List<ClCategoriaE>();
+            ClConexion oConex = new ClConexion();
+
+            using (SqlConnection con = oConex.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SplistarCategoriasActu", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            ClCategoriaE pro = new ClCategoriaE
+                            {
+                                idCategoria = Convert.ToInt32(reader["idCategoria"]),
+                                descripcion = reader["descripcion"].ToString()
+                            };
+
+                            listCategoria.Add(pro);
+
+                        }
+                    }
+
+                }
+                return listCategoria;
+            }
+        }
+
+        public List<ClMarcasE> mtdListarMarcaActu()
+        {
+            List<ClMarcasE> listMarca = new List<ClMarcasE>();
+            ClConexion oConex = new ClConexion();
+
+            using (SqlConnection con = oConex.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SplistarMarcasActu", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            ClMarcasE pro = new ClMarcasE
+                            {
+                                idMarca = Convert.ToInt32(reader["idMarca"]),
+                                nombreMarca = reader["nombreMarca"].ToString()
+                            };
+
+                            listMarca.Add(pro);
+
+                        }
+                    }
+
+                }
+                return listMarca;
+            }
+        }
+
+
+
+
+        public List<ClProductoEmpresaE> ObtenerNotificaciones(int idCliente)
+        {
+            List<ClProductoEmpresaE> lista = new List<ClProductoEmpresaE>();
+            ClConexion oConex = new ClConexion();
+
+            using (SqlConnection con = oConex.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("ObtenerNotificaciones", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idCliente", idCliente);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        lista.Add(new ClProductoEmpresaE
+                        {
+                            idProducto = Convert.ToInt32(dr["idProducto"]),
+                            nombreProducto = dr["nombreProducto"].ToString(),
+                            precioVenta = Convert.ToInt32(dr["precio"]),
+                            descripcionProducto = dr["descripcionProducto"].ToString(),
+                            Estado = dr["estado"].ToString(),
+                            imagen = dr["imagen"].ToString(),
+                            descuento = Convert.ToInt32(dr["descuento"]),
+                            nombreVendedor = dr["nombres"].ToString(),
+                            apellidoVendedor = dr["apellidos"].ToString()
+                        });
+                    }
+                }
+            }
+            return lista;
+
         }
     }
-
 }

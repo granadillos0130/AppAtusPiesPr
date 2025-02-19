@@ -69,6 +69,15 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.TextBox txtDescripcionProduc;
 
         /// <summary>
+        /// Control chkTallas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkTallas;
+
+        /// <summary>
         /// Control txtReferencia.
         /// </summary>
         /// <remarks>
@@ -78,13 +87,13 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.TextBox txtReferencia;
 
         /// <summary>
-        /// Control txtCategoria.
+        /// Control ddlCategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtCategoria;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategoria;
 
         /// <summary>
         /// Control txtDescuento.
@@ -96,13 +105,13 @@ namespace AppAtusPiesPr.Vista
         protected global::System.Web.UI.WebControls.TextBox txtDescuento;
 
         /// <summary>
-        /// Control txtMarca.
+        /// Control ddlMarca.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtMarca;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
 
         /// <summary>
         /// Control inRuta.

@@ -39,6 +39,12 @@ namespace AppAtusPiesPr.Logica
             return ListaSolicitudes.MtdListarSolicitudes();
         }
 
+        public bool mtdAgregarMarca(ClMarcasE oDatos)
+        {
+            ClAdminD ListaSolicitudes = new ClAdminD();
+            return ListaSolicitudes.MtdAgregarMarca(oDatos);
+        }
+
         public List<ClUsuarioE> MtdFiltroVendedor(string docu, string estado)
         {
             ClAdminD FiltroVendedor = new ClAdminD();
@@ -50,6 +56,12 @@ namespace AppAtusPiesPr.Logica
         {
             ClAdminD Categoria = new ClAdminD();
             return Categoria.MtdValidacionCategoria(oDatos);
+        }
+
+        public bool MtdValidarMarca(ClMarcasE oDatos)
+        {
+            ClAdminD Categoria = new ClAdminD();
+            return Categoria.MtdValidacionMarca(oDatos);
         }
 
         public List<ClEstadisticaVendedorE> MtdEstadistica(string documento,string año,string mes)
@@ -138,7 +150,7 @@ namespace AppAtusPiesPr.Logica
 
 
 
-        public bool MtDenegarSolicitud(int idVendedor, string email,string nombreVendedor,string apellidoVendedor)
+        public bool MtDenegarSolicitud(int idVendedor, string email, string nombreVendedor, string apellidoVendedor)
         {
             ClAdminD DenegarSoli = new ClAdminD();
             bool exito = DenegarSoli.MtdDenegarSolicitud(idVendedor);
@@ -147,7 +159,7 @@ namespace AppAtusPiesPr.Logica
             {
                 try
                 {
-                    EnviarCorreoRechazado(email,nombreVendedor,apellidoVendedor);
+                    EnviarCorreoRechazado(email, nombreVendedor, apellidoVendedor);
                 }
                 catch (Exception ex)
                 {
@@ -157,6 +169,7 @@ namespace AppAtusPiesPr.Logica
 
             return exito;
         }
+
 
         public bool MtdInactivarVendedor(int idVendedor, string email,string nombreVendedor,string apellidoVendedor)
         {

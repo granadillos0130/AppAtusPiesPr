@@ -20,11 +20,13 @@ namespace AppAtusPiesPr.Vista
             {
 
                 cargarCategorias();
+                cargarMarcas();
 
             }
             if (Session["idUsuario"] != null)
             {
                 Response.Write("<script>console.log('idUsuario en sesión: " + Session["idUsuario"] + "');</script>");
+
             }
             else
             {
@@ -92,6 +94,23 @@ namespace AppAtusPiesPr.Vista
                 return new { success = false, message = "Error al guardar el pedido: " + ex.Message };
             }
         }
+
+        private void cargarMarcas()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            RepeaterMarca.DataSource = oLogica.MtdListarMarcas();
+            RepeaterMarca.DataBind();
+        }
+
+        [WebMethod]
+        public static object GuardarTransaccion(List<int> idPedidos, List<int> idsVendedores, List<decimal> montos)
+        {
+            ClTransaccionL transaccionL = new ClTransaccionL();
+            string resultado = transaccionL.ProcesarTransaccion(idPedidos, idsVendedores, montos);
+
+            return new { success = resultado == "OK", message = resultado };
+        }
+
 
 
     }

@@ -173,5 +173,39 @@ namespace AppAtusPiesPr.Datos
                 }
             }
         }
+
+        public ClUsuarioE DatosVendedor(int idUsuario)
+        {
+            ClUsuarioE vendedor = null;
+            ClConexion conexion = new ClConexion();
+
+            using (SqlConnection con = conexion.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("spDatosV", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read()) 
+                        {
+                            vendedor = new ClUsuarioE
+                            {
+                                Email = reader["email"].ToString(),
+                                Telefono = reader["telefono"].ToString() 
+                            };
+                        }
+                    }
+                }
+            }
+
+            return vendedor;
+        }
+
+
+
+
+
     }
 }

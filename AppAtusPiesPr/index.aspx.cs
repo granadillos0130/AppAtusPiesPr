@@ -13,6 +13,8 @@ namespace AppAtusPiesPr
     public partial class Index2 : System.Web.UI.Page
     {
         ClProductoL oDatos = new ClProductoL();
+        private const int PAGE_SIZE = 12;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -22,6 +24,7 @@ namespace AppAtusPiesPr
             if (!IsPostBack)
             {
                 cargarCategorias();
+                cargarMarcas();
 
                 string busqueda = Request.QueryString["busqueda"];
                 if (!string.IsNullOrEmpty(busqueda))
@@ -31,19 +34,39 @@ namespace AppAtusPiesPr
                 }
                 else
                 {
-
                     cargarProductos();
+                    cargarProductosMejorValorados();
+                    cargarProductosMasRecientes();
                 }
             }
 
         }
-
         private void cargarProductos()
         {
             ClProductoL objProductoL = new ClProductoL();
             DataTable dt = objProductoL.MtdListarProductos();
             Repeater1.DataSource = dt;
             Repeater1.DataBind();
+
+
+        }
+
+        private void cargarProductosMejorValorados()
+        {
+            ClProductoL objProductoL = new ClProductoL();
+            DataTable dt = objProductoL.MtdListarProductosMejorCalificados();
+            Repeater3.DataSource = dt;
+            Repeater3.DataBind();
+
+        }
+
+        private void cargarProductosMasRecientes()
+        {
+            ClProductoL objProductoL = new ClProductoL();
+            DataTable dt = objProductoL.MtdListarProductosMasRecientes();
+            Repeater4.DataSource = dt;
+            Repeater4.DataBind();
+
         }
 
         private void cargarCategorias()
@@ -51,6 +74,13 @@ namespace AppAtusPiesPr
             ClProductoL oLogica = new ClProductoL();
             Repeater2.DataSource = oLogica.MtdListarCategorias();
             Repeater2.DataBind();
+        }
+
+        private void cargarMarcas()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            RepeaterMarca.DataSource = oLogica.MtdListarMarcas();
+            RepeaterMarca.DataBind();
         }
 
         private void busquedas(string busqueda)

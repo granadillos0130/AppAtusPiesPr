@@ -1,4 +1,5 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Maestra.master.cs" Inherits="AppAtusPiesPr.Vista.Maestra" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,74 +33,74 @@
             border-bottom: 1px solid #e9ecef;
         }
 
-        .navbar-top .navbar-brand {
-            display: flex;
-            align-items: center;
-            color: #2d3436;
-            font-size: 1.5rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
+            .navbar-top .navbar-brand {
+                display: flex;
+                align-items: center;
+                color: #2d3436;
+                font-size: 1.5rem;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }
 
-        .navbar-top .navbar-brand:hover {
-            transform: scale(1.05);
-            color: #4a69bd;
-        }
+                .navbar-top .navbar-brand:hover {
+                    transform: scale(1.05);
+                    color: #4a69bd;
+                }
 
-        .navbar-top .navbar-brand i {
-            margin-right: 10px;
-            font-size: 1.8rem;
-            color: #4a69bd;
-        }
+                .navbar-top .navbar-brand i {
+                    margin-right: 10px;
+                    font-size: 1.8rem;
+                    color: #4a69bd;
+                }
 
-        .navbar-top .search-bar {
-            flex: 1;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+            .navbar-top .search-bar {
+                flex: 1;
+                max-width: 600px;
+                margin: 0 auto;
+            }
 
-        .navbar-top .search-bar input {
-            width: 100%;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            border: 2px solid #e9ecef;
-            background-color: #ffffff;
-            color: #2d3436;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
+                .navbar-top .search-bar input {
+                    width: 100%;
+                    padding: 0.5rem 1rem;
+                    border-radius: 50px;
+                    border: 2px solid #e9ecef;
+                    background-color: #ffffff;
+                    color: #2d3436;
+                    font-size: 0.95rem;
+                    outline: none;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+                }
 
-        .navbar-top .search-bar input:focus {
-            border-color: #4a69bd;
-            box-shadow: 0 3px 15px rgba(74, 105, 189, 0.2);
-        }
+                    .navbar-top .search-bar input:focus {
+                        border-color: #4a69bd;
+                        box-shadow: 0 3px 15px rgba(74, 105, 189, 0.2);
+                    }
 
-        .navbar-top .user-menu {
-            color: #2d3436;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            background-color: #ffffff;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
+            .navbar-top .user-menu {
+                color: #2d3436;
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+                background-color: #ffffff;
+                padding: 0.5rem 1rem;
+                border-radius: 30px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+            }
 
-        .navbar-top .user-menu:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
+                .navbar-top .user-menu:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+                }
 
-        .navbar-top .user-menu img {
-            margin-left: 10px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #4a69bd;
-        }
+                .navbar-top .user-menu img {
+                    margin-left: 10px;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    border: 2px solid #4a69bd;
+                }
 
         .navbar-bottom {
             background-color: #ffffff;
@@ -111,28 +112,28 @@
             border-top: 1px solid #e9ecef;
         }
 
-        .navbar-bottom .nav-link {
-            color: #636e72;
-            font-weight: bold;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.3s ease-in-out;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+            .navbar-bottom .nav-link {
+                color: #636e72;
+                font-weight: bold;
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+                border-radius: 10px;
+                transition: all 0.3s ease-in-out;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
 
-        .navbar-bottom .nav-link:hover {
-            color: #4a69bd;
-            background-color: #f1f3f5;
-            transform: translateY(-3px);
-        }
+                .navbar-bottom .nav-link:hover {
+                    color: #4a69bd;
+                    background-color: #f1f3f5;
+                    transform: translateY(-3px);
+                }
 
-        .navbar-bottom .nav-link i {
-            color: #4a69bd;
-        }
+                .navbar-bottom .nav-link i {
+                    color: #4a69bd;
+                }
 
         footer {
             background-color: #ffffff;
@@ -143,9 +144,9 @@
             box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        footer span {
-            font-size: 0.9rem;
-        }
+            footer span {
+                font-size: 0.9rem;
+            }
     </style>
 </head>
 <body id="page-top">
@@ -171,10 +172,10 @@
                     <img src="https://via.placeholder.com/60" alt="User Image" class="user-img ml-2">
                 </div>
                 <div class="dropdown-menu shadow animated--grow-in">
-                     <asp:LinkButton ID="btnEditarPerfil" runat="server" OnClick="btnEditarPerfil_Click" CssClass="dropdown-item">
+                    <asp:LinkButton ID="btnEditarPerfil" runat="server" OnClick="btnEditarPerfil_Click" CssClass="dropdown-item">
      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
      Perfil
- </asp:LinkButton>
+                    </asp:LinkButton>
                     <asp:LinkButton ID="btnCerrarSesion" runat="server" OnClick="btnCerrarSesion_Click" CssClass="dropdown-item">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                         Cerrar Sesion
@@ -190,9 +191,14 @@
                 <i class="fas fa-plus-circle"></i>
                 Registrar Producto
             </a>
+
             <a class="nav-link" href="ProductosMasVendidos.aspx" id="menuMasVendidos" runat="server">
                 <i class="fas fa-chart-line"></i>
                 Mas vendidos
+            </a>
+            <a class="nav-link" href="ComprasAProveedor.aspx" id="compraProveedor" runat="server">
+                <i class="fas fa-plus-circle"></i>
+                Registrar Compra Vendedor
             </a>
             <a class="nav-link" href="ProductoRegistradoCategoria.aspx" id="menuProductosPorCategoria" runat="server">
                 <i class="fas fa-boxes"></i>
@@ -206,31 +212,34 @@
                 <i class="fas fa-users"></i>
                 Listar Vendedores
             </a>
-             
             <a class="nav-link" href="AgregarCategorias.aspx" id="menuCategoria" runat="server">
-                <i class="fas fa-user-friends"></i>
+                <i class="fas fa-tags"></i>
                 Agregar Categoria
             </a>
+            <a class="nav-link" href="AgregarMarca.aspx" id="menuMarca" runat="server">
+                <i class="fas fa-tags"></i>
+                Agregar Marca
+            </a>
             <a class="nav-link" href="EstadisticaVendedor.aspx" id="Estadisticas" runat="server">
-                <i class="fas fa-user-friends"></i>
+                <i class="fas fa-chart-line"></i>
                 Estadisticas Vendedores
             </a>
             <a class="nav-link" href="EstadisticaCategoria.aspx" id="EstadisticasCategoria" runat="server">
-                <i class="fas fa-user-friends"></i>
+                <i class="fas fa-chart-pie"></i>
                 Estadisticas Categoria
             </a>
-           <a class="nav-link" href="EstadoPedido.aspx" id="menuEstadoPedido" runat="server">
-                <i class="fas fa-truck"> </i>
+            <a class="nav-link" href="EstadoPedido.aspx" id="menuEstadoPedido" runat="server">
+                <i class="fas fa-truck"></i>
                 Estado Pedido
             </a>
-            <a class="nav-link" href="ActualizarProducto.aspx" id="menuActualizarProducto" runat="server">
-                <i class="fas fa-edit"></i> 
+            <a class="nav-link" href="ActuProducto.aspx" id="menuActualizarProducto" runat="server">
+                <i class="fas fa-edit"></i>
                 Actualizar Producto
             </a>
-               <a class="nav-link" href="AdministrarProveedores.aspx" id="AdministrarProveedores" runat="server">
-     <i class="fas fa-wrench"></i> 
-    Administrar Proveedores
- </a>
+            <a class="nav-link" href="AdministrarProveedores.aspx" id="AdministrarProveedores" runat="server">
+                <i class="fas fa-wrench"></i>
+                Administrar Proveedores
+            </a>
         </div>
 
         <!-- Content Wrapper -->

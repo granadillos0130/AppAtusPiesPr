@@ -12,12 +12,67 @@ namespace AppAtusPiesPr.Vista
 {
     public partial class RegistroProducto : System.Web.UI.Page
     {
+        ClProductoL productosCategoria = new ClProductoL();
+        ClProductoL productosMarca = new ClProductoL();
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!IsPostBack)
+            {
+                if (Session["idUsuario"] != null)
+                {
+                    int idVendedor = Convert.ToInt32(Session["idUsuario"]);
+                    CargarCategorias();
+                    CargarMarca();  
+                }
+            }
+
         }
 
-        protected void btnRegistrar_Click(object sender, EventArgs e)
+        private void CargarMarca()
+        {
+            List<ClMarcasE> listaProductos = productosMarca.MtdlistarMarcaActua();
+
+            if (listaProductos.Count > 0)
+            {
+                ddlMarca.DataSource = listaProductos;
+                ddlMarca.DataTextField = "nombreMarca";
+                ddlMarca.DataValueField = "idMarca";
+                ddlMarca.DataBind();
+            }
+            else
+            {
+                ddlMarca.Items.Clear();
+                ddlMarca.Items.Add(new ListItem("No hay marcas disponibles", "0"));
+            }
+
+            ddlMarca.Items.Insert(0, new ListItem("Seleccione una marca", "0"));
+        }
+
+
+        private void CargarCategorias()
+        {
+            List<ClCategoriaE> listaProductos = productosCategoria.MtdlistarCategoriasActua();
+
+            if (listaProductos.Count > 0)
+            {
+                ddlCategoria.DataSource = listaProductos;
+                ddlCategoria.DataTextField = "descripcion";
+                ddlCategoria.DataValueField = "idcategoria";
+                ddlCategoria.DataBind();
+            }
+            else
+            {
+                ddlCategoria.Items.Clear();
+                ddlCategoria.Items.Add(new ListItem("No hay categorias disponibles", "0"));
+            }
+
+            ddlCategoria.Items.Insert(0, new ListItem("Seleccione una categoria", "0"));
+        }
+
+
+        
+           protected void btnRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -29,8 +84,11 @@ namespace AppAtusPiesPr.Vista
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                     string.IsNullOrWhiteSpace(txtDescripcionProduc.Text) ||
                     string.IsNullOrWhiteSpace(txtReferencia.Text) ||
-                    string.IsNullOrWhiteSpace(txtCategoria.Text) ||
-                    string.IsNullOrWhiteSpace(txtMarca.Text))
+                    string.IsNullOrWhiteSpace(ddlCategoria.Text) ||
+                   !chkTallas.Items.Cast<ListItem>().Any(item => item.Selected) ||
+                    string.IsNullOrWhiteSpace(ddlMarca.Text))
+
+
                 {
                     MostrarMensajeError("Todos los campos son requeridos");
                     return;
@@ -39,8 +97,22 @@ namespace AppAtusPiesPr.Vista
                 objProduE.nombreProducto = txtNombre.Text.Trim();
                 objProduE.descripcionProducto = txtDescripcionProduc.Text.Trim();
                 objProduE.referencia = txtReferencia.Text.Trim();
-                objProduE.descripcionCategoria = txtCategoria.Text.Trim();
-                objProduE.nombreMarca = txtMarca.Text.Trim();
+                objProduE.descripcionCategoria = ddlCategoria.Text.Trim();
+                objProduE.nombreMarca = ddlMarca.Text.Trim();
+
+                List<string> tallasSeleccionadas = new List<string>();
+                foreach (ListItem item in chkTallas.Items)
+                {
+                    if (item.Selected)
+                    {
+                        tallasSeleccionadas.Add(item.Value);
+                    }
+                }
+    
+                            // Convertir la lista de strings en una lista de objetos ClTallaE
+                  objProduE.TallasDisponibles = tallasSeleccionadas
+                 .Select(t => new ClTallaE { idTalla = int.Parse(t) })
+                 .ToList();
 
                 // Validación de stock
                 if (!int.TryParse(txtStock.Text, out int cantidad))
@@ -123,13 +195,17 @@ namespace AppAtusPiesPr.Vista
                 ClProductoL objProductoL = new ClProductoL();
                 objProductoL.MtdRegistroProd(objProduE);
 
-                // Mensaje de éxito
-                MostrarMensajeExito("Producto registrado exitosamente");
+                // Primero limpiamos los campos
                 LimpiarCampos();
+
+                // Luego mostramos el mensaje de éxito usando setTimeout
+                ScriptManager.RegisterStartupScript(this, GetType(), "sweetAlertSuccess",
+                    $"setTimeout(function() {{ Swal.fire({{ icon: 'success', title: 'Éxito', text: 'Producto registrado exitosamente' }}); }}, 100);", true);
             }
             catch (Exception ex)
             {
-                MostrarMensajeError("Error al registrar el producto: " + ex.Message);
+                ScriptManager.RegisterStartupScript(this, GetType(), "sweetAlertError",
+                    $"setTimeout(function() {{ Swal.fire({{ icon: 'error', title: 'Error', text: '{ex.Message.Replace("'", "\\'")}' }}); }}, 100);", true);
             }
         }
 
@@ -142,19 +218,22 @@ namespace AppAtusPiesPr.Vista
         private void MostrarMensajeError(string mensaje)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "sweetAlertError",
-                $"Swal.fire({{ icon: 'error', title: 'Error', text: '{mensaje.Replace("'", "\\'")}' }})", true);
+                $"setTimeout(function() {{ Swal.fire({{ icon: 'error', title: 'Error', text: '{mensaje.Replace("'", "\\'")}' }}); }}, 100);", true);
         }
-
         private void LimpiarCampos()
         {
             txtNombre.Text = "";
             txtDescripcionProduc.Text = "";
             txtReferencia.Text = "";
-            txtCategoria.Text = "";
-            txtMarca.Text = "";
+            ddlCategoria.SelectedIndex = 0;
+            ddlMarca.SelectedIndex = 0;
             txtStock.Text = "";
             txtPrecio.Text = "";
             txtDescuento.Text = "";
+            foreach (ListItem item in chkTallas.Items)
+            {
+                item.Selected = false;
+            }
         }
     }
 }

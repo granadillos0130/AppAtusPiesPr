@@ -39,6 +39,25 @@
         </div>
     </center>
 
+    <center>
+        <div class="navbarFiltros">
+            <nav>
+
+                <ul class="menuFiltros">
+                    <asp:Repeater ID="RepeaterMarca" runat="server">
+                        <ItemTemplate>
+                            <li>
+                                <a href='<%# "vista/moduloMarcaFiltrada.aspx?id=" + Eval("idMarca") %>'>
+                                    <%# Eval("nombreMarca") %>
+                                </a>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+            </nav>
+        </div>
+    </center>
+
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -80,33 +99,40 @@
 
 
     <br />
-    <div class="container">
+    <div class="containerr">
 
         <center>
             <h4>Conoce Nuestros Productos</h4>
         </center>
         <br />
 
-        <p>Productos más vendidos</p>
+        
+        <p style="padding-left: 10%;">
+            <hr>
+            <div style="padding-left: 10%;" >Productos mejor valorados</div><hr>
+        </p>
 
         <!-- Contenedor para las tarjetas -->
         <div id="cardsContainer" class="cards-container">
 
-            <asp:Repeater ID="Repeater1" runat="server">
+            <asp:Repeater ID="Repeater3" runat="server">
                 <ItemTemplate>
                     <div class="card">
                         <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
                         <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
-                        <h4 class="card-title"></h4>
                         <div class="card-info">
                             <div class="card-details">
                                 <a class="cardseller" href='<%# "vista/perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
                                     <%# Eval("NombreVendedor") %>
                                     <%# Eval("apellidos") %><br>
                                 </a>
+                                <div class="rating">
+                                    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
+
+
+                                </div>
                                 <div class="cardprice">
                                     <p>$<%# Eval("precio") %></p>
-
                                 </div>
                                 <div class="cardButtons">
                                     <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
@@ -129,6 +155,106 @@
             </asp:Repeater>
         </div>
 
+        <p>
+            <hr>
+            <div style="padding-left: 10%;" >Productos más vendidos</div><hr>
+        <//p>
+        <!-- Contenedor para las tarjetas -->
+        <div id="cardsContainer" class="cards-container">
+
+            <asp:Repeater ID="Repeater1" runat="server">
+                <ItemTemplate>
+                    <div class="card">
+                        <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
+                        <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
+                        <h4 class="card-title"></h4>
+                        <div class="card-info">
+                            <div class="card-details">
+                                <a class="cardseller" href='<%# "vista/perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
+                                    <%# Eval("NombreVendedor") %>
+                                    <%# Eval("apellidos") %><br>
+                                </a>
+                                <div class="rating">
+                                    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
+
+
+                                </div>
+                                <div class="cardprice">
+                                    <p>$<%# Eval("precio") %></p>
+                                </div>
+                                <div class="cardButtons">
+                                    <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                                    <a class="save-button"
+                                        data-id='<%# Eval("idProdctoEmpresa") %>'
+                                        data-nombre='<%# HttpUtility.HtmlAttributeEncode(Eval("nombreProducto").ToString()) %>'
+                                        data-imagen='<%# ResolveUrl(Eval("imagen").ToString()) %>'
+                                        data-precio='<%# Eval("precio") %>'
+                                        data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("NombreVendedor").ToString()) %>'
+                                        data-apellidos='<%# HttpUtility.HtmlAttributeEncode(Eval("apellidos").ToString()) %>'
+                                        data-idvendedor='<%# Eval("idVendedor") %>'>
+                                        <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+
+        <hr style="20px">
+
+        <p style="padding-left: 10%;">
+            Productos más recientes<hr>
+        </p>
+
+        <!-- Contenedor para las tarjetas -->
+        <div id="cardsContainer" class="cards-container">
+
+            <asp:Repeater ID="Repeater4" runat="server">
+                <ItemTemplate>
+                    <div class="card">
+                        <img src='<%# ResolveUrl(Eval("imagen").ToString()) %>' alt="Producto" class="card-image" />
+                        <h4 class="card-title"><%# Eval("nombreProducto") %></h4>
+                        <h4 class="card-title"></h4>
+                        <div class="card-info">
+                            <div class="card-details">
+                                <a class="cardseller" href='<%# "vista/perfilInfoVendedor.aspx?id=" + Eval("idVendedor") %>'>
+                                    <%# Eval("NombreVendedor") %>
+                                    <%# Eval("apellidos") %><br>
+                                </a>
+                                <div class="rating">
+                                    <span class="heart" data-value="1">&#10084;<%# Eval("ValoracionPromedio") %></span>
+
+
+                                </div>
+                                <div class="cardprice">
+                                    <p>$<%# Eval("precio") %></p>
+                                </div>
+                                <div class="cardButtons">
+                                    <a class="buy-button" href='Vista/moduloCompra.aspx?id=<%# Eval("idProdctoEmpresa") %>'>Ver más..</a>
+                                    <a class="save-button"
+                                        data-id='<%# Eval("idProdctoEmpresa") %>'
+                                        data-nombre='<%# HttpUtility.HtmlAttributeEncode(Eval("nombreProducto").ToString()) %>'
+                                        data-imagen='<%# ResolveUrl(Eval("imagen").ToString()) %>'
+                                        data-precio='<%# Eval("precio") %>'
+                                        data-vendedor='<%# HttpUtility.HtmlAttributeEncode(Eval("NombreVendedor").ToString()) %>'
+                                        data-apellidos='<%# HttpUtility.HtmlAttributeEncode(Eval("apellidos").ToString()) %>'
+                                        data-idvendedor='<%# Eval("idVendedor") %>'>
+                                        <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" alt="Guardar" class="save-icon" />
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+
+
+
         <!-- Pie de página -->
 
     </div>
@@ -142,9 +268,9 @@
     <script src="Vista/js/carrito.js"></script>
     <script src="Vista/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    
+
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2024/12/04/03/20241204035742-QVX7PO4S.js"></script>
-    
+    <script src="https://files.bpcontent.cloud/2024/12/04/03/20241204035742-QVX7PO4S.js"></script>
+
 
 </asp:Content>

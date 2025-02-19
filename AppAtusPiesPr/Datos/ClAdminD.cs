@@ -217,6 +217,35 @@ namespace AppAtusPiesPr.Datos
             return validacion;
         }
 
+        public bool MtdAgregarMarca(ClMarcasE oDatos)
+        {
+            bool validacion;
+
+            ClConexion oConexion = new ClConexion();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SpAgregarMarca", oConexion.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@nombreMarca", oDatos.nombreMarca);
+                    cmd.Parameters.AddWithValue("@descripcion", oDatos.descripcion);
+
+                    cmd.ExecuteNonQuery();
+
+                    validacion = true;
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                validacion = false;
+
+            }
+
+            return validacion;
+        }
+
         public List<ClUsuarioE> MtdObtenerVendedorEmail()
         {
             List<ClUsuarioE> listaVendedor = new List<ClUsuarioE>();
@@ -251,6 +280,33 @@ namespace AppAtusPiesPr.Datos
             return listaVendedor;
         }
 
+        public bool MtdValidacionMarca(ClMarcasE oDatos)
+        {
+            bool existe = false;
+
+            ClConexion oConexion = new ClConexion();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("spValidacionMarca", oConexion.MtdAbrirConexion()))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@descripcion", oDatos.descripcion);
+                    cmd.Parameters.AddWithValue("@nombreMarca", oDatos.nombreMarca);
+
+                    int count = (int)cmd.ExecuteScalar();
+
+                    existe = count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar la marca: " + ex.Message);
+            }
+
+            return existe;
+        }
+
         public bool MtdValidacionCategoria(ClCategoriaE oDatos)
         {
             bool existe = false;
@@ -275,7 +331,6 @@ namespace AppAtusPiesPr.Datos
 
             return existe;
         }
-
         public bool MtdDenegarSolicitud(int idVendedor)
         {
 
@@ -294,7 +349,6 @@ namespace AppAtusPiesPr.Datos
             }
 
         }
-
 
         public List<ClEstadisticaVendedorE> MtdBuscarEstadisticasPorVendedor(string documento, string año, string mes)
         {
@@ -418,6 +472,8 @@ namespace AppAtusPiesPr.Datos
                 }
             }
         }
+
+
 
 
 

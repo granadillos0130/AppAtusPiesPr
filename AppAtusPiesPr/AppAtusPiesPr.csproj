@@ -65,11 +65,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.aspx" />
-    <Content Include="Vista\ActualizarProducto.aspx" />
+    <Content Include="Vista\ActuProducto.aspx" />
     <Content Include="Vista\AdministrarProveedores.aspx" />
     <Content Include="Vista\AgregarCategorias.aspx" />
+    <Content Include="Vista\agregarMarca.aspx" />
     <Content Include="Vista\BlankPage.aspx" />
     <Content Include="Vista\carritoCompras.aspx" />
+    <Content Include="Vista\ComprasAProveedor.aspx" />
     <Content Include="Vista\css\carrito.css" />
     <Content Include="Vista\css\main.css" />
     <Content Include="Vista\css\sb-admin-2.css" />
@@ -78,12 +80,32 @@
     <Content Include="Vista\EstadisticaCategoria.aspx" />
     <Content Include="Vista\EstadisticaVendedor.aspx" />
     <Content Include="Vista\EstadoPedido.aspx" />
-    <Content Include="Vista\imagenes\AdidasNegras.jpeg" />
-    <Content Include="Vista\imagenes\Jordan1RetroLowOGSPTravisScott.jpg" />
-    <Content Include="Vista\imagenes\JumpmanJackdeJORDANxTravisScott.png" />
-    <Content Include="Vista\imagenes\NikeAirNegras.jpeg" />
-    <Content Include="Vista\imagenes\thumb-jordan-5-off-white-white.gif" />
-    <Content Include="Vista\imagenes\TravisScottNike.png" />
+    <Content Include="Vista\imagenes\Adidas Ultraboost Light .jpg" />
+    <Content Include="Vista\imagenes\ASICS Metaspeed Sky+.jpg" />
+    <Content Include="Vista\imagenes\Captura de pantalla 2025-02-09 214344.png" />
+    <Content Include="Vista\imagenes\Captura de pantalla 2025-02-09 214620.png" />
+    <Content Include="Vista\imagenes\Captura de pantalla 2025-02-09 214745.png" />
+    <Content Include="Vista\imagenes\Captura de pantalla 2025-02-09 220357.png" />
+    <Content Include="Vista\imagenes\Hoka Clifton 9.jpg" />
+    <Content Include="Vista\imagenes\j.jpg" />
+    <Content Include="Vista\imagenes\L.jpg" />
+    <Content Include="Vista\imagenes\logo-del-sena-verde.jpg" />
+    <Content Include="Vista\imagenes\Mizuno City Wind.jpg" />
+    <Content Include="Vista\imagenes\New Balance Fresh Foam X 1080 v13.jpg" />
+    <Content Include="Vista\imagenes\New Balance FuelCell SuperComp Elite v4 .png" />
+    <Content Include="Vista\imagenes\New Balance Minimus TR .jpg" />
+    <Content Include="Vista\imagenes\Nike Air Zoom Spiridon Cage 2.jpg" />
+    <Content Include="Vista\imagenes\Nike Metcon 9.jpg" />
+    <Content Include="Vista\imagenes\Nike Zoom Fly 5.jpg" />
+    <Content Include="Vista\imagenes\Nike’s V2K Run.jpg" />
+    <Content Include="Vista\imagenes\Puma RS-X.jpg" />
+    <Content Include="Vista\imagenes\Puma Suede Classic.jpg" />
+    <Content Include="Vista\imagenes\Puma Ultra Pro FG.jpg" />
+    <Content Include="Vista\imagenes\Reebok Nano X4.jpg" />
+    <Content Include="Vista\imagenes\Reebok Nano X4.png" />
+    <Content Include="Vista\imagenes\reebok-nano-x3.jpg" />
+    <Content Include="Vista\imagenes\Saucony Kinvara 14.jpg" />
+    <Content Include="Vista\imagenes\Under armor Phantom.jpg" />
     <Content Include="Vista\img\undraw_posting_photo.svg" />
     <Content Include="Vista\img\undraw_profile.svg" />
     <Content Include="Vista\img\undraw_profile_1.svg" />
@@ -104,7 +126,8 @@
     <Content Include="Vista\moduloBusqueda.aspx" />
     <Content Include="Vista\moduloCatalogoFiltrado.aspx" />
     <Content Include="Vista\moduloCompra.aspx" />
-    <Content Include="Vista\moduloSobreNosotros.aspx" />
+    <Content Include="Vista\moduloMarcaFiltrada.aspx" />
+    <Content Include="Vista\Nosotros.aspx" />
     <Content Include="Vista\perfilInfoVendedor.aspx" />
     <Content Include="Vista\perfilUsuario.aspx" />
     <Content Include="Vista\Peticiones.aspx" />
@@ -1790,6 +1813,7 @@
     <Compile Include="Datos\ClConexion.cs" />
     <Compile Include="Datos\ClPedidosD.cs" />
     <Compile Include="Datos\ClProductoD.cs" />
+    <Compile Include="Datos\ClTransaccionD.cs" />
     <Compile Include="Datos\ClUsuarioD.cs" />
     <Compile Include="Datos\ClVendedorD.cs" />
     <Compile Include="Entidades\ClPedidosE.cs" />
@@ -1808,15 +1832,16 @@
     <Compile Include="Logica\ClClienteL.cs" />
     <Compile Include="Logica\ClPedidosL.cs" />
     <Compile Include="Logica\ClProductoL.cs" />
+    <Compile Include="Logica\ClTransaccionL.cs" />
     <Compile Include="Logica\ClUsuarioL.cs" />
     <Compile Include="Logica\ClVendedorL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vista\ActualizarProducto.aspx.cs">
-      <DependentUpon>ActualizarProducto.aspx</DependentUpon>
+    <Compile Include="Vista\ActuProducto.aspx.cs">
+      <DependentUpon>ActuProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\ActualizarProducto.aspx.designer.cs">
-      <DependentUpon>ActualizarProducto.aspx</DependentUpon>
+    <Compile Include="Vista\ActuProducto.aspx.designer.cs">
+      <DependentUpon>ActuProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\AdministrarProveedores.aspx.cs">
       <DependentUpon>AdministrarProveedores.aspx</DependentUpon>
@@ -1832,6 +1857,13 @@
     <Compile Include="Vista\AgregarCategorias.aspx.designer.cs">
       <DependentUpon>AgregarCategorias.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vista\agregarMarca.aspx.cs">
+      <DependentUpon>agregarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\agregarMarca.aspx.designer.cs">
+      <DependentUpon>agregarMarca.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\BlankPage.aspx.cs">
       <DependentUpon>BlankPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1845,6 +1877,13 @@
     </Compile>
     <Compile Include="Vista\carritoCompras.aspx.designer.cs">
       <DependentUpon>carritoCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ComprasAProveedor.aspx.cs">
+      <DependentUpon>ComprasAProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ComprasAProveedor.aspx.designer.cs">
+      <DependentUpon>ComprasAProveedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\EditarPerfilVendeyAdmin.aspx.cs">
       <DependentUpon>EditarPerfilVendeyAdmin.aspx</DependentUpon>
@@ -1930,12 +1969,19 @@
     <Compile Include="Vista\moduloCompra.aspx.designer.cs">
       <DependentUpon>moduloCompra.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Vista\moduloSobreNosotros.aspx.cs">
-      <DependentUpon>moduloSobreNosotros.aspx</DependentUpon>
+    <Compile Include="Vista\moduloMarcaFiltrada.aspx.cs">
+      <DependentUpon>moduloMarcaFiltrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Vista\moduloSobreNosotros.aspx.designer.cs">
-      <DependentUpon>moduloSobreNosotros.aspx</DependentUpon>
+    <Compile Include="Vista\moduloMarcaFiltrada.aspx.designer.cs">
+      <DependentUpon>moduloMarcaFiltrada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Nosotros.aspx.cs">
+      <DependentUpon>Nosotros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Nosotros.aspx.designer.cs">
+      <DependentUpon>Nosotros.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vista\perfilInfoVendedor.aspx.cs">
       <DependentUpon>perfilInfoVendedor.aspx</DependentUpon>

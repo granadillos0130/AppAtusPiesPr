@@ -14,7 +14,9 @@ namespace AppAtusPiesPr.Datos
         {
 
             //conex = new SqlConnection("Data Source=.;Initial Catalog=dbZapateria2.0;User ID=ZapateriaAdso;Password=ADSO1234;");
-            conex = new SqlConnection("Data Source=.;Initial Catalog=dbZapateria2.022;Integrated Security=True;");
+
+           // conex = new SqlConnection("Data Source=.;Initial Catalog=dbZapateria2.0;Integrated Security=True;");
+           conex  = new SqlConnection("Data Source=.;Initial Catalog=dbZapateria2.0;User ID=ZapateriaLogin;Password=123456789;");
 
         }
 

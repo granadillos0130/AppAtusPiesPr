@@ -5,6 +5,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
     /* Estilo para la tabla */
@@ -35,7 +36,7 @@
                 <!-- Dropdown de Año -->
                 <div class="col-md-2">
                     <label for="ddlAño" class="form-label">Año</label>
-                    <asp:DropDownList ID="ddlAño" runat="server" CssClass="form-select">
+                    <asp:DropDownList ID="ddlAño" runat="server" CssClass="form-control" class="form-label">
                         <asp:ListItem Text="Seleccione un Año" Value="" />
                         <asp:ListItem Text="2024" Value="2024" />
                         <asp:ListItem Text="2023" Value="2023" />
@@ -46,7 +47,7 @@
                 <!-- Dropdown de Mes -->
                 <div class="col-md-2">
                     <label for="ddlMes" class="form-label">Mes</label>
-                    <asp:DropDownList ID="ddlMes" runat="server" CssClass="form-select">
+                    <asp:DropDownList ID="ddlMes" runat="server"  CssClass="form-control" class="form-label">
                         <asp:ListItem Text="Seleccione un Mes" Value="" />
                         <asp:ListItem Text="Enero" Value="1" />
                         <asp:ListItem Text="Febrero" Value="2" />
@@ -71,6 +72,16 @@
             </div>
         </div>
 
+        <!-- Gráfica -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="card-title">Gráfica de Clientes por Vendedor</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
         <!-- Resultados -->
         <div class="card mt-4">
             <div class="card-body">
@@ -88,4 +99,54 @@
             </div>
         </div>
     </div>
+
+        <script>
+        // Función para obtener datos del GridView
+        function getDataFromGridView() {
+            const rows = document.querySelectorAll("#<%= gvEstadisticasVendedor.ClientID %> tr");
+            const labels = [];
+            const data = [];
+
+            rows.forEach((row, index) => {
+                if (index > 0) { // Ignorar la fila de encabezado
+                    const cells = row.querySelectorAll("td");
+                    labels.push(cells[1].innerText + " " + cells[2].innerText); // Nombre y apellidos del vendedor
+                    data.push(parseInt(cells[5].innerText)); // Total de clientes
+                }
+            });
+
+            return { labels, data };
+        }
+
+        // Función para renderizar la gráfica
+        function renderChart() {
+            const { labels, data } = getDataFromGridView();
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar', // Tipo de gráfica
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total de Clientes',
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Llamar a la función para renderizar la gráfica después de la búsqueda
+        document.addEventListener("DOMContentLoaded", renderChart);
+        </script>
+
 </asp:Content>

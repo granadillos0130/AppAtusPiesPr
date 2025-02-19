@@ -1,5 +1,6 @@
 ﻿using AppAtusPiesPr.Datos;
 using AppAtusPiesPr.Entidades;
+using System.Collections.Generic;
 
 namespace AppAtusPiesPr.Logica
 {
@@ -20,6 +21,12 @@ namespace AppAtusPiesPr.Logica
         public bool ValidarContrasena(int idUsuario, string contrasenaActual, bool esVendedor)
         {
             return usuarioDa.ValidarContrasena(idUsuario, contrasenaActual, esVendedor);
+        }
+
+        public ClUsuarioE datosVendedor(int idUsuario)
+        {
+            ClUsuarioD usuarioV = new ClUsuarioD();
+            return usuarioV.DatosVendedor(idUsuario);
         }
     }
 }

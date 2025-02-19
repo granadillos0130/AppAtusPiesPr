@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         .flatpickr-wrapper {
             margin-bottom: 15px;
@@ -69,6 +71,16 @@
         <asp:Label ID="lblMensaje" runat="server" Text="" CssClass="text-danger" Visible="False" />
     </div>
 
+            <!-- Gráfica -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="card-title">Gráfica de Productos Más Vendidos</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    <br>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
     <script>
@@ -95,6 +107,55 @@
             });
         });
     </script>
+
+        <script>
+            // Función para obtener datos del GridView
+            function getDataFromGridView() {
+                const rows = document.querySelectorAll("#<%= gvProductos.ClientID %> tr");
+                const labels = [];
+                const data = [];
+
+                rows.forEach((row, index) => {
+                    if (index > 0) { // Ignorar la fila de encabezado
+                        const cells = row.querySelectorAll("td");
+                        labels.push(cells[0].innerText); // Nombre del producto
+                        data.push(parseInt(cells[2].innerText)); // Cantidad vendida
+                    }
+                });
+
+                return { labels, data };
+            }
+
+            // Función para renderizar la gráfica
+            function renderChart() {
+                const { labels, data } = getDataFromGridView();
+
+                const ctx = document.getElementById('myChart').getContext('2d');
+                const myChart = new Chart(ctx, {
+                    type: 'bar', // Tipo de gráfica
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Cantidad Vendida',
+                            data: data,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Llamar a la función para renderizar la gráfica después de la búsqueda
+            document.addEventListener("DOMContentLoaded", renderChart);
+        </script>
 
     <!-- Campos ocultos para enviar las fechas seleccionadas al backend -->
     <asp:HiddenField ID="hfFechaInicio" runat="server" />

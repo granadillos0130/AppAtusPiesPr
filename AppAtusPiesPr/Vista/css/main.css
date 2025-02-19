@@ -1,53 +1,84 @@
-﻿* {
+﻿/* Reset y configuración base */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif; /* Define la fuente base para toda la página */
-    background-color: white;
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
+:root {
+    --max-width: 100%;
+    --padding-container: 20px;
+    --primary-color: #000;
+    --secondary-color: #999;
+    --background-light: #f8f7f7;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header y Logo */
 .header-logo {
     text-align: center;
-    font-size: 24px;
+    font-size: clamp(20px, 4vw, 24px);
     font-weight: bold;
 }
-/* Botón de cerrar sesión */
-.btnCerrarSesionIcono {
-    width: 20px; /* Tamaño del botón */
-    height: 20px; /* Tamaño del botón */
-    background-image: url('../recursos/logout.png'); /* URL del ícono */
-    background-size: cover; /* Hace que la imagen se ajuste al tamaño del botón */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    background-color: #ffffff;
-    margin-left: 10px;
-    border: none; /* Elimina el borde del botón */
-    padding: 0; /* Elimina el padding para que el ícono quede centrado */
-    cursor: pointer;
-    display: inline-block; /* Asegura que se comporte como un bloque en línea */
-    transform: rotate(270deg); /* Gira el ícono 90 grados hacia la derecha */
-    /* Asegúrate de que el contenedor tenga un tamaño adecuado */
-    transform-origin: center; /* Establece el origen de la rotación en el centro del botón */
+
+.containerr {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
-/* Estilos para que el botón se vea igual al texto "Perfil" */
+/* Botón de cerrar sesión */
+.btnCerrarSesionIcono {
+    width: 20px;
+    height: 20px;
+    background-image: url('../recursos/logout.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #ffffff;
+    margin-left: 10px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+    transform: rotate(270deg);
+    transform-origin: center;
+}
+
 .btnCerrarSesion {
-    all: unset; /* Resetea todos los estilos predeterminados */
-    font-family: inherit; /* Usa la misma fuente que el texto "Perfil" */
-    font-size: inherit; /* Asegura el mismo tamaño de fuente */
-    color: inherit; /* Usa el mismo color del texto */
-    cursor: pointer; /* Cambia el cursor al estilo puntero */
-    text-decoration: none; /* Elimina subrayado */
-    display: inline; /* Asegura que se comporte como texto */
-    margin-left: 10px; /* Espaciado para separarlo del texto "Perfil" */
+    all: unset;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline;
+    margin-left: 10px;
 }
 
     .btnCerrarSesion:hover {
-        text-decoration: underline; /* Subrayado opcional al pasar el cursor */
+        text-decoration: underline;
     }
 
+/* Header y Navegación */
 .header-menu {
     text-align: left;
     justify-content: space-between;
@@ -57,98 +88,111 @@ body {
     text-align: right;
 }
 
+/* Navbar y Filtros */
 .navbarFiltros {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    margin: 0 auto; /* Asegura el centrado en el contenedor */
-    font-family: inherit; /* Asegura que hereden la fuente del contenedor */
-    background-color: #f7f7f7;
-    padding: 10px 0; /* Ajusta el espacio interno */
-    border-bottom: 1px solid #999; /* Borde inferior gris delgado */
-    width: 100%; /* Asegura que el borde ocupe todo el ancho */
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: var(--background-light);
+    padding: 5px var(--padding-container);
+    border-bottom: 1px solid var(--secondary-color);
+    width: 100%;
 }
 
 .menuFiltros {
     list-style: none;
-    display: flex; /* Activa la distribución horizontal */
-    justify-content: center; /* Centra el contenido */
-    align-items: center; /* Centra verticalmente */
-    gap: 20px; /* Espaciado entre los elementos */
-    margin: 0; /* Elimina márgenes predeterminados */
-    padding: 0; /* Elimina relleno predeterminado */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(10px, 2vw, 20px);
+    margin: 0;
+    padding: 0;
 }
 
     .menuFiltros li a {
         text-decoration: none;
-        color: black;
+        color: var(--primary-color);
         text-transform: uppercase;
-        font-size: 12px;
+        font-size: clamp(10px, 2vw, 12px);
         font-weight: 500;
-        font-family: inherit; /* Asegura que hereden la fuente del contenedor */
-        text-align: center; /* Centra el texto dentro del enlace */
+        text-align: center;
     }
 
-
-
-
 .navbar {
+    padding: 10px; /* Agrega 10px de padding en todos los lados */
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    font-family: inherit; /* Asegura que hereden la fuente del contenedor */
+    justify-content: center;
+    width: calc(100% - 20px); /* Resta 10px de cada lado para mantener la separación */
+    max-width: var(--max-width);
+    margin: 0 auto; /* Centra el navbar */
+    gap: 15px;
+    padding-right:10px;
+    padding-left:10px;
 }
+
+
 
 .menu {
     list-style: none;
     display: flex;
-    gap: 20px;
-    font-family: inherit; /* Asegura que hereden la fuente del contenedor */
+    flex-wrap: wrap;
+    gap: clamp(10px, 2vw, 20px);
+    padding: 5px 10px; /* Agrega 10px de padding en los lados */
+    justify-content: center;
+    margin: 0 10px; /* Agrega 10px de margen en los lados */
 }
+
 
     .menu li a {
         text-decoration: none;
-        color: black;
+        color: var(--primary-color);
         text-transform: uppercase;
         font-weight: 500;
-        font-family: inherit; /* Asegura que hereden la fuente del contenedor */
+        padding: 5px 0; /* Ajusta el padding para hacer los elementos más delgados */
+        padding: 5px 0; /* Ajusta el padding para hacer el header más delgado */
     }
 
-/* Borde inferior de la página */
 header {
-    width: 100%; /* Asegura que el borde ocupe todo el ancho */
-    border-bottom: 1px solid #999; /* Borde más delgado y de color gris */
+    width: 100%;
+    border-bottom: 1px solid var(--secondary-color);
 }
 
-
+/* Logo */
 .logo {
-    font-size: 24px;
+    font-size: clamp(18px, 4vw, 24px);
     font-weight: bold;
     text-decoration: none;
-    color: black;
+    color: var(--primary-color);
     text-align: center;
-    flex-grow: 1;
 }
 
+/* Sección derecha */
 .right-section {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 15px;
+    justify-content: center; /* Centra los elementos de la sección derecha */
 }
 
 .login {
     text-decoration: none;
-    color: black;
-    font-size: 14px;
+    color: var(--primary-color);
+    font-size: clamp(12px, 2vw, 14px);
     font-weight: 500;
+    margin-left: auto; /* Empuja los botones hacia la derecha */
 }
 
 .search-bar {
     position: relative;
-    width: 200px;
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    align-items: center; /* Centra verticalmente */
+    padding: 8px 15px; /* Ajusta el padding para los botones */
+    margin-left: auto; /* Mueve los botones a la derecha */
 }
 
     .search-bar input {
@@ -164,66 +208,60 @@ header {
         top: 50%;
         right: 15px;
         transform: translateY(-50%);
-        color: #999;
+        color: var(--secondary-color);
     }
 
-.bookmark {
-    color: black;
-    font-size: 20px;
-}
-
-    .bookmark i {
-        color: #999;
-    }
-
-/* Contenedor del carrusel */
+/* Carrusel */
 .carousel {
-    width: 100%; /* Ajusta el carrusel al ancho total del contenedor */
-    max-width: 100%; /* Controla el ancho máximo del carrusel, ajustable a tus necesidades */
-    height: 400%; /* Establece la altura máxima */
-    margin: 0 auto; /* Centra el carrusel en la página */
-    overflow: hidden; /* Oculta cualquier desbordamiento */
-    border: 1px solid gray; /* Opcional, para ver los bordes del carrusel */
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid var(--secondary-color);
 }
 
-/* Asegura que el carrusel ocupe toda la altura */
 .carousel-inner {
     width: 100%;
     height: 100%;
 }
 
 .carousel-item {
-    height: 100%; /* El item ocupa toda la altura del carrusel */
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-    /* Imágenes ajustadas */
+.textoIndex{
+    margin-left: 20px;
+}
+
     .carousel-item img {
-        max-height: 100%;
-        max-width: 100%;
-        object-fit: contain; /* Evita que las imágenes se estiren y las ajusta al contenedor */
-        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
+/* Container de Cards */
 .cards-container {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap; /* Permite que las tarjetas se ajusten a la siguiente línea */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Tamaño mínimo de 250px */
     gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: var(--max-width);
+    margin: 20px auto;
+    padding: 0 var(--padding-container);
 }
-/* CARDS */
+
+/* Cards */
 .card {
     background-color: white;
-    width: 23%; /* Ajusta ligeramente el tamaño para evitar problemas de espacio */
-    min-width: 250px; /* Define un ancho mínimo para que las tarjetas no se hagan demasiado pequeñas */
-    border: 1px solid #999;
+    width: 100%; /* Ocupa el 100% del espacio disponible en la celda del grid */
+    max-width: 300px; /* Limita el ancho máximo de la card */
+    border: 1px solid var(--secondary-color);
     text-align: left;
     padding: 15px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -231,6 +269,7 @@ header {
     overflow: hidden;
     transition: transform 0.3s ease;
     border-radius: 10px;
+    margin: 0 auto; /* Centra la card en su celda del grid */
 }
 
     .card:hover {
@@ -239,27 +278,32 @@ header {
 
 .card-image {
     width: 100%;
-    flex-grow: 1;
+    aspect-ratio: 1;
     object-fit: cover;
     margin-bottom: 10px;
     transition: opacity 0.3s ease;
+    border-radius: 5px;
 }
 
 .card-info {
-    text-align: left; /* Dejo la alineación de texto a la izquierda como estaba antes */
+    text-align: left;
 }
 
+/* Botones */
 .buy-button {
     display: inline-block;
+    width: 100%;
+    max-width: 300px;
     padding: 10px 20px;
-    background-color: black;
+    background-color: var(--primary-color);
     color: white;
-    font-size: 14px;
+    font-size: clamp(12px, 2vw, 14px);
     text-transform: uppercase;
     text-decoration: none;
-    margin-top: 10px;
+    margin: 10px auto;
     transition: background-color 0.3s ease;
     border-radius: 5px;
+    text-align: center;
 }
 
     .buy-button:hover {
@@ -268,111 +312,112 @@ header {
 
 .delete-carrito {
     display: inline-block;
-    padding: 10px 10px;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
     background-color: #ff2d2d;
     color: white;
-    font-size: 14px;
+    font-size: clamp(12px, 2vw, 14px);
     text-transform: uppercase;
     text-decoration: none;
-    margin-top: 10px;
+    margin: 10px auto;
     transition: background-color 0.3s ease;
     border-radius: 5px;
-    border: none; /* Eliminar el borde */
+    border: none;
+    text-align: center;
 }
 
     .delete-carrito:hover {
         background-color: #ff5151;
     }
 
-/* Ajuste del botón de guardar */
-.save-button {
-    width: 24px; /* Tamaño ajustado del botón */
-    height: 24px;
-    background-color: transparent; /* Elimina el fondo para que no cubra más de lo necesario */
+.menubtns {
     display: flex;
-    cursor: pointer;
-    margin-top: 10px;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto; /* Mueve los botones hacia la derecha */
 }
 
-.save-button2 {
-    width: 24px; /* Tamaño ajustado del botón */
+/* Botones de guardar */
+.save-button, .save-button2 {
+    width: 24px;
     height: 24px;
-    background-color: transparent; /* Elimina el fondo para que no cubra más de lo necesario */
+    background-color: transparent;
     display: flex;
     cursor: pointer;
+    margin-left: auto; /* Empuja los botones hacia la derecha */
 }
 
 .save-icon {
-    width: 20px; /* Tamaño reducido del ícono */
+    width: 20px;
     height: 20px;
+    margin-left: auto; /* Empuja los botones hacia la derecha */
 }
 
+/* Títulos y detalles de card */
 .card-title {
-    font-size: 16px;
-    color: #000000;
+    font-size: clamp(14px, 2vw, 16px);
+    color: var(--primary-color);
     word-wrap: break-word;
 }
 
 .card-details {
-    margin-top: 5px;
-    font-size: 16px;
-    color: gray;
+    margin-top: 3px;
+    font-size: clamp(14px, 2vw, 16px);
+    color: var(--secondary-color);
 }
 
-/* Media query para pantallas más pequeñas */
-@media (max-width: 768px) {
-    .card {
-        width: 100%; /* En pantallas pequeñas, las tarjetas ocupan todo el ancho */
-    }
-}
-
+/* Footer */
 .pie-pagina {
     margin-top: 2%;
     text-align: center;
-    border: 1px solid black;
+    border-top: 1px solid var(--secondary-color);
     background-color: #cfcfcf;
+    padding: 20px var(--padding-container);
+    width: 100%;
 }
 
     .pie-pagina p {
         margin-top: 1%;
         text-align: center;
-        color: rgb(0, 0, 0);
+        color: var(--primary-color);
     }
 
-/* LOGIN */
-
+/* Login */
 .container-login {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #f5f5f5;
+    padding: 20px;
 }
 
 .login-card {
     background-color: #ffffff;
-    padding: 30px;
+    padding: clamp(15px, 4vw, 30px);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
     text-align: center;
-    border: 1px solid black; /* Opcional, para ver los bordes del carrusel */
+    border: 1px solid var(--primary-color);
 }
 
     .login-card h1 {
-        font-size: 24px;
+        font-size: clamp(20px, 4vw, 24px);
         color: #333;
         margin-bottom: 20px;
         font-weight: bold;
     }
 
-    .login-card .correo, .login-card .password {
+    .login-card .correo,
+    .login-card .password {
         margin-bottom: 20px;
         text-align: left;
     }
 
     .login-card label {
-        font-size: 14px;
+        font-size: clamp(12px, 2vw, 14px);
         color: #555;
         display: block;
         margin-bottom: 5px;
@@ -381,119 +426,82 @@ header {
     .login-card input {
         width: 100%;
         padding: 10px;
-        border: 1px solid #ddd;
-        border: 1px solid black; /* Opcional, para ver los bordes del carrusel */
-        font-size: 16px;
+        border: 1px solid var(--primary-color);
+        font-size: clamp(14px, 2vw, 16px);
     }
 
     .login-card .login-btn {
         width: 100%;
         padding: 12px;
         background-color: #ffffff;
-        color: rgb(0, 0, 0);
-        border: none;
-        font-size: 16px;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+        font-size: clamp(14px, 2vw, 16px);
         cursor: pointer;
         transition: background-color 0.3s ease;
-        border: 1px solid black; /* Opcional, para ver los bordes del carrusel */
     }
 
         .login-card .login-btn:hover {
             background-color: #292929;
+            color: white;
         }
 
+/* Estilos de compra */
 .txt-tituloCompra {
     margin-top: 1%;
     text-align: center;
+    font-size: clamp(18px, 3vw, 24px);
 }
 
 .compra {
-    width: 100%; /* Ajusta el carrusel al ancho total del contenedor */
-    max-width: 80%; /* Controla el ancho máximo del carrusel, ajustable a tus necesidades */
-    height: 100%; /* Establece la altura máxima */
-    margin: 0 auto; /* Centra el carrusel en la página */
-    overflow: hidden; /* Oculta cualquier desbordamiento */
-    border: 1px solid gray; /* Opcional, para ver los bordes del carrusel */
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid var(--secondary-color);
     border-radius: 10px;
 }
 
     .compra p {
         margin-top: 1%;
-    }
-
-    .compra p {
-        margin-top: 1%;
-        display: block;
+        font-size: clamp(14px, 2vw, 16px);
     }
 
     .compra .btn {
         width: 100%;
+        max-width: 300px;
         padding: 12px;
         background-color: #ffffff;
-        color: rgb(0, 0, 0);
-        border: none;
-        margin-top: 2%;
-        font-size: 16px;
+        color: var(--primary-color);
+        border: 1px solid var(--secondary-color);
+        margin: 2% auto;
+        font-size: clamp(14px, 2vw, 16px);
         cursor: pointer;
         transition: background-color 0.3s ease;
-        width: 100%; /* Ocupa el ancho completo de la tarjeta */
-        flex-grow: 1; /* Hace que la imagen ocupe el espacio disponible */
-        object-fit: cover; /* Ajusta la imagen para que cubra el área sin deformarse */
-        border: 1px solid gray; /* Opcional, para ver los bordes del carrusel */
         border-radius: 5px;
+        display: block;
     }
-/* Btn desplegable de compra */
-label {
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: #333;
-}
 
+/* Dropdown de compra */
 .dropdown {
-    width: 10%;
+    width: 100%;
+    max-width: 200px;
     padding: 5px;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     appearance: none;
     cursor: pointer;
     border-radius: 3px;
     color: #333;
 }
 
-    /* Estilos del dropdown cuando es enfocado */
-    .dropdown:focus {
-        border-color: #333;
-        outline: none;
-        color: #333;
-    }
-
-    /* Añadir flecha personalizada en el dropdown */
-    .dropdown::after {
-        content: '\25BC'; /* Unicode para la flecha */
-        transform: translateY(-50%);
-        pointer-events: none;
-        color: #333;
-        border-radius: 3px;
-    }
-
-    /* Opcional: si quieres personalizar más el estilo del select */
-    .dropdown option {
-        padding: 10px;
-        color: #333;
-        border-radius: 3px;
-    }
-
-.info-producto {
-    margin-left: 1%;
-}
-
+/* Detalles de producto */
 .producto-detalle {
-    display: flex; /* Activa el diseño en filas */
-    flex-wrap: nowrap; /* Evita que los elementos se apilen verticalmente */
-    align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
-    justify-content: flex-start; /* Alinea los elementos horizontalmente al inicio */
-    gap: 20px; /* Espacio entre la imagen y el texto */
-    max-width: 1200px; /* Limita el ancho total */
-    margin: 20px auto; /* Centra el contenedor horizontalmente */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: var(--max-width);
+    margin: 20px auto;
+    padding: 0 var(--padding-container);
 }
 
 .producto-imagen {
@@ -508,79 +516,164 @@ label {
     }
 
 .producto-info {
-    flex: 2; /* El texto ocupa el doble de espacio que la imagen */
-    display: flex;
-    flex-direction: column; /* Organiza los elementos en una columna */
-    gap: 10px; /* Espaciado entre los elementos dentro de la información */
+    flex: 1;
 }
 
     .producto-info h1 {
-        font-size: 24px;
+        font-size: clamp(20px, 4vw, 24px);
         margin-bottom: 10px;
         color: #333;
         font-weight: bold;
     }
 
     .producto-info ul {
-        list-style: none; /* Elimina los puntos de la lista */
+        list-style: none;
         padding: 0;
-        font-size: 14px;
+        font-size: clamp(12px, 2vw, 14px);
         line-height: 1.6;
         color: #555;
     }
 
         .producto-info ul li {
-            margin-bottom: 10px; /* Espaciado entre los elementos de la lista */
+            margin-bottom: 10px;
         }
 
-.devoluciones {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-}
-
-.cardseller {
-    color: #555;
-    font-size: 16px;
-    margin: 5px 0;
-    text-decoration: none; /* Elimina el subrayado */
-}
-
-.cardprice {
-    font-size: 16px;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    margin-top: 5px;
-}
-
-.btn-agregar-carrito {
-    display: inline-block;
-    width: 100%; /* O ajusta según el diseño */
-    max-width: 200px; /* Limita el ancho máximo */
-    padding: 10px 15px;
-    background-color: black;
-    color: #cccccc;
-    font-size: 16px;
-    text-align: center;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-    .btn-agregar-carrito:hover {
-        background-color: #333; /* Cambia a un gris más claro al pasar el ratón */
+/* Media Queries */
+@media (min-width: 768px) {
+    .producto-detalle {
+        flex-direction: row;
+        gap: 40px;
     }
 
-.cardButtons {
-    display: flex; /* Activa el diseño en fila */
-    align-items: center; /* Alinea verticalmente los botones */
-    gap: 10px; /* Espacio entre los botones */
-    margin-top: 10px; /* Espaciado con el contenido superior */
+    .producto-imagen {
+        flex: 1;
+    }
+
+    .producto-info {
+        flex: 2;
+    }
+
+    .navbar {
+        flex-wrap: nowrap;
+    }
+
+    .search-bar {
+        order: 0;
+    }
 }
 
-/* Animación de salida */
+/* Ajustes para pantallas grandes (min-width: 1600px) */
+@media (min-width: 1600px) {
+    :root {
+        --max-width: 1600px; /* Aumenta el ancho máximo del contenedor */
+        --padding-container: 40px; /* Aumenta el padding para pantallas grandes */
+    }
+
+    body {
+        font-size: 1.2rem; /* Aumenta el tamaño de la fuente base */
+    }
+
+    .header-logo {
+        font-size: clamp(24px, 5vw, 32px); /* Aumenta el tamaño del logo */
+    }
+
+    .navbar {
+        padding: 20px var(--padding-container); /* Aumenta el padding del navbar */
+    }
+
+    .menu li a {
+        font-size: clamp(14px, 2.5vw, 18px); /* Aumenta el tamaño de los enlaces del menú */
+    }
+
+    .search-bar {
+        max-width: 400px; /* Aumenta el ancho de la barra de búsqueda */
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Aumenta el tamaño mínimo de las cards */
+        gap: 30px; /* Aumenta el espacio entre las cards */
+    }
+
+    .card {
+        max-width: 350px; /* Aumenta el ancho máximo de las cards */
+    }
+
+    .card-title {
+        font-size: clamp(16px, 2.5vw, 20px); /* Aumenta el tamaño del título de la card */
+    }
+
+    .card-details {
+        font-size: clamp(16px, 2.5vw, 18px); /* Aumenta el tamaño de los detalles de la card */
+    }
+
+    .buy-button, .delete-carrito {
+        font-size: clamp(14px, 2.5vw, 18px); /* Aumenta el tamaño de los botones */
+    }
+
+    .producto-detalle {
+        gap: 50px; /* Aumenta el espacio entre la imagen y la información del producto */
+    }
+
+    .producto-info h1 {
+        font-size: clamp(24px, 5vw, 32px); /* Aumenta el tamaño del título del producto */
+    }
+
+    .producto-info ul {
+        font-size: clamp(14px, 2.5vw, 18px); /* Aumenta el tamaño de la lista de detalles del producto */
+    }
+
+    .imagen-zoom.zoom-activo {
+        width: 80vw; /* Aumenta el tamaño de la imagen en el zoom */
+        height: 80vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+    }
+
+    .menu {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .right-section {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .search-bar {
+        order: -1;
+        width: 100%;
+    }
+
+    .menuFiltros {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .card:hover {
+        transform: none;
+    }
+
+    .login-card {
+        padding: 15px;
+    }
+
+    .menuFiltros {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .compra {
+        max-width: 95%;
+    }
+}
+
+/* Animaciones */
 @keyframes fadeOut {
     from {
         opacity: 1;
@@ -591,12 +684,11 @@ label {
     }
 }
 
-/* Clase para aplicar la animación */
 .page-exit {
     animation: fadeOut 0.5s ease-in-out forwards;
 }
 
-<style >
+/* Sistema de rating */
 .rating-container {
     margin-top: 10px;
 }
@@ -609,8 +701,8 @@ label {
 }
 
 .heart-icon {
-    font-size: 24px;
-    color: #ccc;
+    font-size: 18px;
+    color: #000;
     cursor: pointer;
     transition: color 0.2s ease-in-out;
 }
@@ -620,8 +712,164 @@ label {
         color: #ff4757;
     }
 
-.comment-box {
-    margin-top: 10px;
+/* Overlay oscuro */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+    z-index: 999; /* Debajo de la imagen */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Evita que el overlay interfiera con los clics */
 }
 
-</style >
+    .overlay.activo {
+        opacity: 1; /* Muestra el overlay */
+        pointer-events: auto; /* Permite interacción con el botón */
+    }
+
+/* Estilo del botón de cerrar */
+#cerrar-zoom {
+    position: fixed;
+    top: 20px; /* Distancia desde la parte superior */
+    right: 20px; /* Distancia desde la derecha */
+    background: none; /* Sin fondo */
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1001; /* Asegura que esté por encima de la imagen y el overlay */
+    color: #fff; /* Color del icono */
+    font-size: 24px; /* Tamaño del icono */
+}
+
+    #cerrar-zoom:hover {
+        color: #cc0000; /* Cambia el color al pasar el cursor */
+    }
+
+.imagen-zoom {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Transición suave */
+    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+}
+
+    /* Estado ampliado de la imagen */
+    .imagen-zoom.zoom-activo {
+        position: fixed; /* Fija la imagen en la pantalla */
+        top: 5%; /* Ajusta la posición vertical (100% - 90% = 10%, dividido entre 2 para centrar) */
+        left: 5%; /* Ajusta la posición horizontal (100% - 90% = 10%, dividido entre 2 para centrar) */
+        width: 90vw; /* Ocupa el 90% del ancho de la pantalla */
+        height: 90vh; /* Ocupa el 90% del alto de la pantalla */
+        object-fit: contain; /* Mantiene la proporción de la imagen */
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        transform: scale(1); /* Escala la imagen */
+        opacity: 1; /* Asegura que la imagen sea visible */
+        cursor: zoom-out; /* Cambia el cursor al salir */
+    }
+
+.cardseller {
+    color: #555;
+    font-size: 16px;
+    margin: 5px 0;
+    text-decoration: none; /* Elimina el subrayado */
+}
+
+.notificaciones {
+    position: relative;
+    display: inline-block;
+}
+
+.notificacion-icono {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    position: relative;
+}
+
+.notificacion-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 3px 6px;
+    display: none;
+}
+
+.notificacion-panel {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 250px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+}
+
+.notificacion-lista {
+    padding: 10px;
+}
+
+.notificacion-item {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+}
+
+    .notificacion-item:last-child {
+        border-bottom: none;
+    }
+
+.menu-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaciado entre iconos */
+}
+
+.icono-accion {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+    position: relative;
+}
+
+.notificacion-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 3px 6px;
+    display: block;
+}
+
+.notificacion-icono {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px; /* Increased size for better visibility */
+    position: relative;
+    color: #333; /* Default color */
+    padding: 8px;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+    .notificacion-icono:hover {
+        color: #666; /* Color when hovering */
+    }
+
+    /* Make the bell icon more prominent */
+    .notificacion-icono .fas.fa-bell {
+        display: inline-block;
+    }

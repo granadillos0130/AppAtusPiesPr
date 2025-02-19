@@ -58,6 +58,14 @@ namespace AppAtusPiesPr.Logica
             return proveedorD.EliminarProveedor(idProveedor, out mensaje);
         }
 
-
+        public List<ClProveedorE> MtdListarProveedorVendedor(int IdVendedor)
+        {
+            return oVendedor.ListarProveedorVendedor(IdVendedor);
+        }
+        public bool GuardarCompra(string numeroFactura, decimal totalCompra, int idProveedor, int idVendedor)
+        {
+            DateTime fechaCompra = DateTime.Now; // Captura la fecha actual
+            return oVendedor.RegistrarCompra(numeroFactura, totalCompra, idProveedor, idVendedor, fechaCompra);
+        }
     }
 }

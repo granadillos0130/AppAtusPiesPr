@@ -16,6 +16,7 @@ namespace AppAtusPiesPr.Vista
             if (!IsPostBack)
             {
                 cargarCategorias();
+                cargarMarcas();
 
                 string busqueda = Request.QueryString["busqueda"];
                 if (!string.IsNullOrEmpty(busqueda))
@@ -49,6 +50,12 @@ namespace AppAtusPiesPr.Vista
                 Repeater1.DataSource = null;
                 Repeater1.DataBind();
             }
+        }
+        private void cargarMarcas()
+        {
+            ClProductoL oLogica = new ClProductoL();
+            RepeaterMarca.DataSource = oLogica.MtdListarMarcas();
+            RepeaterMarca.DataBind();
         }
     }
 }
