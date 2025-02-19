@@ -376,9 +376,7 @@ a:hover {
                      <a href="#" class="social-link">
                          <i class="fab fa-github"></i>
                      </a>
-                     <a href="#" class="social-link">
-                         <i class="fab fa-linkedin"></i>
-                     </a>
+                  
                  </div>
              </div>
          </div>
@@ -400,9 +398,7 @@ a:hover {
                      <a href="https://github.com/papuluiszzz" class="social-link">
                          <i class="fab fa-github"></i>
                      </a>
-                     <a href="#" class="social-link">
-                         <i class="fab fa-linkedin"></i>
-                     </a>
+                   
                  </div>
              </div>
          </div>
