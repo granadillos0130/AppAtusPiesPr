@@ -172,6 +172,13 @@ namespace AppAtusPiesPr.Logica
             List<ClCategoriaE> objData = objproducto.mtdListarCategoriaActu();
             return objData;
         }
+        public List<ClMarcasE> MtdlistarMarcaActua()
+        {
+            ClProductoD objproducto = new ClProductoD();
+            List<ClMarcasE> objData = objproducto.mtdListarMarcaActu();
+            return objData;
+        }
+
 
         public List<ClProductoEmpresaE> mtdNotificaciones(int idCliente)
         {

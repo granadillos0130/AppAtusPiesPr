@@ -102,7 +102,7 @@
                         </div>
 <div class="mb-3">
     <label class="form-label">Tallas Disponibles</label>
-    <div
+    <div>
         <asp:CheckBoxList ID="chkTallas" runat="server" CssClass="tallas-list" RepeatDirection="Horizontal" RepeatLayout="Flow">
     <asp:ListItem Value="1">34</asp:ListItem>
     <asp:ListItem Value="2">35</asp:ListItem>
@@ -140,21 +140,11 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="txtMarca" class="form-label">Marca</label>
-                            <asp:DropDownList ID="txtMarca" runat="server" CssClass="form-control">
-                                <asp:ListItem Value="">Seleccione una Marca</asp:ListItem>
-                                <asp:ListItem Value="Nike">Nike</asp:ListItem>
-                                <asp:ListItem Value="Adidas">Adidas</asp:ListItem>
-                                <asp:ListItem Value="Reebok">Reebok</asp:ListItem>
-                                <asp:ListItem Value="Puma">Puma</asp:ListItem>
-                                <asp:ListItem Value="New Balance">New Balance</asp:ListItem>
-                                <asp:ListItem Value="Under Armour">Under Armour</asp:ListItem>
-                                <asp:ListItem Value="Asics">Asics</asp:ListItem>
-                                <asp:ListItem Value="Saucony">Saucony</asp:ListItem>
-                                <asp:ListItem Value="Hoka">Hoka</asp:ListItem>
-                                <asp:ListItem Value="Mizuno">Mizuno</asp:ListItem>
-                                <asp:ListItem Value="Balenciaga">Balenciaga</asp:ListItem>
-                            </asp:DropDownList>
+                            <label for="ddlMarca" class="form-label">Marca</label>
+                            <div class="input-group">
+                                <span class="input-group-text">👟</span>
+                                <asp:DropDownList ID="ddlMarca" runat="server" CssClass="form-control"></asp:DropDownList>
+                            </div>
                         </div>
 
                         <div class="mb-3">

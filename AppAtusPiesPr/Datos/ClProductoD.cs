@@ -701,6 +701,41 @@ namespace AppAtusPiesPr.Datos
             }
         }
 
+        public List<ClMarcasE> mtdListarMarcaActu()
+        {
+            List<ClMarcasE> listMarca = new List<ClMarcasE>();
+            ClConexion oConex = new ClConexion();
+
+            using (SqlConnection con = oConex.MtdAbrirConexion())
+            {
+                using (SqlCommand cmd = new SqlCommand("SplistarMarcasActu", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+
+                            ClMarcasE pro = new ClMarcasE
+                            {
+                                idMarca = Convert.ToInt32(reader["idMarca"]),
+                                nombreMarca = reader["nombreMarca"].ToString()
+                            };
+
+                            listMarca.Add(pro);
+
+                        }
+                    }
+
+                }
+                return listMarca;
+            }
+        }
+
+
+
+
         public List<ClProductoEmpresaE> ObtenerNotificaciones(int idCliente)
         {
             List<ClProductoEmpresaE> lista = new List<ClProductoEmpresaE>();

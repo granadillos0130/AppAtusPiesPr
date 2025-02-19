@@ -13,6 +13,7 @@ namespace AppAtusPiesPr.Vista
     public partial class RegistroProducto : System.Web.UI.Page
     {
         ClProductoL productosCategoria = new ClProductoL();
+        ClProductoL productosMarca = new ClProductoL();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -22,10 +23,32 @@ namespace AppAtusPiesPr.Vista
                 {
                     int idVendedor = Convert.ToInt32(Session["idUsuario"]);
                     CargarCategorias();
+                    CargarMarca();  
                 }
             }
 
         }
+
+        private void CargarMarca()
+        {
+            List<ClMarcasE> listaProductos = productosMarca.MtdlistarMarcaActua();
+
+            if (listaProductos.Count > 0)
+            {
+                ddlMarca.DataSource = listaProductos;
+                ddlMarca.DataTextField = "nombreMarca";
+                ddlMarca.DataValueField = "idMarca";
+                ddlMarca.DataBind();
+            }
+            else
+            {
+                ddlMarca.Items.Clear();
+                ddlMarca.Items.Add(new ListItem("No hay marcas disponibles", "0"));
+            }
+
+            ddlMarca.Items.Insert(0, new ListItem("Seleccione una marca", "0"));
+        }
+
 
         private void CargarCategorias()
         {
@@ -63,7 +86,7 @@ namespace AppAtusPiesPr.Vista
                     string.IsNullOrWhiteSpace(txtReferencia.Text) ||
                     string.IsNullOrWhiteSpace(ddlCategoria.Text) ||
                    !chkTallas.Items.Cast<ListItem>().Any(item => item.Selected) ||
-                    string.IsNullOrWhiteSpace(txtMarca.Text))
+                    string.IsNullOrWhiteSpace(ddlMarca.Text))
 
 
                 {
@@ -75,7 +98,7 @@ namespace AppAtusPiesPr.Vista
                 objProduE.descripcionProducto = txtDescripcionProduc.Text.Trim();
                 objProduE.referencia = txtReferencia.Text.Trim();
                 objProduE.descripcionCategoria = ddlCategoria.Text.Trim();
-                objProduE.nombreMarca = txtMarca.Text.Trim();
+                objProduE.nombreMarca = ddlMarca.Text.Trim();
 
                 List<string> tallasSeleccionadas = new List<string>();
                 foreach (ListItem item in chkTallas.Items)
@@ -203,7 +226,7 @@ namespace AppAtusPiesPr.Vista
             txtDescripcionProduc.Text = "";
             txtReferencia.Text = "";
             ddlCategoria.SelectedIndex = 0;
-            txtMarca.Text = "";
+            ddlMarca.SelectedIndex = 0;
             txtStock.Text = "";
             txtPrecio.Text = "";
             txtDescuento.Text = "";
